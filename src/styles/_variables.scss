@@ -1,0 +1,7 @@
+// Place SASS variable overrides here
+//$font-size-root: 18px;
+
+$input-details-margin-bottom: 0px !important;
+.v-input__details {
+  margin: $input-details-margin-bottom;
+}
