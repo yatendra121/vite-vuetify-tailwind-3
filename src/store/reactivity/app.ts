@@ -3,10 +3,10 @@ import { defineStore } from 'pinia'
 export type AppState = {
     sidebar: boolean
     theme: string
+    loading: boolean
     color: string
     image: string
     sidebarBackgroundColor: string
-    [key: string]: any
 }
 
 export const useAppStore = defineStore({
@@ -15,6 +15,7 @@ export const useAppStore = defineStore({
         ({
             sidebar: true,
             theme: 'light',
+            loading: false,
             color: 'primary',
             image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
             sidebarBackgroundColor: 'rgba(27, 27, 27, 0.74)'
@@ -25,6 +26,9 @@ export const useAppStore = defineStore({
         },
         themeValue(): string {
             return this.theme
+        },
+        loadingValue(): boolean {
+            return this.loading
         }
     },
     actions: {
@@ -36,6 +40,12 @@ export const useAppStore = defineStore({
         },
         changeTheme() {
             this.theme = this.theme === 'light' ? 'dark' : 'light'
+        },
+        startLoading() {
+            this.loading = true
+        },
+        finishLoading() {
+            this.loading = false
         }
     }
 })

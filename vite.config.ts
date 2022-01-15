@@ -22,7 +22,15 @@ export default defineConfig({
             '@': resolve(__dirname, './src')
         }
     },
-    plugins: [vue(), vueJsx(), vuetify({ autoImport: true }), ...plugins],
+    plugins: [
+        vue(),
+        vueJsx(),
+        vuetify({
+            autoImport: true,
+            styles: 'expose'
+        }),
+        ...plugins
+    ],
     // css: {
     //     preprocessorOptions: {
     //         sass: { additionalData: `@import ${srcPath}\n` },

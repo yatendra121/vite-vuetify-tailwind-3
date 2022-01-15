@@ -9,7 +9,10 @@
     "config-key-merge": "node portalConfig",
     "tsc": "vue-tsc --noEmit",
     "lint": "eslint . --config=.eslintrc.js",
-    "format": "prettier .  --write"
+    "format": "prettier .  --write",
+    "test:e2e": "cypress open", 
+    "test:e2e-ct": "cypress open-ct",
+    "test:unit": "jest --watchAll --verbose --coverage"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^4.0.5",
@@ -25,11 +28,15 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@cypress/vite-dev-server": "^2.2.2",
+    "@cypress/vue": "^3.1.0",
     "@mdi/font": "^6.5.95",
+    "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
     "@vitejs/plugin-vue": "^2.0.0",
     "@vitejs/plugin-vue-jsx": "^1.3.3",
+    "@vue/cli-plugin-babel": "^4.5.15",
     "@vue/cli-service": "latest",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
@@ -37,6 +44,7 @@
     "@vueuse/core": "^7.4.1",
     "@vueuse/integrations": "^7.4.1",
     "autoprefixer": "^10.4.0",
+    "cypress": "^9.2.1",
     "dotenv": "^10.0.0",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
@@ -45,6 +53,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-vue": "^8.2.0",
+    "jest": "^27.4.7",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "roboto-fontface": "^0.10.0",

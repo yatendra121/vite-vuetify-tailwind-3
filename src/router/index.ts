@@ -9,6 +9,7 @@ import { StaticPageRoutes } from '@/views/admin/StaticPage/routes'
 import Fullscreen from '@/views/admin/Fullscreen/routes'
 import MyProfile from '@/views/admin/MyProfile/routes'
 import EventBus from '@/views/admin/EventBus/routes'
+import Socket from '@/views/admin/Socket/routes'
 import { Portal } from '@/utils/portal'
 import { Meta } from '@/types/router'
 const currentPortal = new Portal()
@@ -27,6 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     ...Fullscreen,
     ...MyProfile,
     ...EventBus,
+    ...Socket,
     {
         // To Handle undefined routes
         path: '/:catchAll(.*)',

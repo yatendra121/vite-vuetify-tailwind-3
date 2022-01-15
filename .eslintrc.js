@@ -3,17 +3,22 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ['eslint:recommended', 'standard', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'standard',
+    'prettier',
+    'plugin:import/warnings'
+  ],
   rules: {
     'spaced-comment': 'off'
   },
   overrides: [
     {
-      files: ['*.vue', '*.js'],
+      files: ['*.vue'],
       extends: [
         'plugin:vue/vue3-strongly-recommended',
-        '@vue/eslint-config-typescript',
-        'plugin:import/warnings',
+        '@vue/eslint-config-typescript/recommended',
+
         '@vue/eslint-config-prettier'
       ],
       rules: {
@@ -22,7 +27,9 @@ module.exports = {
         'vue/html-indent': 'off',
         'vue/max-attributes-per-line': 'off',
         'vue/html-self-closing': 'off',
-        'vue/singleline-html-element-content-newline': 'off'
+        'vue/singleline-html-element-content-newline': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'off'
       }
     },
     {
