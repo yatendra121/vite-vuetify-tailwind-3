@@ -12,7 +12,7 @@
     "format": "prettier .  --write",
     "test:e2e": "cypress open",
     "test:e2e-ct": "cypress open-ct",
-    "test:unit": "jest --watchAll --verbose --coverage"
+    "test:unit": "jest --verbose"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^4.0.5",
