@@ -12435,10 +12435,10 @@ vuetify-loader@latest:
     file-loader "^6.2.0"
     loader-utils "^2.0.0"
 
-"vuetify@npm:@vuetify/nightly@3.0.0-next-20220107.0":
-  version "3.0.0-next-20220107.0"
-  resolved "https://registry.yarnpkg.com/@vuetify/nightly/-/nightly-3.0.0-next-20220107.0.tgz#3c908a87a6ea43b5ccc41fe4d25852775cd3772d"
-  integrity sha512-V7ajToglEFQrHT2ONZpAgAu0z1Hpp/TuazM2CCBBVxKrrQnejNx865qCPaLOfNcNHpk/5Mj21VOXbtuf4thAhw==
+"vuetify@npm:@vuetify/nightly@3.0.0-next-20220114.0":
+  version "3.0.0-next-20220114.0"
+  resolved "https://registry.yarnpkg.com/@vuetify/nightly/-/nightly-3.0.0-next-20220114.0.tgz#4b5b73aac1c2dd01d48527e7a46e9c462c61328e"
+  integrity sha512-tW46iojcj/IvQNkgyhuzmYiFuyJxHTk7sDq8HPv3nC8oiQlN/TRKUjwaBvdB5kKrGcly5xsVbEDs0otqbDoo2g==
 
 vuex@^4.0.2:
   version "4.0.2"

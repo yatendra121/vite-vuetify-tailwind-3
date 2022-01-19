@@ -17,7 +17,6 @@
         <v-progress-linear absolute height="7"></v-progress-linear>
       </template>
     </v-text-field>
-    {{ errorMessage }}
   </v-container>
 </template>
 

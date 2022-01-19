@@ -16,7 +16,7 @@ export type PortalConfig = {
 /**
  * Class for interacting with portal
  *
- * @category RPCAPIs
+ * @portal 'admin/front'
  *
  * @remarks
  */
