@@ -28,6 +28,3 @@
     </v-container>
   </v-layout>
 </template>
-<script setup lang="ts">
-//import Image from './src/assets/404-illustration.svg'
-</script>
