@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify/vuetify'
 import { loadFonts } from './plugins/vuetify/webfontloader'
 import axios from './plugins/axios'
 import router from './router'
-import store from './store/core'
+import storeCore from './store/core'
 import { createPinia } from 'pinia'
 import './assets/css/index.css'
 import Components from '@/components'
@@ -17,12 +17,12 @@ loadFonts()
 const app = createApp(App)
 app.use(vuetify)
 app.use(axios)
-app.use(store)
+app.use(storeCore)
 app.use(createPinia())
 app.use(router)
 app.use(Components)
 
-app.component('title-layout', TitleLayout)
+app.component('TitleLayout', TitleLayout)
 
 app.mount('#app')
 

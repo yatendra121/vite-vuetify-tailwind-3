@@ -42,21 +42,21 @@ const removeTokens = () => {
     removeRefreshToken()
 }
 
-const setToken = (token: String, path: String, domain: String) => {
+const setToken = (token: string, path: string, domain: string) => {
     return Cookies.set(TokenKey, token, {
         expires: 30,
         path: path
     })
 }
 
-const setRefreshToken = (token: String, path: String, domain: String) => {
+const setRefreshToken = (token: string, path: string, domain: string) => {
     return Cookies.set(RefreshTokenKey, token, {
         expires: 45,
         path: path
     })
 }
 
-const setDeviceId = (deviceId: String) => {
+const setDeviceId = (deviceId: string) => {
     return Cookies.set(DeviceIdKey, deviceId, { expires: 200000 })
 }
 

@@ -15,7 +15,7 @@
               :validation-schema="schema"
               @submit="onSubmit"
             >
-
+              {{ values }}
               <vq-text-field
                 :loading="loading"
                 class="email"
@@ -68,6 +68,7 @@ export default defineComponent({
     const onSubmit = async (values: Array<string>, actions: any) => {
       loginUser('login', values)
         .then((response) => {
+          console.log(response)
           router.push({
             name: 'dashboard'
           })

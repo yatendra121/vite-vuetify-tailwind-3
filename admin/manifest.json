@@ -3,9 +3,7 @@
     "file": "assets/index.23e26da7.js",
     "src": "index.html",
     "isEntry": true,
-    "imports": [
-      "_vendor.6926bddc.js"
-    ],
+    "imports": ["_vendor.6926bddc.js"],
     "dynamicImports": [
       "src/views/admin/Auth/index.vue",
       "src/views/admin/Dashboard/index.vue",
@@ -24,9 +22,7 @@
       "src/components/Vuetify/VQTextField.vue",
       "src/components/Tinymce/index.vue"
     ],
-    "css": [
-      "assets/index.6b8a7f58.css"
-    ],
+    "css": ["assets/index.6b8a7f58.css"],
     "assets": [
       "assets/materialdesignicons-webfont.4de2dae5.eot",
       "assets/materialdesignicons-webfont.11e3d4ca.woff2",
@@ -41,11 +37,7 @@
     "file": "assets/index.5198faf2.js",
     "src": "src/views/admin/index.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "_vendor.6926bddc.js",
-      "_index.e73acb62.js",
-      "index.html"
-    ],
+    "imports": ["_vendor.6926bddc.js", "_index.e73acb62.js", "index.html"],
     "dynamicImports": [
       "src/layouts/Admin/ParentView.vue",
       "src/layouts/Auth/ParentView.vue",
@@ -54,9 +46,7 @@
   },
   "_index.e73acb62.js": {
     "file": "assets/index.e73acb62.js",
-    "imports": [
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["_vendor.6926bddc.js"]
   },
   "_webfontloader.f5e2b0ed.js": {
     "file": "assets/webfontloader.f5e2b0ed.js",
@@ -66,13 +56,8 @@
     "file": "assets/PageNotFound.85910d6a.js",
     "src": "src/views/PageNotFound.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ],
-    "assets": [
-      "assets/404-illustration.f6446943.svg"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"],
+    "assets": ["assets/404-illustration.f6446943.svg"]
   },
   "src/components/Vuetify/VQTextField.vue": {
     "file": "assets/VQTextField.dd345723.js",
@@ -86,9 +71,7 @@
   },
   "_vee-validate.esm.a3840874.js": {
     "file": "assets/vee-validate.esm.a3840874.js",
-    "imports": [
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["_vendor.6926bddc.js"]
   },
   "src/components/Tinymce/index.vue": {
     "file": "assets/index.07182614.js",
@@ -114,18 +97,13 @@
   },
   "_object.036d7dfc.js": {
     "file": "assets/object.036d7dfc.js",
-    "imports": [
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["_vendor.6926bddc.js"]
   },
   "src/views/admin/Dashboard/index.vue": {
     "file": "assets/index.10da50bf.js",
     "src": "src/views/admin/Dashboard/index.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"]
   },
   "src/views/admin/Drawer/index.vue": {
     "file": "assets/index.077d0472.js",
@@ -139,10 +117,7 @@
   },
   "_index.23372756.js": {
     "file": "assets/index.23372756.js",
-    "imports": [
-      "_vendor.6926bddc.js",
-      "_index.e73acb62.js"
-    ]
+    "imports": ["_vendor.6926bddc.js", "_index.e73acb62.js"]
   },
   "src/views/admin/Admin/index.vue": {
     "file": "assets/index.dc44a7f8.js",
@@ -158,31 +133,20 @@
     "file": "assets/ParentRouteView.5543065c.js",
     "src": "src/views/ParentRouteView.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"]
   },
   "src/views/admin/StaticPage/Edit.vue": {
     "file": "assets/Edit.3ab57546.js",
     "src": "src/views/admin/StaticPage/Edit.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ],
-    "dynamicImports": [
-      "src/views/admin/StaticPage/Form.vue"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"],
+    "dynamicImports": ["src/views/admin/StaticPage/Form.vue"]
   },
   "src/views/admin/Fullscreen/index.vue": {
     "file": "assets/index.30b014d2.js",
     "src": "src/views/admin/Fullscreen/index.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "_index.e73acb62.js",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["_index.e73acb62.js", "_vendor.6926bddc.js"]
   },
   "src/views/admin/MyProfile/index.vue": {
     "file": "assets/index.960783e4.js",
@@ -196,27 +160,19 @@
       "index.html",
       "_vendor.6926bddc.js"
     ],
-    "css": [
-      "assets/index.84188abc.css"
-    ]
+    "css": ["assets/index.84188abc.css"]
   },
   "src/views/admin/EventBus/index.vue": {
     "file": "assets/index.69830c2e.js",
     "src": "src/views/admin/EventBus/index.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "_index.e73acb62.js",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["_index.e73acb62.js", "_vendor.6926bddc.js"]
   },
   "src/views/admin/Socket/index.vue": {
     "file": "assets/index.5444490e.js",
     "src": "src/views/admin/Socket/index.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"]
   },
   "src/views/admin/User/index.vue": {
     "file": "assets/index.ab168b7f.js",
@@ -232,29 +188,19 @@
     "file": "assets/ParentView.481c692d.js",
     "src": "src/layouts/Admin/ParentView.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "_vendor.6926bddc.js",
-      "index.html",
-      "_index.e73acb62.js"
-    ]
+    "imports": ["_vendor.6926bddc.js", "index.html", "_index.e73acb62.js"]
   },
   "src/layouts/Auth/ParentView.vue": {
     "file": "assets/ParentView.4e8e3d56.js",
     "src": "src/layouts/Auth/ParentView.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"]
   },
   "src/layouts/NotFound/ParentView.vue": {
     "file": "assets/ParentView.00f596e5.js",
     "src": "src/layouts/NotFound/ParentView.vue",
     "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.6926bddc.js"
-    ]
+    "imports": ["index.html", "_vendor.6926bddc.js"]
   },
   "src/views/admin/StaticPage/Form.vue": {
     "file": "assets/Form.039b1eae.js",
@@ -266,8 +212,6 @@
       "index.html",
       "_vendor.6926bddc.js"
     ],
-    "css": [
-      "assets/Form.315dddfd.css"
-    ]
+    "css": ["assets/Form.315dddfd.css"]
   }
 }

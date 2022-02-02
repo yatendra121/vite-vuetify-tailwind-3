@@ -21,7 +21,7 @@ const { color, size } = toRefs(brush)
           min-height="350"
         >
           <Scrubber v-model="size" w="full" :min="1" :max="10" />
-          <svg style="height: 100%; width: 100%" ref="target"></svg>
+          <svg ref="target" style="height: 100%; width: 100%"></svg>
         </v-sheet>
       </v-col>
     </v-row>

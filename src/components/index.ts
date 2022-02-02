@@ -9,7 +9,7 @@ const VQTextEditor = defineAsyncComponent(
 
 export default {
     install: (app: any) => {
-        app.component('vq-text-field', VQTextField)
-        app.component('vq-text-editor', VQTextEditor)
+        app.component('VqTextField', VQTextField)
+        app.component('VqTextEditor', VQTextEditor)
     }
 }

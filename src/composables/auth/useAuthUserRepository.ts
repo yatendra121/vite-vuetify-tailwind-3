@@ -91,7 +91,7 @@ export default function useAuthUserRepository() {
     /**
      * To logout the user and redirect to login page.
      */
-    const logOutUser = (socketId: String = '', url: string = 'logout') => {
+    const logOutUser = (socketId = '', url = 'logout') => {
         return _axios({
             url: url,
             method: 'POST',

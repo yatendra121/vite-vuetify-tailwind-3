@@ -67,6 +67,7 @@ export default defineComponent({
 
     // Navigation Guard
     const store = useStore()
+
     const title = useTitle()
     router.beforeEach((to, from, next) => {
       if (!props.authLoading) {

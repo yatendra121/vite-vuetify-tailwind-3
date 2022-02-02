@@ -6,10 +6,9 @@
   >
     count is: {{ count }}
   </button>
-  <p
-    >Edit <code>components/HelloWorld.vue</code> to test hot module
-    replacement.</p
-  >
+  <p>
+    Edit <code>components/HelloWorld.vue</code> to test hot module replacement.
+  </p>
 </template>
 
 <script setup lang="ts">

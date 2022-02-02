@@ -3,7 +3,7 @@
 
   <v-main>
     <v-layout :full-height="true">
-      <v-container fluid ref="el">
+      <v-container ref="el" fluid>
         <!-- <v-scroll-x-transition mode="out-in"> -->
         <slot />
         <!-- </v-scroll-x-transition> -->

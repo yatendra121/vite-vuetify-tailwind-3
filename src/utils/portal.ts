@@ -26,7 +26,7 @@ export class Portal {
      */
     private portalConfig: PortalConfig = {}
 
-    constructor(portal: string = 'admin') {
+    constructor(portal = 'admin') {
         //@ts-ignore
         this.portalConfig = portalsConfigs[portal]
     }

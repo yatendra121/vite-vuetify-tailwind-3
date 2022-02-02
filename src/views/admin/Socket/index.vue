@@ -38,7 +38,7 @@ onUnmounted(() => {
         <v-list-item-group active-class="pink--text" multiple>
           <template v-for="(item, index) in items" :key="item">
             <v-list-item>
-              <template #default="{ active }">
+              <template>
                 <v-list-item-content>
                   <v-list-item-title
                     v-text="item.sender.name"

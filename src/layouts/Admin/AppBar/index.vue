@@ -40,10 +40,10 @@
     </v-menu>
     <v-btn
       size="small"
-      @click="appStore.changeTheme()"
       :icon="theme === 'dark' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
+      @click="appStore.changeTheme()"
     ></v-btn>
-    <v-btn size="small" @click="fullscreen" icon="mdi-fullscreen"></v-btn>
+    <v-btn size="small" icon="mdi-fullscreen" @click="fullscreen"></v-btn>
   </v-app-bar>
 </template>
 <script lang="ts">

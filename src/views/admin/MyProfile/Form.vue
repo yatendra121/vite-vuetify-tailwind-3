@@ -53,14 +53,6 @@ export default defineComponent({
     Field,
     Form
   },
-  data: () => ({
-    items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
-  }),
   props: {
     initialValue: {
       type: Object,
@@ -79,7 +71,7 @@ export default defineComponent({
     const onSubmit = async (values: Array<string>, actions: any) => {
       _axios
         .put('my-profile', values)
-        .then((response) => {
+        .then(() => {
           //   router.push({
           //     name: 'dashboard'
           //   })
@@ -94,7 +86,15 @@ export default defineComponent({
       onSubmit,
       schema
     }
-  }
+  },
+  data: () => ({
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' }
+    ]
+  })
 })
 </script>
 <style scoped>

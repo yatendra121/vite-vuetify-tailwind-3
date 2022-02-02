@@ -2,9 +2,9 @@
   <v-navigation-drawer v-model="drawer" app :elevation="1">
     <v-list>
       <sidebar-item
-        :item="route"
         v-for="route in router.options?.routes"
         :key="route"
+        :item="route"
       />
     </v-list>
   </v-navigation-drawer>

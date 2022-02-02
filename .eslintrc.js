@@ -18,7 +18,6 @@ module.exports = {
       extends: [
         'plugin:vue/vue3-strongly-recommended',
         '@vue/eslint-config-typescript/recommended',
-
         '@vue/eslint-config-prettier'
       ],
       rules: {
@@ -29,7 +28,8 @@ module.exports = {
         'vue/html-self-closing': 'off',
         'vue/singleline-html-element-content-newline': 'off',
         '@typescript-eslint/no-empty-function': 'off',
-        '@typescript-eslint/no-explicit-any': 'off'
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off'
       }
     },
     {
