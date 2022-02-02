@@ -67,7 +67,7 @@
     "vite-plugin-pwa": "^0.11.12",
     "vue-cli-plugin-vuetify": "~2.4.3",
     "vue-tsc": "^0.30.0",
-    "vuetify": "npm:@vuetify/nightly@3.0.0-next-20220114.0",
+    "vuetify": "npm:@vuetify/nightly@3.0.0-next-20220128.0",
     "vuetify-loader": "latest",
     "webfontloader": "^1.0.0"
   }
