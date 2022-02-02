@@ -30,3 +30,5 @@ jobs:
     
     - name: Jest Test
       run: yarn test:unit
+    - name: Build
+      run: yarn build-force
