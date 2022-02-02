@@ -1,0 +1,82 @@
+[33mcommit bb4c2402fd6b141acbd870dcc8b6669747968704[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Yatendra Kushwaha <yatendra121kushwaha@gmail.com>
+Date:   Sat Jan 22 05:58:50 2022 -0800
+
+    test
+
+[33mcommit 18e9d6870ba930f67b259a88323cb8432a07af2e[m
+Author: Yatendra Kushwaha <40018450+yatendra121@users.noreply.github.com>
+Date:   Wed Jan 19 18:52:31 2022 +0530
+
+    Update unit_test.yml
+
+[33mcommit a9eaa964d562a67ec7da0299c07ef50b275211fc[m
+Merge: 8379252 00453e6
+Author: yatendra <yatendra@singsys.com>
+Date:   Wed Jan 19 18:42:55 2022 +0530
+
+    Merge branch 'main' of https://github.com/yatendra121/vite-vuetify-tailwind-3 into main
+
+[33mcommit 83792528921f6746648efaabb7ac2addcfc37a23[m
+Author: yatendra <yatendra@singsys.com>
+Date:   Wed Jan 19 18:41:38 2022 +0530
+
+    fixed test
+
+[33mcommit 00453e6afbb64c6322e567314f184088b3cefe2e[m
+Author: Yatendra Kushwaha <40018450+yatendra121@users.noreply.github.com>
+Date:   Wed Jan 19 18:36:23 2022 +0530
+
+    Update and rename testing.js.yml to unit_test.yml
+
+[33mcommit eed1486c1bb4d07e04b8303d4dbb7a08516a516a[m
+Author: Yatendra Kushwaha <40018450+yatendra121@users.noreply.github.com>
+Date:   Wed Jan 19 18:10:10 2022 +0530
+
+    Update testing.js.yml
+
+[33mcommit b46ecb9d3c5e6cff3bc523c6ef91d93b86ae7f54[m
+Author: Yatendra Kushwaha <40018450+yatendra121@users.noreply.github.com>
+Date:   Wed Jan 19 18:07:57 2022 +0530
+
+    Update testing.js.yml
+
+[33mcommit a57af94dc285bd5c9f2963476cb3b59576f6e9a7[m
+Author: Yatendra Kushwaha <40018450+yatendra121@users.noreply.github.com>
+Date:   Wed Jan 19 18:06:45 2022 +0530
+
+    Update testing.js.yml
+
+[33mcommit d050f1e73923848c63b3d72236c04e10719506db[m
+Author: Yatendra Kushwaha <40018450+yatendra121@users.noreply.github.com>
+Date:   Wed Jan 19 18:04:32 2022 +0530
+
+    Create testing.js.yml
+
+[33mcommit acdfc13a5e498fca1dcaf998f859d1946c2cf16c[m
+Author: yatendra <yatendra@singsys.com>
+Date:   Wed Jan 19 18:00:25 2022 +0530
+
+    cypress testing
+
+[33mcommit af42fa1ced9b2e6153c23c90938f4e9c5ead8366[m
+Author: yatendra <yatendra@singsys.com>
+Date:   Sat Jan 15 16:52:25 2022 +0530
+
+    Add cypress
+    Add jest
+    Testing
+    fix ESlint config
+    Add loading
+
+[33mcommit 9fe3583402c782faf7c521006d8985d03e8130a1[m
+Author: yatendra <yatendra@singsys.com>
+Date:   Sun Jan 9 17:51:20 2022 +0530
+
+    delete js files
+
+[33mcommit ad4d20c7eb623c526cce266f7a9a7a0802e51956[m
+Author: yatendra <yatendra@singsys.com>
+Date:   Sun Jan 9 17:49:03 2022 +0530
+
+    first commit
