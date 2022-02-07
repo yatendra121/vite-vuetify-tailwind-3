@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue-demi'
+import { ref } from 'vue'
 import { useFullscreen } from '@vueuse/core'
 
 const el = ref(null)

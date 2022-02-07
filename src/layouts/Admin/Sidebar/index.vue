@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" app :elevation="1">
+  <v-navigation-drawer :rail="false" v-model="drawer" app :elevation="1">
     <v-list>
       <sidebar-item
         v-for="route in router.options?.routes"

@@ -1,5 +1,5 @@
-import type { Ref } from 'vue-demi'
-import { ref, shallowRef } from 'vue-demi'
+import type { Ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 import type {
     AxiosError,
     AxiosInstance,
