@@ -1,0 +1,31 @@
+$btn-border-radius: 0px;
+
+// Modifying a SASS map variable
+$material-light: (
+  cards: blue
+);
+
+$headings: (
+  'h2': (
+    'font-size': 2rem
+  )
+);
+
+//@use 'vuetify/lib/styles';
+
+$container-padding: 11px;
+
+// Place SASS variable overrides here
+//$font-size-root: 50px;
+$input-details-margin-bottom: 0px !important;
+
+.v-input__details {
+  margin: $input-details-margin-bottom;
+}
+
+.v-container {
+  padding: $container-padding;
+}
+.v-theme--light {
+  --v-theme-background: 245, 245, 250 !important;
+}
