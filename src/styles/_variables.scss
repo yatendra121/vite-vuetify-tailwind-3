@@ -13,6 +13,10 @@ $headings: (
 
 //@use 'vuetify/lib/styles';
 
+// @use 'vuetify/styles' with (
+//   $button-text-transform: none
+// );
+
 $container-padding: 11px;
 
 // Place SASS variable overrides here
@@ -27,5 +31,5 @@ $input-details-margin-bottom: 0px !important;
   padding: $container-padding;
 }
 .v-theme--light {
-  --v-theme-background: 245, 245, 250 !important;
+  --v-theme-background: 247, 250, 252 !important;
 }

@@ -1,7 +1,11 @@
 <template>
   <v-list-group v-if="item.children">
     <template #header="props">
-      <v-list-item v-bind="props" :title="item.meta.title" />
+      <v-list-item
+        v-bind="props"
+        :prepend-icon="item.meta.icon"
+        :title="item.meta.title"
+      />
     </template>
     <sidebar-item
       v-for="sidebarItem in item.children"
@@ -9,7 +13,13 @@
       :item="sidebarItem"
     />
   </v-list-group>
-  <v-list-item v-else :to="{ name: item.name }" link :title="item.meta.title" />
+  <v-list-item
+    v-else
+    :prepend-icon="item.meta.icon"
+    :to="{ name: item.name }"
+    link
+    :title="item.meta.title"
+  />
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'

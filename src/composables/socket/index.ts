@@ -1,11 +1,35 @@
-import socket from '@/plugins/socket.io'
+import socket from '@/plugins/socket'
 
-const useOnSocket = (eventName: string, callback: any) => {
-    socket.on(eventName, callback)
+/**
+ * Socket Reposotory
+ */
+export default function useSocketRepository() {
+    /**
+     * Create socket listener
+     */
+    const useOnSocket = (eventName: string, callback: Function | any) => {
+        socket.on(eventName, callback)
 
-    const useOffSocketEvent = () => socket.off(eventName)
+        const offSocketEvent = () => {
+            socket.off(eventName)
+        }
 
-    return { useOffSocketEvent }
+        return offSocketEvent
+    }
+
+    /**
+     * Emit data on socket event
+     */
+    const useEmitSocket = (eventName: string, data: any) => {
+        socket.emit(eventName, data)
+    }
+
+    /**
+     * Off all socket events
+     */
+    const useOffSocket = () => {
+        socket.off()
+    }
+
+    return { useOnSocket, useEmitSocket, useOffSocket, socket }
 }
-
-export { useOnSocket }

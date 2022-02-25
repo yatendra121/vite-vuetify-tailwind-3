@@ -1,68 +1,97 @@
-<script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
-import { useOnSocket } from '@/composables/socket'
+<script lang="ts">
+import { ref, onUnmounted, onMounted, defineComponent } from 'vue'
+import useSocketRepository from '@/composables/socket'
+import { User } from '@/types/user'
 
-const items = ref([])
-
-const eventCallback = (response: any) => {
-  console.log(response)
-  items.value = [response.data.data, ...items.value]
+interface UserChat {
+  id: number
+  email: string
+  name: string
+  [key: string]: any
+  user: User
 }
 
-const { useOffSocketEvent } = useOnSocket('newmsg', eventCallback)
+export default defineComponent({
+  setup() {
+    const items = ref<Array<UserChat>>([])
+    const message = ref('')
 
-onUnmounted(() => {
-  useOffSocketEvent()
+    const messageEvent = (response: UserChat) => {
+      items.value = [response, ...items.value]
+    }
+
+    // eslint-disable-next-line no-new-func
+    let messageOffEvent = new Function()
+    const { useOnSocket, useEmitSocket } = useSocketRepository()
+
+    onMounted(() => {
+      messageOffEvent = useOnSocket('newmsg', messageEvent)
+    })
+
+    onUnmounted(() => {
+      messageOffEvent()
+    })
+
+    const sendMessage = () => {
+      useEmitSocket('message', {
+        message: message.value,
+        email: 'yatendra@singsys.com'
+      })
+    }
+
+    fetch('http://localhost:4000/users-chat')
+      .then((response) => response.json())
+      .then((data) => {
+        items.value = data.data
+      })
+
+    return { items, sendMessage, message, messageOffEvent }
+  }
 })
 </script>
 
 <template>
   <title-layout> {{ 'casnjcnsan' }} </title-layout>
-  <v-alert
-    :right="true"
-    :top="true"
-    :loading="true"
-    :value="false"
-    color="pink"
-    dark
-    border="top"
-    icon="mdi-home"
-    absolute
-    transition="scale-transition"
-  >
-    Phasellus tempus
-  </v-alert>
   <v-container fluid>
-    <v-card>
-      <v-list two-line>
-        <v-list-item-group active-class="pink--text" multiple>
-          <template v-for="(item, index) in items" :key="item">
-            <v-list-item>
-              <template>
-                <v-list-item-content>
-                  <v-list-item-title
-                    v-text="item.sender.name"
-                  ></v-list-item-title>
+    <v-row>
+      <v-col md="10">
+        {{ messageOffEvent }}
+        <v-text-field v-model="message" label="Message" />
+      </v-col>
+      <v-col md="2">
+        <v-btn @click.stop="sendMessage" type="submit" flat color="secondary"
+          >Submit</v-btn
+        >
+        <v-btn @click="messageOffEvent()" flat color="secondary">Test</v-btn>
+      </v-col>
+    </v-row>
+    <v-card max-width="670" height="500" class="overflow-auto">
+      <v-toolbar color="cyan" dark>
+        <v-app-bar-nav-icon variant="text"></v-app-bar-nav-icon>
 
-                  <v-list-item-subtitle
-                    class="text--primary"
-                    v-text="item.message"
-                  ></v-list-item-subtitle>
+        <v-toolbar-title>Inbox</v-toolbar-title>
 
-                  <v-list-item-action>
-                    <v-list-item-action-text
-                      v-text="item.action"
-                    ></v-list-item-action-text>
+        <v-spacer></v-spacer>
 
-                    <v-icon color="grey lighten-1"> mdi-star-outline </v-icon>
-                  </v-list-item-action>
-                </v-list-item-content>
-              </template>
-            </v-list-item>
+        <v-btn variant="text" icon="mdi-magnify"></v-btn>
+      </v-toolbar>
 
-            <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
-          </template>
-        </v-list-item-group>
+      <v-list three-line class="overflow-auto">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :value="item"
+          active-color="primary"
+          variant="contained"
+        >
+          <v-list-item-avatar left>
+            <v-icon icon="mdi-account"></v-icon>
+          </v-list-item-avatar>
+          <v-list-item-header>
+            <v-list-item-title v-text="item.user.name"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.message"></v-list-item-subtitle>
+          </v-list-item-header>
+        </v-list-item>
       </v-list>
     </v-card>
   </v-container>

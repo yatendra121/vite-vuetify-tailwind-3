@@ -1,29 +1,128 @@
-<script setup>
-import { ref } from 'vue'
-import { toRefs } from '@vueuse/core'
-//import { useDrauu } from '@vueuse/integrations'
-import Scrubber from './Scrubber.vue'
-
-const target = ref()
-// const { undo, redo, canUndo, canRedo, brush } = useDrauu(target)
-// const { color, size } = toRefs(brush)
-</script>
-
 <template>
-  <v-container>
-    <v-row class="flex-child">
-      <v-col class="d-flex" cols="12" md="12">
-        <v-sheet
-          :rounded="true"
-          :elevation="10"
-          class="mx-auto"
-          min-width="900"
-          min-height="350"
-        >
-          <!-- <Scrubber v-model="size" w="full" :min="1" :max="10" /> -->
-          <svg ref="target" style="height: 100%; width: 100%"></svg>
-        </v-sheet>
-      </v-col>
-    </v-row>
-  </v-container>
+  <h2>Sales overview</h2>
+
+  <v-row>
+    <v-col md="6" sm="6">
+      <v-card>
+        <v-responsive>
+          <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+        </v-responsive>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
+
+<script>
+import Chart from 'chart.js/auto'
+
+export default {
+  name: 'GradientLineChart',
+
+  mounted() {
+    const ctx2 = document.getElementById('chart-line').getContext('2d')
+
+    const gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50)
+
+    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)')
+    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)')
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)') //purple colors
+
+    const gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50)
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)')
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)')
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)') //purple colors
+
+    // eslint-disable-next-line no-new
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [
+          {
+            label: 'Mobile apps',
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: '#cb0c9f',
+            // eslint-disable-next-line no-dupe-keys
+            borderWidth: 3,
+            backgroundColor: gradientStroke1,
+            fill: true,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
+          },
+          {
+            label: 'Websites',
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: '#3A416F',
+            // eslint-disable-next-line no-dupe-keys
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            fill: true,
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: 'Open Sans',
+                style: 'normal',
+                lineHeight: 2
+              }
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 20,
+              font: {
+                size: 11,
+                family: 'Open Sans',
+                style: 'normal',
+                lineHeight: 2
+              }
+            }
+          }
+        }
+      }
+    })
+  }
+}
+</script>

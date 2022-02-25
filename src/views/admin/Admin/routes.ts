@@ -12,7 +12,7 @@ export const AdminRoutes: Array<RouteRecordRaw> = [
             title: 'admin',
             heading: 'admin',
             isPublic: false,
-            icon: 'login',
+            icon: 'mdi-account-circle',
             permission: 'admin.drawer'
         } as Meta,
         children: [...UserRoutes]

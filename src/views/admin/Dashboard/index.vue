@@ -12,9 +12,23 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import { useQuery } from '@vue/apollo-composable'
+import graphqlTag from 'graphql-tag'
 export default defineComponent({
-  setup() {},
+  setup() {
+    const { result } = useQuery(graphqlTag`
+      query Query {
+        allChats {
+          message
+          user {
+            name
+            email
+          }
+        }
+      }
+    `)
+    return { result }
+  },
   data() {
     return {
       items: [

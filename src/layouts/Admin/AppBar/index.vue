@@ -14,22 +14,22 @@
     <v-toolbar-title> Vue Application (Vue 3)</v-toolbar-title>
 
     <v-spacer></v-spacer>
-    <v-menu offset-y>
+    <v-menu :close-on-click="true" bottom transition="slide-y-transition">
       <template #activator="{ props }">
         <v-btn text class="tw-normal-case" v-bind="props">
-          {{ authProfile.name }}<v-icon>mdi-chevron-down</v-icon></v-btn
+          {{ authProfile.email }} <v-icon>mdi-chevron-down</v-icon></v-btn
         >
       </template>
       <v-card class="mx-auto" :rounded="true" :elevation="20">
         <v-list class="tw-mx-2">
-          <v-list-item :to="{ name: 'my-profile' }">
+          <v-list-item link :to="{ name: 'my-profile' }">
             <v-list-item-avatar tile color="grey">
               <v-avatar icon="mdi-account"
             /></v-list-item-avatar>
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
           <v-divider />
-          <v-list-item @click="logOutUser">
+          <v-list-item link @click="logOutUser">
             <v-list-item-avatar tile color="grey">
               <v-avatar icon="mdi-lock-outline"
             /></v-list-item-avatar>

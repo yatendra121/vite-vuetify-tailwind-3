@@ -15,7 +15,7 @@ export const DashboardRoutes: Array<RouteRecordRaw> = [
             title: 'Dashboard',
             heading: 'Dashboard',
             isPublic: false,
-            icon: 'login',
+            icon: 'mdi-account-circle',
             type: 'admin',
             permission: 'admin.dashboard'
         } as Meta

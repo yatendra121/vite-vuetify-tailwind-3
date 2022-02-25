@@ -11,6 +11,7 @@ export type PortalConfig = {
     VUE_APP_CHECK_ESLINT?: string | undefined
     VUE_APP_ADD_PWA?: string | undefined
     VUE_APP_SOCKET_URL?: string | undefined
+    VUE_APP_GRAPH_QL_URL?: string | undefined
 }
 
 /**
@@ -128,10 +129,18 @@ export class Portal {
     }
 
     /**
-     * Get the check eslint.
+     * Get the Socket Url.
      * @returns string
      */
     public getSocketUrl = (): string => {
         return this.portalConfig.VUE_APP_SOCKET_URL ?? ''
+    }
+
+    /**
+     * Get the Graph QL API URL.
+     * @returns string
+     */
+    public getGraphQLUrl = (): string => {
+        return this.portalConfig.VUE_APP_GRAPH_QL_URL ?? ''
     }
 }

@@ -1,8 +1,7 @@
-import { createApp } from 'vue'
+import { createApp, provide, h } from 'vue'
 import App from './App.vue'
-import vuetify from './plugins/vuetify/vuetify'
+import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/vuetify/webfontloader'
-import axios from './plugins/axios'
 import router from './router'
 import storeCore from './store/core'
 import { createPinia } from 'pinia'
@@ -10,13 +9,20 @@ import './assets/css/index.css'
 import Components from '@/components'
 import './plugins'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
-//import './sass'
+import { DefaultApolloClient } from '@vue/apollo-composable'
+import { apolloClient } from './plugins/graphql'
+// //import './sass'
 
 loadFonts()
 
-const app = createApp(App)
+const app = createApp({
+    setup() {
+        provide(DefaultApolloClient, apolloClient)
+    },
+
+    render: () => h(App)
+})
 app.use(vuetify)
-app.use(axios)
 app.use(storeCore)
 app.use(createPinia())
 app.use(router)
