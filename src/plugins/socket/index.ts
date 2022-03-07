@@ -6,7 +6,6 @@ const currentPortal = new Portal()
 const socket = io(currentPortal.getSocketUrl(), {
     transports: ['websocket']
 })
-
 socket.on('connect', function () {
     console.log(
         '%c Socket Connected. ',

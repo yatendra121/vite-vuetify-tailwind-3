@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import test from './test.vue'
 import { useFullscreen } from '@vueuse/core'
 
 const el = ref(null)
@@ -9,6 +10,9 @@ const { toggle } = useFullscreen(el)
 <template>
   <title-layout> {{ 'casnjcnsan' }} </title-layout>
   <div class="text-center">
+    <test v-slot="slotProps">
+      {{ slotProps }}
+    </test>
     <video
       ref="el"
       class="mb-2"

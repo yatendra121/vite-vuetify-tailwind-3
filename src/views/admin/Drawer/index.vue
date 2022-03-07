@@ -62,7 +62,7 @@ export default {
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             fill: true,
-            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 600],
             maxBarThickness: 6
           }
         ]

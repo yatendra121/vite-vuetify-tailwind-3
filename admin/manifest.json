@@ -1,0 +1,263 @@
+{
+  "index.html": {
+    "file": "assets/index.0b2d5586.js",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_vendor.2b684026.js"
+    ],
+    "dynamicImports": [
+      "src/views/admin/Auth/index.vue",
+      "src/views/admin/Dashboard/index.tsx",
+      "src/views/admin/Drawer/index.vue",
+      "src/views/admin/User/index.vue",
+      "src/views/admin/Admin/index.vue",
+      "src/views/ParentRouteView.vue",
+      "src/views/admin/StaticPage/Edit.vue",
+      "src/views/admin/Fullscreen/index.vue",
+      "src/views/admin/MyProfile/index.vue",
+      "src/views/admin/EventBus/index.vue",
+      "src/views/admin/Socket/index.vue",
+      "src/views/PageNotFound.vue",
+      "src/views/admin/index.vue",
+      "_webfontloader.7999e4d0.js",
+      "src/components/Vuetify/VQTextField.vue",
+      "src/components/Tinymce/index.vue"
+    ],
+    "css": [
+      "assets/index.8bf832f0.css"
+    ],
+    "assets": [
+      "assets/materialdesignicons-webfont.4de2dae5.eot",
+      "assets/materialdesignicons-webfont.11e3d4ca.woff2",
+      "assets/materialdesignicons-webfont.04fb6e8b.woff",
+      "assets/materialdesignicons-webfont.9e94d4db.ttf"
+    ]
+  },
+  "_vendor.2b684026.js": {
+    "file": "assets/vendor.2b684026.js"
+  },
+  "src/views/admin/index.vue": {
+    "file": "assets/index.af258ed6.js",
+    "src": "src/views/admin/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.2b684026.js",
+      "_index.b518c00e.js",
+      "index.html"
+    ],
+    "dynamicImports": [
+      "src/layouts/Admin/ParentView.vue",
+      "src/layouts/Auth/ParentView.vue",
+      "src/layouts/NotFound/ParentView.vue"
+    ]
+  },
+  "_index.b518c00e.js": {
+    "file": "assets/index.b518c00e.js",
+    "imports": [
+      "_vendor.2b684026.js"
+    ]
+  },
+  "_webfontloader.7999e4d0.js": {
+    "file": "assets/webfontloader.7999e4d0.js",
+    "isDynamicEntry": true
+  },
+  "src/views/PageNotFound.vue": {
+    "file": "assets/PageNotFound.852dc1c6.js",
+    "src": "src/views/PageNotFound.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.2b684026.js",
+      "index.html"
+    ],
+    "assets": [
+      "assets/404-illustration.f6446943.svg"
+    ]
+  },
+  "src/components/Vuetify/VQTextField.vue": {
+    "file": "assets/VQTextField.511d069e.js",
+    "src": "src/components/Vuetify/VQTextField.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vee-validate.esm.5ce983a9.js",
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "_vee-validate.esm.5ce983a9.js": {
+    "file": "assets/vee-validate.esm.5ce983a9.js",
+    "imports": [
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/components/Tinymce/index.vue": {
+    "file": "assets/index.84e7e1a7.js",
+    "src": "src/components/Tinymce/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.2b684026.js",
+      "_vee-validate.esm.5ce983a9.js",
+      "index.html"
+    ]
+  },
+  "src/views/admin/Auth/index.vue": {
+    "file": "assets/index.5da59983.js",
+    "src": "src/views/admin/Auth/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/components/Vuetify/VQTextField.vue",
+      "_vee-validate.esm.5ce983a9.js",
+      "_object.c960891f.js",
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "_object.c960891f.js": {
+    "file": "assets/object.c960891f.js",
+    "imports": [
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/admin/Dashboard/index.tsx": {
+    "file": "assets/index.bc2da563.js",
+    "src": "src/views/admin/Dashboard/index.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/admin/Drawer/index.vue": {
+    "file": "assets/index.d1de940f.js",
+    "src": "src/views/admin/Drawer/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/admin/Admin/index.vue": {
+    "file": "assets/index.1d5d901d.js",
+    "src": "src/views/admin/Admin/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/ParentRouteView.vue": {
+    "file": "assets/ParentRouteView.87e69192.js",
+    "src": "src/views/ParentRouteView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/admin/StaticPage/Edit.vue": {
+    "file": "assets/Edit.cc51fb35.js",
+    "src": "src/views/admin/StaticPage/Edit.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ],
+    "dynamicImports": [
+      "src/views/admin/StaticPage/Form.vue"
+    ]
+  },
+  "src/views/admin/Fullscreen/index.vue": {
+    "file": "assets/index.96bde113.js",
+    "src": "src/views/admin/Fullscreen/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js",
+      "_index.b518c00e.js"
+    ]
+  },
+  "src/views/admin/MyProfile/index.vue": {
+    "file": "assets/index.388fcdef.js",
+    "src": "src/views/admin/MyProfile/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/components/Vuetify/VQTextField.vue",
+      "_vee-validate.esm.5ce983a9.js",
+      "_object.c960891f.js",
+      "src/components/Tinymce/index.vue",
+      "index.html",
+      "_vendor.2b684026.js"
+    ],
+    "css": [
+      "assets/index.e866d941.css"
+    ]
+  },
+  "src/views/admin/EventBus/index.vue": {
+    "file": "assets/index.76587642.js",
+    "src": "src/views/admin/EventBus/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/admin/Socket/index.vue": {
+    "file": "assets/index.22e96573.js",
+    "src": "src/views/admin/Socket/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.2b684026.js",
+      "index.html"
+    ]
+  },
+  "src/views/admin/User/index.vue": {
+    "file": "assets/index.52fcb24a.js",
+    "src": "src/views/admin/User/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/layouts/Admin/ParentView.vue": {
+    "file": "assets/ParentView.e16404df.js",
+    "src": "src/layouts/Admin/ParentView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.2b684026.js",
+      "index.html",
+      "_index.b518c00e.js"
+    ]
+  },
+  "src/layouts/Auth/ParentView.vue": {
+    "file": "assets/ParentView.df28d3d8.js",
+    "src": "src/layouts/Auth/ParentView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/layouts/NotFound/ParentView.vue": {
+    "file": "assets/ParentView.4d7527ae.js",
+    "src": "src/layouts/NotFound/ParentView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.2b684026.js"
+    ]
+  },
+  "src/views/admin/StaticPage/Form.vue": {
+    "file": "assets/Form.0c61b892.js",
+    "src": "src/views/admin/StaticPage/Form.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vee-validate.esm.5ce983a9.js",
+      "_object.c960891f.js",
+      "index.html",
+      "_vendor.2b684026.js"
+    ],
+    "css": [
+      "assets/Form.315dddfd.css"
+    ]
+  }
+}

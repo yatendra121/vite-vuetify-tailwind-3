@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import AutoImport from 'unplugin-auto-import/vite'
 import eslintPlugin from 'vite-plugin-eslint'
 import { VitePWA } from 'vite-plugin-pwa'
 import pwaConfig from './pwa.config'
@@ -29,8 +30,12 @@ export default defineConfig({
             autoImport: true,
             styles: 'expose'
         }),
+        AutoImport({
+            imports: ['vue', 'pinia']
+        }),
         ...plugins
     ],
+
     // css: {
     //     preprocessorOptions: {
     //         sass: { additionalData: `@import ${srcPath}\n` },

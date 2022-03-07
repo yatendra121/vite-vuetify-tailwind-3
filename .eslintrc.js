@@ -1,3 +1,6 @@
+/* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
+
 module.exports = {
   root: true,
   env: {
@@ -46,6 +49,10 @@ module.exports = {
       rules: {
         'no-undef': 0
       }
+    },
+    {
+      files: ["cypress/integration/**.spec.{js,ts,jsx,tsx}"],
+      extends: ["plugin:cypress/recommended"],
     }
   ]
 }

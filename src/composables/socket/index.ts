@@ -31,5 +31,18 @@ export default function useSocketRepository() {
         socket.off()
     }
 
-    return { useOnSocket, useEmitSocket, useOffSocket, socket }
+    /**
+     * default socket off event
+     */
+    const defaultSocketOffEvent = () => {
+        console.log('Not assigned any socket off event')
+    }
+
+    return {
+        useOnSocket,
+        useEmitSocket,
+        useOffSocket,
+        defaultSocketOffEvent,
+        socket
+    }
 }

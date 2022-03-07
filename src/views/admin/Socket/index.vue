@@ -2,6 +2,9 @@
 import { ref, onUnmounted, onMounted, defineComponent } from 'vue'
 import useSocketRepository from '@/composables/socket'
 import { User } from '@/types/user'
+import { Portal } from '@/utils/portal'
+const currentPortal = new Portal()
+const baseURL = currentPortal.getSocketUrl();
 
 interface UserChat {
   id: number
@@ -21,7 +24,7 @@ export default defineComponent({
     }
 
     // eslint-disable-next-line no-new-func
-    let messageOffEvent = new Function()
+    let { defaultSocketOffEvent: messageOffEvent } = useSocketRepository()
     const { useOnSocket, useEmitSocket } = useSocketRepository()
 
     onMounted(() => {
@@ -39,7 +42,7 @@ export default defineComponent({
       })
     }
 
-    fetch('http://localhost:4000/users-chat')
+    fetch(baseURL +'/users-chat')
       .then((response) => response.json())
       .then((data) => {
         items.value = data.data
@@ -55,14 +58,13 @@ export default defineComponent({
   <v-container fluid>
     <v-row>
       <v-col md="10">
-        {{ messageOffEvent }}
         <v-text-field v-model="message" label="Message" />
       </v-col>
       <v-col md="2">
         <v-btn @click.stop="sendMessage" type="submit" flat color="secondary"
           >Submit</v-btn
         >
-        <v-btn @click="messageOffEvent()" flat color="secondary">Test</v-btn>
+        <v-btn flat color="secondary">Test</v-btn>
       </v-col>
     </v-row>
     <v-card max-width="670" height="500" class="overflow-auto">

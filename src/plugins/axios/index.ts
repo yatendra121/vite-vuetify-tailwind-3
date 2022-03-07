@@ -9,6 +9,8 @@ import {
 //import { getTimeOffset } from "@/utils";
 import { Portal } from '@/utils/portal'
 const currentPortal = new Portal()
+console.log('currentPortal.getWebBaseUrl()')
+console.log(currentPortal)
 
 const CancelToken = axios.CancelToken
 

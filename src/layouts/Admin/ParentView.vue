@@ -9,9 +9,8 @@
         <!-- </v-scroll-x-transition> -->
       </v-container>
     </v-layout>
-    <Footer />
   </v-main>
-
+  <Footer />
   <Sidebar />
 
   <!-- <div

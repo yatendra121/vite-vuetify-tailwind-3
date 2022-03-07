@@ -5,11 +5,29 @@ describe('Login Page', () => {
     })
 
     it('Login test', () => {
-        cy.get('[type="text"]').clear()
-        cy.get('.email').type('yatendra@singsys.com')
-        cy.get('.password').type('123456789')
-        cy.contains('Submit').click()
-        cy.url().should('eq', 'http://localhost:3000/dashboard')
-        cy.title().should('eq', 'Dashboard')
+        // cy.get('[type="text"]').clear()
+        // cy.get('.email').type('yatendra@singsys.com')
+        // cy.get('.password').type('123456789')
+        //cy.contains('Submit').click()
+        // cy.url().should('eq', 'http://localhost:3000/dashboard')
+        //cy.title().should('eq', 'Dashboard')
+    })
+
+    it('Api Testing', () => {
+        cy.log('Calling API')
+        cy.request({
+            method: 'GET',
+            url: 'http://localhost:4000/total-users/',
+            body: {
+                grant_type: 'refresh_token',
+                client_id: Cypress.env('googleClientId'),
+                client_secret: Cypress.env('googleClientSecret'),
+                refresh_token: Cypress.env('googleRefreshToken')
+            }
+        }).then(({ body }) => {
+            const { data } = body
+            expect(1).to.equal(data)
+            console.log(data)
+        })
     })
 })

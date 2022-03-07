@@ -26,9 +26,7 @@ export const AuthRoutes: Array<RouteRecordRaw> = [
     {
         path: '/verify',
         component: () =>
-            import(
-                /* webpackChunkName: "about" */ '@/views/admin/Dashboard/index.vue'
-            ),
+            import(/* webpackChunkName: "about" */ '@/views/admin/Dashboard/'),
         children: [
             {
                 path: '/',
@@ -36,7 +34,7 @@ export const AuthRoutes: Array<RouteRecordRaw> = [
 
                 component: () =>
                     import(
-                        /* webpackChunkName: "about" */ '@/views/admin/Dashboard/index.vue'
+                        /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
                     )
             },
             {
@@ -44,7 +42,7 @@ export const AuthRoutes: Array<RouteRecordRaw> = [
                 name: 'verify.otp',
                 component: () =>
                     import(
-                        /* webpackChunkName: "about" */ '@/views/admin/Dashboard/index.vue'
+                        /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
                     )
             }
         ]

@@ -25,11 +25,13 @@ export class Portal {
     /**
      * @ignore
      */
-    private portalConfig: PortalConfig = {}
+    portalConfig: PortalConfig = {}
 
     constructor(portal = 'admin') {
-        //@ts-ignore
-        this.portalConfig = portalsConfigs[portal]
+        this.portalConfig = // Object.getPrototypeOf(
+            //@ts-ignore
+            Object.freeze(portalsConfigs[portal])
+        // )
     }
 
     /**
