@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/index.0b2d5586.js",
+    "file": "assets/index.39f125c1.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -25,7 +25,7 @@
       "src/components/Tinymce/index.vue"
     ],
     "css": [
-      "assets/index.8bf832f0.css"
+      "assets/index.36c013e6.css"
     ],
     "assets": [
       "assets/materialdesignicons-webfont.4de2dae5.eot",
@@ -38,7 +38,7 @@
     "file": "assets/vendor.2b684026.js"
   },
   "src/views/admin/index.vue": {
-    "file": "assets/index.af258ed6.js",
+    "file": "assets/index.3f6c765a.js",
     "src": "src/views/admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -63,7 +63,7 @@
     "isDynamicEntry": true
   },
   "src/views/PageNotFound.vue": {
-    "file": "assets/PageNotFound.852dc1c6.js",
+    "file": "assets/PageNotFound.7e5e86a1.js",
     "src": "src/views/PageNotFound.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -75,7 +75,7 @@
     ]
   },
   "src/components/Vuetify/VQTextField.vue": {
-    "file": "assets/VQTextField.511d069e.js",
+    "file": "assets/VQTextField.6cbf13fc.js",
     "src": "src/components/Vuetify/VQTextField.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -91,7 +91,7 @@
     ]
   },
   "src/components/Tinymce/index.vue": {
-    "file": "assets/index.84e7e1a7.js",
+    "file": "assets/index.99fa3bf5.js",
     "src": "src/components/Tinymce/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -101,7 +101,7 @@
     ]
   },
   "src/views/admin/Auth/index.vue": {
-    "file": "assets/index.5da59983.js",
+    "file": "assets/index.557319a9.js",
     "src": "src/views/admin/Auth/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -127,7 +127,7 @@
     ]
   },
   "src/views/admin/Drawer/index.vue": {
-    "file": "assets/index.d1de940f.js",
+    "file": "assets/index.12699712.js",
     "src": "src/views/admin/Drawer/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -136,7 +136,7 @@
     ]
   },
   "src/views/admin/Admin/index.vue": {
-    "file": "assets/index.1d5d901d.js",
+    "file": "assets/index.e38abd78.js",
     "src": "src/views/admin/Admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -145,7 +145,7 @@
     ]
   },
   "src/views/ParentRouteView.vue": {
-    "file": "assets/ParentRouteView.87e69192.js",
+    "file": "assets/ParentRouteView.f78f2db4.js",
     "src": "src/views/ParentRouteView.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -154,7 +154,7 @@
     ]
   },
   "src/views/admin/StaticPage/Edit.vue": {
-    "file": "assets/Edit.cc51fb35.js",
+    "file": "assets/Edit.4e2c6ea9.js",
     "src": "src/views/admin/StaticPage/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -166,7 +166,7 @@
     ]
   },
   "src/views/admin/Fullscreen/index.vue": {
-    "file": "assets/index.96bde113.js",
+    "file": "assets/index.ad3d4701.js",
     "src": "src/views/admin/Fullscreen/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -176,7 +176,7 @@
     ]
   },
   "src/views/admin/MyProfile/index.vue": {
-    "file": "assets/index.388fcdef.js",
+    "file": "assets/index.5fb9230b.js",
     "src": "src/views/admin/MyProfile/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -192,7 +192,7 @@
     ]
   },
   "src/views/admin/EventBus/index.vue": {
-    "file": "assets/index.76587642.js",
+    "file": "assets/index.4811c2fa.js",
     "src": "src/views/admin/EventBus/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -201,7 +201,7 @@
     ]
   },
   "src/views/admin/Socket/index.vue": {
-    "file": "assets/index.22e96573.js",
+    "file": "assets/index.2c4e6302.js",
     "src": "src/views/admin/Socket/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -210,7 +210,7 @@
     ]
   },
   "src/views/admin/User/index.vue": {
-    "file": "assets/index.52fcb24a.js",
+    "file": "assets/index.37fe3dba.js",
     "src": "src/views/admin/User/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -219,7 +219,7 @@
     ]
   },
   "src/layouts/Admin/ParentView.vue": {
-    "file": "assets/ParentView.e16404df.js",
+    "file": "assets/ParentView.01293b56.js",
     "src": "src/layouts/Admin/ParentView.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -229,7 +229,7 @@
     ]
   },
   "src/layouts/Auth/ParentView.vue": {
-    "file": "assets/ParentView.df28d3d8.js",
+    "file": "assets/ParentView.d5447304.js",
     "src": "src/layouts/Auth/ParentView.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -238,7 +238,7 @@
     ]
   },
   "src/layouts/NotFound/ParentView.vue": {
-    "file": "assets/ParentView.4d7527ae.js",
+    "file": "assets/ParentView.9aecad6e.js",
     "src": "src/layouts/NotFound/ParentView.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -247,7 +247,7 @@
     ]
   },
   "src/views/admin/StaticPage/Form.vue": {
-    "file": "assets/Form.0c61b892.js",
+    "file": "assets/Form.3da9b0f2.js",
     "src": "src/views/admin/StaticPage/Form.vue",
     "isDynamicEntry": true,
     "imports": [

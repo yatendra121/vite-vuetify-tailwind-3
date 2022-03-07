@@ -11,11 +11,10 @@ module.exports = {
     name: 'Vite Vuetify Tailwind 3',
     theme_color: 'white',
     short_name: 'Vuetify 3',
-    start_url: domainPrefix,
+    start_url: '/?nx-vite/apps/vite-vuetify-tailwind-3/admin/',
     display: 'standalone',
     background_color: '#ffffff',
     lang: 'en',
-    scope: domainPrefix,
     icons: [
       {
         src: `${domainPrefix}img/icons/48x48.png`,
