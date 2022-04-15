@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
+import { mdiElectronFramework } from '@mdi/js'
 const Fullscreen = () =>
     import(/* webpackChunkName: "fullscreen" */ './index.vue')
 
@@ -12,7 +13,7 @@ export default [
             title: 'eventbus',
             heading: 'eventbus',
             isPublic: false,
-            icon: 'login',
+            icon: mdiElectronFramework,
             type: 'admin',
             permission: 'admin.drawer'
         } as Meta

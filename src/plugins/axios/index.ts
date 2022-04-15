@@ -8,9 +8,7 @@ import {
 //@ts-ignore
 //import { getTimeOffset } from "@/utils";
 import { Portal } from '@/utils/portal'
-const currentPortal = new Portal()
-console.log('currentPortal.getWebBaseUrl()')
-console.log(currentPortal)
+const currentPortal = Portal.getInstance()
 
 const CancelToken = axios.CancelToken
 

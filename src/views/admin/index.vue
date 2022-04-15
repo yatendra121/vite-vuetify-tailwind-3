@@ -1,17 +1,19 @@
 <template>
   <v-app id="inspire" :theme="theme">
     <admin-app>
-      <router-view v-show="!authLoading" :key="$route" v-slot="{ Component }">
-        <!-- <v-scroll-y-transition mode="out-in">
-          <keep-alive> -->
-        <suspense>
-          <template #default>
-            <component :is="Component" />
-          </template>
-          <template #fallback> Loading... </template>
-        </suspense>
-        <!-- </keep-alive>
-        </v-scroll-y-transition> -->
+      <router-view :key="$route" v-slot="{ Component, route }">
+        <v-slide-x-transition mode="out-in" appear>
+          <div v-show="!authLoading">
+            <suspense>
+              <template #default>
+                <component :is="Component" :key="route.name" />
+              </template>
+              <template #fallback>
+                <FallbackComponent />
+              </template>
+            </suspense>
+          </div>
+        </v-slide-x-transition>
       </router-view>
     </admin-app>
   </v-app>
@@ -24,9 +26,11 @@ import { AuthStatus } from '@/types/auth'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppStore } from '@/store/reactivity/app'
 import AdminApp from './adminApp.vue'
+import FallbackComponent from '@/components/Loading/FallbackComponent'
 export default defineComponent({
   components: {
-    AdminApp
+    AdminApp,
+    FallbackComponent
   },
   props: {
     authLoading: {
@@ -53,8 +57,7 @@ export default defineComponent({
       if (route.meta.type === 'not_found') {
         console.log('Not Found')
       } else if (props.authStatus === 'authenticated') {
-        console.log(route.meta.type)
-        router.push({ name: 'dashboard' })
+        if (route.meta.isPublic) router.push({ name: 'dashboard' })
       } else {
         router.push({ name: 'login' })
       }

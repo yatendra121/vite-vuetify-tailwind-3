@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client'
 import { Portal } from '@/utils/portal'
 
-const currentPortal = new Portal()
+const currentPortal = Portal.getInstance()
 
 const socket = io(currentPortal.getSocketUrl(), {
     transports: ['websocket']

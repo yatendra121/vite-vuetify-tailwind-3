@@ -1,23 +1,48 @@
 <template>
-  <Form
-    v-slot="{}"
-    :initial-values="initialValue"
+  <vq-form
+    id="form"
+    action="my-profile"
+    method="PUT"
+    :initial-values="initialValues"
     :validation-schema="schema"
-    @submit="onSubmit"
+    @submited-success="useFormSuccess"
+    @submited-error="useFormError"
   >
-    <v-container class="grey lighten-5">
-      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-      <v-row no-gutters>
+    <v-container>
+      <v-row>
         <v-col>
-          <vq-text-field name="name" label="Name" placeholder="Name" />
+          <vq-text-field
+            :clearable="true"
+            name="first_name"
+            label="First Name"
+            placeholder="First Name"
+          />
         </v-col>
         <v-col>
-          <vq-text-field name="email" label="Email" placeholder="Email" />
+          <vq-text-field
+            :clearable="true"
+            name="last_name"
+            label="Last Name"
+            placeholder="Last Name"
+          />
+        </v-col>
+        <v-col>
+          <vq-text-field
+            :clearable="true"
+            name="email"
+            label="Email"
+            placeholder="Email"
+          />
         </v-col>
       </v-row>
-      <v-row no-gutters>
+      <v-row>
         <v-col>
-          <vq-text-field name="mobile_no" label="Mobile" placeholder="Mobile" />
+          <vq-text-field
+            :clearable="true"
+            name="mobile_no"
+            label="Mobile"
+            placeholder="Mobile"
+          />
         </v-col>
         <v-col>
           <vq-text-field
@@ -27,74 +52,53 @@
           />
         </v-col>
       </v-row>
-      <v-row no-gutters>
+      <v-row>
         <v-col>
-          <VTextEditor name="address" />
+          <vq-text-editor name="address" />
         </v-col>
       </v-row>
+      <v-row>
+        <v-col> </v-col>
+      </v-row>
+      <!-- <vq-file-input name="profile_image"></vq-file-input> -->
     </v-container>
-
-    <v-btn color="primary" type="submit">Submit</v-btn>
-  </Form>
+  </vq-form>
 </template>
 
 <script lang="ts">
-import VqTextField from '@/components/Vuetify/VQTextField.vue'
 import { defineComponent } from 'vue'
-import { Field, Form } from 'vee-validate'
 import * as yup from 'yup'
-//import { useRouter } from 'vue-router'
-import VTextEditor from '@/components/Tinymce/index.vue'
-import { _axios } from '@/plugins/axios'
+import { useFormSuccess, useFormError } from '@/composables/formResponse'
+
+import type { propType } from 'vue'
+import type { InitialValues } from '@/types'
+
 export default defineComponent({
-  components: {
-    VqTextField,
-    VTextEditor,
-    Field,
-    Form
-  },
   props: {
-    initialValue: {
-      type: Object,
-      default: () => {},
-      required: true
+    initialValues: {
+      type: Object as propType<InitialValues>,
+      default: () => undefined
     }
   },
   setup() {
     const schema = yup.object({
       email: yup.string().required().nullable().max(50).label('Email'),
-      name: yup.string().required().nullable().max(30).label('Name'),
-      mobile_no: yup.string().required().max(30).label('Mobile')
+      first_name: yup
+        .string()
+        .required()
+        .nullable()
+        .max(30)
+        .label('First Name'),
+      last_name: yup.string().required().nullable().max(30).label('Last Name')
+      // mobile_no: yup.string().required().max(30).label('Mobile')
     })
 
-    //const router = useRouter()
-    const onSubmit = async (values: Array<string>, actions: any) => {
-      _axios
-        .put('my-profile', values)
-        .then(() => {
-          //   router.push({
-          //     name: 'dashboard'
-          //   })
-        })
-        .catch((response) => {
-          const data = JSON.parse(response.request.response)
-          actions.setErrors(data.errors)
-        })
-    }
-
     return {
-      onSubmit,
-      schema
+      useFormSuccess,
+      schema,
+      useFormError
     }
-  },
-  data: () => ({
-    items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
-  })
+  }
 })
 </script>
 <style scoped>

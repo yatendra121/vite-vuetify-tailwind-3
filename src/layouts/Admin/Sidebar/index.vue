@@ -1,18 +1,15 @@
 <template>
   <v-navigation-drawer :rail="false" v-model="drawer" app :elevation="1">
     <v-list>
-      <sidebar-item
-        v-for="route in router.options?.routes"
-        :key="route"
-        :item="route"
-      />
+      <sidebar-item v-for="route in router" :key="route.name" :item="route" />
     </v-list>
   </v-navigation-drawer>
 </template>
 <script lang="ts">
+/* eslint-disable vue/no-use-v-if-with-v-for */
 import { defineComponent, computed } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
-import router from '@/router'
+import router from '@/router/admin'
 import SidebarItem from './SidebarItem.vue'
 
 export default defineComponent({

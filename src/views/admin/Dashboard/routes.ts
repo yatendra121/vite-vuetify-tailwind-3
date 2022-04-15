@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
-import { Meta } from '@/types/router'
+import type { Meta } from '@/types/router'
+import { mdiDatabaseExport } from '@mdi/js'
 
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */ './')
 
@@ -12,7 +13,7 @@ export const DashboardRoutes: Array<RouteRecordRaw> = [
             title: 'Dashboard',
             heading: 'Dashboard',
             isPublic: false,
-            icon: 'mdi-account-circle',
+            icon: mdiDatabaseExport,
             type: 'admin',
             permission: 'admin.dashboard'
         } as Meta

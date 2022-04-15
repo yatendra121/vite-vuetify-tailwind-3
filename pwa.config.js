@@ -1,6 +1,14 @@
 const domainPrefix = ''
 
 module.exports = {
+  mode: 'development',
+  base: '/',
+  devOptions: {
+    enabled: true,
+    /* when using generateSW the PWA plugin will switch to classic */
+    type: 'module',
+    navigateFallback: 'index.html'
+  },
   includeAssets: [
     'favicon.svg',
     'favicon.ico',
@@ -11,7 +19,9 @@ module.exports = {
     name: 'Vite Vuetify Tailwind 3',
     theme_color: 'white',
     short_name: 'Vuetify 3',
-    start_url: '/?nx-vite/apps/vite-vuetify-tailwind-3/admin/',
+    start_url:
+      'http://54.163.103.2/nx-vite/apps/vite-vuetify-tailwind-3/admin/dashboard',
+    scope: 'http://54.163.103.2/nx-vite/apps/vite-vuetify-tailwind-3/admin/',
     display: 'standalone',
     background_color: '#ffffff',
     lang: 'en',

@@ -1,9 +1,15 @@
 <template>
-  <title-layout> {{ 'casnjcnsan' }} </title-layout>
+  <title-layout>
+    <template #default> </template>
+    <template #button>
+      <vq-submit-btn></vq-submit-btn>
+      <vq-back-btn></vq-back-btn>
+    </template>
+  </title-layout>
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <Form :initial-value="initialValue" />
+        <Form :initial-values="response?.data?.user" />
       </v-responsive>
     </v-card>
   </v-container>
@@ -11,26 +17,21 @@
 
 <script lang="ts">
 import Form from './Form.vue'
-import { defineComponent, onMounted, ref } from 'vue'
-import { _axios } from '@/plugins/axios'
+import { defineComponent } from 'vue'
+import { useAxios } from '@/composables/axios'
+import { syncRefLoading } from '@/composables/loading'
 export default defineComponent({
   components: {
     Form
   },
   setup() {
-    const initialValue = ref({})
-    const getResponse = () => {
-      _axios.get('my-profile').then((response) => {
-        initialValue.value = response.data.user
-      })
-    }
-    console.time()
-    console.log('1')
-    console.timeEnd()
-    onMounted(() => {
-      getResponse()
+    const { response, loading } = useAxios('my-profile', {
+      method: 'GET'
     })
-    return { initialValue }
+
+    syncRefLoading(loading)
+
+    return { response }
   }
 })
 </script>

@@ -1,17 +1,17 @@
-import { ref, shallowRef } from 'vue'
+import { shallowRef } from 'vue'
 import { unauthenticationError } from './useError'
 
 export default function useErrorResponse() {
     const getErrorResponse = async (response: any) => {
-        const status = ref()
-        const statusText = ref()
+        const status = shallowRef()
+        const statusText = shallowRef()
         const errorResponse = shallowRef()
         if (response.response) {
             const r = response.response.request
             status.value = r.status
             statusText.value = r.statusText
 
-            if ([422].includes(status.value)) {
+            if ([400, 422].includes(status.value)) {
                 errorResponse.value = JSON.parse(r.response)
             } else if ([401].includes(status.value)) {
                 await unauthenticationError()

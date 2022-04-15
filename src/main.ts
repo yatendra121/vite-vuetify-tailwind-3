@@ -11,7 +11,12 @@ import './plugins'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { apolloClient } from './plugins/graphql'
-// //import './sass'
+
+//import { partytownSnippet } from '@builder.io/partytown/integration'
+
+//const snippetText = partytownSnippet()
+
+//console.log(snippetText)
 
 loadFonts()
 

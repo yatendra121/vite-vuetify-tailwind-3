@@ -1,20 +1,21 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
+import { mdiAccessPointPlus } from '@mdi/js'
 const Parent = () =>
     import(
         /* webpackChunkName: "parent-route-view" */ '@/views/ParentRouteView.vue'
     )
 const Edit = () => import(/* webpackChunkName: "static-page" */ './Edit.vue')
 
-export const StaticPageRoutes: Array<RouteRecordRaw> = [
+const routes: Array<RouteRecordRaw> = [
     {
         path: '/static-page',
         component: Parent,
         meta: {
             title: 'Static Pages',
             heading: 'Static Pages',
-            icon: 'login',
             permission: 'admin.static-page.view',
+            icon: mdiAccessPointPlus,
             type: 'admin'
         } as Meta,
         children: [
@@ -57,3 +58,5 @@ export const StaticPageRoutes: Array<RouteRecordRaw> = [
         ]
     }
 ]
+
+export default routes

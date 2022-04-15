@@ -282,7 +282,7 @@
           clearInterval(loader_progress1)
           secondProcess()
         }
-      }, 100)
+      }, 50)
       function secondProcess() {
         loader_progress2 = setInterval(function () {
           if (p < 85) {
@@ -295,7 +295,7 @@
             clearInterval(loader_progress2)
             thirdProcess()
           }
-        }, 1000)
+        }, 100)
       }
       function thirdProcess() {
         loader_progress3 = setInterval(function () {
@@ -338,11 +338,13 @@
       </div>
       <div class="main">Vue Application</div>
     </div>
+    <!-- <script type="text/partytown" src="test.js"></script>
+    <script src="partytown/partytown.js"></script> -->
     <script type="module" src="/src/main.ts"></script>
     <script>
       let sc = document.createElement('script');
       sc.setAttribute('src',import.meta.env.BASE_URL+ "registerSW.js");
       document.head.appendChild(sc);
-    </script>
+    </script> 
   </body>
 </html>

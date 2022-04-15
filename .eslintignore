@@ -1,3 +1,6 @@
-tests/*
-admin/*
-public/*
+{
+    "ignorePatterns": [ **.d.ts ,"temp.js", "**/vendor/*.js"],
+    "rules": {
+        //...
+    }
+}

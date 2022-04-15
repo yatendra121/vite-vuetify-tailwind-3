@@ -1,7 +1,7 @@
 //@ts-ignore
 import Cookies from 'js-cookie'
 import { Portal } from '@/utils/portal'
-const currentPortal = new Portal()
+const currentPortal = Portal.getInstance()
 
 const prefix = currentPortal.getCookiePrefix()
 

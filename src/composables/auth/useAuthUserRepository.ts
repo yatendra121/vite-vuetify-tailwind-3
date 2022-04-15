@@ -25,20 +25,15 @@ export default function useAuthUserRepository() {
             })
             .then(async (response: AxiosSuccessResponse) => {
                 await userProfileStore(response.data.user)
-                return await new Promise((resolve) => {
-                    resolve(response.data)
-                })
+                return Promise.resolve(response.data)
             })
-            .catch(
-                async (response: AxiosErrorResponse) =>
-                    await new Promise((resolve, reject) => {
-                        reject(response.data)
-                    })
+            .catch(async (response: AxiosErrorResponse) =>
+                Promise.reject(response.data)
             )
             .finally(() => {
                 setTimeout(() => {
                     finished.value = true
-                }, 100)
+                }, 200)
             })
     }
 

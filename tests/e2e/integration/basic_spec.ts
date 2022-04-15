@@ -25,3 +25,12 @@ describe('Homepage', () => {
         })
     })
 })
+
+// cy.get('[data-cy=draggable]')
+//   .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
+//   .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
+//   .trigger('mouseup')
+
+// var div = document.getElementById("yourDiv");
+// var rect = div.getBoundingClientRect();
+// alert("Coordinates: " + rect.left + "px, " + rect.top + "px");

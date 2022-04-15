@@ -1,6 +1,6 @@
 <template>
   <v-list-group v-if="item.children">
-    <template #header="props">
+    <template #activator="{ props }">
       <v-list-item
         v-bind="props"
         :prepend-icon="item.meta.icon"
@@ -13,6 +13,7 @@
       :item="sidebarItem"
     />
   </v-list-group>
+
   <v-list-item
     v-else
     :prepend-icon="item.meta.icon"

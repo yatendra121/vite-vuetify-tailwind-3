@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
+import { mdiAccount } from '@mdi/js'
 const Drawer = () => import(/* webpackChunkName: "dashboard" */ './index.vue')
 
 export const UserRoutes: Array<RouteRecordRaw> = [
@@ -11,7 +12,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
             title: 'User',
             heading: 'User',
             isPublic: false,
-            icon: 'login',
+            icon: mdiAccount,
             permission: 'admin.drawer'
         } as Meta
     }

@@ -1,5 +1,6 @@
 <template>
-  <component :is="currentView"><slot /></component>
+  <MessageQueue />
+  <component :is="currentView"><slot /> </component>
 </template>
 <script lang="ts">
 import {
@@ -10,6 +11,7 @@ import {
   onMounted
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import MessageQueue from '@/components/Basic/MessageQueue.vue'
 const AdminView = defineAsyncComponent(
   () =>
     import(
@@ -40,7 +42,8 @@ export default defineComponent({
     AdminView,
     AuthView,
     NotFoundView,
-    DefaultView
+    DefaultView,
+    MessageQueue
   },
   setup() {
     const ParentView = ref('DefaultView')

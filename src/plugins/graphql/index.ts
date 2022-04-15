@@ -6,7 +6,7 @@ import {
 } from '@apollo/client/core'
 import { Portal } from '@/utils/portal'
 
-const currentPortal = new Portal()
+const currentPortal = Portal.getInstance()
 
 // HTTP connection to the API
 const httpLink = createHttpLink({

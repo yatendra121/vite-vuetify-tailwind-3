@@ -37,19 +37,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mdiClock, mdiAccount, mdiFlag } from '@mdi/js'
 
 export default defineComponent({
-  setup() {},
-  data() {
-    return {
-      selectedItem: null,
-      items: [
-        { text: 'Real-Time', icon: 'mdi-clock' },
-        { text: 'Audience', icon: 'mdi-account' },
-        { text: 'Conversions', icon: 'mdi-flag' }
-      ],
-      icons: ['mdi-facebook', 'mdi-twitter', 'mdi-linkedin', 'mdi-instagram']
-    }
+  setup() {
+    const icons = [mdiClock, mdiAccount, mdiFlag]
+    return { icons }
   }
 })
 </script>

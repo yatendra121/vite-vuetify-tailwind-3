@@ -1,10 +1,11 @@
 import { RouteRecordRaw } from 'vue-router'
+import { mdiLanguageKotlin } from '@mdi/js'
 const Login = () =>
     import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/index.vue')
 const ResetPassword = () =>
     import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/index.vue')
 
-export const AuthRoutes: Array<RouteRecordRaw> = [
+const AuthRoutes: Array<RouteRecordRaw> = [
     {
         path: '/auth',
         name: 'login',
@@ -14,7 +15,7 @@ export const AuthRoutes: Array<RouteRecordRaw> = [
             heading: 'Login',
             isPublic: true,
             type: 'auth',
-            icon: 'login',
+            icon: mdiLanguageKotlin,
             permission: 'admin.login'
         }
     },
@@ -48,3 +49,4 @@ export const AuthRoutes: Array<RouteRecordRaw> = [
         ]
     }
 ]
+export default AuthRoutes

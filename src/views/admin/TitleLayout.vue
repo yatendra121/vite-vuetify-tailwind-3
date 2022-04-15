@@ -2,30 +2,34 @@
   <v-layout>
     <v-container fluid>
       <v-card :rounded="true" :elevation="1" min-height="70">
-        <v-row class="flex-child" align="center">
-          <v-col
-            class="d-flex"
-            cols="auto"
-            sm="4"
-            xs="12"
-            align-self="center"
-            offset="1"
-          >
-            <h2 class="tw-text-center">{{ $route.meta.heading }}</h2>
-          </v-col>
-          <v-col class="d-flex" cols="auto" sm="6" xs="12" align-self="center">
-            <slot />
-          </v-col>
-        </v-row>
+        <v-responsive>
+          <v-row class="tw-p-5">
+            <v-col
+              class="d-flex justify-center"
+              cols="auto"
+              md="3"
+              sm="3"
+              xs="12"
+            >
+              <span class="tw-text-center text-h6">{{
+                $route.meta.heading
+              }}</span>
+            </v-col>
+            <v-col class="d-flex justify-end" cols="auto" md="9" sm="9" xs="12">
+              <slot />
+              <slot name="button"></slot>
+            </v-col>
+          </v-row>
+        </v-responsive>
+        <v-progress-linear
+          absolute
+          bottom
+          height="2"
+          :active="loadingValue"
+          :indeterminate="true"
+          color="primary"
+        ></v-progress-linear>
       </v-card>
-      <v-progress-linear
-        absolute
-        bottom
-        height="3"
-        :active="loadingValue"
-        :indeterminate="true"
-        color="primary"
-      ></v-progress-linear>
     </v-container>
   </v-layout>
 </template>

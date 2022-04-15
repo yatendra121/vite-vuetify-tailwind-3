@@ -14,7 +14,6 @@ export default defineComponent({
     return () => (
       <div class="wrapper">
         <v-text-field
-          append-inner-icon="mdi-magnify"
           placeholder="Search"
           color="primary"
           clearable

@@ -1,5 +1,11 @@
 <template>
-  <title-layout> {{ 'casnjcnsan' }} </title-layout>
+  <title-layout>
+    <template #default> </template>
+    <template #button>
+      <vq-submit-btn></vq-submit-btn>
+      <vq-back-btn></vq-back-btn>
+    </template>
+  </title-layout>
   <v-container fluid>
     <v-row class="flex-child">
       <v-col class="d-flex" cols="12" md="12">
@@ -17,7 +23,7 @@
                 indeterminate
               ></v-progress-circular>
             </div>
-            <Form :initial-value="response?.data" />
+            <Form :initial-values="response?.data" />
           </v-responsive>
         </v-sheet>
       </v-col>
@@ -26,6 +32,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
+import { syncRefLoading } from '@/composables/loading'
 import { useAxios } from '@/composables/axios'
 import { useRoute } from 'vue-router'
 const Form = defineAsyncComponent(
@@ -41,10 +48,10 @@ export default defineComponent({
       method: 'GET'
     })
 
+    syncRefLoading(loading)
+
     return {
-      response,
-      loading,
-      route
+      response
     }
   }
 })

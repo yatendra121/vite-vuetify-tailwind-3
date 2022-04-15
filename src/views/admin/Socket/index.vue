@@ -3,8 +3,9 @@ import { ref, onUnmounted, onMounted, defineComponent } from 'vue'
 import useSocketRepository from '@/composables/socket'
 import { User } from '@/types/user'
 import { Portal } from '@/utils/portal'
-const currentPortal = new Portal()
-const baseURL = currentPortal.getSocketUrl();
+import { mdiAccount, mdiHome } from '@mdi/js'
+const currentPortal = Portal.getInstance()
+const baseURL = currentPortal.getSocketUrl()
 
 interface UserChat {
   id: number
@@ -42,19 +43,22 @@ export default defineComponent({
       })
     }
 
-    fetch(baseURL +'/users-chat')
+    fetch(baseURL + '/users-chat')
       .then((response) => response.json())
       .then((data) => {
         items.value = data.data
       })
 
-    return { items, sendMessage, message, messageOffEvent }
+    return { items, sendMessage, message, messageOffEvent, mdiAccount, mdiHome }
   }
 })
 </script>
 
 <template>
-  <title-layout> {{ 'casnjcnsan' }} </title-layout>
+  <title-layout>
+    <v-icon large color="green darken-2" :icon="mdiHome"> </v-icon>
+    <v-icon large color="green darken-2" :icon="mdiAccount"> </v-icon>
+  </title-layout>
   <v-container fluid>
     <v-row>
       <v-col md="10">
@@ -75,7 +79,7 @@ export default defineComponent({
 
         <v-spacer></v-spacer>
 
-        <v-btn variant="text" icon="mdi-magnify"></v-btn>
+        <v-btn variant="text"></v-btn>
       </v-toolbar>
 
       <v-list three-line class="overflow-auto">
