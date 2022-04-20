@@ -3,7 +3,8 @@
     <admin-app>
       <router-view :key="$route" v-slot="{ Component, route }">
         <v-slide-x-transition mode="out-in" appear>
-          <div v-show="!authLoading">
+          <div > 
+             <!-- v-show="!authLoading" -->
             <suspense>
               <template #default>
                 <component :is="Component" :key="route.name" />
@@ -19,7 +20,7 @@
   </v-app>
 </template>
 <script lang="ts">
-import { defineComponent, watch, PropType, computed, onMounted } from 'vue'
+import { defineComponent, toRefs, watch, PropType, computed, onMounted } from 'vue'
 import { useTitle } from '@vueuse/core'
 import { useStore } from 'vuex'
 import { AuthStatus } from '@/types/auth'
@@ -52,21 +53,24 @@ export default defineComponent({
     // Navigation redirection
     const route = useRoute()
     const router = useRouter()
+    const { authStatus } = toRefs(props)
 
-    const redirectToAuth = () => {
+    const redirectToAuth = async() => {
       if (route.meta.type === 'not_found') {
         console.log('Not Found')
       } else if (props.authStatus === 'authenticated') {
-        if (route.meta.isPublic) router.push({ name: 'dashboard' })
+        if (route.meta.isPublic) 
+          await router.push({ name: 'dashboard' })
       } else {
-        router.push({ name: 'login' })
+          await router.push({ name: 'login' })
       }
     }
 
-    watch(props, () => {
+    watch(authStatus, () => {
       redirectToAuth()
     })
-    redirectToAuth()
+    if(authStatus.value ==='authenticated') 
+      redirectToAuth()
 
     // Navigation Guard
     const store = useStore()
@@ -89,7 +93,7 @@ export default defineComponent({
       setTimeout(() => {
         const appLoading = document.querySelector('#initial_startup')
         if (appLoading) appLoading.remove()
-      }, 300)
+      }, 0)
     })
 
     return { theme }

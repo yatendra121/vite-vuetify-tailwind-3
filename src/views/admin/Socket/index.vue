@@ -4,6 +4,7 @@ import useSocketRepository from '@/composables/socket'
 import { User } from '@/types/user'
 import { Portal } from '@/utils/portal'
 import { mdiAccount, mdiHome } from '@mdi/js'
+
 const currentPortal = Portal.getInstance()
 const baseURL = currentPortal.getSocketUrl()
 

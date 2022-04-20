@@ -1,1 +1,1 @@
-import './form'
+export * from './form'

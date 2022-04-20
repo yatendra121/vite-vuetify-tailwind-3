@@ -1,1 +1,0 @@
-import{x as a,y as c,C as f}from"./index.e0d2f4fa.js";function u(n){return a()?(c(n),!0):!1}const y=typeof window!="undefined",l=n=>typeof n=="string",S=()=>{};function d(n,s,{flush:o="sync",deep:e=!1,immediate:r=!0}={}){return Array.isArray(s)||(s=[s]),f(n,i=>s.forEach(t=>t.value=i),{flush:o,deep:e,immediate:r})}export{l as a,y as i,S as n,d as s,u as t};

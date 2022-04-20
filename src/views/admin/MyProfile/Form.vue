@@ -51,6 +51,12 @@
             placeholder="Date of Birth"
           />
         </v-col>
+        <v-col>
+          <vq-auto-complete
+            name="test"
+            label="Test"
+          />
+        </v-col>
       </v-row>
       <v-row>
         <v-col>
@@ -70,13 +76,13 @@ import { defineComponent } from 'vue'
 import * as yup from 'yup'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
 
-import type { propType } from 'vue'
+import type { PropType } from 'vue'
 import type { InitialValues } from '@/types'
 
 export default defineComponent({
   props: {
     initialValues: {
-      type: Object as propType<InitialValues>,
+      type: Object as PropType<InitialValues>,
       default: () => undefined
     }
   },
@@ -90,7 +96,6 @@ export default defineComponent({
         .max(30)
         .label('First Name'),
       last_name: yup.string().required().nullable().max(30).label('Last Name')
-      // mobile_no: yup.string().required().max(30).label('Mobile')
     })
 
     return {
