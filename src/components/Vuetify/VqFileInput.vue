@@ -25,9 +25,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { errorMessage, value } = useField(props.name, [], {
-      validateOnUpdate: false
-    })
+    const { errorMessage, value } = useField(props.name, [])
 
     return {
       errorMessage,

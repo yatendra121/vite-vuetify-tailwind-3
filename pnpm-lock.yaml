@@ -56,10 +56,11 @@ specifiers:
   vite: ^2.9.5
   vite-plugin-eslint: ^1.4.0
   vite-plugin-pwa: ^0.11.13
+  vq-vuetify: 0.4.5
   vue: ^3.2.33
   vue-router: ^4.0.14
   vue-tsc: ^0.31.4
-  vuetify: npm:@vuetify/nightly@3.0.0-next-20220416.0
+  vuetify: npm:@vuetify/nightly@3.0.0-next-20220419.0
   vuex: ^4.0.2
   webfontloader: ^1.6.28
   yup: ^0.32.11
@@ -78,6 +79,7 @@ dependencies:
   pinia: 2.0.13_typescript@4.6.3+vue@3.2.33
   socket.io-client: 4.4.1
   vee-validate: 4.5.11_vue@3.2.33
+  vq-vuetify: 0.4.5_5827fa95093a1c728c5115987019a5b3
   vue: 3.2.33
   vue-router: 4.0.14_vue@3.2.33
   vuex: 4.0.2_vue@3.2.33
@@ -97,7 +99,7 @@ devDependencies:
   '@vitejs/plugin-vue-jsx': 1.3.10
   '@vue/eslint-config-prettier': 7.0.0_eslint@8.13.0+prettier@2.6.2
   '@vue/eslint-config-typescript': 10.0.0_a62cbc2f4797496d74696b1f6538012a
-  '@vuetify/vite-plugin': 1.0.0-alpha.10_a4db55b7427f626cab5ad5ffb11415bd
+  '@vuetify/vite-plugin': 1.0.0-alpha.10_97e64a3199ecfe73f8b87eafa5068576
   '@vueuse/core': 7.7.1_vue@3.2.33
   '@vueuse/integrations': 8.2.6_1b23ab11ac4d14e1ce0818bde63d44f1
   autoprefixer: 10.4.4_postcss@8.4.12
@@ -127,7 +129,7 @@ devDependencies:
   vite-plugin-eslint: 1.4.0_eslint@8.13.0+vite@2.9.5
   vite-plugin-pwa: 0.11.13_vite@2.9.5
   vue-tsc: 0.31.4_typescript@4.6.3
-  vuetify: /@vuetify/nightly/3.0.0-next-20220416.0_vue@3.2.33
+  vuetify: /@vuetify/nightly/3.0.0-next-20220419.0_vue@3.2.33
   webfontloader: 1.6.28
 
 packages:
@@ -2383,18 +2385,19 @@ packages:
       vue: 3.2.33
     dev: true
 
-  /@vuetify/loader-shared/1.3.0_df76d1fc46001e99ab81a7c286d801a5:
+  /@vuetify/loader-shared/1.3.0_46d7c774d025ab4049ea8a29984a2645:
     resolution: {integrity: sha512-sxLvMYUTQCZJ4u6jS6rSWsjfagzytqylFnDuVcUNi0wy4qq5f1zTrHs5tZfRBppERmexeW3e57vqZAUfZPmfUA==}
     peerDependencies:
       vuetify: ^3.0.0-alpha.11
     dependencies:
       find-cache-dir: 3.3.2
       upath: 2.0.1
-      vuetify: /@vuetify/nightly/3.0.0-next-20220416.0_vue@3.2.33
+      vuetify: /@vuetify/nightly/3.0.0-next-20220419.0_vue@3.2.33
     dev: true
 
-  /@vuetify/nightly/3.0.0-next-20220416.0_vue@3.2.33:
-    resolution: {integrity: sha512-3jgtwcZXmrCeR1gcLyL2jvUnZftc9RyaXHdQpXQhmlFazYEtSymsRoD8RAEv2P2GeVGKVKkR7KfBrVhUBEgaSg==}
+  /@vuetify/nightly/3.0.0-next-20220419.0_vue@3.2.33:
+    resolution: {integrity: sha512-BqgKBxmgtOyA4LByRIQIpSfYyM5GQq2I3+hjkrP2NbZ0n1rSDlov4YRmauqLzII9ys0Lxi0HXwu7dXLEHJkHBQ==}
+    engines: {node: ^12.20 || >=14.13}
     peerDependencies:
       '@formatjs/intl': ^1.0.0 || ^2.0.0
       vue: ^3.2.31
@@ -2408,17 +2411,17 @@ packages:
       vue: 3.2.33
     dev: true
 
-  /@vuetify/vite-plugin/1.0.0-alpha.10_a4db55b7427f626cab5ad5ffb11415bd:
+  /@vuetify/vite-plugin/1.0.0-alpha.10_97e64a3199ecfe73f8b87eafa5068576:
     resolution: {integrity: sha512-+McI76gXccCi3Ci/Z5YfG81eIW8IJpXKk5G/ljfIoHdez2f+NRqzoPz+v/8K7QCrC6HqfwxJ9ygI9yrvqNpsdw==}
     engines: {node: '>=12'}
     peerDependencies:
       vite: ^2.7.0
       vuetify: ^3.0.0-alpha.11
     dependencies:
-      '@vuetify/loader-shared': 1.3.0_df76d1fc46001e99ab81a7c286d801a5
+      '@vuetify/loader-shared': 1.3.0_46d7c774d025ab4049ea8a29984a2645
       debug: 4.3.4
       vite: 2.9.5_sass@1.50.0
-      vuetify: /@vuetify/nightly/3.0.0-next-20220416.0_vue@3.2.33
+      vuetify: /@vuetify/nightly/3.0.0-next-20220419.0_vue@3.2.33
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7403,6 +7406,21 @@ packages:
     resolution: {integrity: sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /vq-vuetify/0.4.5_5827fa95093a1c728c5115987019a5b3:
+    resolution: {integrity: sha512-pMpvf9/rhL541mP4MF8FTyy/QSL04sIIiZ1zA/o2VN/a3fG3euIjtWIqZfURUAY6dACpR97/cBbOBmWVaL41Iw==}
+    peerDependencies:
+      axios: ^0.24.0
+      vee-validate: ^4.5.6
+      vuetify: '*'
+      yup: ^0.32.11
+    dependencies:
+      axios: 0.24.0
+      vee-validate: 4.5.11_vue@3.2.33
+      vue: 3.2.33
+      vuetify: /@vuetify/nightly/3.0.0-next-20220419.0_vue@3.2.33
+      yup: 0.32.11
+    dev: false
 
   /vscode-css-languageservice/5.4.1:
     resolution: {integrity: sha512-W7D3GKFXf97ReAaU4EZ2nxVO1kQhztbycJgc1b/Ipr0h8zYWr88BADmrXu02z+lsCS84D7Sr4hoUzDKeaFn2Kg==}

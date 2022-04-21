@@ -1,8 +1,6 @@
 import { ApiResponse } from '@/utils/response'
 import { useMessage } from '../message'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
+import router from '@/router'
 
 export default function useFormRepository(routeName: string, options = {}) {
     const useFormSuccess = async (response: ApiResponse) => {
@@ -14,6 +12,7 @@ export default function useFormRepository(routeName: string, options = {}) {
 }
 
 export const useFormSuccess = async (response: ApiResponse) => {
+    
     useMessage.success(response.getMessage() ?? '')
     if (window.history.length > 2) {
         router.back()

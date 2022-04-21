@@ -26,10 +26,10 @@ const VqBackButton = defineAsyncComponent(
 )
 export default {
     install: (app: any) => {
-        app.component('VqTextField', VQTextField)
-        app.component('VqFileInput', VQFileInput)
-        app.component('VqAutoComplete', VqAutoComplete)
-        app.component('VqForm', VqForm)
+       // app.component('VqTextField', VQTextField)
+       // app.component('VqFileInput', VQFileInput)
+       // app.component('VqAutoComplete', VqAutoComplete)
+       // app.component('VqForm', VqForm)
         app.component('VqTextEditor', VQTextEditor)
         app.component('VqSubmitBtn', VqSubmitButton)
         app.component('VqBackBtn', VqBackButton)
