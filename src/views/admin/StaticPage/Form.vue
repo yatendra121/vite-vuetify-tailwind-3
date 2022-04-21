@@ -17,7 +17,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <vq-text-editor name="description" />
+          <vq-text-editor :is-dark="sidebar" name="description" />
         </v-col>
       </v-row>
     </v-container>
@@ -26,22 +26,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent,computed } from 'vue'
 import * as yup from 'yup'
 import { useRoute } from 'vue-router'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
+import { useAppStore } from '@/store/reactivity/app'
 
-import type { propType } from 'vue'
+import type { PropType } from 'vue'
 import type { InitialValues } from '@/types'
 
 export default defineComponent({
   props: {
     initialValues: {
-      type: Object as propType<InitialValues>,
+      type: Object as PropType<InitialValues>,
       default: () => undefined
     }
   },
   setup() {
+
+    const appStore = useAppStore()
+    
     const schema = yup.object({
       title: yup.string().required().max(50).label('Email'),
       description: yup.string().required().max(30).label('Name')
@@ -53,7 +57,9 @@ export default defineComponent({
       schema,
       route,
       useFormSuccess,
-      useFormError
+      useFormError,
+      sidebar: computed(() => appStore.theme  == 'light' ? true :false ),
+      
     }
   }
 })

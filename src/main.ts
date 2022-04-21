@@ -11,6 +11,7 @@ import './plugins'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { apolloClient } from './plugins/graphql'
+import vqVuetify from 'vq-vuetify' 
 
 //import { partytownSnippet } from '@builder.io/partytown/integration'
 
@@ -28,6 +29,7 @@ const app = createApp({
     render: () => h(App)
 })
 app.use(vuetify)
+app.use(vqVuetify)
 app.use(storeCore)
 app.use(createPinia())
 app.use(router)

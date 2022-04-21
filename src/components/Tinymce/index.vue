@@ -5,7 +5,9 @@
       height: height,
       menubar: false,
       plugins: plugins,
-      toolbar: toolbar
+      toolbar: toolbar,
+      skin: isDark ? 'oxide-dark' : '',
+      content_css: isDark ? 'dark' : ''
     }"
     :tinymce-script-src="baseUrl"
   />
@@ -49,6 +51,10 @@ export default defineComponent({
     height: {
       type: Number,
       default: () => 250
+    },
+    isDark: {
+      type: Boolean,
+      default: () => false
     }
   },
   setup(props) {
