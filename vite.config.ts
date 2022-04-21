@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig,splitVendorChunkPlugin} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -28,6 +28,7 @@ export default defineConfig({
     plugins: [
         vue(),
         vueJsx(),
+        splitVendorChunkPlugin(),
         vuetify({
             autoImport: true,
             styles: 'expose'

@@ -58,8 +58,3 @@ export default defineComponent({
   }
 })
 </script>
-<style scoped>
-form {
-  width: 100%;
-}
-</style>

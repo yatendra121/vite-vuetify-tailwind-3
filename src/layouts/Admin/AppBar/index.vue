@@ -1,6 +1,6 @@
 <template>
   <v-app-bar
-    height="65"
+    height="62"
     app
     :border="true"
     :elevation="1"

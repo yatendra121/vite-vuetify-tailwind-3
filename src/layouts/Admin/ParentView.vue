@@ -2,15 +2,16 @@
   <AppBar :fullscreen="toggle" />
 
   <v-main>
-    <v-layout :full-height="true">
+    <v-layout>
       <v-container ref="el" fluid>
         <!-- <v-scroll-x-transition mode="out-in"> -->
         <slot />
         <!-- </v-scroll-x-transition> -->
       </v-container>
     </v-layout>
+    <Footer />
   </v-main>
-  <Footer />
+
   <Sidebar />
 
   <!-- <div

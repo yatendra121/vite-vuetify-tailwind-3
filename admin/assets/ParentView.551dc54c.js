@@ -1,1 +1,0 @@
-import{_ as t,o as r,a as s,w as a,b as n,s as o,Q as c,aZ as l}from"./index.e0d2f4fa.js";const f={};function _(e,d){return r(),s(l,null,{default:a(()=>[n(c,{fluid:""},{default:a(()=>[o(e.$slots,"default")]),_:3})]),_:3})}var u=t(f,[["render",_]]);export{u as default};
