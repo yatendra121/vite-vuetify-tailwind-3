@@ -11,7 +11,6 @@
     </v-layout>
     <Footer />
   </v-main>
-
   <Sidebar />
 
   <!-- <div

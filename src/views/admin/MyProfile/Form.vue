@@ -52,10 +52,7 @@
           />
         </v-col>
         <v-col>
-          <vq-auto-complete
-            name="test"
-            label="Test"
-          />
+          <vq-auto-complete name="test" label="Test" />
         </v-col>
       </v-row>
       <v-row>
@@ -106,8 +103,3 @@ export default defineComponent({
   }
 })
 </script>
-<style scoped>
-form {
-  width: 100%;
-}
-</style>

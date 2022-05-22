@@ -27,6 +27,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: 'About Us',
                     heading: 'About Us',
                     permission: 'admin.static-page.view',
+                    icon: mdiAccessPointPlus,
                     key: 'about_us',
                     type: 'admin'
                 } as Meta
@@ -39,6 +40,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: 'Term & Condition',
                     heading: 'Term & Condition',
                     permission: 'admin.static-page.view',
+                    icon: mdiAccessPointPlus,
                     key: 'term_condition',
                     type: 'admin'
                 } as Meta
@@ -51,6 +53,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: 'Privacy Policy',
                     heading: 'Privacy Policy',
                     permission: 'admin.static-page.view',
+                    icon: mdiAccessPointPlus,
                     key: 'privacy_policy',
                     type: 'admin'
                 } as Meta

@@ -18,6 +18,7 @@
     v-else
     :prepend-icon="item.meta.icon"
     :to="{ name: item.name }"
+    active-color="primary"
     link
     :title="item.meta.title"
   />

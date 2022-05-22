@@ -3,11 +3,15 @@
     v-model="value"
     :init="{
       height: height,
-      menubar: false,
-      plugins: plugins,
-      toolbar: toolbar,
-      skin: isDark ? 'oxide-dark' : '',
-      content_css: isDark ? 'dark' : ''
+      menubar: true,
+
+      plugins:
+        'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+      toolbar:
+        'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+
+      skin: isDark ? 'oxide' : 'oxide-dark',
+      content_css: isDark ? 'default' : 'dark'
     }"
     :tinymce-script-src="baseUrl"
   />
@@ -54,7 +58,7 @@ export default defineComponent({
     },
     isDark: {
       type: Boolean,
-      default: () => false
+      default: () => true
     }
   },
   setup(props) {

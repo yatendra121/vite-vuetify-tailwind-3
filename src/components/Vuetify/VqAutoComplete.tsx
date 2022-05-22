@@ -1,4 +1,3 @@
-
 import { defineComponent, ref } from 'vue'
 import { useField } from 'vee-validate'
 export default defineComponent({
@@ -16,18 +15,17 @@ export default defineComponent({
 
     return () => (
       <>
-          <v-autocomplete
-            item-text="name"
-            item-value="name"
-            items={items.value}
-            error={!!errorMessage.value}
-            v-model={value.value}
-            error-messages={errorMessage.value}
-            messages={errorMessage.value}
-            v-slots={ slots }
-            { ...attrs }
-          >
-          </v-autocomplete>
+        <v-autocomplete
+          item-text="name"
+          item-value="name"
+          items={items.value}
+          error={!!errorMessage.value}
+          model-value={value.value}
+          error-messages={errorMessage.value}
+          messages={errorMessage.value}
+          v-slots={slots}
+          {...attrs}
+        ></v-autocomplete>
       </>
     )
   }

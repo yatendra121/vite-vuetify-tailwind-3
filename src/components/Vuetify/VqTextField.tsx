@@ -1,4 +1,3 @@
-
 import { defineComponent } from 'vue'
 import { useField } from 'vee-validate'
 export default defineComponent({
@@ -14,15 +13,14 @@ export default defineComponent({
 
     return () => (
       <>
-          <v-text-field
-            error={!!errorMessage.value}
-            v-model={value.value}
-            error-messages={errorMessage.value}
-            messages={errorMessage.value}
-            v-slots={ slots }
-            { ...attrs }
-          >
-          </v-text-field>
+        <v-text-field
+          error={!!errorMessage.value}
+          v-model={value.value}
+          error-messages={errorMessage.value}
+          messages={errorMessage.value}
+          v-slots={slots}
+          {...attrs}
+        ></v-text-field>
       </>
     )
   }

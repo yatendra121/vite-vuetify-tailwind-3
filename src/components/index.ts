@@ -1,4 +1,5 @@
 import { defineAsyncComponent } from 'vue'
+import type { App } from 'vue'
 const VQTextField = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqTextField')
 )
@@ -18,18 +19,17 @@ const VQTextEditor = defineAsyncComponent(
 )
 
 const VqSubmitButton = defineAsyncComponent(
-    () =>
-        import(/* webpackChunkName: "vq-vuetify" */ './Basic/SubmitButton')
+    () => import(/* webpackChunkName: "vq-vuetify" */ './Basic/SubmitButton')
 )
 const VqBackButton = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Basic/BackButton')
 )
 export default {
-    install: (app: any) => {
-       // app.component('VqTextField', VQTextField)
-       // app.component('VqFileInput', VQFileInput)
-       // app.component('VqAutoComplete', VqAutoComplete)
-       // app.component('VqForm', VqForm)
+    install: (app: App) => {
+        app.component('VqTextField', VQTextField)
+        app.component('VqFileInput', VQFileInput)
+        app.component('VqAutoComplete', VqAutoComplete)
+        app.component('VqForm', VqForm)
         app.component('VqTextEditor', VQTextEditor)
         app.component('VqSubmitBtn', VqSubmitButton)
         app.component('VqBackBtn', VqBackButton)

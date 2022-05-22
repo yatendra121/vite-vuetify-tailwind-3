@@ -17,7 +17,7 @@
       :vertical="vertical"
     >
       <template #default>
-        <v-icon :icon="mdiInformation"></v-icon>
+        <!-- <v-icon :icon="mdiInformation"></v-icon> -->
         {{ item.message }}
       </template>
 

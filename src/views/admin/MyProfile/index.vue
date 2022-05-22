@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import Form from './Form.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, onBeforeUnmount } from 'vue'
 import { useAxios } from '@/composables/axios'
 import { syncRefLoading } from '@/composables/loading'
 export default defineComponent({
@@ -25,13 +25,15 @@ export default defineComponent({
     Form
   },
   setup() {
-    const { response, loading } = useAxios('my-profile', {
+    const { response, loading, cancel } = useAxios('my-profile', {
       method: 'GET'
     })
 
     syncRefLoading(loading)
 
-    return { response }
+    onBeforeUnmount(() => cancel())
+
+    return { response, loading }
   }
 })
 </script>

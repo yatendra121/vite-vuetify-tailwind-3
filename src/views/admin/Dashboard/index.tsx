@@ -1,4 +1,3 @@
-
 import { defineComponent } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import graphqlTag from 'graphql-tag'

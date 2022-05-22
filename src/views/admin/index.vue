@@ -3,8 +3,8 @@
     <admin-app>
       <router-view :key="$route" v-slot="{ Component, route }">
         <v-slide-x-transition mode="out-in" appear>
-          <div > 
-             <!-- v-show="!authLoading" -->
+          <div>
+            <!-- v-show="!authLoading" -->
             <suspense>
               <template #default>
                 <component :is="Component" :key="route.name" />
@@ -20,7 +20,14 @@
   </v-app>
 </template>
 <script lang="ts">
-import { defineComponent, toRefs, watch, PropType, computed, onMounted } from 'vue'
+import {
+  defineComponent,
+  toRefs,
+  watch,
+  PropType,
+  computed,
+  onMounted
+} from 'vue'
 import { useTitle } from '@vueuse/core'
 import { useStore } from 'vuex'
 import { AuthStatus } from '@/types/auth'
@@ -55,37 +62,37 @@ export default defineComponent({
     const router = useRouter()
     const { authStatus } = toRefs(props)
 
-    const redirectToAuth = async() => {
+    const redirectToAuth = async () => {
       if (route.meta.type === 'not_found') {
         console.log('Not Found')
       } else if (props.authStatus === 'authenticated') {
-        if (route.meta.isPublic) 
-          await router.push({ name: 'dashboard' })
+        if (route.meta.isPublic) await router.push({ name: 'dashboard' })
       } else {
-          await router.push({ name: 'login' })
+        await router.push({ name: 'login' })
       }
     }
 
     watch(authStatus, () => {
       redirectToAuth()
     })
-    if(authStatus.value ==='authenticated') 
-      redirectToAuth()
+    if (authStatus.value === 'authenticated') redirectToAuth()
 
     // Navigation Guard
     const store = useStore()
 
     const title = useTitle()
-    router.beforeEach((to, from, next) => {
+
+    router.beforeEach(async (to, from, next) => {
       if (!props.authLoading) {
         if (store.getters.authProfile && to.meta.isPublic) return
         if (!store.getters.authProfile && !to.meta.isPublic) return
       }
-      next()
+      await next()
 
       // Browser Tab Title
-      // @ts-ignore
-      title.value = to.meta.title
+      setTimeout(() => {
+        title.value = to.meta.title
+      }, 300)
     })
 
     // Close loader if exist

@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer :rail="false" v-model="drawer" app :elevation="1">
-    <v-list>
+    <!-- v-model="drawer" -->
+    <v-list nav dense>
       <sidebar-item v-for="route in router" :key="route.name" :item="route" />
     </v-list>
   </v-navigation-drawer>

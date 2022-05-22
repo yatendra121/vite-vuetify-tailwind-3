@@ -1,0 +1,1 @@
+import{p as t,F as a,a6 as e,aC as n,a2 as o,$ as r}from"./vendor.88382afc.js";var u=t({name:"BackButton",setup(){return()=>a(r,null,[a(e("v-btn"),{variant:"text"},{default:()=>[a(e("v-icon"),{icon:n},null),o("Back")]})])}});export{u as default};

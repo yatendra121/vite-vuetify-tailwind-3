@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 import * as yup from 'yup'
 import { useRoute } from 'vue-router'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
@@ -43,9 +43,8 @@ export default defineComponent({
     }
   },
   setup() {
-
     const appStore = useAppStore()
-    
+
     const schema = yup.object({
       title: yup.string().required().max(50).label('Email'),
       description: yup.string().required().max(30).label('Name')
@@ -58,8 +57,7 @@ export default defineComponent({
       route,
       useFormSuccess,
       useFormError,
-      sidebar: computed(() => appStore.theme  == 'light' ? true :false ),
-      
+      sidebar: computed(() => appStore.theme === 'light')
     }
   }
 })

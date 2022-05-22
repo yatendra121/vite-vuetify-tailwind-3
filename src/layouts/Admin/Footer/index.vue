@@ -1,5 +1,11 @@
 <template>
-  <v-footer :elevation="10" app :border="true" :rounded="10" :fixed="true">
+  <v-footer
+    :elevation="10"
+    :border="true"
+    :priority="10"
+    :rounded="10"
+    :fixed="false"
+  >
     <v-card :elevation="1" :plain="true" class="text-center">
       <v-card-text>
         <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>

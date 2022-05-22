@@ -60,7 +60,7 @@ export function useAxios<T = any>(url: string, args: any) {
     const config: AxiosRequestConfig = args
     const instance: AxiosInstance = _axios
 
-    const response = shallowRef<AxiosResponse<T>>()
+    const response = ref<AxiosResponse<T>>()
     const data = shallowRef<T>()
     const isFinished = ref(false)
     const isLoading = ref(true)
