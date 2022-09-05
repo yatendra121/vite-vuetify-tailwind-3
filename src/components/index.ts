@@ -7,13 +7,12 @@ const VQFileInput = defineAsyncComponent(
     () =>
         import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqFileInput.vue')
 )
-const VqAutocomplete = defineAsyncComponent(
-    () =>
-        import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqAutocomplete')
-)
+// const VqAutocomplete = defineAsyncComponent(
+//     () =>
+//         import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqAutocomplete')
+// )
 const VqSelect = defineAsyncComponent(
-    () =>
-        import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqSelect.vue')
+    () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqSelect.vue')
 )
 const VqForm = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqForm')
@@ -23,22 +22,32 @@ const VQTextEditor = defineAsyncComponent(
 )
 
 const VqSubmitButton = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/SubmitButton')
+    () =>
+        import(
+            /* webpackChunkName: "vq-vuetify-basic" */ './Basic/SubmitButton'
+        )
 )
 const VqBackButton = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
+    () =>
+        import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
 )
 const ReportsBarChart = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-chart" */ './Charts/ReportsBarChart.vue')
+    () =>
+        import(
+            /* webpackChunkName: "vq-chart" */ './Charts/ReportsBarChart.vue'
+        )
 )
 const ReportsLineChart = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-chart" */ './Charts/ReportsLineChart.vue')
+    () =>
+        import(
+            /* webpackChunkName: "vq-chart" */ './Charts/ReportsLineChart.vue'
+        )
 )
 export default {
     install: (app: App) => {
         app.component('VqTextField', VQTextField)
         app.component('VqFileInput', VQFileInput)
-        app.component('VqAutocomplete', VqAutocomplete)
+        //   app.component('VqAutocomplete', VqAutocomplete)
         app.component('VqSelect', VqSelect)
         app.component('VqForm', VqForm)
         app.component('VqTextEditor', VQTextEditor)
