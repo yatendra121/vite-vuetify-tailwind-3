@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-onMounted((el, binding) => {
-  el.style.position = 'fixed'
-  // binding.value is the value we pass to directive - in this case, it's 200
-  el.style.top = binding.value + 'px'
-})
+// @ts-nocheck
+// onMounted((el: any, binding: any) => {
+//   el.style.position = 'fixed'
+//   // binding.value is the value we pass to directive - in this case, it's 200
+//   el.style.top = binding.value + 'px'
+// })
 </script>
 
 <template>

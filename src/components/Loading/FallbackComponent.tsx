@@ -1,11 +1,9 @@
-
 import { defineComponent } from 'vue'
 import { useNProgress } from '@vueuse/integrations/useNProgress'
 
 export default defineComponent({
   name: 'FallbackComponent',
   setup() {
-
     const { isLoading } = useNProgress()
     isLoading.value = true
 
@@ -15,9 +13,8 @@ export default defineComponent({
 
     return () => (
       <>
-      <div>Loading...</div>  
+        <div>Loading...</div>
       </>
     )
   }
 })
-

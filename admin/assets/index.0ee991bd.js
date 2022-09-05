@@ -1,1 +1,0 @@
-import{ac as t,ad as c,ag as f}from"./vendor.88382afc.js";function u(n){return t()?(c(n),!0):!1}const y=typeof window!="undefined",d=n=>typeof n=="string",l=()=>{};function S(n,s,{flush:o="sync",deep:e=!1,immediate:r=!0}={}){return Array.isArray(s)||(s=[s]),f(n,a=>s.forEach(i=>i.value=a),{flush:o,deep:e,immediate:r})}export{d as a,y as i,l as n,S as s,u as t};

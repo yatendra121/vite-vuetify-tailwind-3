@@ -1,0 +1,1 @@
+import{p as t,F as o,a4 as a,a0 as n,Z as e}from"./vendor.df0adcd3.js";const d=t({name:"SubmitButton",props:{id:{type:String,default:"form"}},setup(t){const d=()=>{const o=document.getElementById(t.id);o&&o._vei.onSubmit(o)};return()=>o(e,null,[o(a("v-btn"),{loading:!1,onClick:d,color:"primary"},{default:()=>[n("Submit")]})])}});export{d as default};

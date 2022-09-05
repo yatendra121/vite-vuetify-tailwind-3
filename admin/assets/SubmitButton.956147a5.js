@@ -1,1 +1,0 @@
-import{p as n,F as t,a6 as r,a2 as m,$ as u}from"./vendor.88382afc.js";var s=n({name:"MessageQueue",props:{id:{type:String,default:"form"}},setup(o){const a=()=>{const e=document.getElementById(o.id);e&&e._vei.onSubmit(e)};return()=>t(u,null,[t(r("v-btn"),{loading:!0,onClick:a,color:"primary"},{default:()=>[m("Submit")]})])}});export{s as default};

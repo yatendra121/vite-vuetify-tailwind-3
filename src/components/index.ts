@@ -7,9 +7,13 @@ const VQFileInput = defineAsyncComponent(
     () =>
         import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqFileInput.vue')
 )
-const VqAutoComplete = defineAsyncComponent(
+const VqAutocomplete = defineAsyncComponent(
     () =>
-        import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqAutoComplete')
+        import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqAutocomplete')
+)
+const VqSelect = defineAsyncComponent(
+    () =>
+        import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqSelect.vue')
 )
 const VqForm = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqForm')
@@ -19,19 +23,28 @@ const VQTextEditor = defineAsyncComponent(
 )
 
 const VqSubmitButton = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-vuetify" */ './Basic/SubmitButton')
+    () => import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/SubmitButton')
 )
 const VqBackButton = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-vuetify" */ './Basic/BackButton')
+    () => import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
+)
+const ReportsBarChart = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Charts/ReportsBarChart.vue')
+)
+const ReportsLineChart = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Charts/ReportsLineChart.vue')
 )
 export default {
     install: (app: App) => {
         app.component('VqTextField', VQTextField)
         app.component('VqFileInput', VQFileInput)
-        app.component('VqAutoComplete', VqAutoComplete)
+        app.component('VqAutocomplete', VqAutocomplete)
+        app.component('VqSelect', VqSelect)
         app.component('VqForm', VqForm)
         app.component('VqTextEditor', VQTextEditor)
         app.component('VqSubmitBtn', VqSubmitButton)
         app.component('VqBackBtn', VqBackButton)
+        app.component('ReportsLineChart', ReportsLineChart)
+        app.component('ReportsBarChart', ReportsBarChart)
     }
 }

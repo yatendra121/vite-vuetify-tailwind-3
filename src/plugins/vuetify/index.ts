@@ -2,7 +2,7 @@
 //import 'vuetify/lib/styles/main.sass'
 //import 'vuetify/styles'
 import 'vuetify/dist/vuetify.css'
-//import '@/styles/_variables.scss'
+import '@/styles/_variables.scss'
 // Vuetify
 
 import { createVuetify, IconOptions } from 'vuetify'

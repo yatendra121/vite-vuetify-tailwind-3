@@ -2,10 +2,12 @@ import { ApiResponse } from '@/utils/response'
 import { useMessage } from '../message'
 import router from '@/router'
 
+const errorDefaultMessage = 'Your input is not valid. Please check the form.'
+
 export default function useFormRepository(routeName: string, options = {}) {
     const useFormSuccess = async (response: ApiResponse) => {
         useMessage.success(response.getMessage() ?? '')
-        //router.push({ name: routeName, ...options })
+        if (routeName) router.push({ name: routeName, ...options })
     }
 
     return { useFormSuccess }
@@ -21,9 +23,10 @@ export const useFormSuccess = async (response: ApiResponse) => {
 }
 
 export const useFormSuccessOnlyMessage = async (response: ApiResponse) => {
-    useMessage.success(response.getMessage() ?? '')
+    if (response.getMessage()) useMessage.success(response.getMessage() ?? '')
 }
 
 export const useFormError = async (response: ApiResponse) => {
-    useMessage.error(response.getMessage() ?? '')
+    const message = response.getMessage() ?? errorDefaultMessage
+    useMessage.error(message)
 }

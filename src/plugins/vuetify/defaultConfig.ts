@@ -7,8 +7,9 @@ export default {
         color: ''
     },
     VTextField: {
-        density: 'compact',
-        variant: 'outlined',
-        color: 'primary'
+        //density: 'compact',
+        ///variant: 'outlined',
+        color: 'primary',
+        clearable: true
     }
 }

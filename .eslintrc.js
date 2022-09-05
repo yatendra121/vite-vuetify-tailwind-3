@@ -1,17 +1,12 @@
 /* eslint-env node */
 require('@rushstack/eslint-patch/modern-module-resolution')
-
+//'plugin:import/recommended'
 module.exports = {
   root: true,
   env: {
     node: true
   },
-  extends: [
-    'eslint:recommended',
-    'standard',
-    'prettier',
-    'plugin:import/warnings'
-  ],
+  extends: ['eslint:recommended', 'standard', 'prettier'],
   rules: {
     'spaced-comment': 'off'
   },

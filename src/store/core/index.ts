@@ -7,7 +7,7 @@ import {
 } from 'vuex'
 import profile, { Mutations, Actions } from './profile'
 import { getters, Getters } from './getters'
-import { State } from '@/store/state'
+import { State } from './state'
 
 // store.ts
 export const store = createStore<State>({

@@ -1,35 +1,40 @@
 <template>
   <v-layout>
     <v-container fluid>
-      <v-card :rounded="true" :elevation="1" min-height="70">
-        <v-responsive>
-          <v-row class="tw-p-5">
-            <v-col
-              class="d-flex justify-center"
-              cols="auto"
-              md="3"
-              sm="3"
-              xs="12"
-            >
-              <span class="tw-text-center text-h6">{{
-                $route.meta.heading
-              }}</span>
-            </v-col>
-            <v-col class="d-flex justify-end" cols="auto" md="9" sm="9" xs="12">
-              <slot />
-              <slot name="button"></slot>
-            </v-col>
-          </v-row>
-        </v-responsive>
-        <v-progress-linear
-          absolute
-          bottom
-          height="2"
-          :active="loadingValue"
-          :indeterminate="true"
-          color="primary"
-        ></v-progress-linear>
+      <v-card :rounded="true" :elevation="1">
+        <v-row
+          no-gutters
+          justify="space-between"
+          style="min-height: 70px"
+          class="pa-5"
+        >
+          <v-col align-self="center" cols="auto" md="3" sm="3" xs="12">
+            <span class="tw-text-center text-h6">{{
+              $route.meta.heading
+            }}</span>
+          </v-col>
+          <v-col
+            align-self="center"
+            class="d-flex justify-end"
+            cols="auto"
+            md="9"
+            sm="9"
+            xs="12"
+          >
+            <slot />
+            <slot name="button"></slot>
+            <div id="form_submit_button"></div>
+          </v-col>
+        </v-row>
       </v-card>
+      <v-progress-linear
+        absolute
+        bottom
+        height="2"
+        :active="loadingValue"
+        :indeterminate="true"
+        color="primary"
+      ></v-progress-linear>
     </v-container>
   </v-layout>
 </template>

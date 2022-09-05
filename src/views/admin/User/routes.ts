@@ -13,6 +13,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
             heading: 'User',
             isPublic: false,
             icon: mdiAccount,
+            type: 'admin',
             permission: 'admin.drawer'
         } as Meta
     }

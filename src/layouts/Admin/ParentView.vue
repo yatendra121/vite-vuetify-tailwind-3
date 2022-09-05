@@ -1,9 +1,8 @@
 <template>
   <AppBar :fullscreen="toggle" />
-
   <v-main>
-    <v-layout>
-      <v-container ref="el" fluid>
+    <v-layout :full-height="true">
+      <v-container ref="el" :fluid="false">
         <!-- <v-scroll-x-transition mode="out-in"> -->
         <slot />
         <!-- </v-scroll-x-transition> -->

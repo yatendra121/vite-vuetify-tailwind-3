@@ -1,0 +1,1 @@
+import{p as a,F as t,a4 as n,aA as s,a0 as o,Z as e}from"./vendor.df0adcd3.js";const c=a({name:"BackButton",setup:()=>()=>t(e,null,[t(n("v-btn"),{variant:"text"},{default:()=>[t(n("v-icon"),{icon:s},null),o("Back")]})])});export{c as default};

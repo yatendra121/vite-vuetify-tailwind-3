@@ -86,21 +86,23 @@ export default function useAuthUserRepository() {
     /**
      * To logout the user and redirect to login page.
      */
-    const logOutUser = (socketId = '', url = 'logout') => {
-        return _axios({
+    const logOutUser = async (socketId = '', url = 'logout') => {
+        await _axios({
             url: url,
             method: 'POST',
             data: { socketId }
         }).finally(() => {
-            removeTokens()
-            store.dispatch(ActionTypes.DELETE, {
-                key: ActionTypes.DELETE
-            })
-            router.push('/')
-            return new Promise((resolve) => {
-                resolve(true)
-            })
+            setTimeout(() => {
+                finished.value = true
+            }, 0)
         })
+
+        removeTokens()
+
+        await store.dispatch(ActionTypes.DELETE, {
+            key: ActionTypes.DELETE
+        })
+        router.push('/')
     }
 
     return { myProfile, finished, loginUser, logOutUser, userProfileStore }

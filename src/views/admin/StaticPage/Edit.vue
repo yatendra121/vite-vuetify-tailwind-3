@@ -23,36 +23,26 @@
                 indeterminate
               ></v-progress-circular>
             </div>
-            <Form :initial-values="response?.data" />
+            <StaticPageForm :initial-values="response?.data" />
           </v-responsive>
         </v-sheet>
       </v-col>
     </v-row>
   </v-container>
 </template>
-<script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue'
+<script lang="ts" setup>
+import { defineAsyncComponent } from 'vue'
 import { syncRefLoading } from '@/composables/loading'
 import { useAxios } from '@/composables/axios'
 import { useRoute } from 'vue-router'
-const Form = defineAsyncComponent(
+const StaticPageForm = defineAsyncComponent(
   () => import(/* webpackChunkName: "static-page" */ './Form.vue')
 )
-export default defineComponent({
-  components: {
-    Form
-  },
-  setup() {
-    const route = useRoute()
-    const { response, loading } = useAxios(`static-page/${route.meta.key}`, {
-      method: 'GET'
-    })
 
-    syncRefLoading(loading)
-
-    return {
-      response
-    }
-  }
+const route = useRoute()
+const { response, loading } = useAxios(`static-page/${route.meta.key}`, {
+  method: 'GET'
 })
+
+syncRefLoading(loading)
 </script>

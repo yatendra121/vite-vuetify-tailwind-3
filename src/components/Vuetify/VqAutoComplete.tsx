@@ -9,18 +9,14 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots }) {
-    const { errorMessage, value } = useField(props.name, undefined)
-
-    const items = ref(['foo', 'bar', 'fizz', 'buzz'])
-
+    const { errorMessage, value } = useField(props.name,[])
+    const updateModelValue = (val:any) => {  value.value = val }
     return () => (
       <>
         <v-autocomplete
-          item-text="name"
-          item-value="name"
-          items={items.value}
           error={!!errorMessage.value}
-          model-value={value.value}
+          modelValue={value.value}
+          onUpdate:modelValue={updateModelValue}
           error-messages={errorMessage.value}
           messages={errorMessage.value}
           v-slots={slots}

@@ -1,1 +1,3 @@
-export type InitialValues = Record<string, any> | undefined
+import { MaybeRef } from "@vueuse/core"
+
+export type InitialValues = MaybeRef<Record<string, any>>

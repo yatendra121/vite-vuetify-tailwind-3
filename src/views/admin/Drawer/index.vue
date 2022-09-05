@@ -1,11 +1,69 @@
 <template>
-  <h2>Sales overview</h2>
-
   <v-row>
-    <v-col md="6" sm="6">
+    <v-col md="12" sm="12">
       <v-card>
+        <h2>Sales overview</h2>
         <v-responsive>
-          <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+          <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
+          <v-row >
+            <v-col md="4">
+              <v-card height="200" color="white" elevation="10">
+                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+              </v-card>
+
+            </v-col>
+            <v-col md="4">
+            <v-card height="200" color="primary">
+            <!-- <chart-holder-card
+              title="Website Views"
+              subtitle="Last Campaign Performance"
+              update="campaign sent 2 days ago"
+            > -->
+              <reports-bar-chart
+              :height="200"
+                :chart="{
+                  labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+                  datasets: {
+                    label: 'Sales',
+                    data: [50, 20, 10, 22, 50, 10, 40],
+                  },
+                }"
+              />
+            <!-- </chart-holder-card> -->
+            </v-card>
+            </v-col>
+            <v-col md="4">
+            <v-card height="200" color="warning">
+            <!-- <chart-holder-card
+              title="Daily Sales"
+              subtitle="(<span class='font-weight-bolder'>+15%</span>) increase in today sales."
+              update="updated 4 min ago"
+              color="red"
+            > -->
+              <reports-line-chart
+                :height="200"
+                :chart="{
+                  labels: [
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec',
+                  ],
+                  datasets: {
+                    label: 'Mobile apps',
+                    data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+                  },
+                }"
+              />
+            <!-- </chart-holder-card> -->
+            </v-card>
+            </v-col>
+          </v-row>
         </v-responsive>
       </v-card>
     </v-col>
@@ -42,7 +100,6 @@ export default {
           {
             label: 'Mobile apps',
             tension: 0.4,
-            borderWidth: 0,
             pointRadius: 0,
             borderColor: '#cb0c9f',
             // eslint-disable-next-line no-dupe-keys
@@ -55,10 +112,8 @@ export default {
           {
             label: 'Websites',
             tension: 0.4,
-            borderWidth: 0,
             pointRadius: 0,
             borderColor: '#3A416F',
-            // eslint-disable-next-line no-dupe-keys
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             fill: true,

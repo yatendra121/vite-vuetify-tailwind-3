@@ -31,6 +31,7 @@ import * as yup from 'yup'
 import { useRoute } from 'vue-router'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
 import { useAppStore } from '@/store/reactivity/app'
+import { requiredField } from '@qnx/api-messages'
 
 import type { PropType } from 'vue'
 import type { InitialValues } from '@/types'
@@ -46,7 +47,7 @@ export default defineComponent({
     const appStore = useAppStore()
 
     const schema = yup.object({
-      title: yup.string().required().max(50).label('Email'),
+      title: yup.string().required().max(50).label('Title'),
       description: yup.string().required().max(30).label('Name')
     })
 

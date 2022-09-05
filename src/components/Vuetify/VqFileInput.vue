@@ -4,8 +4,7 @@
     v-model="value"
     v-bind="$attrs"
     :error="!!errorMessage"
-    :error-messages="errorMessage"
-    :messages="errorMessage"
+    :error-message="errorMessage"
   >
     <!-- <template #progress>
         <v-progress-linear absolute height="7"></v-progress-linear>
@@ -14,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, Ref } from 'vue'
 import { useField } from 'vee-validate'
 export default defineComponent({
   name: 'VqFileInput',
@@ -25,7 +24,11 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { errorMessage, value } = useField(props.name, [])
+    const {
+      errorMessage,
+      value
+    }: { errorMessage: Ref<unknown>; value: Ref<File[] | undefined> } =
+      useField(props.name, [])
 
     return {
       errorMessage,

@@ -1,14 +1,16 @@
 import { defineComponent } from 'vue'
-import { mdiArrowLeftThin } from '@mdi/js'
+import { mdiArrowLeft } from '@mdi/js'
 
 export default defineComponent({
   name: 'BackButton',
   setup() {
     return () => (
       <>
-      <v-btn variant="text"><v-icon icon={mdiArrowLeftThin}/>Back</v-btn>
+        <v-btn variant="text">
+          <v-icon icon={mdiArrowLeft} />
+          Back
+        </v-btn>
       </>
     )
   }
 })
-

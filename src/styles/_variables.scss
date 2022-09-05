@@ -1,12 +1,12 @@
-// @use 'vuetify/styles' with (
-//   $font-size-root: 1rem,
-//   $border-radius-root: 4px,
-//   $spacer: 4px,
-//   $body-font-family: (
-//     Roboto,
-//     sans-serif
-//   )
-// );
+@use 'vuetify/styles' with (
+  $font-size-root: 1rem,
+  $border-radius-root: 4px,
+  $spacer: 4px,
+  $body-font-family: (
+    Roboto,
+    sans-serif
+  )
+);
 
 // with (
 //   $color-pack: false
@@ -38,5 +38,5 @@
 //   padding: $container-padding;
 // }
 .v-theme--light {
-  --v-theme-background: 240, 242, 230 !important;
+  //   --v-theme-background: 238, 246, 249 !important;
 }

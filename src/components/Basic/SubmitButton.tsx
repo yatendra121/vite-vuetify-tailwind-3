@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 export default defineComponent({
-  name: 'MessageQueue',
+  name: 'SubmitButton',
   props: {
     id: {
       type: String,
@@ -8,17 +8,18 @@ export default defineComponent({
     }
   },
   setup(props) {
-
     const submit = () => {
-      const form = document.getElementById(props.id) 
-      if(form) form._vei.onSubmit(form)
+      const form = document.getElementById(props.id)
+      // @ts-ignore
+      if (form) form._vei.onSubmit(form)
     }
 
     return () => (
       <>
-      <v-btn loading={true} onClick={submit} color="primary">Submit</v-btn>
+        <v-btn loading={false} onClick={submit} color="primary">
+          Submit
+        </v-btn>
       </>
     )
-
   }
 })

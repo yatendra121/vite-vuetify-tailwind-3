@@ -5,10 +5,9 @@
       height: height,
       menubar: true,
 
-      plugins:
-        'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+      plugins:plugins,
       toolbar:
-        'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+        toolbar,
 
       skin: isDark ? 'oxide' : 'oxide-dark',
       content_css: isDark ? 'default' : 'dark'
@@ -17,10 +16,9 @@
   />
   <transition name="bounce">
     <div
-      v-if="errorMessage"
-      class="text-xs text-red-500 transition duration-500 ease-in-out dark:text-gray-400 mt-1"
+      class="tw-m-4 tw-text-xs tw-text-red-700 tw-transition tw-duration-300 tw-ease-in-out tw-dark:text-gray-400 tw-mt-1"
     >
-      {{ errorMessage }}
+      <p  class="tw-min-h-[16px]">{{ errorMessage }}</p>
     </div>
   </transition>
 </template>
@@ -63,7 +61,7 @@ export default defineComponent({
   },
   setup(props) {
     const { errorMessage, value } = useField(props.name)
-
+    
     return {
       plugins,
       toolbar,

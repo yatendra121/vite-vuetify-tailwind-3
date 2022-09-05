@@ -1,9 +1,15 @@
 import { RouteRecordRaw } from 'vue-router'
 import { mdiLanguageKotlin } from '@mdi/js'
 const Login = () =>
-    import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/index.vue')
+    import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/login.vue')
 const ResetPassword = () =>
-    import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/index.vue')
+    import(
+        /* webpackChunkName: "auth" */ '@/views/admin/Auth/resetPassword.vue'
+    )
+const ForgotPassword = () =>
+    import(
+        /* webpackChunkName: "auth" */ '@/views/admin/Auth/forgotPassword.vue'
+    )
 
 const AuthRoutes: Array<RouteRecordRaw> = [
     {
@@ -20,9 +26,30 @@ const AuthRoutes: Array<RouteRecordRaw> = [
         }
     },
     {
+        path: '/forgot-password',
+        name: 'forgot-password',
+        component: ForgotPassword,
+        meta: {
+            title: 'ForgotPassword',
+            heading: 'ForgotPassword',
+            isPublic: true,
+            type: 'auth',
+            icon: mdiLanguageKotlin,
+            permission: 'admin.forgot-password'
+        }
+    },
+    {
         path: '/reset-password',
-        name: 'resetpassword',
-        component: ResetPassword
+        name: 'reset-password',
+        component: ResetPassword,
+        meta: {
+            title: 'ResetPassword',
+            heading: 'ResetPassword',
+            isPublic: true,
+            type: 'auth',
+            icon: mdiLanguageKotlin,
+            permission: 'admin.reset-password'
+        }
     },
     {
         path: '/verify',

@@ -9,31 +9,25 @@
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <Form :initial-values="response?.data?.user" />
+        <MyProfileForm :initial-values="response?.data" />
       </v-responsive>
     </v-card>
   </v-container>
 </template>
 
-<script lang="ts">
-import Form from './Form.vue'
-import { defineComponent, onBeforeUnmount } from 'vue'
+<script lang="ts" setup>
+import { onBeforeUnmount, defineAsyncComponent } from 'vue'
 import { useAxios } from '@/composables/axios'
 import { syncRefLoading } from '@/composables/loading'
-export default defineComponent({
-  components: {
-    Form
-  },
-  setup() {
-    const { response, loading, cancel } = useAxios('my-profile', {
-      method: 'GET'
-    })
+const MyProfileForm = defineAsyncComponent(
+  () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
+)
 
-    syncRefLoading(loading)
-
-    onBeforeUnmount(() => cancel())
-
-    return { response, loading }
-  }
+const { response, loading, cancel } = useAxios('my-profile/show', {
+  method: 'GET'
 })
+
+syncRefLoading(loading)
+
+onBeforeUnmount(() => cancel())
 </script>

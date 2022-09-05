@@ -1,6 +1,6 @@
 import { defineComponent, PropType } from 'vue'
 import { objectToFormData } from '@/composables/axios/formData'
-import { Form, SubmissionHandler } from 'vee-validate'
+import { Form as VForm, SubmissionHandler } from 'vee-validate'
 import { _axios } from '@/plugins/axios'
 import { ApiResponse } from '@/utils/response'
 import { Method } from 'axios'
@@ -10,7 +10,7 @@ export type GenericFormValues = {
 }
 export default defineComponent({
   components: {
-    Form
+    VForm
   },
   props: {
     action: {
@@ -27,7 +27,7 @@ export default defineComponent({
       default: () => false
     }
   },
-  emits: ['submitedSuccess', 'submitedError'],
+  emits: ['submitedSuccess', 'submitedError', 'submitedError'],
   setup(props, { attrs, emit, slots }) {
     const onSubmit = (
       values: SubmissionHandler<GenericFormValues>,
@@ -41,16 +41,24 @@ export default defineComponent({
           emit('submitedSuccess', apiResponse)
         })
         .catch((response) => {
-          const data = JSON.parse(response.request.response)
-          const apiResponse = new ApiResponse(data)
-          actions.setErrors(apiResponse.getErrors())
-          emit('submitedError', apiResponse)
+          let data
+          try {
+            data = JSON.parse(response.request.response)
+            const apiResponse = new ApiResponse(data)
+            actions.setErrors(apiResponse.getErrors())
+            emit('submitedError', apiResponse)
+          } catch (e) {
+            throw new Error(response.request.response)
+          }
         })
     }
 
     return () => (
       <>
-        <Form onSubmit={onSubmit} v-slots={slots} {...attrs}></Form>
+        {/*// @ts-ignore */}
+        <VForm onSubmit={onSubmit} v-slots={slots} {...attrs}>
+          <>{slots.default?.()}</>
+        </VForm>
       </>
     )
   }

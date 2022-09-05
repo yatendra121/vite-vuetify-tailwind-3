@@ -1,6 +1,6 @@
-import { defineConfig,splitVendorChunkPlugin} from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vuetify from '@vuetify/vite-plugin'
+import vuetify from 'vite-plugin-vuetify'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import eslintPlugin from 'vite-plugin-eslint'
@@ -15,9 +15,11 @@ const { resolve, join } = require('path')
 const currentPortal = Portal.getInstance()
 
 let plugins = []
+//@ts-ignore
 if (currentPortal.getCheckESlint()) plugins = [...plugins, eslintPlugin()]
+//@ts-ignore
 if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
-
+console.log(currentPortal.getDomianPrefix())
 // https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
@@ -35,20 +37,19 @@ export default defineConfig({
         }),
         AutoImport({
             imports: ['vue', 'pinia', 'vue-router']
-        }),
+        })
         // partytownVite({
         //     dest: join(__dirname, 'admin', '~partytown')
         // }),
-        ...plugins
+        //  ...plugins
     ],
-
     css: {
         preprocessorOptions: {
-            //sass: { additionalData: `@import ${srcPath}\n` },
-            //scss: { additionalData: `@import ${srcPath};\n` }
+            //  sass: { additionalData: `${srcPath}\n` },
+            //  scss: { additionalData: ` ${srcPath}\n` }
         }
     },
-    base: currentPortal.getDomianPrefix(),
+    base: currentPortal.getBaseUrl(),
     server: {
         port: currentPortal.getPort()
     },
@@ -57,9 +58,21 @@ export default defineConfig({
         manifest: currentPortal.getAddPWA(),
         rollupOptions: {
             manualChunks: {}
-        }
+        },
+        minify: "terser",
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+          },
+        },
     },
     optimizeDeps: {
         include: ['vue', 'vuetify']
+    },
+    //@ts-ignore
+    test: {
+        /* for example, use global to avoid globals imports (describe, test, expect): */
+        globals: true
     }
 })

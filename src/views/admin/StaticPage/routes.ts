@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
-import { Meta } from '@/types/router'
-import { mdiAccessPointPlus } from '@mdi/js'
+import { Meta } from '@/types/router' 
+import { mdiFileMultiple } from '@mdi/js'
 const Parent = () =>
     import(
         /* webpackChunkName: "parent-route-view" */ '@/views/ParentRouteView.vue'
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
             title: 'Static Pages',
             heading: 'Static Pages',
             permission: 'admin.static-page.view',
-            icon: mdiAccessPointPlus,
+            icon: mdiFileMultiple,
             type: 'admin'
         } as Meta,
         children: [
@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: 'About Us',
                     heading: 'About Us',
                     permission: 'admin.static-page.view',
-                    icon: mdiAccessPointPlus,
+                    icon: mdiFileMultiple,
                     key: 'about_us',
                     type: 'admin'
                 } as Meta
@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: 'Term & Condition',
                     heading: 'Term & Condition',
                     permission: 'admin.static-page.view',
-                    icon: mdiAccessPointPlus,
+                    icon: mdiFileMultiple,
                     key: 'term_condition',
                     type: 'admin'
                 } as Meta
@@ -53,7 +53,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: 'Privacy Policy',
                     heading: 'Privacy Policy',
                     permission: 'admin.static-page.view',
-                    icon: mdiAccessPointPlus,
+                    icon: mdiFileMultiple,
                     key: 'privacy_policy',
                     type: 'admin'
                 } as Meta

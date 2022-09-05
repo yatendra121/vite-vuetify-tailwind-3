@@ -8,6 +8,7 @@ import Fullscreen from '@/views/admin/Fullscreen/routes'
 import MyProfile from '@/views/admin/MyProfile/routes'
 import EventBus from '@/views/admin/EventBus/routes'
 import Socket from '@/views/admin/Socket/routes'
+import { UserRoutes } from '@/views/admin/User/routes'
 
 // Main routes
 const adminRoutes: Array<RouteRecordRaw> = [
@@ -18,7 +19,8 @@ const adminRoutes: Array<RouteRecordRaw> = [
     ...Fullscreen,
     ...MyProfile,
     ...EventBus,
-    ...Socket
+    ...Socket,
+    ...UserRoutes
 ]
 
 export default adminRoutes

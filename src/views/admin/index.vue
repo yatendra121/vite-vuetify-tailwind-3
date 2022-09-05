@@ -1,10 +1,10 @@
 <template>
   <v-app id="inspire" :theme="theme">
     <admin-app>
-      <router-view :key="$route" v-slot="{ Component, route }">
+      <router-view :key="$route.path" v-slot="{ Component, route }">
         <v-slide-x-transition mode="out-in" appear>
-          <div>
-            <!-- v-show="!authLoading" -->
+          <v-responsive>
+            <!-- v-if="!authLoading" -->
             <suspense>
               <template #default>
                 <component :is="Component" :key="route.name" />
@@ -13,7 +13,7 @@
                 <FallbackComponent />
               </template>
             </suspense>
-          </div>
+          </v-responsive>
         </v-slide-x-transition>
       </router-view>
     </admin-app>
@@ -91,6 +91,7 @@ export default defineComponent({
 
       // Browser Tab Title
       setTimeout(() => {
+        // @ts-ignore
         title.value = to.meta.title
       }, 300)
     })
@@ -100,7 +101,7 @@ export default defineComponent({
       setTimeout(() => {
         const appLoading = document.querySelector('#initial_startup')
         if (appLoading) appLoading.remove()
-      }, 0)
+      }, 100)
     })
 
     return { theme }
