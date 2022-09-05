@@ -1,0 +1,1 @@
+import{_ as r}from"./index.bf657bbf.js";import{a4 as e,s as t,t as o}from"./vendor.e5ff202b.js";const s=r({},[["render",function(r,s){const f=e("router-view");return t(),o(f,{key:r.$route.fullPath})}]]);export{s as default};

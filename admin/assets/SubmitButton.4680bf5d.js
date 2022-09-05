@@ -1,0 +1,1 @@
+import{p as t,F as o,a4 as e,a0 as n,Z as a}from"./vendor.e5ff202b.js";const r=t({name:"SubmitButton",props:{id:{type:String,default:"form"}},setup(t){const r=()=>{const o=document.getElementById(t.id);o&&o._vei.onSubmit(o)};return()=>o(a,null,[o(e("v-btn"),{loading:!1,onClick:r,color:"primary"},{default:()=>[n("Submit")]})])}});export{r as default};
