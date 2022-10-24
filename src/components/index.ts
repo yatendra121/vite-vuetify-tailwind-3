@@ -3,14 +3,17 @@ import type { App } from 'vue'
 const VQTextField = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqTextField')
 )
+const VqTextarea = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqTextarea')
+)
 const VQFileInput = defineAsyncComponent(
     () =>
         import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqFileInput.vue')
 )
-// const VqAutocomplete = defineAsyncComponent(
-//     () =>
-//         import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqAutocomplete')
-// )
+const VqAutocomplete = defineAsyncComponent(
+    () =>
+        import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqAutocomplete')
+)
 const VqSelect = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqSelect.vue')
 )
@@ -43,11 +46,19 @@ const ReportsLineChart = defineAsyncComponent(
             /* webpackChunkName: "vq-chart" */ './Charts/ReportsLineChart.vue'
         )
 )
+
+const VqList = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/VqList')
+)
+const loadMoreBtn = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/loadMoreBtn')
+)
 export default {
     install: (app: App) => {
         app.component('VqTextField', VQTextField)
+        app.component('VqTextarea', VqTextarea)
         app.component('VqFileInput', VQFileInput)
-        //   app.component('VqAutocomplete', VqAutocomplete)
+        app.component('VqAutocomplete', VqAutocomplete)
         app.component('VqSelect', VqSelect)
         app.component('VqForm', VqForm)
         app.component('VqTextEditor', VQTextEditor)
@@ -55,5 +66,7 @@ export default {
         app.component('VqBackBtn', VqBackButton)
         app.component('ReportsLineChart', ReportsLineChart)
         app.component('ReportsBarChart', ReportsBarChart)
+        app.component('VqList', VqList)
+        app.component('LoadMoreBtn', loadMoreBtn)
     }
 }

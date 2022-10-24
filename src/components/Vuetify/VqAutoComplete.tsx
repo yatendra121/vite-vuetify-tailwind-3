@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { useField } from 'vee-validate'
 export default defineComponent({
   name: 'VqAutoComplete',
@@ -9,8 +9,10 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots }) {
-    const { errorMessage, value } = useField(props.name,[])
-    const updateModelValue = (val:any) => {  value.value = val }
+    const { errorMessage, value } = useField(props.name, [])
+    const updateModelValue = (val: any) => {
+      value.value = val
+    }
     return () => (
       <>
         <v-autocomplete

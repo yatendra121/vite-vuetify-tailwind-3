@@ -37,7 +37,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <vq-text-editor name="address" />
+            <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
         </v-row>
         <v-row>

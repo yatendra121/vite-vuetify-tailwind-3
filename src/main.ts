@@ -10,8 +10,9 @@ import components from '@/components'
 import directives from '@/directives'
 import './plugins'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
-import { DefaultApolloClient } from '@vue/apollo-composable'
-import { apolloClient } from './plugins/graphql'
+//import { DefaultApolloClient } from '@vue/apollo-composable'
+//import { apolloClient } from './plugins/graphql'
+
 //import vqVuetify from 'vq-vuetify'
 
 //import { partytownSnippet } from '@builder.io/partytown/integration'
@@ -24,7 +25,7 @@ loadFonts()
 
 const app = createApp({
     setup() {
-        provide(DefaultApolloClient, apolloClient)
+        //  provide(DefaultApolloClient, apolloClient)
     },
 
     render: () => h(App)

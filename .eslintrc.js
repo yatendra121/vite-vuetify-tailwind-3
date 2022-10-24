@@ -15,8 +15,8 @@ module.exports = {
       files: ['*.vue'],
       extends: [
         'plugin:vue/vue3-strongly-recommended',
-        '@vue/eslint-config-typescript/recommended',
-        '@vue/eslint-config-prettier'
+        '@vue/eslint-config-typescript/recommended'
+        //   '@vue/eslint-config-prettier'
       ],
       rules: {
         'vue/no-unused-components': 'off',
@@ -27,7 +27,7 @@ module.exports = {
         'vue/singleline-html-element-content-newline': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/ban-ts-comment': 'off'
+        '@typescript-eslint/ban-ts-comment': 'on'
       }
     },
     {

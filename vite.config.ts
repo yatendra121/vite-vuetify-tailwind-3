@@ -59,16 +59,16 @@ export default defineConfig({
         rollupOptions: {
             manualChunks: {}
         },
-        minify: "terser",
+        minify: 'terser',
         terserOptions: {
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-          },
-        },
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
+        }
     },
     optimizeDeps: {
-        include: ['vue', 'vuetify']
+        //  include: ['vue', 'vuetify']
     },
     //@ts-ignore
     test: {
