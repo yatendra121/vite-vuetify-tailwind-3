@@ -22,7 +22,9 @@
             xs="12"
           >
             <slot />
-            <slot name="button"></slot>
+            <div class="d-flex justify-end" style="gap: 0.35rem">
+              <slot name="button"></slot>
+            </div>
             <div id="form_submit_button"></div>
           </v-col>
         </v-row>

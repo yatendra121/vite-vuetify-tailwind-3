@@ -1,8 +1,10 @@
 <template>
   <vq-form
     id="form"
-    action="user"
+    :action="action"
+    :method="method"
     :validation-schema="schema"
+    :initial-values="initialValues"
     @submited-success="useFormSuccess"
     @submited-error="useFormError"
   >
@@ -59,7 +61,24 @@ import { defineComponent, ref } from 'vue'
 import * as yup from 'yup'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
 
+import type { PropType } from 'vue'
+import type { InitialValues } from '@/types'
+
 export default defineComponent({
+  props: {
+    action: {
+      type: String,
+      default: () => 'user'
+    },
+    method: {
+      type: String,
+      default: () => 'POST'
+    },
+    initialValues: {
+      type: Object as PropType<InitialValues>,
+      default: () => undefined
+    }
+  },
   setup() {
     const schema = yup.object({
       email: yup.string().required().nullable().max(50).label('Email'),

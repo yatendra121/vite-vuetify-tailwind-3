@@ -10,6 +10,7 @@ import components from '@/components'
 import directives from '@/directives'
 import './plugins'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
+import TitleRow from '@/views/admin/TitleRow.vue'
 //import { DefaultApolloClient } from '@vue/apollo-composable'
 //import { apolloClient } from './plugins/graphql'
 
@@ -39,6 +40,7 @@ app.use(components)
 app.use(directives)
 
 app.component('TitleLayout', TitleLayout)
+app.component('TitleRow', TitleRow)
 
 app.mount('#app')
 

@@ -60,7 +60,7 @@
         :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
         @click="appStore.changeTheme()"
       ></v-btn>
-      <v-btn :icon="mdiFullscreen" @click="() => fullscreen"></v-btn>
+      <v-btn :icon="mdiFullscreen" @click="fullscreen"></v-btn>
     </template>
   </v-app-bar>
 </template>

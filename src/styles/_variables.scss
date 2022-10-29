@@ -1,8 +1,11 @@
 @use 'vuetify/styles' with (
-  //  $font-size-root: 1rem,
+  $font-size-root: 1rem,
   $border-radius-root: 4px,
   $spacer: 4px,
-  $body-font-family: (Roboto, sans-serif)
+  $body-font-family: (
+    Roboto,
+    sans-serif
+  )
 );
 
 // with (

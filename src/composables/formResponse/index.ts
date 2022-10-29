@@ -14,6 +14,7 @@ export default function useFormRepository(routeName: string, options = {}) {
 }
 
 export const useFormSuccess = async (response: ApiResponse) => {
+    console.log({ router })
     useMessage.success(response.getMessage() ?? '')
     if (window.history.length > 2) {
         router.back()

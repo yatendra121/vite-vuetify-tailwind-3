@@ -1,5 +1,9 @@
 <template>
-  <v-list-group v-if="item.children" :collapse-icon="mdiChevronUp" :expand-icon="mdiChevronDown">
+  <v-list-group
+    v-if="item.children"
+    :collapse-icon="mdiChevronUp"
+    :expand-icon="mdiChevronDown"
+  >
     <template #activator="{ props }">
       <v-list-item
         v-bind="props"
@@ -22,6 +26,7 @@
 
   <v-list-item
     v-else
+    v-if="!item.meta.hidden"
     :prepend-icon="item.meta.icon"
     :to="{ name: item.name }"
     :active-color="activeColor"
@@ -33,7 +38,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { mdiChevronDown , mdiChevronUp} from '@mdi/js'
+import { mdiChevronDown, mdiChevronUp } from '@mdi/js'
 
 export default defineComponent({
   name: 'SidebarItem',
@@ -47,7 +52,7 @@ export default defineComponent({
   setup() {
     const height = ref(45)
     const activeColor = ref('primary')
-    return {height,activeColor,mdiChevronUp,mdiChevronDown}
+    return { height, activeColor, mdiChevronUp, mdiChevronDown }
   }
 })
 </script>

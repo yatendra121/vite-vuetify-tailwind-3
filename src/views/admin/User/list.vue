@@ -1,5 +1,41 @@
 <template>
-  <title-layout> </title-layout>
+  <title-layout>
+    <template #default>
+      <title-row>
+        <v-col md="3" sm="4">
+          <v-select
+            class="pa-2"
+            variant="underlined"
+            clearable
+            hide-details
+            label="Category"
+            :items="[
+              'California',
+              'Colorado',
+              'Florida',
+              'Georgia',
+              'Texas',
+              'Wyoming'
+            ]"
+          ></v-select>
+        </v-col>
+        <v-col md="3" sm="4">
+          <v-text-field
+            class="pa-2"
+            variant="underlined"
+            clearable
+            hide-details
+            label="Search"
+          ></v-text-field
+        ></v-col>
+      </title-row>
+    </template>
+    <template #button>
+      <v-btn color="secondary" :to="{ name: 'user.create' }"
+        >Create User <v-icon :icon="mdiPlus"> </v-icon> </v-btn
+    ></template>
+  </title-layout>
+
   <v-container fluid>
     <v-card>
       <v-responsive>
@@ -23,8 +59,10 @@
                   <td>{{ item.gender }}</td>
                   <td>
                     <v-btn
+                      :to="{ name: 'user.edit', params: { id: item.id } }"
                       color="primary"
-                      :icon="mdiAccount"
+                      :icon="mdiPencil"
+                      variant="tonal"
                       size="small"
                     ></v-btn>
                   </td>
@@ -54,5 +92,5 @@
 </template>
 
 <script lang="ts" setup>
-import { mdiAccount } from '@mdi/js'
+import { mdiPencil, mdiPlus } from '@mdi/js'
 </script>
