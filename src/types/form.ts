@@ -1,3 +1,3 @@
-import { MaybeRef } from "@vueuse/core"
+import { MaybeRef } from '@vueuse/core'
 
-export type InitialValues = MaybeRef<Record<string, any>>
+export type InitialValues = MaybeRef<Record<string, any>> | null

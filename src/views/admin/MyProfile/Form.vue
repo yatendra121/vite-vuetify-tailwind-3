@@ -21,7 +21,7 @@
         <v-row>
           <v-col>
             <vq-text-field
-              name="mobile_no"
+              name="mobileNo"
               label="Mobile"
               placeholder="Mobile"
             />

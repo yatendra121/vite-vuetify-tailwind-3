@@ -1,9 +1,14 @@
 <template>
   <title-layout>
-    <template #default> </template>
-    <template #button>
-      <vq-submit-btn></vq-submit-btn>
-      <vq-back-btn></vq-back-btn>
+    <template #default>
+      <title-row>
+        <v-col>
+          <title-button>
+            <vq-submit-btn></vq-submit-btn>
+            <vq-back-btn></vq-back-btn>
+          </title-button>
+        </v-col>
+      </title-row>
     </template>
   </title-layout>
   <v-container fluid>
@@ -11,6 +16,7 @@
       <v-responsive>
         <UserForm
           :action="`user/${route.params.id}`"
+          :values-schema="valuesSchema"
           method="PUT"
           :initial-values="response?.data"
         />
@@ -21,7 +27,8 @@
 
 <script lang="ts" setup>
 import { useAxiosWithLoading } from '@/composables/axios/useAxiosWithLoading'
-import { defineAsyncComponent, onBeforeUnmount } from 'vue'
+import { User, RoleUserWithRole } from '@/types/user'
+import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const UserForm = defineAsyncComponent(
@@ -30,7 +37,11 @@ const UserForm = defineAsyncComponent(
 
 const route = useRoute()
 
-const { response, cancelLoading } = useAxiosWithLoading(
+const valuesSchema = ref({ roleIds: 'roleUsers.*.role.id' })
+interface UserWithRole extends User {
+  roleUsers: RoleUserWithRole[]
+}
+const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
   `user/${route.params.id}`,
   {
     method: 'GET'

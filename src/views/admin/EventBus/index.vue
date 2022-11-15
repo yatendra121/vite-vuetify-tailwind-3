@@ -10,7 +10,7 @@ fetch('https://mindler-dashboard.s3.us-east-2.amazonaws.com/products.json')
 </script>
 
 <template>
-  <title-layout> {{ 'casnjcnsan' }} </title-layout>
+  <title-layout> </title-layout>
   <table v-if="response.products">
     <tr>
       <th>subcategory</th>

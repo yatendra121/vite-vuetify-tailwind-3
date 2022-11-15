@@ -13,7 +13,7 @@ export default defineConfig({
         baseUrl: 'http://localhost:3000',
         specPattern: 'tests/e2e/integration/**/*.cy.{js,jsx,ts,tsx}',
         excludeSpecPattern: 'other/path/to/**/*.js',
-        supportFile: 'tests/e2e/support/e2e.ts'
+        supportFile: 'tests/e2e/support/index.ts'
     },
     component: {
         setupNodeEvents(on, config) {},

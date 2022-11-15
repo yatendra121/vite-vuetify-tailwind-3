@@ -1,9 +1,13 @@
 <template>
   <title-layout>
-    <template #default> </template>
-    <template #button>
-      <vq-submit-btn></vq-submit-btn>
-      <vq-back-btn></vq-back-btn>
+    <template #default>
+      <title-row>
+        <v-col>
+          <title-button>
+            <vq-submit-btn></vq-submit-btn>
+          </title-button>
+        </v-col>
+      </title-row>
     </template>
   </title-layout>
   <v-container fluid>

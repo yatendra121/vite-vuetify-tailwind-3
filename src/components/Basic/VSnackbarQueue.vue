@@ -49,7 +49,7 @@ export default defineComponent({
     },
     timeout: {
       type: Number,
-      default: 3000
+      default: 50000
     },
     color: {
       type: String,
@@ -65,7 +65,7 @@ export default defineComponent({
     },
     absolute: {
       type: Boolean,
-      default: false
+      default: true
     },
     autoHeight: {
       type: Boolean,

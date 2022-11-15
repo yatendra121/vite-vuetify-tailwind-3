@@ -2,7 +2,7 @@
   <title-layout>
     <template #default>
       <title-row>
-        <v-col md="3" sm="4">
+        <v-col lg="3" md="3" sm="4" xs="12">
           <v-select
             class="pa-2"
             variant="underlined"
@@ -19,7 +19,7 @@
             ]"
           ></v-select>
         </v-col>
-        <v-col md="3" sm="4">
+        <v-col lg="3" md="3" sm="3" xs="12">
           <v-text-field
             class="pa-2"
             variant="underlined"
@@ -28,12 +28,15 @@
             label="Search"
           ></v-text-field
         ></v-col>
+        <v-col md="6" sm="5">
+          <title-button>
+            <v-btn color="secondary" :to="{ name: 'user.create' }"
+              >Create User <v-icon :icon="mdiPlus"> </v-icon>
+            </v-btn>
+          </title-button>
+        </v-col>
       </title-row>
     </template>
-    <template #button>
-      <v-btn color="secondary" :to="{ name: 'user.create' }"
-        >Create User <v-icon :icon="mdiPlus"> </v-icon> </v-btn
-    ></template>
   </title-layout>
 
   <v-container fluid>
@@ -48,6 +51,7 @@
                   <th class="text-left">Name</th>
                   <th class="text-left">Email</th>
                   <th class="text-left">Gender</th>
+                  <th class="text-left">Status</th>
                   <th class="text-left">Action</th>
                 </tr>
               </thead>
@@ -57,27 +61,22 @@
                   <td>{{ item.name }}</td>
                   <td>{{ item.email }}</td>
                   <td>{{ item.gender }}</td>
+                  <td>{{ item.status }}</td>
                   <td>
+                    <vq-datatable-item-action
+                      :id="item.id"
+                    ></vq-datatable-item-action>
+
                     <v-btn
+                      variant="text"
                       :to="{ name: 'user.edit', params: { id: item.id } }"
                       color="primary"
-                      :icon="mdiPencil"
-                      variant="tonal"
-                      size="small"
+                      :icon="mdiCircleEditOutline"
                     ></v-btn>
                   </td>
                 </tr>
               </tbody>
             </v-table>
-
-            <!-- <v-list-item v-for="(item, i) in items" :key="i">
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
-
-              <v-list-item-subtitle>
-                {{ item.email }}
-              </v-list-item-subtitle>
-            </v-list-item> -->
-
             <v-sheet
               class="mt-auto align-center justify-center d-flex px-2 pa-2 ma-2"
               color="grey lighten-6"
@@ -92,5 +91,5 @@
 </template>
 
 <script lang="ts" setup>
-import { mdiPencil, mdiPlus } from '@mdi/js'
+import { mdiCircleEditOutline, mdiPlus } from '@mdi/js'
 </script>

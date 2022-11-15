@@ -8,15 +8,13 @@
     @submited-success="useFormSuccess"
     @submited-error="useFormError"
   >
-    <v-container class="grey lighten-5">
-      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <v-container>
       <v-row>
-        <v-col>
+        <v-col md="12" sm="12" xs="12">
           <vq-text-field name="title" label="Title" placeholder="Title" />
         </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
+
+        <v-col md="12" sm="12" xs="12">
           <vq-text-editor :is-dark="sidebar" name="description" />
         </v-col>
       </v-row>
@@ -48,7 +46,7 @@ export default defineComponent({
 
     const schema = yup.object({
       title: yup.string().required().max(50).label('Title'),
-      description: yup.string().required().max(30).label('Name')
+      description: yup.string().required().max(5000).label('Name')
     })
 
     const route = useRoute()

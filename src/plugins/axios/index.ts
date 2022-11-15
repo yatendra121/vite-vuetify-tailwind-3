@@ -1,4 +1,5 @@
 import axios from 'axios'
+import type { AxiosResponse, AxiosError } from 'axios'
 import {
     removeToken,
     removeRefreshToken,
@@ -41,11 +42,11 @@ _axios.interceptors.request.use(
 
 // Add a response interceptor
 _axios.interceptors.response.use(
-    (response) => {
+    (response: AxiosResponse) => {
         // Do something with response data
         return response.data
     },
-    (error) => {
+    (error: AxiosError) => {
         // Do something with response error
         // if (error)
         // console.log(error.status, error.request, 'Error')

@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { Ref, ShallowRef } from 'vue'
 import { ref, shallowRef } from 'vue'
 import {
     AxiosError,
@@ -11,12 +11,13 @@ import { _axios } from '@/plugins/axios'
 import axios from 'axios'
 import useErrorResponse from './useErrorResponse'
 import { objectToQueryString } from '@/composables/axios/formData'
+import { ApiDataResponse } from '@/utils/response'
 
 export interface UseAxiosReturn<T> {
     /**
      * Axios Response
      */
-    response: Ref<AxiosResponse<T> | undefined>
+    response: Ref<ApiDataResponse<T> | undefined>
 
     /**
      * Axios response data
@@ -43,7 +44,7 @@ export interface UseAxiosReturn<T> {
      */
     error: Ref<AxiosError<T> | undefined>
 
-    errorResponse: any
+    errorResponse: ShallowRef<T | undefined>
 
     /**
      * Aborts the current request
@@ -53,21 +54,22 @@ export interface UseAxiosReturn<T> {
 
 /**
  * Wrapper for axios.
- *
  * @param url
- * @param config
  */
-export function useAxios<T = any>(url: string, args: any) {
+export function useAxios<T = any, E = any>(
+    url: string,
+    args: AxiosRequestConfig
+) {
     const config: AxiosRequestConfig = args
     const instance: AxiosInstance = _axios
 
-    const response = ref<AxiosResponse<T>>()
-    const data = shallowRef<T>()
+    const response = ref<ApiDataResponse<T>>()
+    // const data = shallowRef<T | null>(null)
     const isFinished = ref(false)
     const isLoading = ref(true)
     const aborted = ref(false)
-    const errorResponse = shallowRef()
-    const error = shallowRef<AxiosError<T>>()
+    const errorResponse = shallowRef<T>()
+    const error = shallowRef<AxiosError<unknown>>()
 
     const cancelToken: CancelTokenSource = axios.CancelToken.source()
     const abort = (message?: string) => {
@@ -79,15 +81,15 @@ export function useAxios<T = any>(url: string, args: any) {
         isFinished.value = false
     }
 
-    instance(url, { ...config, cancelToken: cancelToken.token })
-        .then((r: any) => {
-            response.value = r
-            data.value = r.data
+    instance<T>(url, { ...config, cancelToken: cancelToken.token })
+        .then((res: AxiosResponse['data']) => {
+            response.value = res
+            // data.value = r.data
         })
-        .catch(async (e: any) => {
+        .catch(async (e: AxiosError) => {
             const { getErrorResponse } = useErrorResponse()
-            const { eResponse } = await getErrorResponse(e)
-            errorResponse.value = eResponse
+            const { eResponse } = await getErrorResponse<T>(e)
+            errorResponse.value = eResponse.value
             error.value = e
         })
         .finally(() => {
@@ -97,7 +99,7 @@ export function useAxios<T = any>(url: string, args: any) {
 
     return {
         response,
-        data,
+        // data,
         error,
         finished: isFinished,
         loading: isLoading,
@@ -110,7 +112,7 @@ export function useAxios<T = any>(url: string, args: any) {
     }
 }
 
-export async function useAsyncAxios(
+export async function useAsyncAxios<T = any, E = any>(
     url: string,
     args: AxiosRequestConfig,
     option?: any
@@ -121,7 +123,7 @@ export async function useAsyncAxios(
     const cancelToken: CancelTokenSource = axios.CancelToken.source()
 
     try {
-        return await instance(url, {
+        return await instance<T, E>(url, {
             ...config,
             cancelToken: cancelToken.token
         })
@@ -130,7 +132,7 @@ export async function useAsyncAxios(
     }
 }
 
-export async function* useAsyncAxiosGenerator(
+export async function* useAsyncAxiosGenerator<T = any>(
     url: string,
     args: AxiosRequestConfig,
     option: {
@@ -150,7 +152,7 @@ export async function* useAsyncAxiosGenerator(
         console.log({ page })
         option.queryParams.page = page
         try {
-            response = await useAsyncAxios(
+            response = await useAsyncAxios<T>(
                 `${url}?${objectToQueryString(option.queryParams, '')}`,
                 args
             )

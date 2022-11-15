@@ -1,5 +1,6 @@
 <template>
   <MessageQueue />
+  <ConfirmAndAction />
   <component :is="currentView"><slot /> </component>
 </template>
 <script lang="ts">
@@ -11,7 +12,18 @@ import {
   onMounted
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import MessageQueue from '@/components/Basic/MessageQueue.vue'
+const ConfirmAndAction = defineAsyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "vq-vuetify-basic" */ '@/components/Basic/Dialog/ConfirmAndAction'
+    )
+)
+const MessageQueue = defineAsyncComponent(
+  () =>
+    import(
+      /* webpackChunkName: "vq-vuetify-basic" */ '@/components/Basic/MessageQueue.vue'
+    )
+)
 const AdminView = defineAsyncComponent(
   () =>
     import(
@@ -43,7 +55,8 @@ export default defineComponent({
     AuthView,
     NotFoundView,
     DefaultView,
-    MessageQueue
+    MessageQueue,
+    ConfirmAndAction
   },
   setup() {
     const ParentView = ref('DefaultView')

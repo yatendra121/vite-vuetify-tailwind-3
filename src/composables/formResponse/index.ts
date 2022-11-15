@@ -2,32 +2,34 @@ import { ApiResponse } from '@/utils/response'
 import { useMessage } from '../message'
 import router from '@/router'
 
-const errorDefaultMessage = 'Your input is not valid. Please check the form.'
-
 export default function useFormRepository(routeName: string, options = {}) {
-    const useFormSuccess = async (response: ApiResponse) => {
-        useMessage.success(response.getMessage() ?? '')
+    const useFormSuccess = (response: ApiResponse<unknown>) => {
         if (routeName) router.push({ name: routeName, ...options })
+        useMessage.success(response.getMessage() ?? '')
     }
 
     return { useFormSuccess }
 }
 
-export const useFormSuccess = async (response: ApiResponse) => {
-    console.log({ router })
-    useMessage.success(response.getMessage() ?? '')
+export const useFormSuccess = (response: ApiResponse<unknown>) => {
     if (window.history.length > 2) {
         router.back()
     } else {
         router.push({ name: 'dashboard' })
     }
+    setTimeout(() => {
+        useMessage.success(response.getMessage() ?? '')
+    }, 0)
 }
 
-export const useFormSuccessOnlyMessage = async (response: ApiResponse) => {
+export const useFormSuccessOnlyMessage = (response: ApiResponse<unknown>) => {
     if (response.getMessage()) useMessage.success(response.getMessage() ?? '')
 }
 
-export const useFormError = async (response: ApiResponse) => {
+export const useFormError = (response: ApiResponse<unknown>) => {
+    const errorDefaultMessage =
+        'Your input is not valid. Please check the form.'
+
     const message = response.getMessage() ?? errorDefaultMessage
     useMessage.error(message)
 }

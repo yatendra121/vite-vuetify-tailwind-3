@@ -2,7 +2,7 @@
   <v-app id="inspire" :theme="theme">
     <admin-app>
       <router-view :key="$route.path" v-slot="{ Component, route }">
-        <v-slide-x-transition mode="out-in" appear>
+        <v-fade-transition mode="out-in" appear>
           <v-responsive>
             <!-- v-if="!authLoading" -->
             <suspense>
@@ -14,7 +14,7 @@
               </template>
             </suspense>
           </v-responsive>
-        </v-slide-x-transition>
+        </v-fade-transition>
       </router-view>
     </admin-app>
   </v-app>

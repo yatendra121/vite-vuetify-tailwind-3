@@ -1,11 +1,13 @@
-import { shallowRef } from 'vue'
+import { ref, shallowRef } from 'vue'
 import { unauthenticationError } from './useError'
 
+import type { AxiosError } from 'axios'
+
 export default function useErrorResponse() {
-    const getErrorResponse = async (response: any) => {
+    const getErrorResponse = async <T>(response: AxiosError) => {
         const status = shallowRef()
         const statusText = shallowRef()
-        const errorResponse = shallowRef()
+        const errorResponse = shallowRef<T>()
         if (response.response) {
             const r = response.response.request
             status.value = r.status
@@ -16,10 +18,13 @@ export default function useErrorResponse() {
             } else if ([401].includes(status.value)) {
                 await unauthenticationError()
             } else if ([405, 404].includes(status.value)) {
-                console.log(response.message)
+                throw new Error(response.message)
+            } else {
+                throw new Error(response.message)
             }
         } else {
-            console.log('API Error (No response):', response.message)
+            console.error('API Error (No response):', response.message)
+            throw new Error(response.message)
         }
         return { status, statusText, eResponse: errorResponse }
     }

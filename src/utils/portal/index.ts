@@ -14,6 +14,7 @@ export type PortalConfig = {
     VUE_APP_GRAPH_QL_URL?: string | undefined
 }
 
+export type PortalName = 'admin' | 'front'
 /**
  * Class for interacting with portal
  *
@@ -30,14 +31,13 @@ export class Portal {
     // eslint-disable-next-line no-use-before-define
     static instance: Portal
 
-    private constructor(portal: string) {
+    private constructor(portal: PortalName) {
         this.portalConfig = // Object.getPrototypeOf(
-            //@ts-ignore
             Object.freeze(portalsConfigs[portal])
         // )
     }
 
-    static getInstance(portal = 'admin'): Portal {
+    static getInstance(portal: PortalName = 'admin'): Portal {
         if (!Portal.instance) {
             Portal.instance = new Portal(portal)
         }

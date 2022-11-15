@@ -4,7 +4,6 @@ export default defineComponent({
   props: {
     finished: {
       type: Boolean,
-
       required: true
     },
     loading: {

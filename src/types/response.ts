@@ -2,7 +2,7 @@ export type Response = {
     current_permission: number
     data: any
     error: null | string
-    error_code: null | string
+    errorCode: null | string
     errors: null | Object
     exception: null | string
     message: null | string

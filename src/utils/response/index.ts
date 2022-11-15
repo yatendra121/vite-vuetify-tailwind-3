@@ -1,10 +1,33 @@
-import type { Response } from '@/types/response'
-class ApiResponse {
-    private data = null
-    private error = <string | null>''
-    private errors = <any | null>''
-    private message = <string | null>''
-    constructor(response: Response) {
+type ErrorCode = string | null
+type Errors = any | null
+type Message = string | null
+type Error = string | null
+type ServerError = any | null
+
+export interface ApiDataResponse<T = any> {
+    data: T | null
+    errorCode: ErrorCode
+    errors: Errors
+    error: Error
+    message: Message
+    serverError: ServerError
+}
+
+export interface ApiResponseInterface<T = any> {
+    getData: () => T | null
+    getErrorCode: () => ErrorCode
+    getErrors: () => Errors
+    getMessage: () => Message
+    getError: () => string | null
+}
+
+class ApiResponse<T> implements ApiResponseInterface<T> {
+    private data = <T | null>null
+    private errorCode: ErrorCode = null
+    private error: Error = null
+    private errors: Errors = null
+    private message: Message = ''
+    constructor(response: ApiDataResponse) {
         this.data = response.data
         this.error = response.error
         this.errors = response.errors
@@ -16,6 +39,13 @@ class ApiResponse {
      */
     getData() {
         return this.data
+    }
+
+    /**
+     * Returns the id of the [[BaseTx]]
+     */
+    getErrorCode() {
+        return this.errorCode
     }
 
     /**

@@ -15,7 +15,9 @@ module.exports = {
       files: ['*.vue'],
       extends: [
         'plugin:vue/vue3-strongly-recommended',
-        '@vue/eslint-config-typescript/recommended'
+        '@vue/eslint-config-typescript/recommended',
+        'plugin:vuetify/base'
+
         //   '@vue/eslint-config-prettier'
       ],
       rules: {
