@@ -1,5 +1,5 @@
 type ErrorCode = string | null
-type Errors = any | null
+type Errors = Record<string, string[]> | null
 type Message = string | null
 type Error = string | null
 type ServerError = any | null
@@ -27,7 +27,8 @@ class ApiResponse<T> implements ApiResponseInterface<T> {
     private error: Error = null
     private errors: Errors = null
     private message: Message = ''
-    constructor(response: ApiDataResponse) {
+    constructor(response: ApiDataResponse | undefined) {
+        if (typeof response === 'undefined') return
         this.data = response.data
         this.error = response.error
         this.errors = response.errors
@@ -35,35 +36,35 @@ class ApiResponse<T> implements ApiResponseInterface<T> {
     }
 
     /**
-     * Returns the id of the [[BaseTx]]
+     * Returns data
      */
     getData() {
         return this.data
     }
 
     /**
-     * Returns the id of the [[BaseTx]]
+     * Returns Error code
      */
     getErrorCode() {
         return this.errorCode
     }
 
     /**
-     * Returns the id of the [[BaseTx]]
+     * Returns error
      */
     getError() {
         return this.error
     }
 
     /**
-     * Returns the id of the [[BaseTx]]
+     * Returns errors
      */
     getErrors() {
         return this.errors
     }
 
     /**
-     * Returns the id of the [[BaseTx]]
+     * Returns message
      */
     getMessage() {
         return this.message

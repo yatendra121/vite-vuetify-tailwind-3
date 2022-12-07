@@ -8,7 +8,6 @@
           aspect-ratio="1"
           cover
           class="bg-grey-lighten-2"
-          height="50"
         >
           <template #placeholder>
             <v-row
@@ -22,12 +21,12 @@
             </v-row>
           </template>
         </v-img>
-        <h2 class="font-weight-bold mt-4 text--darken-2">Sign in</h2>
+        <h2 class="font-weight-bold mt-4">Sign in</h2>
         <h6 class="text-subtitle-1 text-grey-darken-1">
           Don't have an account?
-          <v-btn variant="text" :to="{ path: 'test' }" color="primary"
-            >Sign Up</v-btn
-          >
+          <v-btn variant="text" :to="{ path: 'test' }" color="primary">
+            Sign Up
+          </v-btn>
         </h6>
         <LoginForm
           :initial-values="initialValues"
@@ -59,8 +58,9 @@
                   color="primary"
                   :loading="loading"
                   type="submit"
-                  >Sign In</v-btn
                 >
+                  Sign In
+                </v-btn>
               </v-col>
             </v-row>
           </v-responsive>
@@ -70,8 +70,9 @@
             variant="text"
             :to="{ name: 'forgot-password' }"
             color="primary"
-            >Forgot Password?</v-btn
           >
+            Forgot Password?
+          </v-btn>
         </div>
 
         <div class="d-flex justify-center">

@@ -7,19 +7,19 @@ import eslintPlugin from 'vite-plugin-eslint'
 import { VitePWA } from 'vite-plugin-pwa'
 import pwaConfig from './pwa.config'
 import { Portal } from './src/utils/portal'
+const vetur = require('@volar-plugins/vetur')
+
 //import { partytownVite } from '@builder.io/partytown/utils'
 const { resolve, join } = require('path')
-//const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
+const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
 //const srcPath = resolve(__dirname, 'src', 'sass', 'vuetify.scss')
 
 const currentPortal = Portal.getInstance()
 
-let plugins = []
-//@ts-ignore
+let plugins: any = []
 if (currentPortal.getCheckESlint()) plugins = [...plugins, eslintPlugin()]
 //@ts-ignore
 if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
-console.log(currentPortal.getDomianPrefix())
 // https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
@@ -28,12 +28,15 @@ export default defineConfig({
         }
     },
     plugins: [
+        // ...plugins,
+        vetur(),
         vue(),
         vueJsx(),
         splitVendorChunkPlugin(),
         vuetify({
-            autoImport: true,
+            autoImport: false,
             styles: 'expose'
+            //styles: { configFile: 'src/settings.scss' }
         }),
         AutoImport({
             imports: ['vue', 'pinia', 'vue-router']
@@ -57,7 +60,16 @@ export default defineConfig({
         outDir: currentPortal.getOutputDir(),
         manifest: currentPortal.getAddPWA(),
         rollupOptions: {
-            manualChunks: {}
+            output: {
+                // manualChunks: {
+                //     graphql: ['graphql'],
+                //     'chart-js': ['chart.js'],
+                //     'graphql-tag': ['graphql-tag'],
+                //     'apollo-composable': ['@vue/apollo-composable'],
+                //     vuetify: ['vuetify'],
+                //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
+                // }
+            }
         },
         minify: 'terser',
         terserOptions: {
@@ -68,7 +80,7 @@ export default defineConfig({
         }
     },
     optimizeDeps: {
-        //  include: ['vue', 'vuetify']
+        include: ['vue', 'vuetify']
     },
     //@ts-ignore
     test: {

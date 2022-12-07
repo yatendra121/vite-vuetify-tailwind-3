@@ -31,6 +31,6 @@ const cache = new InMemoryCache()
 const apolloClient = new ApolloClient({
     link: httpLink,
     cache,
-    defaultOptions: defaultOptions
+    defaultOptions
 })
 export { apolloClient }

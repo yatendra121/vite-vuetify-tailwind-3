@@ -7,14 +7,12 @@
       :model-value="i === 0"
       :timeout="timeout"
       :color="item.color"
-      :top="top"
-      :right="right"
       :absolute="absolute"
       :auto-height="autoHeight"
-      :bottom="bottom"
-      :left="left"
+      location="center top"
       :multi-line="multiLine"
       :vertical="vertical"
+      transition="scale-transition"
     >
       <template #default>
         <!-- <v-icon :icon="mdiInformation"></v-icon> -->

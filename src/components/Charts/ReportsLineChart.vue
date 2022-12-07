@@ -4,18 +4,18 @@
   </div>
 </template>
 <script>
-import Chart from "chart.js/auto";
+import Chart from 'chart.js/auto'
 
 export default {
-  name: "ReportsLineChart",
+  name: 'ReportsLineChart',
   props: {
     id: {
       type: String,
-      default: "line-chart",
+      default: 'line-chart'
     },
     height: {
       type: [Number, String],
-      default: "170",
+      default: '170'
     },
     chart: {
       type: Object,
@@ -24,20 +24,21 @@ export default {
       datasets: {
         type: Object,
         label: String,
-        data: Array,
-      },
-    },
+        data: Array
+      }
+    }
   },
   mounted() {
-    var ctx = document.getElementById(this.id).getContext("2d");
+    const ctx = document.getElementById(this.id).getContext('2d')
 
-    let chartStatus = Chart.getChart(this.id);
-    if (chartStatus != undefined) {
-      chartStatus.destroy();
+    const chartStatus = Chart.getChart(this.id)
+    if (chartStatus !== undefined) {
+      chartStatus.destroy()
     }
 
+    // eslint-disable-next-line no-new
     new Chart(ctx, {
-      type: "line",
+      type: 'line',
       data: {
         labels: this.chart.labels,
         datasets: [
@@ -46,31 +47,31 @@ export default {
             tension: 0,
             borderWidth: 0,
             pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
+            pointBackgroundColor: 'rgba(255, 255, 255, .8)',
+            pointBorderColor: 'transparent',
+            borderColor: 'rgba(255, 255, 255, .8)',
             // eslint-disable-next-line no-dupe-keys
-            borderColor: "rgba(255, 255, 255, .8)",
+            borderColor: 'rgba(255, 255, 255, .8)',
             // eslint-disable-next-line no-dupe-keys
             borderWidth: 4,
-            backgroundColor: "transparent",
+            backgroundColor: 'transparent',
             fill: true,
             data: this.chart.datasets.data,
-            maxBarThickness: 6,
-          },
-        ],
+            maxBarThickness: 6
+          }
+        ]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false,
-          },
+            display: false
+          }
         },
         interaction: {
           intersect: false,
-          mode: "index",
+          mode: 'index'
         },
         scales: {
           y: {
@@ -80,20 +81,20 @@ export default {
               drawOnChartArea: true,
               drawTicks: false,
               borderDash: [5, 5],
-              color: "rgba(255, 255, 255, .2)",
+              color: 'rgba(255, 255, 255, .2)'
             },
             ticks: {
               display: true,
-              color: "#f8f9fa",
+              color: '#f8f9fa',
               padding: 10,
               font: {
                 size: 14,
                 weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
+                family: 'Roboto',
+                style: 'normal',
+                lineHeight: 2
+              }
+            }
           },
           x: {
             grid: {
@@ -101,24 +102,24 @@ export default {
               display: false,
               drawOnChartArea: false,
               drawTicks: false,
-              borderDash: [5, 5],
+              borderDash: [5, 5]
             },
             ticks: {
               display: true,
-              color: "#f8f9fa",
+              color: '#f8f9fa',
               padding: 10,
               font: {
                 size: 14,
                 weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-        },
-      },
-    });
-  },
-};
+                family: 'Roboto',
+                style: 'normal',
+                lineHeight: 2
+              }
+            }
+          }
+        }
+      }
+    })
+  }
+}
 </script>

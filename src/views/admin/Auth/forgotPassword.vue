@@ -2,7 +2,7 @@
   <AuthLayout>
     <v-row>
       <v-col lg="12" xl="12" cols="12">
-        <h3 class="font-weight-bold mt-4 text--darken-2">Forgot Password</h3>
+        <h3 class="font-weight-bold mt-4">Forgot Password</h3>
       </v-col>
       <v-col lg="12" xl="12" cols="12">
         <vq-form
@@ -29,8 +29,9 @@
                   color="primary"
                   :loading="loading"
                   type="submit"
-                  >Submit</v-btn
                 >
+                  Submit
+                </v-btn>
               </v-col>
             </v-row>
           </v-responsive>
@@ -62,15 +63,12 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Field, Form } from 'vee-validate'
 import * as yup from 'yup'
 import useFormRepository, { useFormError } from '@/composables/formResponse'
 import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
 import AuthLayout from './layout.vue'
 export default defineComponent({
   components: {
-    Field,
-    Form,
     AuthLayout
   },
   setup() {

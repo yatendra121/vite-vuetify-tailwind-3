@@ -1,6 +1,6 @@
 <template>
   <vq-form
-    id="form"
+    id="static_page_form"
     :action="`static-page/${route.meta.key}`"
     method="PUT"
     :initial-values="initialValues"
@@ -29,7 +29,6 @@ import * as yup from 'yup'
 import { useRoute } from 'vue-router'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
 import { useAppStore } from '@/store/reactivity/app'
-import { requiredField } from '@qnx/api-messages'
 
 import type { PropType } from 'vue'
 import type { InitialValues } from '@/types'

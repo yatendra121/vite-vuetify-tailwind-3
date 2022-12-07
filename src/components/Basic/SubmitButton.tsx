@@ -1,4 +1,6 @@
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { useFormStore } from '@/store/reactivity/form'
+
 export default defineComponent({
   name: 'SubmitButton',
   props: {
@@ -8,6 +10,9 @@ export default defineComponent({
     }
   },
   setup(props) {
+    const formStore = useFormStore()
+    const loading = computed(() => formStore.forms[props.id]?.busy ?? false)
+
     const submit = () => {
       const form = document.getElementById(props.id)
       // @ts-ignore
@@ -16,7 +21,7 @@ export default defineComponent({
 
     return () => (
       <>
-        <v-btn loading={false} onClick={submit} color="primary">
+        <v-btn loading={loading.value} onClick={submit} color="primary">
           Submit
         </v-btn>
       </>

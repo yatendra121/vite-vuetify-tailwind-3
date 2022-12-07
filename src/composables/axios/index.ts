@@ -1,6 +1,6 @@
 import type { Ref, ShallowRef } from 'vue'
 import { ref, shallowRef } from 'vue'
-import {
+import axios, {
     AxiosError,
     AxiosInstance,
     AxiosRequestConfig,
@@ -8,7 +8,6 @@ import {
     CancelTokenSource
 } from 'axios'
 import { _axios } from '@/plugins/axios'
-import axios from 'axios'
 import useErrorResponse from './useErrorResponse'
 import { objectToQueryString } from '@/composables/axios/formData'
 import { ApiDataResponse } from '@/utils/response'
@@ -56,7 +55,7 @@ export interface UseAxiosReturn<T> {
  * Wrapper for axios.
  * @param url
  */
-export function useAxios<T = any, E = any>(
+export function useAxios<T = any, D = any, E = any>(
     url: string,
     args: AxiosRequestConfig
 ) {
@@ -68,8 +67,8 @@ export function useAxios<T = any, E = any>(
     const isFinished = ref(false)
     const isLoading = ref(true)
     const aborted = ref(false)
-    const errorResponse = shallowRef<T>()
-    const error = shallowRef<AxiosError<unknown>>()
+    const errorResponse = shallowRef<E>()
+    //const error = shallowRef<AxiosError<E>>()
 
     const cancelToken: CancelTokenSource = axios.CancelToken.source()
     const abort = (message?: string) => {
@@ -86,11 +85,11 @@ export function useAxios<T = any, E = any>(
             response.value = res
             // data.value = r.data
         })
-        .catch(async (e: AxiosError) => {
+        .catch(async (e: AxiosError<E>) => {
             const { getErrorResponse } = useErrorResponse()
-            const { eResponse } = await getErrorResponse<T>(e)
+            const { eResponse } = await getErrorResponse<E>(e)
             errorResponse.value = eResponse.value
-            error.value = e
+            //error.value = e
         })
         .finally(() => {
             isLoading.value = false
@@ -100,7 +99,7 @@ export function useAxios<T = any, E = any>(
     return {
         response,
         // data,
-        error,
+        // error,
         finished: isFinished,
         loading: isLoading,
         isFinished,
@@ -112,23 +111,24 @@ export function useAxios<T = any, E = any>(
     }
 }
 
-export async function useAsyncAxios<T = any, E = any>(
+export async function useAsyncAxios<T = any>(
     url: string,
     args: AxiosRequestConfig,
     option?: any
-) {
+): Promise<T> {
     const config: AxiosRequestConfig = args
     const instance: AxiosInstance = _axios
 
     const cancelToken: CancelTokenSource = axios.CancelToken.source()
 
     try {
-        return await instance<T, E>(url, {
+        return (await instance<T>(url, {
             ...config,
             cancelToken: cancelToken.token
-        })
-    } catch (e: any) {
-        throw new Error(e.message)
+        })) as AxiosResponse<T>['data']
+    } catch (e: unknown) {
+        const err = e as AxiosError<T>
+        return Promise.reject(err)
     }
 }
 
@@ -165,10 +165,10 @@ export async function* useAsyncAxiosGenerator<T = any>(
 
         if (option && option.deley && option.deley > 0)
             await new Promise((resolve) => setTimeout(resolve, option.deley))
+        //@ts-ignore
         if (option && option.page_size * page >= response.data.data.total)
             dataFinished = true
     }
-    return
 }
 
 // const apiParams = reactive({ page: 1, page_size: 3, search: '' })

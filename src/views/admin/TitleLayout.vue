@@ -19,8 +19,6 @@
         </v-row>
       </v-card>
       <v-progress-linear
-        absolute
-        bottom
         height="2"
         :active="loadingValue"
         :indeterminate="true"

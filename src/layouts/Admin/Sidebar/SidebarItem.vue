@@ -25,8 +25,7 @@
   </v-list-group>
 
   <v-list-item
-    v-else
-    v-if="!item.meta.hidden"
+    v-if="!item.children && !item.meta.hidden"
     :prepend-icon="item.meta.icon"
     :to="{ name: item.name }"
     :active-color="activeColor"

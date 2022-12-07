@@ -47,7 +47,7 @@ watch([scrubbing, elementX], () => {
       :class="{ '!opacity-100': scrubbing }"
     >
       <slot
-        :pendingValue="pendingValue"
+        :pending-value="pendingValue"
         :position="`${Math.max(0, Math.min(elementX, elementWidth))}px`"
       />
     </div>

@@ -21,23 +21,24 @@ class Message {
      * Returns the id of the [[BaseTx]]
      */
     success(message: string) {
-        this.messageStore.addMessage({ message: message, color: 'success' })
+        this.messageStore.addMessage({ message, color: 'success' })
     }
 
     /**
      * Returns the id of the [[BaseTx]]
      */
     warning(message: string) {
-        this.messageStore.addMessage({ message: message, color: 'warning' })
+        this.messageStore.addMessage({ message, color: 'warning' })
     }
 
     /**
      * Returns the id of the [[BaseTx]]
      */
     error(message: string) {
-        this.messageStore.addMessage({ message: message, color: 'error' })
+        this.messageStore.addMessage({ message, color: 'error' })
     }
 }
 const useMessage = Message.getInstance()
+const useMessageInstance = () => Message.getInstance()
 
-export { useMessage }
+export { useMessage, useMessageInstance }

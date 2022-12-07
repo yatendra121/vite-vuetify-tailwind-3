@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import { Meta } from '@/types/router' 
+import { Meta } from '@/types/router'
 import { mdiFileMultiple } from '@mdi/js'
 const Parent = () =>
     import(

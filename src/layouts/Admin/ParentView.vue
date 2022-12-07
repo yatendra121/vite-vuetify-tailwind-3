@@ -10,20 +10,23 @@
     </v-responsive>
   </v-main>
   <Sidebar />
-  <Footer />
+  <BottomBar />
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import AppBar from './AppBar/index.vue'
-import Footer from './Footer/index.vue'
+import BottomBar from './Bottom/index.vue'
 import Sidebar from './Sidebar/index.vue'
+import Notification from './AppBar/Notification.vue'
+
 import { useFullscreen } from '@vueuse/core'
 export default defineComponent({
   components: {
     AppBar,
-    Footer,
-    Sidebar
+    BottomBar,
+    Sidebar,
+    Notification
   },
   setup() {
     const store = useStore()

@@ -1,6 +1,7 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, toRef } from 'vue'
 import { useField } from 'vee-validate'
 import { useAsyncAxios } from '@/composables/axios'
+import { collectValidationListeners } from './config'
 export default defineComponent({
   name: 'VqAutoComplete',
   props: {
@@ -17,7 +18,19 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots }) {
-    const { errorMessage, value } = useField(props.name, [])
+    const { value, errorMessage, handleChange } = useField(
+      toRef(props, 'name'),
+      [],
+      {
+        validateOnValueUpdate: false
+      }
+    )
+
+    const validationListeners = collectValidationListeners({
+      handleChange,
+      errorMessage
+    })
+
     const updateModelValue = (val: any) => {
       value.value = val
     }
@@ -28,7 +41,6 @@ export default defineComponent({
       loading.value = true
       useAsyncAxios(props.action, {})
         .then((res) => {
-          console.log(res.data.data)
           items.value = res.data.data
         })
         .catch((err) => {
@@ -51,6 +63,7 @@ export default defineComponent({
           items={items.value}
           v-slots={slots}
           {...attrs}
+          // onChange={validationListeners.value.input}
         ></v-autocomplete>
       </>
     )

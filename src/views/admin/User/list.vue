@@ -1,49 +1,49 @@
 <template>
   <title-layout>
     <template #default>
-      <title-row>
-        <v-col lg="3" md="3" sm="4" xs="12">
-          <v-select
-            class="pa-2"
-            variant="underlined"
-            clearable
-            hide-details
-            label="Category"
-            :items="[
-              'California',
-              'Colorado',
-              'Florida',
-              'Georgia',
-              'Texas',
-              'Wyoming'
-            ]"
-          ></v-select>
-        </v-col>
-        <v-col lg="3" md="3" sm="3" xs="12">
-          <v-text-field
-            class="pa-2"
-            variant="underlined"
-            clearable
-            hide-details
-            label="Search"
-          ></v-text-field
-        ></v-col>
-        <v-col md="6" sm="5">
-          <title-button>
-            <v-btn color="secondary" :to="{ name: 'user.create' }"
-              >Create User <v-icon :icon="mdiPlus"> </v-icon>
-            </v-btn>
-          </title-button>
-        </v-col>
-      </title-row>
+      <vq-table-filter id="user_list">
+        <title-row>
+          <template #default>
+            <v-col lg="3" md="3" sm="4" xs="12">
+              <vq-autocomplete
+                class="pa-2"
+                variant="underlined"
+                clearable
+                hide-details
+                label="Category"
+                name="gender"
+                :items="['male', 'female']"
+              ></vq-autocomplete>
+            </v-col>
+            <v-col lg="3" md="3" sm="3" xs="12">
+              <vq-text-field
+                name="search"
+                class="pa-2"
+                variant="underlined"
+                clearable
+                hide-details
+                label="Search"
+              >
+              </vq-text-field>
+            </v-col>
+            <v-col md="6" sm="5">
+              <title-button>
+                <v-btn color="secondary" :to="{ name: 'user.create' }">
+                  Create User <v-icon :icon="mdiPlus"> </v-icon>
+                </v-btn>
+              </title-button>
+            </v-col>
+          </template>
+        </title-row>
+      </vq-table-filter>
     </template>
   </title-layout>
 
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <vq-list>
-          <template #default="{ items, ...option }">
+        <vq-list action="user" id="user_list">
+          <template #default="{ items, ...option }: SlotProps">
             <v-table>
               <thead>
                 <tr>
@@ -55,8 +55,8 @@
                   <th class="text-left">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr v-for="item in items" :key="item.name">
+              <tbody v-if="items.length">
+                <tr v-for="item in items" :key="item.id">
                   <td>{{ item.id }}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.email }}</td>
@@ -64,7 +64,13 @@
                   <td>{{ item.status }}</td>
                   <td>
                     <vq-datatable-item-action
-                      :id="item.id"
+                      :item-id="item.id"
+                      id="user_list"
+                    ></vq-datatable-item-action>
+                    <vq-datatable-item-action
+                      :item-id="item.id"
+                      id="user_list"
+                      title="Delete"
                     ></vq-datatable-item-action>
 
                     <v-btn
@@ -76,13 +82,18 @@
                   </td>
                 </tr>
               </tbody>
+              <tbody v-else>
+                <tr>
+                  <td>No record founds.</td>
+                </tr>
+              </tbody>
             </v-table>
             <v-sheet
               class="mt-auto align-center justify-center d-flex px-2 pa-2 ma-2"
               color="grey lighten-6"
             >
-              <load-more-btn v-bind="option"> </load-more-btn
-            ></v-sheet>
+              <vq-list-load-more-btn v-bind="option"> </vq-list-load-more-btn>
+            </v-sheet>
           </template>
         </vq-list>
       </v-responsive>
@@ -91,5 +102,17 @@
 </template>
 
 <script lang="ts" setup>
+import type { User } from '@/types'
 import { mdiCircleEditOutline, mdiPlus } from '@mdi/js'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface SlotProps {
+  items: User[]
+  loadMore: () => void
+  finished: boolean
+  loading: boolean
+}
+defineExpose({
+  mdiCircleEditOutline,
+  mdiPlus
+})
 </script>

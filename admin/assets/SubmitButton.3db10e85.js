@@ -1,1 +1,0 @@
-import{t,G as o,r as e,X as n,U as r}from"./vendor.4e8d2bd0.js";const a=t({name:"SubmitButton",props:{id:{type:String,default:"form"}},setup(t){const a=()=>{const o=document.getElementById(t.id);o&&o._vei.onSubmit(o)};return()=>o(r,null,[o(e("v-btn"),{loading:!1,onClick:a,color:"primary"},{default:()=>[n("Submit")]})])}});export{a as default};

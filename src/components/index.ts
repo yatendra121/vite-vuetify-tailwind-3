@@ -1,12 +1,13 @@
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, DefineComponent } from 'vue'
 import type { App } from 'vue'
-const VQTextField = defineAsyncComponent(
+
+const VqTextField = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqTextField')
 )
 const VqTextarea = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqTextarea')
 )
-const VQFileInput = defineAsyncComponent(
+const VqFileInput = defineAsyncComponent(
     () =>
         import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqFileInput.vue')
 )
@@ -20,6 +21,10 @@ const VqSelect = defineAsyncComponent(
 const VqForm = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqForm')
 )
+const VqTableFilter = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-vuetify" */ './Vuetify/VqTableFilter')
+)
+
 const VqDatatableItemAction = defineAsyncComponent(
     () =>
         import(
@@ -27,17 +32,17 @@ const VqDatatableItemAction = defineAsyncComponent(
         )
 )
 
-const VQTextEditor = defineAsyncComponent(
+const VqTextEditor = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Tinymce/index.vue')
 )
 
-const VqSubmitButton = defineAsyncComponent(
+const VqSubmitBtn = defineAsyncComponent(
     () =>
         import(
             /* webpackChunkName: "vq-vuetify-basic" */ './Basic/SubmitButton'
         )
 )
-const VqBackButton = defineAsyncComponent(
+const VqBackBtn = defineAsyncComponent(
     () =>
         import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
 )
@@ -58,26 +63,40 @@ const ReportsLineChart = defineAsyncComponent(
 const VqList = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/VqList')
 )
-const loadMoreBtn = defineAsyncComponent(
+const LoadMoreBtn = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/loadMoreBtn')
 )
+
+const components: { [key: string]: any } = {
+    //   VqTextField,
+    // VqTextarea,
+    // VqFileInput,
+    // VqAutocomplete,
+    // VqSelect,
+    VqDatatableItemAction
+    // VqForm,
+    // VqTableFilter,
+    // VqTextEditor,
+    // VqSubmitBtn,
+    // VqBackBtn
+    // VqList,
+    // LoadMoreBtn
+}
 export default {
     install: (app: App) => {
-        app.component('VqTextField', VQTextField)
-        app.component('VqTextarea', VqTextarea)
-        app.component('VqFileInput', VQFileInput)
-        app.component('VqAutocomplete', VqAutocomplete)
-        app.component('VqSelect', VqSelect)
-        app.component('VqDatatableItemAction', VqDatatableItemAction)
-        app.component('VqForm', VqForm)
-        app.component('VqTextEditor', VQTextEditor)
-
-        app.component('VqSubmitBtn', VqSubmitButton)
-        app.component('VqBackBtn', VqBackButton)
-
         app.component('ReportsLineChart', ReportsLineChart)
         app.component('ReportsBarChart', ReportsBarChart)
-        app.component('VqList', VqList)
-        app.component('LoadMoreBtn', loadMoreBtn)
+
+        for (const key in components) {
+            app.component(key, components[key])
+        }
     }
 }
+
+// const gettype = (components: any) => {
+//     const test: any = {}
+//     for (const key in components) {
+//         test[key] = typeof components[key]
+//     }
+//     return test
+// }

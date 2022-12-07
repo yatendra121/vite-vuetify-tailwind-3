@@ -20,7 +20,7 @@ const defaultThemeOptions = {
         lighten: 0,
         darken: 0
     },
-    themes: themes
+    themes
 }
 
 const icons: IconOptions = {
@@ -32,7 +32,7 @@ const icons: IconOptions = {
 }
 
 export default createVuetify({
-    icons: icons,
+    icons,
     components,
     directives,
     defaults: defaultConfig,

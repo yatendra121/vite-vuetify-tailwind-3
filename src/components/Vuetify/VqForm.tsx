@@ -1,24 +1,37 @@
-import { computed, defineComponent, PropType, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  PropType
+} from 'vue'
 import { objectToFormData } from '@/composables/axios/formData'
-import { Form as VForm, SubmissionHandler } from 'vee-validate'
+import { Form as VForm, Form, SubmissionHandler } from 'vee-validate'
 import { _axios } from '@/plugins/axios'
 import { ApiDataResponse, ApiResponse } from '@/utils/response'
 import useErrorResponse from '@/composables/axios/useErrorResponse'
-import { Method } from 'axios'
+import { AxiosError, Method } from 'axios'
 
 import type { InitialValues } from '@/types'
 import { useAsyncAxios } from '@/composables/axios'
+import { useFormStore } from '@/store/reactivity/form'
 
 export type GenericFormValues = {
   [key: string]: any
 }
 export default defineComponent({
   components: {
-    VForm
+    VForm,
+    Form
   },
   props: {
+    id: {
+      type: String as PropType<string>,
+      required: true,
+      default: () => ''
+    },
     action: {
-      type: String,
+      type: String as PropType<string>,
       required: true,
       default: () => ''
     },
@@ -44,6 +57,13 @@ export default defineComponent({
     const initialValues = computed(() => {
       return transformObjValues(props.initialValues, props.valuesSchema)
     })
+    const formStore = useFormStore()
+    onMounted(() => {
+      formStore.addForm(props.id)
+    })
+
+    onBeforeUnmount(() => formStore.removeForm(props.id))
+
     // const initialValues = ref(
     //   transformObjValues(props.initialValues, props.valuesSchema)
     // )
@@ -53,32 +73,40 @@ export default defineComponent({
     ) => {
       const postData = props.formData ? objectToFormData(values) : values
 
-      useAsyncAxios(props.action, { method: props.method, data: postData })
-        .then((response: ApiDataResponse) => {
+      formStore.changeBusy(props.id, true)
+
+      useAsyncAxios<ApiDataResponse>(props.action, {
+        method: props.method,
+        data: postData
+      })
+        .then((response) => {
           const apiResponse = new ApiResponse(response)
           emit('submitedSuccess', apiResponse)
         })
-        .catch(async (response) => {
+        .catch(async (response: AxiosError<ApiDataResponse>) => {
           const { getErrorResponse } = useErrorResponse()
           const { eResponse } = await getErrorResponse(response)
-          /*// @ts-ignore */
-          const apiResponse = new ApiResponse(eResponse)
+          const apiResponse = new ApiResponse(eResponse.value)
           actions.setErrors(apiResponse.getErrors())
           emit('submitedError', apiResponse)
+        })
+        .finally(() => {
+          formStore.changeBusy(props.id, false)
         })
     }
 
     return () => (
       <>
         {/*// @ts-ignore */}
-        <VForm
-          onSubmit={onSubmit}
+        <Form
+          id={props.id}
+          onSubmit={(e: any, actions) => onSubmit(e, actions)}
           initial-values={initialValues.value}
           v-slots={slots}
           {...attrs}
         >
           <>{slots.default?.()}</>
-        </VForm>
+        </Form>
       </>
     )
   }
@@ -93,7 +121,7 @@ const transformObjValues = (
 }
 
 const collectFormObjValues = (item: any, object: { [key: string]: string }) => {
-  let finalVal: any = []
+  const finalVal: any = []
   for (const key in object) {
     if (Object.hasOwnProperty.call(object, key)) {
       const element = object[key]

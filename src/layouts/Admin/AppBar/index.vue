@@ -1,7 +1,6 @@
 <template>
   <v-app-bar
     height="62"
-    app
     :border="true"
     :elevation="1"
     :rounded="false"
@@ -15,9 +14,9 @@
     <v-app-bar-title> Vue Application (Vue 3)</v-app-bar-title>
 
     <template #append>
-      <v-menu :close-on-click="true">
+      <v-menu :persistent="!true">
         <template #activator="{ props }">
-          <v-btn flat variant="text" v-bind="props">
+          <v-btn variant="flat" v-bind="props">
             <p class="tw-normal-case text-subtitle-1">
               {{ authProfile?.name }}
             </p>
@@ -34,7 +33,7 @@
               :title="authProfile?.name"
               :subtitle="authProfile?.role?.title"
             >
-              <template v-slot:append>
+              <template #append>
                 <!-- <v-btn
                   variant="text"
                   :class="fav ? 'text-red' : ''"
@@ -55,35 +54,29 @@
           </v-list>
         </v-card>
       </v-menu>
-      <v-menu :close-on-content-click="false" bottom>
-        <template v-slot:activator="{ props }">
+      <!-- <v-menu :close-on-content-click="false" location="bottom">
+        <template #activator="{ props }">
           <v-btn :icon="mdiCogOutline" v-bind="props"> </v-btn>
         </template>
 
-        <v-card min-width="200">
-          <v-list>
-            <v-list-item>
+        <v-card min-width="100">
+          <v-list-item v-for="(item, i) in items2" :key="i" :value="item">
+            <template #prepend>
+              <v-icon :icon="mdiWeatherSunny"></v-icon>
+            </template>
+            <v-list-item-action>
               <v-switch
-                v-model="message"
-                color="purple"
-                label="Enable messages"
+                inset
+                color="secondary"
+                value="secondary"
                 hide-details
               ></v-switch>
-            </v-list-item>
-            <v-divider></v-divider>
-            <v-list-item>
-              <v-switch
-                v-model="hints"
-                color="purple"
-                label="Enable hints"
-                hide-details
-              ></v-switch>
-            </v-list-item>
-          </v-list>
+            </v-list-item-action>
+          </v-list-item>
         </v-card>
-      </v-menu>
-      <v-menu :close-on-content-click="false" bottom>
-        <template v-slot:activator="{ props }">
+      </v-menu> -->
+      <v-menu :close-on-content-click="false" location="bottom">
+        <template #activator="{ props }">
           <v-btn :icon="mdiCogOutline" v-bind="props"> </v-btn>
         </template>
 
@@ -97,12 +90,16 @@
           </v-toolbar>
 
           <v-list :items="items" item-props lines="three">
-            <template v-slot:subtitle="{ subtitle }">
+            <template #subtitle="{ subtitle }">
               <div v-html="subtitle"></div>
             </template>
           </v-list>
         </v-card>
       </v-menu>
+      <v-btn
+        @click="notificationToggle = !notificationToggle"
+        :icon="mdiNotificationClearAll"
+      ></v-btn>
 
       <v-btn
         :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
@@ -111,13 +108,18 @@
       <v-btn :icon="mdiFullscreen" @click="fullscreen"></v-btn>
     </template>
   </v-app-bar>
+  <Notification
+    @update:model-value="notificationHandler"
+    :model-value="notificationToggle"
+  />
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import defaultProfileImage from '@/assets/images/profile.png'
+import Notification from './Notification.vue'
 import useAuthUserRepository from '@/composables/auth/useAuthUserRepository'
 import {
   mdiAccount,
@@ -126,13 +128,16 @@ import {
   mdiWeatherSunny,
   mdiWeatherNight,
   mdiFullscreen,
-  mdiSettingsHelper,
-  mdiKeyChange,
-  mdiCogOutline
+  mdiCogOutline,
+  mdiNotificationClearAll,
+  mdiMessageReplyOutline
 } from '@mdi/js'
 
 export default defineComponent({
   name: 'AppBar',
+  components: {
+    Notification
+  },
   props: {
     fullscreen: {
       type: Function,
@@ -144,6 +149,11 @@ export default defineComponent({
     menu: false,
     message: false,
     hints: true,
+    items2: [
+      { text: 'Real-Time', icon: 'mdi-clock' },
+      { text: 'Audience', icon: 'mdi-account' },
+      { text: 'Conversions', icon: 'mdi-flag' }
+    ],
     items: [
       {
         prependAvatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
@@ -187,21 +197,27 @@ export default defineComponent({
     const router = useRouter()
     const myProfileRoute = () => router.push({ name: 'my-profile' })
 
+    const notificationToggle = ref(false)
+    const notificationHandler = (val: boolean) =>
+      (notificationToggle.value = val)
+
     return {
+      notificationHandler,
       mdiAccount,
       mdiLockOutline,
       mdiChevronDown,
       mdiWeatherSunny,
       mdiWeatherNight,
       mdiFullscreen,
-      mdiSettingsHelper,
       appStore,
       defaultProfileImage,
-      mdiKeyChange,
       mdiCogOutline,
+      mdiNotificationClearAll,
+      mdiMessageReplyOutline,
       sidebar: computed(() => appStore.sidebarValue),
       theme: computed(() => appStore.themeValue),
       authProfile: computed(() => store.getters.authProfile),
+      notificationToggle,
       logOutUser,
       myProfileRoute
     }
@@ -213,3 +229,4 @@ export default defineComponent({
   align-items: center;
 }
 </style>
+mdi-message-reply-outline

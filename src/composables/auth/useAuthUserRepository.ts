@@ -88,7 +88,7 @@ export default function useAuthUserRepository() {
      */
     const logOutUser = async (socketId = '', url = 'logout') => {
         await _axios({
-            url: url,
+            url,
             method: 'POST',
             data: { socketId }
         }).finally(() => {

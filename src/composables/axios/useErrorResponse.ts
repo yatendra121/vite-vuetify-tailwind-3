@@ -4,17 +4,17 @@ import { unauthenticationError } from './useError'
 import type { AxiosError } from 'axios'
 
 export default function useErrorResponse() {
-    const getErrorResponse = async <T>(response: AxiosError) => {
+    const getErrorResponse = async <T>(response: AxiosError<T>) => {
         const status = shallowRef()
         const statusText = shallowRef()
         const errorResponse = shallowRef<T>()
         if (response.response) {
-            const r = response.response.request
+            const r = response.response
             status.value = r.status
             statusText.value = r.statusText
 
             if ([400, 422].includes(status.value)) {
-                errorResponse.value = JSON.parse(r.response)
+                errorResponse.value = r.data
             } else if ([401].includes(status.value)) {
                 await unauthenticationError()
             } else if ([405, 404].includes(status.value)) {

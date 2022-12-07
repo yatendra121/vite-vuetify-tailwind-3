@@ -18,7 +18,7 @@ fetch('https://mindler-dashboard.s3.us-east-2.amazonaws.com/products.json')
       <th>price</th>
       <th>popularity</th>
     </tr>
-    <tr v-for="item in response.products">
+    <tr v-for="item in response.products" :key="item">
       <td>{{ item.subcategory }}</td>
       <td>{{ item.title }}</td>
       <td>{{ item.price }}</td>

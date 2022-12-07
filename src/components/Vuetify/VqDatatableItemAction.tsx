@@ -1,12 +1,13 @@
 import { computed, defineComponent, PropType, toRefs } from 'vue'
 import { ConfirmState, useConfirmStore } from '@/store/reactivity/confirm'
 
-import { mdiSync } from '@mdi/js'
+import { mdiDelete } from '@mdi/js'
 import { useAsyncAxios, useAxios } from '@/composables/axios'
 import { useMessage } from '@/composables/message'
 import { ApiResponse } from '@/utils/response'
+import { useFormFilterRepository } from '@/composables/form'
 
-export default defineComponent({
+const VqDatatableItemAction = defineComponent({
   name: 'VqDatatableItemAction',
   props: {
     title: {
@@ -25,27 +26,39 @@ export default defineComponent({
       type: String as PropType<string>,
       default: () => 'PUT'
     },
-    id: {
+    icon: {
+      type: String as PropType<string>,
+      default: () => mdiDelete
+    },
+    itemId: {
       type: String as PropType<string>,
       default: () => '0'
+    },
+    id: {
+      type: String as PropType<string>,
+      required: true
     }
   },
 
   setup(props, { attrs, emit, slots }) {
+    // const { reload } = useFormFilterRepository(`${props.id}_filter`)
+
     const confirmStore = useConfirmStore()
 
     const callback = () =>
       executeConfirmAction({
         url: props.action,
         method: props.method,
-        id: props.id
+        id: props.itemId
       })
         .then((res: any) => {
           const apiRes = new ApiResponse(res)
           confirmStore.close(false)
           useMessage.success(apiRes.getMessage() ?? '')
+          // reload()
         })
         .catch((res) => {
+          console.log({ res })
           confirmStore.close(false)
           useMessage.error('Please check input values.')
         })
@@ -55,7 +68,7 @@ export default defineComponent({
       confirmStore.setConfirmValues({
         title: title.value,
         description: description.value,
-        callback: callback
+        callback
       } as ConfirmState)
 
       confirmStore.showDialoag()
@@ -71,7 +84,7 @@ export default defineComponent({
                   {...props}
                   onClick={showConfirmAction}
                   color="primary"
-                  icon={mdiSync}
+                  icon={mdiDelete}
                 ></v-btn>
               </>
             )
@@ -81,6 +94,8 @@ export default defineComponent({
     )
   }
 })
+export default VqDatatableItemAction
+//export type VqDatatableItemAction = InstanceType<typeof VqDatatableItemAction>
 
 const executeConfirmAction = ({
   url,
@@ -91,5 +106,5 @@ const executeConfirmAction = ({
   method: string
   id: string
 }) => {
-  return useAsyncAxios(`${url}/${id}`, { method: method })
+  return useAsyncAxios(`${url}/${id}`, { method })
 }

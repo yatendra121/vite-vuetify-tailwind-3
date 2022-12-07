@@ -1,40 +1,116 @@
-import { defineComponent, reactive, ref, onMounted } from 'vue'
+import {
+  defineComponent,
+  reactive,
+  ref,
+  onMounted,
+  Ref,
+  PropType,
+  computed,
+  watch,
+  toRaw
+} from 'vue'
 import { objectToQueryString } from '@/composables/axios/formData'
-import { _axios } from './plugins/axios'
+import { useFormFilterStore } from '@/store/reactivity/formFiler'
+import { useAsyncAxios } from '@/composables/axios'
 
 import type { User } from '@/types/user'
-import { Ref } from 'vue'
+import type { AxiosError } from 'axios'
+import { ApiDataResponse } from '@/utils/response'
 
 export default defineComponent({
   name: 'VqList',
-  props: {},
+  props: {
+    id: {
+      type: String as PropType<string>,
+      required: true
+    },
+    action: {
+      type: String as PropType<string>,
+      required: true
+    }
+  },
   setup(props, { attrs, slots }) {
     const items: Ref<User[]> = ref([])
     const finished: Ref<boolean> = ref(false)
     const loading: Ref<boolean> = ref(false)
+    const filterId = computed(() => {
+      return `${props.id}_filter`
+    })
 
-    const apiParams = reactive({ page: 1, page_size: 3, search: '' })
+    const formFilterStore = useFormFilterStore()
+    const { setReloadValue } = useFormFilterStore()
 
-    const loadMore = async () => {
+    const formFilterData = computed<Object>(() => {
+      return formFilterStore.forms[filterId.value]?.values ?? {}
+    })
+
+    const reloadRequired = computed<boolean>(() => {
+      return formFilterStore.forms[filterId.value]?.reloadRequired ?? false
+    })
+
+    const resetRequired = computed<boolean>(() => {
+      return formFilterStore.forms[filterId.value]?.resetRequired ?? false
+    })
+
+    const listOptions = reactive({
+      page: 1,
+      page_size: 5
+    })
+
+    const resetValues = () => {
+      items.value = []
+    }
+
+    watch(
+      () => formFilterData,
+      () => {
+        listOptions.page = 1
+      },
+      { deep: true }
+    )
+
+    watch(reloadRequired, (newVal) => {
+      if (newVal) {
+        listOptions.page = 1
+        setReloadValue(filterId.value, false)
+      }
+    })
+
+    watch(resetRequired, (newVal) => {
+      // if (newVal) {
+      // }
+    })
+
+    const loadMore = () => {
+      // finished.value =
+      //   listOptions.page_size * listOptions.page >= (res.data?.total ?? 0)
+      // items.value = [...items.value, ...(res.data?.data ?? {})]
+      // listOptions.page++
+    }
+    //ApiDataResponse<{ data: any; total: number }>
+    const fetchItems = async () => {
       loading.value = true
-      _axios
-        .get(`user?${objectToQueryString(apiParams, '')}`)
-        .then((res) => {
-          items.value = [...items.value, ...res.data.data]
-          finished.value =
-            apiParams.page_size * apiParams.page >= res.data.total
-          apiParams.page++
-        })
-        .catch((res) => {
-          console.log(res)
-        })
-        .finally(() => {
-          loading.value = false
-        })
+
+      try {
+        const response = await useAsyncAxios<T>(
+          `${props.action}?${objectToQueryString(
+            { ...toRaw(listOptions), ...toRaw(formFilterData.value) },
+            ''
+          )}`,
+          {
+            method: 'GET'
+          }
+        )
+        loading.value = false
+        return response
+      } catch (e: any) {
+        loading.value = false
+        throw new Error(e.message)
+      }
     }
 
     onMounted(() => {
-      loadMore()
+      //loadMore()
     })
 
     return () => (

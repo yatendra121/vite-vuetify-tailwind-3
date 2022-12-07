@@ -5,9 +5,8 @@
       height: height,
       menubar: true,
 
-      plugins:plugins,
-      toolbar:
-        toolbar,
+      plugins: plugins,
+      toolbar: toolbar,
 
       skin: isDark ? 'oxide' : 'oxide-dark',
       content_css: isDark ? 'default' : 'dark'
@@ -18,7 +17,7 @@
     <div
       class="tw-m-4 tw-text-xs tw-text-red-700 tw-transition tw-duration-300 tw-ease-in-out tw-dark:text-gray-400 tw-mt-1"
     >
-      <p  class="tw-min-h-[16px]">{{ errorMessage }}</p>
+      <p class="tw-min-h-[16px]">{{ errorMessage }}</p>
     </div>
   </transition>
 </template>
@@ -61,7 +60,7 @@ export default defineComponent({
   },
   setup(props) {
     const { errorMessage, value } = useField(props.name)
-    
+
     return {
       plugins,
       toolbar,

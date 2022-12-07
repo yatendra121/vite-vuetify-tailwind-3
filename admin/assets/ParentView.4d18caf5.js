@@ -1,1 +1,0 @@
-import{_ as a}from"./index.96a51d4a.js";import{o as s,l as d,F as e,G as t,M as o,O as r,b5 as l}from"./vendor.4e8d2bd0.js";const f=a({},[["render",function(a,f){return s(),d(l,null,{default:e((()=>[t(r,{fluid:""},{default:e((()=>[o(a.$slots,"default")])),_:3})])),_:3})}]]);export{f as default};

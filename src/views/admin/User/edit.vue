@@ -4,7 +4,7 @@
       <title-row>
         <v-col>
           <title-button>
-            <vq-submit-btn></vq-submit-btn>
+            <vq-submit-btn id="user_form"></vq-submit-btn>
             <vq-back-btn></vq-back-btn>
           </title-button>
         </v-col>
@@ -47,6 +47,12 @@ const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
     method: 'GET'
   }
 )
+
+defineExpose({
+  response,
+  UserForm,
+  valuesSchema
+})
 
 onBeforeUnmount(() => cancelLoading())
 </script>

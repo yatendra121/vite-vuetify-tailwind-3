@@ -4,7 +4,8 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    'cypress/globals': true
   },
   extends: ['eslint:recommended', 'standard', 'prettier'],
   rules: {
@@ -29,7 +30,7 @@ module.exports = {
         'vue/singleline-html-element-content-newline': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/ban-ts-comment': 'on'
+        '@typescript-eslint/ban-ts-comment': 'off'
       }
     },
     {
@@ -38,7 +39,8 @@ module.exports = {
       extends: ['plugin:import/typescript'],
       plugins: ['@typescript-eslint'],
       rules: {
-        '@typescript-eslint/rule-name': 'off'
+        '@typescript-eslint/rule-name': 'off',
+        'no-unused-vars': 'off'
       }
     },
     {
@@ -54,7 +56,7 @@ module.exports = {
       }
     },
     {
-      files: ['cypress/integration/**.spec.{js,ts,jsx,tsx}'],
+      files: ['tests/e2e/integration/**.spec.{js,ts,jsx,tsx}'],
       extends: ['plugin:cypress/recommended']
     }
   ]

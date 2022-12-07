@@ -1,5 +1,6 @@
-import { defineComponent } from 'vue'
+import { computed, defineComponent, toRef } from 'vue'
 import { useField } from 'vee-validate'
+import { collectValidationListeners } from './config'
 export default defineComponent({
   name: 'VqTextarea',
   props: {
@@ -9,7 +10,18 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots }) {
-    const { errorMessage, value } = useField(props.name, undefined)
+    const { value, errorMessage, handleChange } = useField(
+      toRef(props, 'name'),
+      undefined,
+      {
+        validateOnValueUpdate: false
+      }
+    )
+
+    const validationListeners = collectValidationListeners({
+      handleChange,
+      errorMessage
+    })
 
     return () => (
       <>
@@ -20,6 +32,9 @@ export default defineComponent({
           messages={errorMessage.value}
           v-slots={slots}
           {...attrs}
+          // onChange={handleChange}
+          // onInput={validationListeners.value.input}
+          // onBlur={handleChange}
         ></v-textarea>
       </>
     )

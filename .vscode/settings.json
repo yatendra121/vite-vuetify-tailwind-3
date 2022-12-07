@@ -1,0 +1,8 @@
+{
+  "terminal.integrated.automationProfile.windows": {
+    "Node.js": {
+      "path": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [] // Add startup arguments as needed.
+    }
+  }
+}

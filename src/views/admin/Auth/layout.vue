@@ -40,8 +40,18 @@
     </v-row>
   </v-layout>
 </template>
-<script setup lang="ts">
+
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 
-const { height } = useWindowSize()
+export default defineComponent({
+  setup() {
+    const { height } = useWindowSize()
+
+    return {
+      height
+    }
+  }
+})
 </script>

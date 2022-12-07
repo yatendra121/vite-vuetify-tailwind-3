@@ -13,6 +13,18 @@ describe('Login Page', () => {
         cy.title().should('eq', 'Dashboard')
     })
 
+    it('Sign up test', () => {
+        cy.visit('/user/create')
+        //  cy.get('[type="text"]').clear()
+        cy.get('#name').type('yatendra')
+        cy.get('#email').type('yatendra@singsys.com')
+        cy.get('#gender').type('male').trigger('click')
+        cy.get('#role').type('admin')
+        cy.contains('Submit').click()
+        //cy.url().should('eq', 'http://localhost:3000/admin/dashboard')
+        //cy.title().should('eq', 'Dashboard')
+    })
+
     // it('Api Testing', () => {
     //     cy.log('Calling API')
     //     cy.request({

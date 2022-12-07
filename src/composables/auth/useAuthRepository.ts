@@ -45,14 +45,14 @@ const removeTokens = () => {
 const setToken = (token: string, path: string, domain: string) => {
     return Cookies.set(TokenKey, token, {
         expires: 30,
-        path: path
+        path
     })
 }
 
 const setRefreshToken = (token: string, path: string, domain: string) => {
     return Cookies.set(RefreshTokenKey, token, {
         expires: 45,
-        path: path
+        path
     })
 }
 
