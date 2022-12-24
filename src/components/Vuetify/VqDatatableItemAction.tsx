@@ -1,15 +1,23 @@
-import { computed, defineComponent, PropType, toRefs } from 'vue'
+import { defineComponent, inject, PropType, ref, Ref, toRefs } from 'vue'
 import { ConfirmState, useConfirmStore } from '@/store/reactivity/confirm'
 
-import { mdiDelete } from '@mdi/js'
-import { useAsyncAxios, useAxios } from '@/composables/axios'
+import { useAsyncAxios } from '@/composables/axios'
 import { useMessage } from '@/composables/message'
 import { ApiResponse } from '@/utils/response'
-import { useFormFilterRepository } from '@/composables/form'
 
+import { updateItemValue, deleteItemValue } from '@/plugins/vqVuetify'
+import { mdiDelete } from '@mdi/js'
+
+import type { ApiDataResponse } from '@/utils/response'
+
+type ActionMethod = 'PUT' | 'DELETE'
 const VqDatatableItemAction = defineComponent({
   name: 'VqDatatableItemAction',
   props: {
+    itemId: {
+      type: String as PropType<string>,
+      required: true
+    },
     title: {
       type: String as PropType<string>,
       default: () => 'Confirmation'
@@ -18,32 +26,28 @@ const VqDatatableItemAction = defineComponent({
       type: String as PropType<string>,
       default: () => 'Are you sure to want delete this record?'
     },
+    hintTitle: {
+      type: String as PropType<string>,
+      default: () => 'Delete'
+    },
     action: {
       type: String as PropType<string>,
       default: () => 'user/change-status'
     },
     method: {
-      type: String as PropType<string>,
-      default: () => 'PUT'
+      type: String as PropType<ActionMethod>,
+      default: () => 'DELETE'
     },
     icon: {
       type: String as PropType<string>,
       default: () => mdiDelete
-    },
-    itemId: {
-      type: String as PropType<string>,
-      default: () => '0'
-    },
-    id: {
-      type: String as PropType<string>,
-      required: true
     }
   },
 
-  setup(props, { attrs, emit, slots }) {
-    // const { reload } = useFormFilterRepository(`${props.id}_filter`)
-
+  setup(props) {
+    const tableId: Ref<string> = inject('tableListId', ref('form'))
     const confirmStore = useConfirmStore()
+    const { icon } = toRefs(props)
 
     const callback = () =>
       executeConfirmAction({
@@ -51,23 +55,26 @@ const VqDatatableItemAction = defineComponent({
         method: props.method,
         id: props.itemId
       })
-        .then((res: any) => {
-          const apiRes = new ApiResponse(res)
+        .then((res: ApiDataResponse<{ status: string }>) => {
+          const apiRes = new ApiResponse<{ status: string }>(res)
+
           confirmStore.close(false)
           useMessage.success(apiRes.getMessage() ?? '')
-          // reload()
+          if (props.method === 'PUT')
+            updateItemValue(tableId.value, props.itemId, apiRes.getData())
+          else if (props.method === 'DELETE')
+            deleteItemValue(tableId.value, props.itemId)
+          else alert('not handled')
         })
         .catch((res) => {
-          console.log({ res })
           confirmStore.close(false)
           useMessage.error('Please check input values.')
         })
 
-    const { title, description } = toRefs(props)
     const showConfirmAction = () => {
       confirmStore.setConfirmValues({
-        title: title.value,
-        description: description.value,
+        title: props.title,
+        description: props.description,
         callback
       } as ConfirmState)
 
@@ -75,7 +82,7 @@ const VqDatatableItemAction = defineComponent({
     }
     return () => (
       <>
-        <v-tooltip text="Change Status">
+        <v-tooltip text={props.hintTitle}>
           {{
             activator: ({ props }: any) => (
               <>
@@ -84,7 +91,7 @@ const VqDatatableItemAction = defineComponent({
                   {...props}
                   onClick={showConfirmAction}
                   color="primary"
-                  icon={mdiDelete}
+                  icon={icon.value}
                 ></v-btn>
               </>
             )

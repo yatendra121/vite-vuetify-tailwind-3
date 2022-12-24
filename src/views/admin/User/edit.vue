@@ -1,10 +1,40 @@
+<script lang="ts" setup>
+import { useAxiosWithLoading } from '@/composables/axios/useAxiosWithLoading'
+import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+//types
+import { User, RoleUserWithRole } from '@/types/user'
+interface UserWithRole extends User {
+  roleUsers: RoleUserWithRole[]
+}
+
+//components
+const UserForm = defineAsyncComponent(
+  () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
+)
+
+const route = useRoute()
+const valuesSchema = ref({ roleIds: 'roleUsers.*.role.id' })
+
+const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
+  `user/${route.params.id}`,
+  {
+    method: 'GET'
+  }
+)
+
+const id = 'user_form'
+
+onBeforeUnmount(() => cancelLoading())
+</script>
 <template>
   <title-layout>
     <template #default>
       <title-row>
         <v-col>
           <title-button>
-            <vq-submit-btn id="user_form"></vq-submit-btn>
+            <vq-submit-btn :id="id"></vq-submit-btn>
             <vq-back-btn></vq-back-btn>
           </title-button>
         </v-col>
@@ -15,6 +45,7 @@
     <v-card>
       <v-responsive>
         <UserForm
+          :id="id"
           :action="`user/${route.params.id}`"
           :values-schema="valuesSchema"
           method="PUT"
@@ -24,35 +55,3 @@
     </v-card>
   </v-container>
 </template>
-
-<script lang="ts" setup>
-import { useAxiosWithLoading } from '@/composables/axios/useAxiosWithLoading'
-import { User, RoleUserWithRole } from '@/types/user'
-import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
-import { useRoute } from 'vue-router'
-
-const UserForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
-)
-
-const route = useRoute()
-
-const valuesSchema = ref({ roleIds: 'roleUsers.*.role.id' })
-interface UserWithRole extends User {
-  roleUsers: RoleUserWithRole[]
-}
-const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
-  `user/${route.params.id}`,
-  {
-    method: 'GET'
-  }
-)
-
-defineExpose({
-  response,
-  UserForm,
-  valuesSchema
-})
-
-onBeforeUnmount(() => cancelLoading())
-</script>

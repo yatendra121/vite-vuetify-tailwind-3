@@ -31,6 +31,12 @@ const VqDatatableItemAction = defineAsyncComponent(
             /* webpackChunkName: "vq-vuetify" */ './Vuetify/VqDatatableItemAction'
         )
 )
+const VqDatatableItemChangeStatus = defineAsyncComponent(
+    () =>
+        import(
+            /* webpackChunkName: "vq-vuetify" */ './Vuetify/VqDatatableItemChangeStatus'
+        )
+)
 
 const VqTextEditor = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-vuetify" */ './Tinymce/index.vue')
@@ -63,8 +69,12 @@ const ReportsLineChart = defineAsyncComponent(
 const VqList = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/VqList')
 )
-const LoadMoreBtn = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/loadMoreBtn')
+const VqListLoadMoreBtn = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/LoadMoreBtn')
+)
+
+const VqBtn = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/VqBtn')
 )
 
 const components: { [key: string]: any } = {
@@ -73,14 +83,16 @@ const components: { [key: string]: any } = {
     // VqFileInput,
     // VqAutocomplete,
     // VqSelect,
-    VqDatatableItemAction
+    VqDatatableItemAction,
+    VqDatatableItemChangeStatus,
     // VqForm,
     // VqTableFilter,
     // VqTextEditor,
     // VqSubmitBtn,
-    // VqBackBtn
+    VqBackBtn,
+    VqBtn,
     // VqList,
-    // LoadMoreBtn
+    VqListLoadMoreBtn
 }
 export default {
     install: (app: App) => {
@@ -90,6 +102,15 @@ export default {
         for (const key in components) {
             app.component(key, components[key])
         }
+    }
+}
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        VqDatatableItemAction: typeof VqDatatableItemAction
+        VqDatatableItemChangeStatus: typeof VqDatatableItemChangeStatus
+        VqBtn: typeof VqBtn
+        VqListLoadMoreBtn: typeof VqListLoadMoreBtn
     }
 }
 

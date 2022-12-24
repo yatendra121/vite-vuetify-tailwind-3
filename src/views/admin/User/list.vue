@@ -1,7 +1,7 @@
 <template>
   <title-layout>
     <template #default>
-      <vq-table-filter id="user_list">
+      <vq-table-filter :id="id">
         <title-row>
           <template #default>
             <v-col lg="3" md="3" sm="4" xs="12">
@@ -10,7 +10,7 @@
                 variant="underlined"
                 clearable
                 hide-details
-                label="Category"
+                label="Gender"
                 name="gender"
                 :items="['male', 'female']"
               ></vq-autocomplete>
@@ -42,8 +42,8 @@
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <vq-list action="user" id="user_list">
-          <template #default="{ items, ...option }: SlotProps">
+        <vq-list action="user" :id="id">
+          <template #default="{ items }: { items: User[] }">
             <v-table>
               <thead>
                 <tr>
@@ -61,24 +61,30 @@
                   <td>{{ item.name }}</td>
                   <td>{{ item.email }}</td>
                   <td>{{ item.gender }}</td>
-                  <td>{{ item.status }}</td>
                   <td>
-                    <vq-datatable-item-action
+                    <vq-datatable-item-change-status
+                      action="user/change-status"
                       :item-id="item.id"
-                      id="user_list"
-                    ></vq-datatable-item-action>
-                    <vq-datatable-item-action
+                      :item-value="item.status"
+                    ></vq-datatable-item-change-status>
+                  </td>
+                  <td>
+                    <!-- <vq-datatable-item-action
+                      :id="id"
                       :item-id="item.id"
-                      id="user_list"
-                      title="Delete"
-                    ></vq-datatable-item-action>
+                      :icon="mdiAccountConvert"
+                      method="PUT"
+                      title="Change Status"
+                      hint-title="Change status"
+                    ></vq-datatable-item-action> -->
 
-                    <v-btn
-                      variant="text"
+                    <vq-btn
                       :to="{ name: 'user.edit', params: { id: item.id } }"
-                      color="primary"
-                      :icon="mdiCircleEditOutline"
-                    ></v-btn>
+                    ></vq-btn>
+                    <vq-datatable-item-action
+                      action="user"
+                      :item-id="item.id"
+                    ></vq-datatable-item-action>
                   </td>
                 </tr>
               </tbody>
@@ -92,7 +98,7 @@
               class="mt-auto align-center justify-center d-flex px-2 pa-2 ma-2"
               color="grey lighten-6"
             >
-              <vq-list-load-more-btn v-bind="option"> </vq-list-load-more-btn>
+              <vq-list-load-more-btn> </vq-list-load-more-btn>
             </v-sheet>
           </template>
         </vq-list>
@@ -102,17 +108,13 @@
 </template>
 
 <script lang="ts" setup>
+import { mdiCircleEditOutline, mdiPlus, mdiAccountConvert } from '@mdi/js'
 import type { User } from '@/types'
-import { mdiCircleEditOutline, mdiPlus } from '@mdi/js'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface SlotProps {
-  items: User[]
-  loadMore: () => void
-  finished: boolean
-  loading: boolean
-}
+const id = 'user_list'
+
 defineExpose({
   mdiCircleEditOutline,
-  mdiPlus
+  mdiPlus,
+  mdiAccountConvert
 })
 </script>

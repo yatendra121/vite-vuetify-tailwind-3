@@ -10,8 +10,7 @@ import { Form as VForm, Form, SubmissionHandler } from 'vee-validate'
 import { _axios } from '@/plugins/axios'
 import { ApiDataResponse, ApiResponse } from '@/utils/response'
 import useErrorResponse from '@/composables/axios/useErrorResponse'
-import { AxiosError, Method } from 'axios'
-
+import type { AxiosError, Method } from 'axios'
 import type { InitialValues } from '@/types'
 import { useAsyncAxios } from '@/composables/axios'
 import { useFormStore } from '@/store/reactivity/form'
@@ -27,13 +26,11 @@ export default defineComponent({
   props: {
     id: {
       type: String as PropType<string>,
-      required: true,
-      default: () => ''
+      required: true
     },
     action: {
       type: String as PropType<string>,
-      required: true,
-      default: () => ''
+      required: true
     },
     method: {
       type: String as PropType<Method>,

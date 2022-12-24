@@ -1,29 +1,24 @@
-import { defineComponent } from 'vue'
+import { defineComponent, inject, Ref } from 'vue'
 export default defineComponent({
   name: 'LoadMoreBtn',
-  props: {
-    finished: {
-      type: Boolean,
-      required: true
-    },
-    loading: {
-      type: Boolean,
-      required: true
-    },
-    loadMore: {
-      type: Function,
-      required: true
-    }
-  },
-  setup(props) {
+  setup(props, { attrs, slots }) {
+    const vqList = inject<{
+      loading: Ref<boolean>
+      finished: Ref<boolean>
+      tableListId: string
+      loadMore: () => void
+    }>('vqList')
+
     return () => (
       <>
-        {!props.finished && (
+        {!vqList?.finished.value && (
           <v-btn
-            loading={props.loading}
-            disabled={props.loading}
+            loading={vqList?.loading.value}
+            disabled={vqList?.loading.value}
             color="primary"
-            onClick={props.loadMore}
+            onClick={vqList?.loadMore}
+            v-slots={slots}
+            {...attrs}
           >
             Load More
           </v-btn>

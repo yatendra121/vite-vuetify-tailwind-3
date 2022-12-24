@@ -1,0 +1,1 @@
+import{a3 as n}from"./vendor-fcdf8aba.js";import{P as o}from"./index-a381323b.js";const t=n(o.getInstance().getSocketUrl(),{transports:["websocket"]});t.on("connect",(function(){})),t.on("disconnect",(function(){}));export{t as s};

@@ -5,7 +5,11 @@ module.exports = {
   corePlugins: {
     preflight: false
   },
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './packages/**/*.{vue,js,ts,jsx,tsx}',
+    './src/**/*.{vue,js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {}
   },

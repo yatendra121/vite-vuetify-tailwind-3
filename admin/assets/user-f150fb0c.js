@@ -1,0 +1,1 @@
+import{a as e,c as l}from"./array-671f68db.js";const a=l({name:e().required().max(30).label("Name"),email:e().required().max(50).label("Email"),mobileNo:e().nullable().max(50).label("Mobile number"),dob:e().nullable().max(50).label("DOB"),gender:e().nullable().label("Gender")});export{a as u};

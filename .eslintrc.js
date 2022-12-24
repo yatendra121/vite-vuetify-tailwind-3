@@ -17,7 +17,8 @@ module.exports = {
       extends: [
         'plugin:vue/vue3-strongly-recommended',
         '@vue/eslint-config-typescript/recommended',
-        'plugin:vuetify/base'
+        'plugin:vuetify/base',
+        '@vue/eslint-config-prettier'
 
         //   '@vue/eslint-config-prettier'
       ],

@@ -1,39 +1,40 @@
-@use 'vuetify/styles' with (
-  $font-size-root: 1rem,
-  $border-radius-root: 4px,
+// @use 'vuetify/styles' with (
+// $font-size-root: 1rem,
+// $border-radius-root: 4px,
+// $spacer: 4px,
+// $body-font-family: (
+//   Roboto,
+//   sans-serif
+// )
+// );
+@use 'vuetify' with (
+  $color-pack: false,
   $spacer: 4px,
   $body-font-family: (
     Roboto,
     sans-serif
   )
 );
-
 // with (
 //   $color-pack: false
 // );
 // $btn-border-radius: 0px;
-
 // Modifying a SASS map variable
 // $material-light: (
 //   cards: blue
 // );
-
 // $headings: (
 //   'h2': (
 //     'font-size': 2rem
 //   )
 // );
-
 //$container-padding: 11px;
-
 // Place SASS variable overrides here
 //$font-size-root: 50px;
 //$input-details-margin-bottom: 0px !important;
-
 // .v-input__details {
 //   margin: $input-details-margin-bottom;
 // }
-
 // .v-container {
 //   padding: $container-padding;
 // }

@@ -4,7 +4,7 @@
       <title-row>
         <v-col>
           <title-button>
-            <vq-submit-btn></vq-submit-btn>
+            <vq-submit-btn :id="id"></vq-submit-btn>
           </title-button>
         </v-col>
       </title-row>
@@ -13,7 +13,7 @@
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <MyProfileForm :initial-values="response?.data" />
+        <MyProfileForm :id="id" :initial-values="response?.data" />
       </v-responsive>
     </v-card>
   </v-container>
@@ -21,17 +21,25 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, defineAsyncComponent } from 'vue'
-import { useAxios } from '@/composables/axios'
-import { syncRefLoading } from '@/composables/loading'
+
+//composables
+import { useAxiosWithLoading } from '@/composables/axios/useAxiosWithLoading'
+
+//types
+import type { User } from '@/types'
+
 const MyProfileForm = defineAsyncComponent(
   () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
 )
 
-const { response, loading, cancel } = useAxios('my-profile/show', {
-  method: 'GET'
-})
+const { response, cancelLoading } = useAxiosWithLoading<User>(
+  'my-profile/show',
+  {
+    method: 'GET'
+  }
+)
 
-syncRefLoading(loading)
+const id = 'my_profile_form'
 
-onBeforeUnmount(() => cancel())
+onBeforeUnmount(() => cancelLoading())
 </script>

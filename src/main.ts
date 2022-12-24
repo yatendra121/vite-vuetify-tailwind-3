@@ -6,7 +6,8 @@ import { loadFonts } from './plugins/vuetify/webfontloader'
 import router from './router'
 import storeCore from './store/core'
 
-import './assets/css/index.css'
+//using css import vite take much time to HMR
+//import './assets/css/index.css'
 import './plugins'
 
 import components from '@/components'
@@ -16,9 +17,9 @@ import TitleLayout from '@/views/admin/TitleLayout.vue'
 import TitleRow from '@/views/admin/TitleRow.vue'
 import TitleButton from '@/views/admin/TitleButton.vue'
 
-import { DefaultApolloClient } from '@vue/apollo-composable'
-import { apolloClient } from './plugins/graphql'
-import vqVuetify from 'vq-vuetify'
+//import { DefaultApolloClient } from '@vue/apollo-composable'
+//import { apolloClient } from './plugins/graphql'
+import vqVuetify from '@/plugins/vqVuetify'
 
 //import { partytownSnippet } from '@builder.io/partytown/integration'
 
@@ -30,7 +31,7 @@ loadFonts()
 
 const app = createApp({
     setup() {
-        provide(DefaultApolloClient, apolloClient)
+        // provide(DefaultApolloClient, apolloClient)
     },
 
     render: () => h(App)

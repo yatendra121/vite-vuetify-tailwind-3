@@ -1,0 +1,1 @@
+import{n as s}from"./vendor-fcdf8aba.js";const e=s({id:"message",state:()=>({items:[],id:1}),getters:{itemsArray(){return this.items}},actions:{addMessage(s){this.items.push({id:this.id++,...s})},removeMessage(){this.items.splice(0,1)}}});export{e as u};

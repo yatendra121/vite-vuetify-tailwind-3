@@ -1,0 +1,1 @@
+import{d as a,a5 as n,j as t,k as s,an as o,G as e,F as r}from"./vendor-fcdf8aba.js";const c=a({name:"BackButton",setup(){const a=n(),c=()=>{window.history.length>2?a.back():a.push("dashboard")};return()=>t(r,null,[t(s("v-btn"),{variant:"text",onClick:c},{default:()=>[t(s("v-icon"),{icon:o},null),e("Back")]})])}});export{c as default};

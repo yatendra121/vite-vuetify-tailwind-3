@@ -7,19 +7,20 @@ import eslintPlugin from 'vite-plugin-eslint'
 import { VitePWA } from 'vite-plugin-pwa'
 import pwaConfig from './pwa.config'
 import { Portal } from './src/utils/portal'
+
+import type { PluginOption } from 'vite'
 const vetur = require('@volar-plugins/vetur')
 
 //import { partytownVite } from '@builder.io/partytown/utils'
 const { resolve, join } = require('path')
-const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
+//const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
 //const srcPath = resolve(__dirname, 'src', 'sass', 'vuetify.scss')
 
 const currentPortal = Portal.getInstance()
 
-let plugins: any = []
-if (currentPortal.getCheckESlint()) plugins = [...plugins, eslintPlugin()]
-//@ts-ignore
-if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
+const plugins: PluginOption[] = []
+//if (currentPortal.getCheckESlint()) plugins = [...plugins, eslintPlugin()]
+//if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
 // https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
@@ -28,15 +29,15 @@ export default defineConfig({
         }
     },
     plugins: [
-        // ...plugins,
+        ...plugins,
         vetur(),
         vue(),
         vueJsx(),
         splitVendorChunkPlugin(),
         vuetify({
             autoImport: false,
-            styles: 'expose'
-            //styles: { configFile: 'src/settings.scss' }
+            // styles: 'expose'
+            styles: { configFile: 'src/settings.scss' }
         }),
         AutoImport({
             imports: ['vue', 'pinia', 'vue-router']

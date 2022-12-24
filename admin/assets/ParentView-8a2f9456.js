@@ -1,0 +1,1 @@
+import{_ as s}from"./_plugin-vue_export-helper-1b428a4d.js";import{o as a,c as e,J as t,j as o,M as r,k as n}from"./vendor-fcdf8aba.js";const l=s({},[["render",function(s,l){const u=n("v-container"),f=n("v-main");return a(),e(f,null,{default:t((()=>[o(u,{fluid:""},{default:t((()=>[r(s.$slots,"default")])),_:3})])),_:3})}]]);export{l as default};

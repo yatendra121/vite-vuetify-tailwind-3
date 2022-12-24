@@ -4,42 +4,23 @@ describe('Login Page', () => {
         // cy.contains('h2', 'Login Page')
     })
 
-    it('Login test', () => {
-        cy.get('[type="text"]').clear()
-        cy.get('.email').type('yatendra@singsys.com')
-        cy.get('.password').type('12345678')
-        cy.contains('Sign In').click()
-        cy.url().should('eq', 'http://localhost:3000/admin/dashboard')
-        cy.title().should('eq', 'Dashboard')
+    it('Api Testing', async () => {
+        cy.log('Calling API')
+        let res: any = await fetch('http://localhost:3333/')
+        res = await res.json()
+
+        console.log({ res })
+
+        expect('Welcome! This is node server.').to.equal(res.message)
     })
 
-    it('Sign up test', () => {
-        cy.visit('/user/create')
-        //  cy.get('[type="text"]').clear()
-        cy.get('#name').type('yatendra')
-        cy.get('#email').type('yatendra@singsys.com')
-        cy.get('#gender').type('male').trigger('click')
-        cy.get('#role').type('admin')
-        cy.contains('Submit').click()
-        //cy.url().should('eq', 'http://localhost:3000/admin/dashboard')
-        //cy.title().should('eq', 'Dashboard')
-    })
+    it('Api User Testing', async () => {
+        cy.log('Calling API')
+        let res: any = await fetch('http://localhost:3333/api/user')
+        res = await res.json()
 
-    // it('Api Testing', () => {
-    //     cy.log('Calling API')
-    //     cy.request({
-    //         method: 'GET',
-    //         url: 'http://localhost:4000/total-users/',
-    //         body: {
-    //             grant_type: 'refresh_token',
-    //             client_id: Cypress.env('googleClientId'),
-    //             client_secret: Cypress.env('googleClientSecret'),
-    //             refresh_token: Cypress.env('googleRefreshToken')
-    //         }
-    //     }).then(({ body }) => {
-    //         const { data } = body
-    //         expect(1).to.equal(data)
-    //         console.log(data)
-    //     })
-    // })
+        console.log({ res })
+
+        expect(0).to.lessThan(res.data.total)
+    })
 })
