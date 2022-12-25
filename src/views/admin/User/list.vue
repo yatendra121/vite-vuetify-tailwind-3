@@ -47,7 +47,7 @@
             <v-table>
               <thead>
                 <tr>
-                  <th class="text-left">User Id</th>
+                  <th class="text-left">nbnbnbn Id</th>
                   <th class="text-left">Name</th>
                   <th class="text-left">Email</th>
                   <th class="text-left">Gender</th>

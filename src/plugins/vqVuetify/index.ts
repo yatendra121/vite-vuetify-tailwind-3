@@ -1,12 +1,4 @@
 import { _axios } from '@/plugins/axios'
-import {
-    VAutocomplete,
-    VBtn,
-    VTextarea,
-    VTextField,
-    VList
-} from 'vuetify/components'
-import { Form } from 'vee-validate'
 
 import {
     setAxiosInstance,
@@ -15,6 +7,17 @@ import {
     updateItemValue,
     deleteItemValue
 } from '../../../packages/vq-vuetify/src/main'
+
+import type {
+    VqTextField,
+    VqTextarea,
+    VqAutocomplete,
+    VqForm,
+    VqList,
+    VqSubmitBtn,
+    VqListLoadMoreBtn,
+    VqTableFilter
+} from '../../../packages/vq-vuetify/src/components'
 
 export default {
     install: (app: any) => {
@@ -27,32 +30,19 @@ export default {
 
 export { updateItemKeyValue, updateItemValue, deleteItemValue }
 
-// import {
-//     // VqListLoadMoreBtn,
-//     setAxiosInstance
-//     // VqAutocomplete,
-//     // VqDatatableItemAction,
-//     // //VqFileInput,
-//     // VqForm,
-//     // VqList,
-//     // VqSubmitBtn,
-//     // VqTableFilter,
-//     // VqTextarea,
-//     // VqTextField
-// } from 'vq-vuetify'
+setAxiosInstance(_axios)
 
 declare module 'vue' {
     export interface GlobalComponents {
-        VqTextField: typeof VTextField & typeof components.VqTextField
-        VqTextarea: typeof VTextarea & typeof components.VqTextarea
-        VqAutocomplete: typeof VAutocomplete & typeof components.VqAutocomplete
+        VqTextField: VqTextField
+        VqTextarea: VqTextarea
+        VqAutocomplete: VqAutocomplete
         // VqDatatableItemAction: typeof VqDatatableItemAction
-        VqForm: typeof Form & typeof components.VqForm
-        // VqTableFilter: typeof VqTableFilter
-        VqSubmitBtn: typeof VBtn & typeof components.VqSubmitBtn
+        VqForm: VqForm
+        VqTableFilter: VqTableFilter
+        VqSubmitBtn: VqSubmitBtn
         // VqBackBtn: typeof VqBackBtn
-        VqList: typeof VList & typeof components.VqList
-        VqListLoadMoreBtn: typeof VBtn & typeof components.VqListLoadMoreBtn
+        VqList: VqList
+        VqListLoadMoreBtn: VqListLoadMoreBtn
     }
 }
-setAxiosInstance(_axios)

@@ -8,6 +8,10 @@ import { VitePWA } from 'vite-plugin-pwa'
 import pwaConfig from './pwa.config'
 import { Portal } from './src/utils/portal'
 
+import tailwindCss from 'tailwindcss'
+import tailwindCssConfig from './tailwind.config.js'
+import autoprefixer from 'autoprefixer'
+
 import type { PluginOption } from 'vite'
 const vetur = require('@volar-plugins/vetur')
 
@@ -51,8 +55,18 @@ export default defineConfig({
         preprocessorOptions: {
             //  sass: { additionalData: `${srcPath}\n` },
             //  scss: { additionalData: ` ${srcPath}\n` }
+        },
+        postcss: {
+            plugins: [
+                //  postcssImport,
+                //tailwindNesting,
+                tailwindCss(tailwindCssConfig),
+                // postcssColorFunction,
+                autoprefixer
+            ]
         }
     },
+
     base: currentPortal.getBaseUrl(),
     server: {
         port: currentPortal.getPort()

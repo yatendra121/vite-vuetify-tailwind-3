@@ -30,11 +30,11 @@ import {
 } from 'vue'
 import { useTitle } from '@vueuse/core'
 import { useStore } from 'vuex'
-import { AuthStatus } from '@/types/auth'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppStore } from '@/store/reactivity/app'
 import AdminApp from './adminApp.vue'
 import FallbackComponent from '@/components/Loading/FallbackComponent'
+import type { AuthStatus } from '@/types/auth'
 export default defineComponent({
   components: {
     AdminApp,
@@ -62,13 +62,13 @@ export default defineComponent({
     const router = useRouter()
     const { authStatus } = toRefs(props)
 
-    const redirectToAuth = async () => {
+    const redirectToAuth = () => {
       if (route.meta.type === 'not_found') {
         console.log('Not Found')
       } else if (props.authStatus === 'authenticated') {
-        if (route.meta.isPublic) await router.push({ name: 'dashboard' })
+        if (route.meta.isPublic) router.push({ name: 'dashboard' })
       } else {
-        await router.push({ name: 'login' })
+        router.push({ name: 'login' })
       }
     }
 
@@ -82,12 +82,12 @@ export default defineComponent({
 
     const title = useTitle()
 
-    router.beforeEach(async (to, from, next) => {
+    router.beforeEach((to, from, next) => {
       if (!props.authLoading) {
         if (store.getters.authProfile && to.meta.isPublic) return
         if (!store.getters.authProfile && !to.meta.isPublic) return
       }
-      await next()
+      next()
 
       // Browser Tab Title
       setTimeout(() => {

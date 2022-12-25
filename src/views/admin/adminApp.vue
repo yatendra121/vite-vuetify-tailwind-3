@@ -64,7 +64,7 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
 
-    const changeLayoutView = (type: any) => {
+    const changeLayoutView = (type: unknown) => {
       if (type === 'auth') ParentView.value = 'AuthView'
       else if (type === 'not_found') ParentView.value = 'NotFoundView'
       else if (type === 'admin') ParentView.value = 'AdminView'
