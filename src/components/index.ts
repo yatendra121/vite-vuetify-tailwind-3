@@ -14,10 +14,6 @@ const VqDatatableItemChangeStatus = defineAsyncComponent(
         )
 )
 
-const VqTextEditor = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-vuetify" */ './Tinymce/index.vue')
-)
-
 const VqBackBtn = defineAsyncComponent(
     () =>
         import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
@@ -45,7 +41,6 @@ const components: { [key: string]: any } = {
     VqDatatableItemChangeStatus,
     // VqForm,
     // VqTableFilter,
-    // VqTextEditor,
     // VqSubmitBtn,
     VqBackBtn,
     VqBtn

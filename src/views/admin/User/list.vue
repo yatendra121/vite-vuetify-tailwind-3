@@ -47,10 +47,10 @@
             <v-table>
               <thead>
                 <tr>
-                  <th class="text-left">nbnbnbn Id</th>
+                  <th class="text-left">Id</th>
                   <th class="text-left">Name</th>
                   <th class="text-left">Email</th>
-                  <th class="text-left">Gender</th>
+                  <th class="text-left">Address</th>
                   <th class="text-left">Status</th>
                   <th class="text-left">Action</th>
                 </tr>
@@ -60,7 +60,7 @@
                   <td>{{ item.id }}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.email }}</td>
-                  <td>{{ item.gender }}</td>
+                  <td>{{ item.address }}</td>
                   <td>
                     <vq-datatable-item-change-status
                       action="user/change-status"

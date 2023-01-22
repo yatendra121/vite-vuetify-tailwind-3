@@ -1,1 +1,0 @@
-import{_ as r}from"./_plugin-vue_export-helper-1b428a4d.js";import{k as e,o,c as t}from"./vendor-fcdf8aba.js";const s=r({},[["render",function(r,s){const n=e("router-view");return o(),t(n,{key:r.$route.fullPath})}]]);export{s as default};

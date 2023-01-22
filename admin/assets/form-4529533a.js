@@ -1,1 +1,0 @@
-import{n as s}from"./vendor-fcdf8aba.js";const o=s({id:"form_data",state:()=>({forms:{}}),actions:{addForm(s){this.forms[s]={busy:!1}},removeForm(s){delete this.forms[s]},changeBusy(s,o){o?this.forms[s].busy=o:setTimeout((()=>{this.forms[s].busy=o}),200)}}});export{o as u};

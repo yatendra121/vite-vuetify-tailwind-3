@@ -50,7 +50,7 @@ export const objectToFormData = (
  * @param obj
  * @param prefix
  */
-export const objectToQueryString = (obj: any, prefix: string): string => {
+export const objectToQueryString = (obj: any, prefix?: string): string => {
     const str = []
     let p
 

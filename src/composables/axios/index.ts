@@ -157,7 +157,7 @@ export async function* useAsyncAxiosGenerator<T = any>(
                 args
             )
         } catch (e: any) {
-            throw new Error(e.message)
+            throw new Error(e.message, { cause: e })
         }
 
         nextPage = yield response

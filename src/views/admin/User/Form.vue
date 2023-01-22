@@ -69,12 +69,7 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col md="6" sm="6" xs="12">
-            <vq-text-field
-              id="name"
-              name="name"
-              label="Name"
-              placeholder="Name"
-            />
+            <vq-text-field name="name" label="Name" placeholder="Name" />
           </v-col>
           <v-col md="6" sm="6" xs="12">
             <vq-text-field
@@ -90,6 +85,13 @@ export default defineComponent({
               name="mobileNo"
               label="Mobile"
               placeholder="Mobile"
+            />
+          </v-col>
+          <v-col md="4" sm="4" xs="12">
+            <vq-checkbox
+              name="membership"
+              label="Membership"
+              placeholder="Membership"
             />
           </v-col>
           <v-col md="4" sm="4" xs="12">

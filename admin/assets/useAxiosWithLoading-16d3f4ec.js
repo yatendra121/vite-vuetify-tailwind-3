@@ -1,1 +1,0 @@
-import{c as n}from"./app-68c6f644.js";import{s as o}from"./index-1e06f975.js";function s(s,e){const{response:a,loading:r,cancel:c}=n(s,e);o(r);return{response:a,cancelLoading:()=>{r.value&&c()}}}export{s as u};

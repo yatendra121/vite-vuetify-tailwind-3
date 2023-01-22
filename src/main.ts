@@ -6,7 +6,7 @@ import { loadFonts } from './plugins/vuetify/webfontloader'
 import router from './router'
 import storeCore from './store/core'
 
-//using css import vite take much time to HMR
+//using css import, vite take much time to HMR
 //import './assets/css/index.css'
 import './plugins'
 
@@ -31,7 +31,7 @@ loadFonts()
 
 const app = createApp({
     setup() {
-        // provide(DefaultApolloClient, apolloClient)
+        //  provide(DefaultApolloClient, apolloClient)
     },
 
     render: () => h(App)
@@ -40,7 +40,8 @@ const app = createApp({
 app.use(storeCore)
 app.use(createPinia())
 app.use(vuetify)
-app.use(vqVuetify)
+app.use(vqVuetify.vqVuetify)
+app.use(vqVuetify.VqVuetifyIntegrations)
 app.use(router)
 app.use(components)
 app.use(directives)

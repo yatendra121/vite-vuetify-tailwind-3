@@ -14,6 +14,18 @@ const config: VuetifyOptions['defaults'] = {
         color: 'primary',
         clearable: true
     },
+    VTextarea: {
+        //density: 'compact',
+        ///variant: 'outlined',
+        color: 'primary',
+        clearable: true
+    },
+    VAutocomplete: {
+        //density: 'compact',
+        ///variant: 'outlined',
+        color: 'primary',
+        clearable: true
+    },
     VTooltip: {
         transition: 'scroll-y-reverse-transition',
         location: 'top'

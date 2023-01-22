@@ -30,6 +30,7 @@ class ApiResponse<T> implements ApiResponseInterface<T> {
     constructor(response: ApiDataResponse | undefined) {
         if (typeof response === 'undefined') return
         this.data = response.data
+        this.errorCode = response.errorCode
         this.error = response.error
         this.errors = response.errors
         this.message = response.message

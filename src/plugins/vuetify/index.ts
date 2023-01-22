@@ -13,6 +13,8 @@ import themes from './theme'
 import defaultConfig from './defaultConfig'
 import { aliases, mdi } from 'vuetify/lib/iconsets/mdi-svg'
 
+console.log({ components })
+
 const defaultThemeOptions = {
     defaultTheme: 'light',
     variations: {
