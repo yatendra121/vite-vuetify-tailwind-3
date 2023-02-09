@@ -7,6 +7,7 @@ import eslintPlugin from 'vite-plugin-eslint'
 import { VitePWA } from 'vite-plugin-pwa'
 import pwaConfig from './pwa.config'
 import { Portal } from './src/utils/portal'
+import { partytownVite } from '@builder.io/partytown/utils'
 
 import tailwindCss from 'tailwindcss'
 import tailwindCssConfig from './tailwind.config.js'
@@ -15,16 +16,15 @@ import autoprefixer from 'autoprefixer'
 import type { PluginOption } from 'vite'
 const vetur = require('@volar-plugins/vetur')
 
-//import { partytownVite } from '@builder.io/partytown/utils'
 const { resolve, join } = require('path')
 //const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
 //const srcPath = resolve(__dirname, 'src', 'sass', 'vuetify.scss')
 
 const currentPortal = Portal.getInstance()
 
-const plugins: PluginOption[] = []
+let plugins: PluginOption[] = []
 //if (currentPortal.getCheckESlint()) plugins = [...plugins, eslintPlugin()]
-//if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
+if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
 // https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
@@ -33,22 +33,23 @@ export default defineConfig({
         }
     },
     plugins: [
-        ...plugins,
+        // ...plugins,
         vetur(),
         vue(),
         vueJsx(),
-        splitVendorChunkPlugin(),
+        //splitVendorChunkPlugin(),
         vuetify({
-            autoImport: false,
-            // styles: 'expose'
-            styles: { configFile: 'src/settings.scss' }
+            autoImport: false
+            //to use vuetify scss variables
+            //  styles: { configFile: 'src/settings.scss' }
         }),
         AutoImport({
             imports: ['vue', 'pinia', 'vue-router']
+        }),
+        partytownVite({
+            dest: join(__dirname, 'admin', '~partytown')
         })
-        // partytownVite({
-        //     dest: join(__dirname, 'admin', '~partytown')
-        // }),
+
         //  ...plugins
     ],
     css: {
@@ -60,9 +61,9 @@ export default defineConfig({
             plugins: [
                 //  postcssImport,
                 //tailwindNesting,
-                tailwindCss(tailwindCssConfig),
+                //tailwindCss(tailwindCssConfig),
                 // postcssColorFunction,
-                autoprefixer
+                //autoprefixer
             ]
         }
     },
@@ -76,14 +77,14 @@ export default defineConfig({
         manifest: currentPortal.getAddPWA(),
         rollupOptions: {
             output: {
-                // manualChunks: {
-                //     graphql: ['graphql'],
-                //     'chart-js': ['chart.js'],
-                //     'graphql-tag': ['graphql-tag'],
-                //     'apollo-composable': ['@vue/apollo-composable'],
-                //     vuetify: ['vuetify'],
-                //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
-                // }
+                manualChunks: {
+                    'chart-js': ['chart.js']
+                    // graphql: ['graphql'],
+                    // 'apollo-composable': ['@vue/apollo-composable'],
+                    // 'graphql-tag': ['graphql-tag'],
+                    // vuetify: ['vuetify']
+                    //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
+                }
             }
         },
         minify: 'terser',

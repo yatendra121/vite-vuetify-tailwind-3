@@ -1,18 +1,21 @@
 <template>
   <v-list-group
-    v-if="item.children"
+    v-if="item.children && getChildren(item).length > 1"
     :collapse-icon="mdiChevronUp"
     :expand-icon="mdiChevronDown"
   >
     <template #activator="{ props }">
       <v-list-item
         v-bind="props"
-        :prepend-icon="item.meta.icon"
         :title="item.meta.title"
         :height="height"
         :active-color="activeColor"
         link
-      />
+      >
+        <template #prepend>
+          <v-icon :size="iconSize" :icon="item.meta.icon"></v-icon>
+        </template>
+      </v-list-item>
     </template>
     <sidebar-item
       v-for="sidebarItem in item.children"
@@ -20,23 +23,25 @@
       :item="sidebarItem"
       :height="height"
       :active-color="activeColor"
-      link
     />
   </v-list-group>
 
   <v-list-item
-    v-if="!item.children && !item.meta.hidden"
-    :prepend-icon="item.meta.icon"
-    :to="{ name: item.name }"
+    v-else-if="aItem && !aItem.meta?.hidden"
+    :to="{ name: aItem.name }"
     :active-color="activeColor"
     :height="height"
-    link
     variant="flat"
-    :title="item.meta.title"
-  />
+    link
+    :title="aItem.meta.title"
+  >
+    <template #prepend>
+      <v-icon :size="iconSize" :icon="aItem.meta.icon"></v-icon>
+    </template>
+  </v-list-item>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js'
 
 export default defineComponent({
@@ -48,10 +53,45 @@ export default defineComponent({
     }
   },
 
-  setup() {
+  setup(props) {
     const height = ref(45)
+    const iconSize = ref(25)
     const activeColor = ref('primary')
-    return { height, activeColor, mdiChevronUp, mdiChevronDown }
+    const getChildren = (val: any) => {
+      return (
+        val.children?.filter((item: any) => item?.meta?.hidden !== true) ?? []
+      )
+    }
+
+    const aItem = computed(() => {
+      const children = getChildren(props.item)
+      const item = children && children.length ? children[0] : props.item
+      return item
+    })
+    return {
+      aItem,
+      getChildren,
+      height,
+      iconSize,
+      activeColor,
+      mdiChevronUp,
+      mdiChevronDown
+    }
   }
 })
 </script>
+<style lang="scss">
+$list-item-title-font-size: 1rem;
+
+.v-list-item--nav .v-list-item-title {
+  font-size: $list-item-title-font-size;
+}
+.v-list-group {
+  --list-indent-size: 0px !important;
+  --prepend-width: 25px !important;
+}
+
+.v-list-item__prepend > .v-icon {
+  margin-inline-end: 20px;
+}
+</style>

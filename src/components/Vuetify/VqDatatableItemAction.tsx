@@ -1,14 +1,12 @@
 import { defineComponent, inject, PropType, ref, Ref, toRefs } from 'vue'
 import { ConfirmState, useConfirmStore } from '@/store/reactivity/confirm'
 
-import { useAsyncAxios } from '@/composables/axios'
+import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
-import { ApiResponse } from '@/utils/response'
+import { ApiResponse } from '@qnx/composables'
 
 import { updateItemValue, deleteItemValue } from '@/plugins/vqVuetify'
 import { mdiDelete } from '@mdi/js'
-
-import type { ApiDataResponse } from '@/utils/response'
 
 type ActionMethod = 'PUT' | 'DELETE'
 const VqDatatableItemAction = defineComponent({
@@ -44,7 +42,7 @@ const VqDatatableItemAction = defineComponent({
     }
   },
 
-  setup(props) {
+  setup(props, { attrs, slots }) {
     const tableId: Ref<string> = inject('tableListId', ref('form'))
     const confirmStore = useConfirmStore()
     const { icon } = toRefs(props)
@@ -55,7 +53,7 @@ const VqDatatableItemAction = defineComponent({
         method: props.method,
         id: props.itemId
       })
-        .then((res: ApiDataResponse<{ status: string }>) => {
+        .then((res: ApiResponse<{ status: string }>) => {
           const apiRes = new ApiResponse<{ status: string }>(res)
 
           confirmStore.close(false)
@@ -89,6 +87,7 @@ const VqDatatableItemAction = defineComponent({
                 <v-btn
                   variant="text"
                   {...props}
+                  {...attrs}
                   onClick={showConfirmAction}
                   color="primary"
                   icon={icon.value}

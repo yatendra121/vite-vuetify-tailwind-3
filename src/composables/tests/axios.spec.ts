@@ -1,4 +1,4 @@
-import { objectToFormData, objectToQueryString } from '../axios/formData'
+import { objectToFormData, objectToQueryString } from '@qnx/composables/axios'
 import { expect } from 'vitest'
 
 // describe('objectToFormData', () => {
@@ -25,7 +25,7 @@ describe('objectToQueryString', () => {
             age: 30,
             hobbies: ['reading', 'hiking']
         }
-        const queryString = objectToQueryString(obj)
+        const queryString = objectToQueryString(obj, '')
         expect(queryString).toEqual(
             'name=John%20Doe&age=30&hobbies%5B0%5D=reading&hobbies%5B1%5D=hiking'
         )

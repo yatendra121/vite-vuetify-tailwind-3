@@ -1,4 +1,4 @@
-import { ApiResponse } from '../response'
+import { ApiResponse } from '@qnx/composables'
 
 describe('ApiResponse', () => {
     let response: ApiResponse<unknown>

@@ -1,8 +1,10 @@
-export default {
+import type { ThemeDefinition } from 'vuetify'
+
+const themes: { light: ThemeDefinition; dark: ThemeDefinition } = {
     light: {
         dark: false,
         colors: {
-            background: '#FFFFFF',
+            background: '#F4F4F4',
             surface: '#FFFFFF',
             'surface-variant': '#424242',
             'on-surface-variant': '#EEEEEE',
@@ -68,3 +70,13 @@ export default {
         }
     }
 }
+
+export default themes
+// 'on-background': string;
+// 'on-surface': string;
+// 'on-primary': string;
+// 'on-secondary': string;
+// 'on-success': string;
+// 'on-warning': string;
+// 'on-error': string;
+// 'on-info': string;

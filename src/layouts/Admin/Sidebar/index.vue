@@ -1,5 +1,8 @@
 <template>
-  <v-navigation-drawer :rail="false" v-model="drawer" :elevation="1">
+  <v-navigation-drawer :rail="false" v-model="drawer" :elevation="5">
+    <!-- <template #image>
+      <v-img :src="sidebarImage"></v-img>
+    </template> -->
     <!-- v-model="drawer" -->
     <v-list nav dense>
       <sidebar-item v-for="route in router" :key="route.name" :item="route" />
@@ -12,6 +15,7 @@ import { defineComponent, computed } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
 import router from '@/router/admin'
 import SidebarItem from './SidebarItem.vue'
+import sidebarImage from '@/assets/images/sidebar.jpg'
 
 export default defineComponent({
   name: 'Sidebar',
@@ -28,6 +32,7 @@ export default defineComponent({
           store.updateSidebar(val)
         }
       }),
+      sidebarImage,
       router
     }
   }

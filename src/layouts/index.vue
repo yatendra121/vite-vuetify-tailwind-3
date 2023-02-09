@@ -9,8 +9,8 @@
   </v-main>
 </template>
 <script lang="ts">
+import { useProfileStore } from '@/store/reactivity/profile'
 import { defineComponent, computed } from 'vue'
-import { useStore } from 'vuex'
 import AppBar from './AppBar/AppBar.vue'
 import Footer from './Footer/Footer.vue'
 import NavigationDrawer from './Sidebar/NavigationDrawer.vue'
@@ -21,11 +21,11 @@ export default defineComponent({
     NavigationDrawer
   },
   setup() {
-    const store = useStore()
+    const profileStore = useProfileStore()
     //console.log(store.getters.authProfile);
     return {
       // access a getter in computed function
-      authProfile: computed(() => store.getters.authProfile)
+      authProfile: computed(() => profileStore.authProfile)
     }
   }
 })

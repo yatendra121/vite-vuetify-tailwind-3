@@ -8,10 +8,10 @@
 // )
 // );
 @use 'vuetify' with (
-  $color-pack: false,
+  $color-pack: true,
   $spacer: 4px,
   $body-font-family: (
-    Roboto,
+    DM Sans,
     sans-serif
   )
 );
@@ -38,6 +38,3 @@
 // .v-container {
 //   padding: $container-padding;
 // }
-.v-theme--light {
-  //   --v-theme-background: 238, 246, 249 !important;
-}

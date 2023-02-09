@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAxiosWithLoading } from '@/composables/axios/useAxiosWithLoading'
+import { useAxiosWithLoading } from '@/composables/axios'
 import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 

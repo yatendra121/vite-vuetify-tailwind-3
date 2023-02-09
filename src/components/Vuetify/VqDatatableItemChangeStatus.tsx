@@ -1,12 +1,11 @@
 import { defineComponent, inject, PropType, Ref, ref } from 'vue'
-import { useAsyncAxios } from '@/composables/axios'
+import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 
-import { ApiResponse } from '@/utils/response'
+import { ApiResponse } from '@qnx/composables'
 import { updateItemValue } from '@/plugins/vqVuetify'
 
 //types
-import type { ApiDataResponse } from '@/utils/response'
 type Value = 'active' | 'inactive'
 
 const VqDatatableItemChangeStatus = defineComponent({
@@ -47,9 +46,8 @@ const VqDatatableItemChangeStatus = defineComponent({
       useAsyncAxios(`${props.action}/${props.itemId}`, {
         method: props.method
       })
-        .then((res: ApiDataResponse<{ status: string }>) => {
+        .then((res: ApiResponse<{ status: string }>) => {
           const apiRes = new ApiResponse<{ status: string }>(res)
-
           useMessage.success(apiRes.getMessage() ?? '')
           updateItemValue(tableId.value, props.itemId, apiRes.getData())
         })

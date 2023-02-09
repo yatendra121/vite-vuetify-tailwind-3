@@ -1,8 +1,11 @@
-import { useAxios } from '@/composables/axios'
+import { useAxios } from '@qnx/composables/axios'
 import { syncRefLoading } from '../loading'
-import type { AxiosRequestConfig } from 'axios'
+import type { RawAxiosRequestConfig } from 'axios'
 
-export function useAxiosWithLoading<T>(url: string, args: AxiosRequestConfig) {
+export function useAxiosWithLoading<T>(
+    url: string,
+    args: RawAxiosRequestConfig
+) {
     const { response, loading, cancel } = useAxios<T>(url, args)
 
     syncRefLoading(loading)

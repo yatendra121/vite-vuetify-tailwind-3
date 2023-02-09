@@ -1,5 +1,5 @@
 @forward 'vuetify/settings' with (
-  $utilities: true,
-  $colors: true,
+  $utilities: false,
+  $colors: false,
   $button-height: 40px
 );

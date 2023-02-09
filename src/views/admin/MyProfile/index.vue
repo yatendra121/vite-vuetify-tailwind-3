@@ -21,11 +21,7 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, defineAsyncComponent } from 'vue'
-
-//composables
-import { useAxiosWithLoading } from '@/composables/axios/useAxiosWithLoading'
-
-//types
+import { useAxiosWithLoading } from '@/composables/axios'
 import type { User } from '@/types'
 
 const MyProfileForm = defineAsyncComponent(
@@ -38,8 +34,7 @@ const { response, cancelLoading } = useAxiosWithLoading<User>(
     method: 'GET'
   }
 )
+onBeforeUnmount(() => cancelLoading())
 
 const id = 'my_profile_form'
-
-onBeforeUnmount(() => cancelLoading())
 </script>

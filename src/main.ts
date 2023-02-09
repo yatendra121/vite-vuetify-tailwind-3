@@ -1,10 +1,9 @@
-import { createApp, provide, h } from 'vue'
+import { createApp, h } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/vuetify/webfontloader'
 import router from './router'
-import storeCore from './store/core'
 
 //using css import, vite take much time to HMR
 //import './assets/css/index.css'
@@ -37,7 +36,6 @@ const app = createApp({
     render: () => h(App)
 })
 
-app.use(storeCore)
 app.use(createPinia())
 app.use(vuetify)
 app.use(vqVuetify.vqVuetify)

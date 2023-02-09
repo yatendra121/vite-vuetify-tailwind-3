@@ -1,4 +1,4 @@
-import { ApiResponse } from '@/utils/response'
+import { ApiResponse } from '@qnx/composables'
 import { useMessage } from '../message'
 import router from '@/router'
 import type { InvalidSubmissionHandler } from 'vee-validate'

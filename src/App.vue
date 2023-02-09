@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { defineAsyncComponent, ref } from 'vue'
 import { AuthStatus } from '@/types/auth'
-import useAuthUserRepository from '@/composables/auth/useAuthUserRepository'
+import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 
-const { myProfile, finished } = useAuthUserRepository()
+const { myProfile } = useAuthProfileRepository()
 
 const authStatus = ref<AuthStatus>('pending')
-myProfile('my-profile')
+const finished = ref(false)
+myProfile()
   .then(() => {
     authStatus.value = 'authenticated'
   })
   .catch(() => (authStatus.value = 'unauthenticated'))
+  .finally(() => {
+    finished.value = true
+  })
 
 const EntryComponent = defineAsyncComponent(
   () => import('./views/admin/index.vue')

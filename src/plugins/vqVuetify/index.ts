@@ -6,9 +6,11 @@ import vqVuetify, {
     updateItemValue,
     deleteItemValue
 } from '@qnx/vuetify'
+import { setHandleUnauthenticated } from '@qnx/composables/axios'
 
 import VqVuetifyIntegrations from '@qnx/vuetify/integrations'
 import type { App } from 'vue'
+//import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 
 // import type {
 //     VqTextField,
@@ -36,6 +38,20 @@ import type { App } from 'vue'
     }
 }
 */
+// const test1 = async () => {
+//     const myPromise = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log('ffffffffffffffffffok  hhh  huh')
+//         }, 1000)
+//     })
+//     await myPromise
+// }
+
+// const test2 = () => {
+//     console.log('fczcxczc')
+// }
+//const { logout } = useAuthProfileRepository()
+//setHandleUnauthenticated(logout)
 export { updateItemKeyValue, updateItemValue, deleteItemValue }
 
 export default { vqVuetify, VqVuetifyIntegrations }

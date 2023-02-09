@@ -29,12 +29,12 @@ import {
   onMounted
 } from 'vue'
 import { useTitle } from '@vueuse/core'
-import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppStore } from '@/store/reactivity/app'
 import AdminApp from './adminApp.vue'
 import FallbackComponent from '@/components/Loading/FallbackComponent'
 import type { AuthStatus } from '@/types/auth'
+import { useProfileStore } from '@/store/reactivity/profile'
 export default defineComponent({
   components: {
     AdminApp,
@@ -78,22 +78,22 @@ export default defineComponent({
     if (authStatus.value === 'authenticated') redirectToAuth()
 
     // Navigation Guard
-    const store = useStore()
+    const profileStore = useProfileStore()
 
     const title = useTitle()
 
     router.beforeEach((to, from, next) => {
-      if (!props.authLoading) {
-        if (store.getters.authProfile && to.meta.isPublic) return
-        if (!store.getters.authProfile && !to.meta.isPublic) return
+      if (!profileStore.authProfile) {
+        if (profileStore.authProfile && to.meta.isPublic) return
+        if (!profileStore.authProfile && !to.meta.isPublic) return
       }
       next()
 
       // Browser Tab Title
-      setTimeout(() => {
-        // @ts-ignore
-        title.value = to.meta.title
-      }, 300)
+      // setTimeout(() => {
+      //   // @ts-ignore
+      //   title.value = to.meta.title
+      // }, 300)
     })
 
     // Close loader if exist

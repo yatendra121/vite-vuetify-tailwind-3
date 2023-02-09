@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { defineAsyncComponent } from 'vue'
 import { syncRefLoading } from '@/composables/loading'
-import { useAxios } from '@/composables/axios'
+import { useAxios } from '@qnx/composables/axios'
 import { useRoute } from 'vue-router'
 import { StaticPage } from '@/types'
 const StaticPageForm = defineAsyncComponent(

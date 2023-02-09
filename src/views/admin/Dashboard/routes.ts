@@ -2,7 +2,8 @@ import { RouteRecordRaw } from 'vue-router'
 import type { Meta } from '@/types/router'
 import { mdiViewDashboard } from '@mdi/js'
 
-const Dashboard = () => import(/* webpackChunkName: "dashboard" */ './')
+const Dashboard = () =>
+    import(/* webpackChunkName: "dashboard" */ './index.vue')
 
 export const DashboardRoutes: Array<RouteRecordRaw> = [
     {

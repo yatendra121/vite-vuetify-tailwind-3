@@ -19,17 +19,11 @@ const VqBackBtn = defineAsyncComponent(
         import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
 )
 
-const ReportsBarChart = defineAsyncComponent(
-    () =>
-        import(
-            /* webpackChunkName: "vq-chart" */ './Charts/ReportsBarChart.vue'
-        )
+const BarChart = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Charts/BarChart.vue')
 )
-const ReportsLineChart = defineAsyncComponent(
-    () =>
-        import(
-            /* webpackChunkName: "vq-chart" */ './Charts/ReportsLineChart.vue'
-        )
+const LineChart = defineAsyncComponent(
+    () => import(/* webpackChunkName: "vq-chart" */ './Charts/LineChart.vue')
 )
 
 const VqBtn = defineAsyncComponent(
@@ -47,8 +41,8 @@ const components: { [key: string]: any } = {
 }
 export default {
     install: (app: App) => {
-        app.component('ReportsLineChart', ReportsLineChart)
-        app.component('ReportsBarChart', ReportsBarChart)
+        app.component('ReportsLineChart', LineChart)
+        app.component('ReportsBarChart', BarChart)
 
         for (const key in components) {
             app.component(key, components[key])

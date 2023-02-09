@@ -82,10 +82,10 @@ export default defineComponent({
           </v-col>
           <v-col md="6" sm="6" xs="12">
             <vq-text-field
-              id="dob"
-              name="dob"
-              label="Date of Birth"
-              placeholder="Date of Birth"
+              id="address"
+              name="address"
+              label="Address"
+              placeholder="Address"
             />
           </v-col>
           <v-col md="6" sm="6" xs="12">

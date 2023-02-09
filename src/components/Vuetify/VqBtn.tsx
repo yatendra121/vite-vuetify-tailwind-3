@@ -21,6 +21,7 @@ export default defineComponent({
       default: () => 'primary'
     }
   },
+  inheritAttrs: false,
   setup(props, { attrs, slots }) {
     const { variant, color, icon } = toRefs(props)
     return () => (

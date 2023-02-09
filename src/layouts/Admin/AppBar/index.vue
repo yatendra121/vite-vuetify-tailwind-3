@@ -1,22 +1,30 @@
 <template>
   <v-app-bar
+    theme="dark"
     height="62"
     :border="true"
-    :elevation="1"
+    :elevation="10"
     :rounded="false"
     :collapse="false"
     flat
     floating
+    :color="theme === 'light' ? 'primary' : undefined"
     class="main-app-bar"
   >
     <v-app-bar-nav-icon @click="appStore.changeSidebar"></v-app-bar-nav-icon>
 
     <v-app-bar-title> Vue Application (Vue 3)</v-app-bar-title>
 
+    <!-- <template v-slot:image v-if="theme === 'light'">
+      <v-img
+        gradient="90deg, rgba(14,93,2,0.95) 0%, rgba(9,121,120,0.9) 32%, rgba(45,166,190,0.9) 70%, rgba(16,114,134,0.95) 100%"
+      ></v-img>
+    </template> -->
+
     <template #append>
-      <v-menu :persistent="!true">
+      <v-menu :persistent="!true" :theme="theme">
         <template #activator="{ props }">
-          <v-btn variant="flat" v-bind="props">
+          <v-btn variant="flat" color="primary" v-bind="props">
             <p class="tw-normal-case text-subtitle-1">
               {{ authProfile?.name }}
             </p>
@@ -46,7 +54,7 @@
             <v-divider />
 
             <v-list-item
-              @click="logOutUser"
+              @click="logoutUser"
               :prepend-icon="mdiLockOutline"
               title="Logout"
             >
@@ -116,11 +124,11 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
-import { useStore } from 'vuex'
+import { useProfileStore } from '@/store/reactivity/profile'
 import { useRouter } from 'vue-router'
 import defaultProfileImage from '@/assets/images/profile.png'
 import Notification from './Notification.vue'
-import useAuthUserRepository from '@/composables/auth/useAuthUserRepository'
+import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 import {
   mdiAccount,
   mdiLockOutline,
@@ -188,14 +196,19 @@ export default defineComponent({
   setup() {
     //State management
     const appStore = useAppStore()
-    const store = useStore()
-
-    //Auth Composable
-    const { logOutUser } = useAuthUserRepository()
+    const profileStore = useProfileStore()
 
     //Router
     const router = useRouter()
     const myProfileRoute = () => router.push({ name: 'my-profile' })
+
+    //Auth Composable
+    const logoutUser = () => {
+      const { logout } = useAuthProfileRepository()
+      logout().then(() => {
+        router.push('/')
+      })
+    }
 
     const notificationToggle = ref(false)
     const notificationHandler = (val: boolean) =>
@@ -216,9 +229,9 @@ export default defineComponent({
       mdiMessageReplyOutline,
       sidebar: computed(() => appStore.sidebarValue),
       theme: computed(() => appStore.themeValue),
-      authProfile: computed(() => store.getters.authProfile),
+      authProfile: computed(() => profileStore.authProfile),
       notificationToggle,
-      logOutUser,
+      logoutUser,
       myProfileRoute
     }
   }
@@ -229,4 +242,3 @@ export default defineComponent({
   align-items: center;
 }
 </style>
-mdi-message-reply-outline

@@ -24,13 +24,8 @@
             > -->
                 <reports-bar-chart
                   :height="200"
-                  :chart="{
-                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                    datasets: {
-                      label: 'Sales',
-                      data: [50, 20, 10, 22, 50, 10, 40]
-                    }
-                  }"
+                  :data="[50, 20, 10, 22, 50, 40]"
+                  :labels="[10, 312, 32, 23, 33, 33]"
                 />
                 <!-- </chart-holder-card> -->
               </v-card>
@@ -44,24 +39,18 @@
               color="red"
             > -->
                 <reports-line-chart
-                  :height="200"
-                  :chart="{
-                    labels: [
-                      'Apr',
-                      'May',
-                      'Jun',
-                      'Jul',
-                      'Aug',
-                      'Sep',
-                      'Oct',
-                      'Nov',
-                      'Dec'
-                    ],
-                    datasets: {
-                      label: 'Mobile apps',
-                      data: [50, 40, 300, 320, 500, 350, 200, 230, 500]
-                    }
-                  }"
+                  :labels="[
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                  ]"
+                  :data="[50, 40, 300, 320, 500, 350, 200, 230, 500]"
                 />
                 <!-- </chart-holder-card> -->
               </v-card>
