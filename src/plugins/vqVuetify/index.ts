@@ -1,12 +1,14 @@
 import { _axios } from '@/plugins/axios'
 
 import vqVuetify, {
-    setAxiosInstance,
     updateItemKeyValue,
     updateItemValue,
     deleteItemValue
 } from '@qnx/vuetify'
-import { setHandleUnauthenticated } from '@qnx/composables/axios'
+import {
+    setHandleUnauthenticated,
+    setAxiosInstance
+} from '@qnx/composables/axios'
 
 import VqVuetifyIntegrations from '@qnx/vuetify/integrations'
 import type { App } from 'vue'
