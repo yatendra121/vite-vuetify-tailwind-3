@@ -10,8 +10,9 @@ import {
     setAxiosInstance
 } from '@qnx/composables/axios'
 
-import VqVuetifyIntegrations from '@qnx/vuetify/integrations'
+import VqVuetifyIntegrations, { setConfig } from '@qnx/vuetify/integrations'
 import type { App } from 'vue'
+import { Portal } from '@/utils/portal'
 //import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 
 // import type {
@@ -59,6 +60,7 @@ export { updateItemKeyValue, updateItemValue, deleteItemValue }
 export default { vqVuetify, VqVuetifyIntegrations }
 
 setAxiosInstance(_axios)
+setConfig({ baseUrl: Portal.getInstance().getBaseUrl() })
 
 // declare module 'vue' {
 //     export interface GlobalComponents {
