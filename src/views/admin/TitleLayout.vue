@@ -19,7 +19,7 @@
         </v-row>
       </v-card>
       <v-progress-linear
-        height="2"
+        height="4"
         :active="loadingValue"
         :indeterminate="true"
         color="primary"
