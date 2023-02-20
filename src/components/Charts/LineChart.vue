@@ -33,7 +33,7 @@ ChartJS.register(
 type test = ChartProps<'line', ChartData>
 
 export default defineComponent({
-  name: 'linechart',
+  name: 'Linechart',
   components: { LineChart },
   props: {
     id: {

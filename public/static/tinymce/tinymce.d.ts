@@ -2372,6 +2372,7 @@ declare class URI {
         type: string | undefined;
         data: string;
     };
+
     static isDomSafe(uri: string, context?: string, options?: SafeUriOptions): boolean;
     static getDocumentBaseUrl(loc: {
         protocol: string;
@@ -2379,6 +2380,7 @@ declare class URI {
         href?: string;
         pathname?: string;
     }): string;
+
     source: string;
     protocol: string | undefined;
     authority: string | undefined;
@@ -2699,6 +2701,7 @@ declare class Editor implements EditorObservable {
         boolean,
         any
     ] | (() => void), scope?: any): void;
+
     execCommand(cmd: string, ui?: boolean, value?: any, args?: ExecCommandArgs): boolean;
     queryCommandState(cmd: string): boolean;
     queryCommandValue(cmd: string): string;
@@ -2715,6 +2718,7 @@ declare class Editor implements EditorObservable {
     getContent(args: {
         format: 'tree';
     } & Partial<GetContentArgs>): AstNode;
+
     getContent(args?: Partial<GetContentArgs>): string;
     insertContent(content: string, args?: any): void;
     resetContent(initialContent?: string): void;

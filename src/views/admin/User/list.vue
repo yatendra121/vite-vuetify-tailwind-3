@@ -42,8 +42,8 @@
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <vq-list action="user" :id="id">
-          <template #default="{ items }: { items: User[] }">
+        <VqList density="compact" action="user" :id="id" :page-size="10">
+          <template #default="{ items }">
             <v-table>
               <thead>
                 <tr>
@@ -101,7 +101,7 @@
               <vq-list-load-more-btn> </vq-list-load-more-btn>
             </v-sheet>
           </template>
-        </vq-list>
+        </VqList>
       </v-responsive>
     </v-card>
   </v-container>
@@ -110,7 +110,10 @@
 <script lang="ts" setup>
 import { mdiCircleEditOutline, mdiPlus, mdiAccountConvert } from '@mdi/js'
 import type { User } from '@/types'
+import { useVqList } from '@qnx/vuetify'
 const id = 'user_list'
+
+const VqList = useVqList<User>()
 
 defineExpose({
   mdiCircleEditOutline,

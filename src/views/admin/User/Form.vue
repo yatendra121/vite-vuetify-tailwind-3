@@ -12,8 +12,12 @@ import { validationSchema } from './formSchema'
 //types
 import type { PropType } from 'vue'
 import type { FormMethod, InitialValues } from '@/types'
+import { VqTextField } from '@qnx/vuetify'
 
 export default defineComponent({
+  components: {
+    VqTextField
+  },
   props: {
     id: {
       type: String,
@@ -69,7 +73,7 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col md="6" sm="6" xs="12">
-            <vq-text-field name="name" label="Name" placeholder="Name" />
+            <VqTextField name="name" label="Name" placeho lder="Name" />
           </v-col>
           <v-col md="6" sm="6" xs="12">
             <vq-text-field

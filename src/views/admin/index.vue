@@ -90,10 +90,10 @@ export default defineComponent({
       next()
 
       // Browser Tab Title
-      // setTimeout(() => {
-      //   // @ts-ignore
-      //   title.value = to.meta.title
-      // }, 300)
+      setTimeout(() => {
+        // @ts-ignore
+        title.value = to.meta.title
+      }, 300)
     })
 
     // Close loader if exist

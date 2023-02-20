@@ -45,7 +45,7 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
     (response: AxiosResponse) => {
         // Do something with response data
-        return response.data
+        return response
     },
     (error: AxiosError) => {
         // Do something with response error
