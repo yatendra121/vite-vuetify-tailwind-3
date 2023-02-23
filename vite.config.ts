@@ -45,10 +45,10 @@ export default defineConfig({
         }),
         AutoImport({
             imports: ['vue', 'pinia', 'vue-router']
-        }),
-        partytownVite({
-            dest: join(__dirname, 'admin', '~partytown')
         })
+        // partytownVite({
+        //     dest: join(__dirname, 'admin', '~partytown')
+        // })
 
         //  ...plugins
     ],
@@ -97,10 +97,10 @@ export default defineConfig({
     },
     optimizeDeps: {
         include: ['vue', 'vuetify']
-    },
-    //@ts-ignore
-    test: {
-        /* for example, use global to avoid globals imports (describe, test, expect): */
-        globals: true
     }
+    //@ts-ignore
+    // test: {
+    //     /* for example, use global to avoid globals imports (describe, test, expect): */
+    //     globals: true
+    // }
 })
