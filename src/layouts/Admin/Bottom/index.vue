@@ -1,18 +1,16 @@
 <template>
   <v-footer :elevation="2" :border="false" :rounded="10" :absolute="true" app>
     <v-responsive>
-      <v-card :elevation="0" class="text-center" color="">
+      <v-card :elevation="0" class="text-center">
         <v-container style="padding: 0px">
           <v-row no-gutters>
             <v-col>
-              <v-card-text class="text-white tw-text-start">
+              <v-card-text>
                 {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
               </v-card-text>
             </v-col>
             <v-col>
-              <v-card-text class="text-white tw-text-end">
-                All right reserved.
-              </v-card-text>
+              <v-card-text> All right reserved. </v-card-text>
             </v-col>
           </v-row>
         </v-container>

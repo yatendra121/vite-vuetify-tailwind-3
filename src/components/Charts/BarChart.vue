@@ -48,7 +48,8 @@ export default defineComponent({
       default: 'black'
     },
     labels: {
-      type: Array as PropType<unknown[]>
+      type: Array as PropType<unknown[]>,
+      default: () => undefined
     },
     data: {
       type: Array as PropType<(number | [number, number] | null)[]>,

@@ -7,6 +7,7 @@ import StaticPageRoutes from '@/views/admin/StaticPage/routes'
 import Fullscreen from '@/views/admin/Fullscreen/routes'
 import MyProfile from '@/views/admin/MyProfile/routes'
 import EventBus from '@/views/admin/EventBus/routes'
+import testing from '@/views/admin/testing/routes'
 import Socket from '@/views/admin/Socket/routes'
 import { UserRoutes } from '@/views/admin/User/routes'
 
@@ -19,6 +20,7 @@ const adminRoutes: Array<RouteRecordRaw> = [
     ...Fullscreen,
     ...MyProfile,
     ...EventBus,
+    ...testing,
     ...Socket,
     ...UserRoutes
 ]

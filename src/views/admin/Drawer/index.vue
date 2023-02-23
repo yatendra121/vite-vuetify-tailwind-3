@@ -7,7 +7,7 @@
           <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
           <v-row>
             <v-col md="4">
-              <v-card height="200" color="white" elevation="10">
+              <v-card height="200" elevation="10">
                 <canvas
                   id="chart-line"
                   class="chart-canvas"
@@ -16,7 +16,7 @@
               </v-card>
             </v-col>
             <v-col md="4">
-              <v-card height="200" color="primary">
+              <v-card height="200" color="secondary">
                 <!-- <chart-holder-card
               title="Website Views"
               subtitle="Last Campaign Performance"
@@ -31,28 +31,18 @@
               </v-card>
             </v-col>
             <v-col md="4">
-              <v-card height="200" color="warning">
-                <!-- <chart-holder-card
-              title="Daily Sales"
-              subtitle="(<span class='font-weight-bolder'>+15%</span>) increase in today sales."
-              update="updated 4 min ago"
-              color="red"
-            > -->
-                <reports-line-chart
-                  :labels="[
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                  ]"
-                  :data="[50, 40, 300, 320, 500, 350, 200, 230, 500]"
-                />
-                <!-- </chart-holder-card> -->
+              <v-card height="200">
+                <bubble-chart />
+              </v-card>
+            </v-col>
+            <v-col md="4">
+              <v-card height="300">
+                <pie-chart />
+              </v-card>
+            </v-col>
+            <v-col md="4">
+              <v-card height="200">
+                <line-chart />
               </v-card>
             </v-col>
           </v-row>

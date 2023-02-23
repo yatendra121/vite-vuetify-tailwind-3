@@ -17,23 +17,14 @@ class Message {
         return Message.instance
     }
 
-    /**
-     * Returns the id of the [[BaseTx]]
-     */
     success(message: string) {
-        this.messageStore.addMessage({ message, color: 'success' })
+        this.messageStore.addMessage({ message, color: 'secondary' })
     }
 
-    /**
-     * Returns the id of the [[BaseTx]]
-     */
     warning(message: string) {
         this.messageStore.addMessage({ message, color: 'warning' })
     }
 
-    /**
-     * Returns the id of the [[BaseTx]]
-     */
     error(message: string) {
         this.messageStore.addMessage({ message, color: 'error' })
     }

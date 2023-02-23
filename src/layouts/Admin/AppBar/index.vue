@@ -7,7 +7,7 @@
     :rounded="false"
     :collapse="false"
     flat
-    floating
+    floating="false"
     :color="theme === 'light' ? 'primary' : undefined"
     class="main-app-bar"
   >
@@ -22,47 +22,49 @@
     </template> -->
 
     <template #append>
-      <v-menu :persistent="!true" :theme="theme">
-        <template #activator="{ props }">
-          <v-btn variant="flat" color="primary" v-bind="props">
-            <p class="tw-normal-case text-subtitle-1">
-              {{ authProfile?.name }}
-            </p>
-            <v-icon size="24px" :icon="mdiChevronDown"> </v-icon>
-          </v-btn>
-        </template>
-        <v-card>
-          <v-list>
-            <v-list-item
-              class="tw-p-[20px]"
-              link
-              @click="myProfileRoute"
-              prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
-              :title="authProfile?.name"
-              :subtitle="authProfile?.role?.title"
-            >
-              <template #append>
-                <!-- <v-btn
+      <v-theme-provider :theme="theme">
+        <v-menu :persistent="!true">
+          <template #activator="{ props }">
+            <v-btn variant="flat" color="primary" v-bind="props">
+              <p class="text-subtitle-1">
+                {{ authProfile?.name }}
+              </p>
+              <v-icon size="24px" :icon="mdiChevronDown"> </v-icon>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-list>
+              <v-list-item
+                class="pe-2"
+                link
+                @click="myProfileRoute"
+                prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
+                :title="authProfile?.name"
+                :subtitle="authProfile?.role?.title"
+              >
+                <template #append>
+                  <!-- <v-btn
                   variant="text"
                   :class="fav ? 'text-red' : ''"
                   icon="mdi-heart"
                   @click="fav = !fav"
                 ></v-btn> -->
-              </template>
-            </v-list-item>
+                </template>
+              </v-list-item>
 
-            <v-divider />
+              <v-divider />
 
-            <v-list-item
-              @click="logoutUser"
-              :prepend-icon="mdiLockOutline"
-              title="Logout"
-            >
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-menu>
-      <!-- <v-menu :close-on-content-click="false" location="bottom">
+              <v-list-item
+                @click="logoutUser"
+                :prepend-icon="mdiLockOutline"
+                title="Logout"
+              >
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+
+        <!-- <v-menu :close-on-content-click="false" location="bottom">
         <template #activator="{ props }">
           <v-btn :icon="mdiCogOutline" v-bind="props"> </v-btn>
         </template>
@@ -83,37 +85,41 @@
           </v-list-item>
         </v-card>
       </v-menu> -->
-      <v-menu :close-on-content-click="false" location="bottom">
-        <template #activator="{ props }">
-          <v-btn :icon="mdiCogOutline" v-bind="props"> </v-btn>
-        </template>
+        <v-divider vertical class="pe-4"></v-divider>
 
-        <v-card class="mx-auto" max-width="450">
-          <v-toolbar color="cyan-lighten-1">
-            <v-btn variant="text" icon="mdi-menu"></v-btn>
+        <v-menu :close-on-content-click="false" location="bottom" class="pe-2">
+          <template #activator="{ props }">
+            <v-btn :icon="mdiCogOutline" v-bind="props"> </v-btn>
+          </template>
 
-            <v-toolbar-title>Inbox</v-toolbar-title>
+          <v-card class="mx-auto" max-width="450">
+            <v-toolbar color="cyan-lighten-1">
+              <v-btn variant="text" icon="mdi-menu"></v-btn>
 
-            <v-btn variant="text" icon="mdi-magnify"></v-btn>
-          </v-toolbar>
+              <v-toolbar-title>Inbox</v-toolbar-title>
 
-          <v-list :items="items" item-props lines="three">
-            <template #subtitle="{ subtitle }">
-              <div v-html="subtitle"></div>
-            </template>
-          </v-list>
-        </v-card>
-      </v-menu>
-      <v-btn
-        @click="notificationToggle = !notificationToggle"
-        :icon="mdiNotificationClearAll"
-      ></v-btn>
+              <v-btn variant="text" icon="mdi-magnify"></v-btn>
+            </v-toolbar>
 
-      <v-btn
-        :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
-        @click="appStore.changeTheme()"
-      ></v-btn>
-      <v-btn :icon="mdiFullscreen" @click="fullscreen"></v-btn>
+            <v-list :items="items" item-props lines="three">
+              <template #subtitle="{ subtitle }">
+                <div v-html="subtitle"></div>
+              </template>
+            </v-list>
+          </v-card>
+        </v-menu>
+
+        <v-btn
+          @click="notificationToggle = !notificationToggle"
+          :icon="mdiNotificationClearAll"
+        ></v-btn>
+
+        <v-btn
+          :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
+          @click="appStore.changeTheme()"
+        ></v-btn>
+        <!-- <v-btn :icon="mdiFullscreen" @click="fullscreen"></v-btn> -->
+      </v-theme-provider>
     </template>
   </v-app-bar>
   <Notification

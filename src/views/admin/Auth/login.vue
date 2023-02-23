@@ -2,34 +2,15 @@
   <AuthLayout>
     <v-row>
       <v-col lg="12" xl="12" cols="12">
-        <!-- <v-img
-          :src="`https://picsum.photos/500/300?image=${1 * 5 + 10}`"
-          :lazy-src="`https://picsum.photos/10/6?image=${1 * 5 + 10}`"
-          aspect-ratio="1"
-          cover
-          class="bg-grey-lighten-2"
-        >
-          <template #placeholder>
-            <v-row
-              class="fill-height ma-0 d-flex align-center"
-              justify="center"
-            >
-              <v-progress-circular
-                indeterminate
-                color="grey-lighten-5"
-              ></v-progress-circular>
-            </v-row>
-          </template>
-        </v-img> -->
-        <h2 class="font-weight-bold mt-4">Sign in</h2>
-        <h6 class="text-subtitle-1 text-grey-darken-1">
-          Don't have an account?
-          <v-btn variant="text" :to="{ path: 'test' }" color="primary">
-            Sign Up
-          </v-btn>
-        </h6>
         <v-container>
           <v-responsive>
+            <h2 class="font-weight-bold mt-4">Sign in</h2>
+            <h6 class="text-subtitle-1 text-grey-darken-1">
+              Don't have an account?
+              <v-btn variant="text" :to="{ path: 'test' }" color="primary">
+                Sign Up
+              </v-btn>
+            </h6>
             <vq-form
               id="loginForm"
               action="login"
@@ -66,37 +47,39 @@
             </vq-form>
           </v-responsive>
         </v-container>
-
-        <div class="d-flex justify-end">
-          <v-btn
-            variant="text"
-            :to="{ name: 'forgot-password' }"
-            color="primary"
-          >
-            Forgot Password?
-          </v-btn>
-        </div>
-
-        <div class="d-flex justify-center">
-          <v-btn
-            class="tw-m-6"
-            variant="outlined"
-            size="large"
-            icon
-            color="primary"
-          >
-            <v-icon>{{ mdiFacebook }}</v-icon>
-          </v-btn>
-          <v-btn
-            class="tw-m-6"
-            variant="outlined"
-            size="large"
-            icon
-            color="primary"
-          >
-            <v-icon>{{ mdiGooglePlus }}</v-icon>
-          </v-btn>
-        </div>
+        <v-col lg="12" xl="12" cols="12">
+          <div class="d-flex justify-end">
+            <v-btn
+              variant="text"
+              :to="{ name: 'forgot-password' }"
+              color="primary"
+            >
+              Forgot Password?
+            </v-btn>
+          </div>
+        </v-col>
+        <v-col align-self="center" lg="12" xl="12" cols="12">
+          <div class="d-flex justify-center">
+            <v-btn
+              variant="outlined"
+              class="ma-1"
+              size="large"
+              icon
+              color="primary"
+            >
+              <v-icon>{{ mdiFacebook }}</v-icon>
+            </v-btn>
+            <v-btn
+              variant="outlined"
+              class="ma-1"
+              size="large"
+              icon
+              color="primary"
+            >
+              <v-icon>{{ mdiGooglePlus }}</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
       </v-col>
     </v-row>
   </AuthLayout>

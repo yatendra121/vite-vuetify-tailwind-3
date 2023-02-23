@@ -13,14 +13,13 @@ export default function useFormRepository(routeName: string, options = {}) {
 }
 
 export const useFormSuccess = (response: ApiResponse<unknown>) => {
+    useMessage.success(response.getMessage() ?? '')
+
     if (window.history.length > 2) {
         router.back()
     } else {
         router.push({ name: 'dashboard' })
     }
-    setTimeout(() => {
-        useMessage.success(response.getMessage() ?? '')
-    }, 0)
 }
 
 export const useFormSuccessOnlyMessage = (response: ApiResponse<unknown>) => {

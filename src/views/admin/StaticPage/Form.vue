@@ -15,7 +15,7 @@
         </v-col>
 
         <v-col md="12" sm="12" xs="12">
-          <vq-text-editor :is-dark="sidebar" name="description" />
+          <vq-text-editor :is-dark="isDark" name="description" />
         </v-col>
       </v-row>
     </v-container>
@@ -55,7 +55,7 @@ export default defineComponent({
       route,
       useFormSuccess,
       useFormError,
-      sidebar: computed(() => appStore.theme === 'light')
+      isDark: computed(() => appStore.theme === 'dark')
     }
   }
 })

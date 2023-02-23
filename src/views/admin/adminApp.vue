@@ -71,8 +71,8 @@ export default defineComponent({
       else ParentView.value = 'DefaultView'
     }
     router.beforeResolve((to, from, next) => {
-      next()
       changeLayoutView(to.meta?.type)
+      next()
     })
 
     onMounted(() => {

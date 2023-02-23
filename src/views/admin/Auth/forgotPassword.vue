@@ -12,51 +12,50 @@
           @submited-success="useFormSuccess"
           @submited-error="useFormError"
         >
-          <v-responsive>
-            <v-row no-gutters>
-              <v-col cols="12">
-                <vq-text-field
-                  class="email"
-                  name="email"
-                  label="Email"
-                  placeholder="Email"
-                />
-              </v-col>
+          <v-container>
+            <v-responsive>
+              <v-row no-gutters>
+                <v-col cols="12">
+                  <vq-text-field
+                    class="email"
+                    name="email"
+                    label="Email"
+                    placeholder="Email"
+                  />
+                </v-col>
 
-              <v-col cols="12">
-                <v-btn
-                  width="100%"
-                  color="primary"
-                  :loading="loading"
-                  type="submit"
-                >
-                  Submit
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-responsive>
+                <v-col cols="12">
+                  <v-btn
+                    width="100%"
+                    color="primary"
+                    :loading="loading"
+                    type="submit"
+                  >
+                    Submit
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-responsive>
+          </v-container>
+          <div class="d-flex justify-end">
+            <v-btn
+              variant="text"
+              :to="{ name: 'forgot-password' }"
+              color="primary"
+            >
+              Login
+            </v-btn>
+          </div>
+
+          <div class="d-flex justify-center">
+            <v-btn variant="outlined" size="large" icon color="primary">
+              <v-icon>{{ mdiFacebook }}</v-icon>
+            </v-btn>
+            <v-btn variant="outlined" size="large" icon color="primary">
+              <v-icon>{{ mdiGooglePlus }}</v-icon>
+            </v-btn>
+          </div>
         </vq-form>
-
-        <div class="d-flex justify-center">
-          <v-btn
-            class="tw-m-6"
-            variant="outlined"
-            size="large"
-            icon
-            color="primary"
-          >
-            <v-icon>{{ mdiFacebook }}</v-icon>
-          </v-btn>
-          <v-btn
-            class="tw-m-6"
-            variant="outlined"
-            size="large"
-            icon
-            color="primary"
-          >
-            <v-icon>{{ mdiGooglePlus }}</v-icon>
-          </v-btn>
-        </div>
       </v-col>
     </v-row>
   </AuthLayout>

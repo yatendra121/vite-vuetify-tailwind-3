@@ -33,7 +33,7 @@
         class="d-flex align-center"
         :style="{ height: height + 60 + 'px', overflow: 'auto' }"
       >
-        <v-container class="spacing-playground tw-pl-10 tw-pr-10" fluid>
+        <v-container class="spacing-playground" fluid>
           <slot></slot>
         </v-container>
       </v-col>

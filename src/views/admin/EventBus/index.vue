@@ -1,5 +1,21 @@
 <script setup lang="ts">
 import * as yup from 'yup'
+import { useDateFormat, useTimestamp, useWebWorkerFn } from '@vueuse/core'
+import { ref } from 'vue'
+const test = ref<number[]>([])
+const heavyTask = () => {
+  const randomNumber = () => Math.trunc(Math.random() * 5_000_00)
+  const numbers: number[] = Array(5_000_000).fill(undefined).map(randomNumber)
+  numbers.sort()
+  // test.value = numbers
+  return numbers.slice(0, 5)
+}
+const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(heavyTask)
+
+const exceute = async () => {
+  const val = await workerFn()
+  test.value = val
+}
 
 const fields = {
   blocks: [
@@ -72,6 +88,9 @@ const useFormClientError = (data) => {
   <title-layout> </title-layout>
   <v-container fluid>
     <v-card>
+      {{ test }}
+      {{ workerStatus }}
+      <v-btn @click="exceute()">start</v-btn>
       <v-responsive>
         <vq-form
           id="userForm"
@@ -86,9 +105,8 @@ const useFormClientError = (data) => {
             <v-container>
               <v-row>
                 <v-col
-                  md="6"
-                  sm="6"
-                  xs="12"
+                  md="12"
+                  sm="12"
                   v-for="fieldObj in fields.blocks"
                   :key="fieldObj.token"
                 >

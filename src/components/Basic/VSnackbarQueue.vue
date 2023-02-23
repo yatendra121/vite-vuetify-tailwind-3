@@ -12,6 +12,7 @@
       location="center top"
       :multi-line="multiLine"
       :vertical="vertical"
+      :close-on-back="false"
       transition="scale-transition"
     >
       <template #default>

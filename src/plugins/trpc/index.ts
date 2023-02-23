@@ -14,6 +14,6 @@ const test = async () => {
     return Promise.all([client.post.list.query(), client.post.byId.query('1')])
 }
 
-setInterval(() => {
-    test().then((res) => console.log({ res: res[1]?.title }))
-}, 1000)
+// setInterval(() => {
+//     test().then((res) => console.log({ res: res[1]?.title }))
+// }, 1000)
