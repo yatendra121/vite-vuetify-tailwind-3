@@ -34,7 +34,7 @@ export default defineConfig({
     },
     plugins: [
         // ...plugins,
-        vetur(),
+        // vetur(),
         vue(),
         vueJsx(),
         //splitVendorChunkPlugin(),
@@ -42,10 +42,10 @@ export default defineConfig({
             autoImport: false
             //to use vuetify scss variables
             //  styles: { configFile: 'src/settings.scss' }
-        }),
-        AutoImport({
-            imports: ['vue', 'pinia', 'vue-router']
         })
+        // AutoImport({
+        //     imports: ['vue', 'pinia', 'vue-router']
+        // })
         // partytownVite({
         //     dest: join(__dirname, 'admin', '~partytown')
         // })
@@ -78,11 +78,21 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks: {
-                    'chart-js': ['chart.js']
+                    'chart-js': ['chart.js', 'vue-chartjs'],
+                    axios: ['axios']
+                    //vuetify: ['vuetify'],
+                    // 'vq-vuetify': ['@qnx/vuetify', 'vuetify'],
+                    // validate: [
+                    //     'yup',
+                    //     'vee-validate',
+                    //     'zod',
+                    //     '@vee-validate/zod'
+                    // ],
+                    //    pinia: ['pinia'],
+                    //  trpc: ['@trpc/server', '@trpc/client']
                     // graphql: ['graphql'],
                     // 'apollo-composable': ['@vue/apollo-composable'],
-                    // 'graphql-tag': ['graphql-tag'],
-                    // vuetify: ['vuetify']
+                    // 'graphql-tag': ['graphql-tag']
                     //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
                 }
             }
