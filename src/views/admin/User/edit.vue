@@ -15,7 +15,7 @@ const UserForm = defineAsyncComponent(
 )
 
 const route = useRoute()
-const valuesSchema = ref({ roleIds: 'roleUsers.*.role.id' })
+const valuesSchema = ref({ roleUsers: 'roleUsers.*.role.id' })
 
 const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
   `user/${route.params.id}`,

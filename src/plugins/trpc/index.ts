@@ -9,7 +9,6 @@ const client = createTRPCProxyClient<AppRouter>({
         })
     ]
 })
-
 const test = async () => {
     return Promise.all([client.post.list.query(), client.post.byId.query('1')])
 }

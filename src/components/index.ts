@@ -1,4 +1,7 @@
 import { defineAsyncComponent, DefineComponent } from 'vue'
+import TitleLayout from '@/views/admin/TitleLayout.vue'
+import TitleRow from '@/views/admin/TitleRow.vue'
+import TitleButton from '@/views/admin/TitleButton.vue'
 import type { App } from 'vue'
 
 const VqDatatableItemAction = defineAsyncComponent(
@@ -19,21 +22,6 @@ const VqBackBtn = defineAsyncComponent(
         import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
 )
 
-// const BarChart = defineAsyncComponent(
-//     () => import(/* webpackChunkName: "vq-chart" */ './Charts/BarChart.vue')
-// )
-// const LineChart = defineAsyncComponent(
-//     () => import(/* webpackChunkName: "vq-chart" */ './Charts/LineChart.vue')
-// )
-
-// const BubbleChart = defineAsyncComponent(
-//     () => import(/* webpackChunkName: "vq-chart" */ './Charts/Bubble.vue')
-// )
-
-// const PieChart = defineAsyncComponent(
-//     () => import(/* webpackChunkName: "vq-chart" */ './Charts/pie.vue')
-// )
-
 const VqBtn = defineAsyncComponent(
     () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/VqBtn')
 )
@@ -41,18 +29,20 @@ const VqBtn = defineAsyncComponent(
 const components: { [key: string]: any } = {
     VqDatatableItemAction,
     VqDatatableItemChangeStatus,
-    // VqForm,
-    // VqTableFilter,
-    // VqSubmitBtn,
     VqBackBtn,
     VqBtn
 }
+
+const titleComponents: { [key: string]: any } = {
+    TitleLayout,
+    TitleRow,
+    TitleButton
+}
 export default {
     install: (app: App) => {
-        // app.component('LineChart', LineChart)
-        // app.component('ReportsBarChart', BarChart)
-        // app.component('BubbleChart', BubbleChart)
-        // app.component('PieChart', PieChart)
+        for (const key in titleComponents) {
+            app.component(key, titleComponents[key])
+        }
 
         for (const key in components) {
             app.component(key, components[key])

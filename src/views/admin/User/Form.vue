@@ -121,7 +121,7 @@ export default defineComponent({
               item-title="title"
               item-value="id"
               action="role"
-              name="roleIds"
+              name="roleUsers"
               label="Role"
             />
           </v-col>

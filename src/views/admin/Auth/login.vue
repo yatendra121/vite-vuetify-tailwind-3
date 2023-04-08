@@ -22,7 +22,7 @@
               @submited-client-error="useFormClientError"
             >
               <template #default>
-                <v-row justify="center" no-gutters>
+                <v-row justify="center">
                   <v-col cols="12" class="d-flex align-center">
                     <vq-text-field
                       class="email"
