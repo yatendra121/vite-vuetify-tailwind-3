@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue'
 
 const CategoryForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "category" */ './Form.vue')
+  () => import(/* webpackChunkName: "category" */ './form.vue')
 )
 
 const id = 'category_form'
