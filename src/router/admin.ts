@@ -10,6 +10,8 @@ import EventBus from '@/views/admin/EventBus/routes'
 import testing from '@/views/admin/testing/routes'
 import Socket from '@/views/admin/Socket/routes'
 import { UserRoutes } from '@/views/admin/User/routes'
+import { CategoryRoutes } from '@/views/admin/Category/routes'
+import { ProductRoutes } from '@/views/admin/Product/routes'
 
 // Main routes
 const adminRoutes: Array<RouteRecordRaw> = [
@@ -22,7 +24,9 @@ const adminRoutes: Array<RouteRecordRaw> = [
     ...EventBus,
     ...testing,
     ...Socket,
-    ...UserRoutes
+    ...UserRoutes,
+    CategoryRoutes,
+    ProductRoutes
 ]
 
 export default adminRoutes
