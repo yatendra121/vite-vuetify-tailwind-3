@@ -1,4 +1,4 @@
-import { userSchema } from '@/validationSchema'
+import { userSchema } from '@/validationSchema/user'
 import * as yup from 'yup'
 
 const baseSchema = userSchema.pick(['name', 'mobileNo', 'gender'])

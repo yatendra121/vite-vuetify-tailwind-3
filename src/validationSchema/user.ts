@@ -1,5 +1,9 @@
 import * as yup from 'yup'
-import { name } from './core'
-export const categorySchema = yup.object({
-    name
+import { name, email, mobileNo, dob, gender } from './core'
+export const userSchema = yup.object({
+    name,
+    email,
+    mobileNo,
+    dob,
+    gender
 })

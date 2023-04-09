@@ -1,3 +1,3 @@
-import { categorySchema } from '@/validationSchema'
+import { categorySchema } from '@/validationSchema/category'
 
 export const validationSchema = categorySchema
