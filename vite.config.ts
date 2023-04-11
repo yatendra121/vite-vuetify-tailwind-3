@@ -75,28 +75,28 @@ export default defineConfig({
     build: {
         outDir: currentPortal.getOutputDir(),
         manifest: currentPortal.getAddPWA(),
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    'chart-js': ['chart.js', 'vue-chartjs'],
-                    axios: ['axios']
-                    //vuetify: ['vuetify'],
-                    // 'vq-vuetify': ['@qnx/vuetify', 'vuetify'],
-                    // validate: [
-                    //     'yup',
-                    //     'vee-validate',
-                    //     'zod',
-                    //     '@vee-validate/zod'
-                    // ],
-                    //    pinia: ['pinia'],
-                    //  trpc: ['@trpc/server', '@trpc/client']
-                    // graphql: ['graphql'],
-                    // 'apollo-composable': ['@vue/apollo-composable'],
-                    // 'graphql-tag': ['graphql-tag']
-                    //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
-                }
-            }
-        },
+        // rollupOptions: {
+        //     output: {
+        //         manualChunks: {
+        //             'chart-js': ['chart.js', 'vue-chartjs'],
+        //             axios: ['axios']
+        //             //vuetify: ['vuetify'],
+        //             // 'vq-vuetify': ['@qnx/vuetify', 'vuetify'],
+        //             // validate: [
+        //             //     'yup',
+        //             //     'vee-validate',
+        //             //     'zod',
+        //             //     '@vee-validate/zod'
+        //             // ],
+        //             //    pinia: ['pinia'],
+        //             //  trpc: ['@trpc/server', '@trpc/client']
+        //             // graphql: ['graphql'],
+        //             // 'apollo-composable': ['@vue/apollo-composable'],
+        //             // 'graphql-tag': ['graphql-tag']
+        //             //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
+        //         }
+        //     }
+        // },
         minify: 'terser',
         terserOptions: {
             compress: {
