@@ -22,9 +22,9 @@ const { resolve, join } = require('path')
 
 const currentPortal = Portal.getInstance()
 
-//let plugins: PluginOption[] = []
+let plugins: PluginOption[] = []
 //if (currentPortal.getCheckESlint()) plugins = [...plugins, eslintPlugin()]
-//if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
+if (currentPortal.getAddPWA()) plugins = [...plugins, VitePWA(pwaConfig)]
 // https://vitejs.dev/config/
 export default defineConfig({
     resolve: {
@@ -33,7 +33,7 @@ export default defineConfig({
         }
     },
     plugins: [
-        //...plugins,
+        ...plugins,
         vetur(),
         vue(),
         vueJsx(),
