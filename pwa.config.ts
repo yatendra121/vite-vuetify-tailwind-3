@@ -2,7 +2,7 @@ import { VitePWAOptions } from 'vite-plugin-pwa'
 
 const domainPrefix = ''
 
-const vitePwaOptions: Partial<VitePWAOptions> = {
+const vitePwaOptions: VitePWAOptions = {
     mode: 'development',
     base: '/',
     devOptions: {
@@ -21,6 +21,9 @@ const vitePwaOptions: Partial<VitePWAOptions> = {
         name: 'Vite Vuetify Tailwind 3',
         theme_color: 'white',
         short_name: 'Vuetify 3',
+        start_url:
+            'http://54.163.103.2/nx-vite/apps/vite-vuetify-tailwind-3/admin/dashboard',
+        scope: 'http://54.163.103.2/nx-vite/apps/vite-vuetify-tailwind-3/admin/',
         display: 'standalone',
         background_color: '#ffffff',
         lang: 'en',
@@ -51,6 +54,12 @@ const vitePwaOptions: Partial<VitePWAOptions> = {
                 type: 'image/png'
             }
         ]
-    }
+    },
+    injectRegister: null,
+    minify: false,
+    workbox: undefined,
+    injectManifest: undefined,
+    includeManifestIcons: false,
+    disable: false
 }
 export default vitePwaOptions
