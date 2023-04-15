@@ -96,6 +96,7 @@ export default defineComponent({
               label="Gender"
             />
           </v-col>
+
           <v-col md="12" sm="12" xs="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>

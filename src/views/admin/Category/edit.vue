@@ -4,7 +4,7 @@ import { defineAsyncComponent, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 
 //types
-import { Category } from '@/types/category'
+import { CategoryWithImage } from './types'
 
 //components
 const CategoryForm = defineAsyncComponent(
@@ -13,7 +13,7 @@ const CategoryForm = defineAsyncComponent(
 
 const route = useRoute()
 
-const { response, cancelLoading } = useAxiosWithLoading<Category>(
+const { response, cancelLoading } = useAxiosWithLoading<CategoryWithImage>(
   `category/${route.params.id}`,
   {
     method: 'GET'

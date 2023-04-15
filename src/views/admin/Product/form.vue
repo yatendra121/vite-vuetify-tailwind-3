@@ -12,7 +12,8 @@ import { VqTextField } from '@qnx/vuetify'
 
 //types
 import type { PropType } from 'vue'
-import type { FormMethod, InitialValues } from '@/types'
+import type { FormMethod } from '@/types'
+import type { ProductWithImage } from './types'
 
 export default defineComponent({
   components: {
@@ -32,7 +33,7 @@ export default defineComponent({
       default: () => 'POST'
     },
     initialValues: {
-      type: Object as PropType<InitialValues>,
+      type: Object as PropType<ProductWithImage>,
       default: () => undefined
     },
     valuesSchema: {
@@ -59,6 +60,7 @@ export default defineComponent({
     :validation-schema="validationSchema"
     :values-schema="valuesSchema"
     :initial-values="initialValues"
+    :form-data="true"
     @submited-success="useFormSuccess"
     @submited-error="useFormError"
     @submited-client-error="useFormClientError"
@@ -95,12 +97,52 @@ export default defineComponent({
               placeholder="Sale Price"
             />
           </v-col>
+
           <v-col md="12" sm="12" xs="12">
             <vq-textarea
               name="description"
               label="Description"
               placeholder="Description"
             />
+          </v-col>
+          <v-col md="12" sm="12" xs="12">
+            <VqFileInput
+              multiple
+              name="images"
+              label="Product Image"
+              placeholder="Product Image"
+            />
+          </v-col>
+          <v-col md="12" sm="12" xs="12">
+            <v-row>
+              <v-col
+                md="2"
+                sm="2"
+                xs="6"
+                v-for="image in initialValues?.images"
+                :key="image.id"
+              >
+                <v-img
+                  :src="image.path"
+                  :lazy-src="image.thumbPath"
+                  aspect-ratio="1"
+                  cover
+                  class="bg-grey-lighten-2"
+                >
+                  <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular
+                        indeterminate
+                        color="grey-lighten-5"
+                      ></v-progress-circular>
+                    </v-row>
+                  </template>
+                </v-img> </v-col
+            ></v-row>
           </v-col>
         </v-row>
       </v-container>

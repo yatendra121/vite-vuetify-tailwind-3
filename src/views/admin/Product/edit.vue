@@ -4,7 +4,7 @@ import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 //types
-import { Product } from '@/types/product'
+import { ProductWithImage } from './types'
 
 //components
 const ProductForm = defineAsyncComponent(
@@ -13,7 +13,7 @@ const ProductForm = defineAsyncComponent(
 
 const route = useRoute()
 
-const { response, cancelLoading } = useAxiosWithLoading<Product>(
+const { response, cancelLoading } = useAxiosWithLoading<ProductWithImage>(
   `product/${route.params.id}`,
   {
     method: 'GET'
