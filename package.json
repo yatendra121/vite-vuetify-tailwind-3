@@ -18,7 +18,7 @@
     "@apollo/client": "^3.7.11",
     "@builder.io/partytown": "^0.7.6",
     "@qnx/composables": "^0.0.23",
-    "@qnx/vuetify": "^0.5.80",
+    "@qnx/vuetify": "^0.5.82",
     "@tinymce/tinymce-vue": "5.1.0",
     "@trpc/client": "^10.19.1",
     "@vee-validate/yup": "^4.8.4",
