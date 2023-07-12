@@ -17,8 +17,7 @@ module.exports = {
       extends: [
         'plugin:vue/vue3-strongly-recommended',
         '@vue/eslint-config-typescript/recommended',
-        'plugin:vuetify/base',
-        '@vue/eslint-config-prettier'
+        'plugin:vuetify/base'
       ],
       rules: {
         'vue/no-unused-components': 'off',

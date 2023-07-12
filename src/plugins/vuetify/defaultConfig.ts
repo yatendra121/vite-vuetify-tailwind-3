@@ -30,6 +30,11 @@ const config: VuetifyOptions['defaults'] = {
         transition: 'scroll-y-reverse-transition',
         location: 'top'
     }
+    // VDataTableServer: {
+    //     itemsPerPage: 100,
+    //     loadingText: 'fsdfsdfdsffsfds',
+    //     noDataText: 'dssssssssssssssssssssss'
+    // }
 }
 
 export default config
