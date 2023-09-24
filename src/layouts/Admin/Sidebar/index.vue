@@ -1,12 +1,14 @@
 <template>
-  <v-navigation-drawer :rail="false" v-model="drawer" :elevation="5">
+  <v-navigation-drawer :rail="false" v-model="drawer" :elevation="5" class="ps">
     <!-- <template #image>
       <v-img :src="sidebarImage"></v-img>
     </template> -->
     <!-- v-model="drawer" -->
-    <v-list nav dense>
-      <sidebar-item v-for="route in router" :key="route.name" :item="route" />
-    </v-list>
+    <perfect-scrollbar class="scrollnavbar"
+      ><v-list nav dense>
+        <sidebar-item v-for="route in router" :key="route.name" :item="route" />
+      </v-list>
+    </perfect-scrollbar>
   </v-navigation-drawer>
 </template>
 <script lang="ts">
@@ -38,3 +40,8 @@ export default defineComponent({
   }
 })
 </script>
+<style>
+.scrollnavbar {
+  height: calc(100vh - 80px);
+}
+</style>

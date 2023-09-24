@@ -89,7 +89,7 @@ const VqDatatableItemAction = defineComponent({
                   {...props}
                   {...attrs}
                   onClick={showConfirmAction}
-                  color="primary"
+                  color="error"
                   icon={icon.value}
                 ></v-btn>
               </>

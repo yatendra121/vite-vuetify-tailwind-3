@@ -32,36 +32,40 @@
               <v-icon size="24px" :icon="mdiChevronDown"> </v-icon>
             </v-btn>
           </template>
-          <v-card>
-            <v-list>
+          <v-sheet rounded="md" width="200" elevation="10" class="mt-2">
+            <v-list class="py-0" lines="one">
               <v-list-item
-                class="pe-2"
+                class="p-2"
+                active-color="primary"
                 link
                 @click="myProfileRoute"
                 prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
                 :title="authProfile?.name"
                 :subtitle="authProfile?.role?.title"
               >
-                <template #append>
-                  <!-- <v-btn
-                  variant="text"
-                  :class="fav ? 'text-red' : ''"
-                  icon="mdi-heart"
-                  @click="fav = !fav"
-                ></v-btn> -->
-                </template>
               </v-list-item>
 
-              <v-divider />
-
-              <v-list-item
+              <!-- <v-list-item active-color="primary">
+                <template #prepend>
+                  <v-icon size="24px" :icon="mdiTableColumn"> </v-icon>
+                </template>
+                <v-list-item-title class="pl-4 text-body-1"
+                  >My Account</v-list-item-title
+                >
+              </v-list-item> -->
+            </v-list>
+            <v-divider />
+            <div class="pt-4 pb-4 px-5 text-center">
+              <v-btn
                 @click="logoutUser"
                 :prepend-icon="mdiLockOutline"
-                title="Logout"
+                color="primary"
+                variant="outlined"
+                block
+                >Logout</v-btn
               >
-              </v-list-item>
-            </v-list>
-          </v-card>
+            </div>
+          </v-sheet>
         </v-menu>
 
         <!-- <v-menu :close-on-content-click="false" location="bottom">
@@ -87,6 +91,16 @@
       </v-menu> -->
         <v-divider vertical class="pe-4"></v-divider>
 
+        <v-btn
+          :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
+          @click="appStore.changeTheme()"
+        ></v-btn>
+
+        <v-btn
+          @click="notificationToggle = !notificationToggle"
+          :icon="mdiNotificationClearAll"
+        ></v-btn>
+
         <v-menu :close-on-content-click="false" location="bottom" class="pe-2">
           <template #activator="{ props }">
             <v-btn :icon="mdiCogOutline" v-bind="props"> </v-btn>
@@ -109,15 +123,6 @@
           </v-card>
         </v-menu>
 
-        <v-btn
-          @click="notificationToggle = !notificationToggle"
-          :icon="mdiNotificationClearAll"
-        ></v-btn>
-
-        <v-btn
-          :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
-          @click="appStore.changeTheme()"
-        ></v-btn>
         <!-- <v-btn :icon="mdiFullscreen" @click="fullscreen"></v-btn> -->
       </v-theme-provider>
     </template>
@@ -144,7 +149,8 @@ import {
   mdiFullscreen,
   mdiCogOutline,
   mdiNotificationClearAll,
-  mdiMessageReplyOutline
+  mdiMessageReplyOutline,
+  mdiTableColumn
 } from '@mdi/js'
 
 export default defineComponent({
@@ -233,6 +239,7 @@ export default defineComponent({
       mdiCogOutline,
       mdiNotificationClearAll,
       mdiMessageReplyOutline,
+      mdiTableColumn,
       sidebar: computed(() => appStore.sidebarValue),
       theme: computed(() => appStore.themeValue),
       authProfile: computed(() => profileStore.authProfile),

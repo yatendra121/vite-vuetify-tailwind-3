@@ -1,11 +1,11 @@
 <template>
-  <Pie :data="data" />
+  <Pie :data="data" :options="options" />
 </template>
 
 <script setup lang="ts">
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 
-import { Pie } from 'vue-chartjs'
+import { Pie, ChartProps } from 'vue-chartjs'
 
 const data = {
   labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
@@ -16,6 +16,12 @@ const data = {
     }
   ]
 }
-
+const options = {
+  plugins: {
+    legend: {
+      position: 'right'
+    }
+  }
+}
 ChartJS.register(ArcElement, Tooltip, Legend)
 </script>

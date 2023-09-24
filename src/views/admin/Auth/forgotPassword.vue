@@ -5,6 +5,7 @@
         <h3 class="font-weight-bold mt-4">Forgot Password</h3>
       </v-col>
       <v-col lg="12" xl="12" cols="12">
+        <h2 class="font-weight-bold mt-4">Sign in</h2>
         <vq-form
           action="forgot-password"
           method="POST"
@@ -37,24 +38,36 @@
               </v-row>
             </v-responsive>
           </v-container>
-          <div class="d-flex justify-end">
-            <v-btn
-              variant="text"
-              :to="{ name: 'forgot-password' }"
-              color="primary"
-            >
-              Login
-            </v-btn>
-          </div>
+          <v-col lg="12" xl="12" cols="12">
+            <div class="d-flex justify-end">
+              <v-btn variant="text" :to="{ name: 'login' }" color="primary">
+                Login
+              </v-btn>
+            </div>
+          </v-col>
 
-          <div class="d-flex justify-center">
-            <v-btn variant="outlined" size="large" icon color="primary">
-              <v-icon>{{ mdiFacebook }}</v-icon>
-            </v-btn>
-            <v-btn variant="outlined" size="large" icon color="primary">
-              <v-icon>{{ mdiGooglePlus }}</v-icon>
-            </v-btn>
-          </div>
+          <v-col align-self="center" lg="12" xl="12" cols="12">
+            <div class="d-flex justify-center">
+              <v-btn
+                variant="outlined"
+                class="ma-1"
+                size="large"
+                icon
+                color="primary"
+              >
+                <v-icon>{{ mdiFacebook }}</v-icon>
+              </v-btn>
+              <v-btn
+                variant="outlined"
+                class="ma-1"
+                size="large"
+                icon
+                color="primary"
+              >
+                <v-icon>{{ mdiGooglePlus }}</v-icon>
+              </v-btn>
+            </div>
+          </v-col>
         </vq-form>
       </v-col>
     </v-row>

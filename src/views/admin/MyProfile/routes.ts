@@ -12,10 +12,11 @@ export default [
         meta: {
             title: 'My Profile',
             heading: 'My Profile',
-            isPublic: false,
+            isPublic: true,
             icon: mdiAccountCircle,
             type: 'admin',
-            permission: 'admin.drawer'
+            permission: 'admin.drawer',
+            hidden: true
         } as Meta
     }
 ] as Array<RouteRecordRaw>

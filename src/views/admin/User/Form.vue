@@ -99,7 +99,7 @@ export default defineComponent({
             />
           </v-col>
           <v-col md="4" sm="4" xs="12">
-            <vq-text-field
+            <vq-date-picker
               id="dob"
               name="dob"
               label="Date of Birth"

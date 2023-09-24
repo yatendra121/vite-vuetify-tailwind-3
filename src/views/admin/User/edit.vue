@@ -11,7 +11,7 @@ interface UserWithRole extends User {
 
 //components
 const UserForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
+  () => import(/* webpackChunkName: "user" */ './Form.vue')
 )
 
 const route = useRoute()

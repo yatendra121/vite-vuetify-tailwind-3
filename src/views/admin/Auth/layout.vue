@@ -30,28 +30,58 @@
         lg="5"
         xl="6"
         cols="12"
-        class="d-flex align-center"
+        class="align-center"
         :style="{ height: height + 60 + 'px', overflow: 'auto' }"
       >
         <v-container class="spacing-playground" fluid>
-          <slot></slot>
+          <v-row width="100%">
+            <v-col lg="12" xl="12" cols="12">
+              <v-container>
+                <v-responsive>
+                  <slot></slot> </v-responsive></v-container></v-col
+          ></v-row>
         </v-container>
+        <v-col lg="12" xl="12" cols="12">
+          <div class="d-flex justify-end">
+            <v-btn
+              variant="text"
+              :to="{ name: 'forgot-password' }"
+              color="primary"
+            >
+              Forgot Password?
+            </v-btn>
+          </div>
+        </v-col>
+        <v-col align-self="center" lg="12" xl="12" cols="12">
+          <div class="d-flex justify-center">
+            <v-btn
+              variant="outlined"
+              class="ma-1"
+              size="large"
+              icon
+              color="primary"
+            >
+              <v-icon>{{ mdiFacebook }}</v-icon>
+            </v-btn>
+            <v-btn
+              variant="outlined"
+              class="ma-1"
+              size="large"
+              icon
+              color="primary"
+            >
+              <v-icon>{{ mdiGooglePlus }}</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
       </v-col>
     </v-row>
   </v-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
 import { useWindowSize } from '@vueuse/core'
+import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
 
-export default defineComponent({
-  setup() {
-    const { height } = useWindowSize()
-
-    return {
-      height
-    }
-  }
-})
+const { height } = useWindowSize()
 </script>

@@ -2,7 +2,6 @@
   <v-row>
     <v-col md="12" sm="12">
       <v-card>
-        <h2>Sales overview</h2>
         <v-responsive>
           <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
           <v-row>
@@ -35,14 +34,15 @@
                 <BubbleChart />
               </v-card>
             </v-col>
-            <v-col md="4">
-              <v-card height="300">
-                <PieChart />
-              </v-card>
-            </v-col>
+
             <v-col md="4">
               <v-card height="200">
                 <LineChart />
+              </v-card>
+            </v-col>
+            <v-col md="4">
+              <v-card height="300">
+                <PieChart />
               </v-card>
             </v-col>
           </v-row>

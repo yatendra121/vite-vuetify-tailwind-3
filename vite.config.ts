@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
@@ -79,6 +81,7 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     'chart-js': ['chart.js', 'vue-chartjs'],
+                    'vue3-apexcharts': ['vue3-apexcharts'],
                     axios: ['axios']
                     //vuetify: ['vuetify'],
                     // 'vq-vuetify': ['@qnx/vuetify', 'vuetify'],

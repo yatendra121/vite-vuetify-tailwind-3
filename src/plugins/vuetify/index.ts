@@ -38,5 +38,5 @@ export default createVuetify({
     components,
     directives,
     defaults: defaultConfig,
-    theme: defaultThemeOptions
+    theme: themes
 })

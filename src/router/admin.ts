@@ -15,18 +15,18 @@ import { ProductRoutes } from '@/views/admin/Product/routes'
 
 // Main routes
 const adminRoutes: Array<RouteRecordRaw> = [
-    ...DrawerRoutes,
     ...DashboardRoutes,
+    ...UserRoutes,
     ...AdminRoutes,
+    CategoryRoutes,
+    ProductRoutes,
     ...StaticPageRoutes,
+    ...DrawerRoutes,
     ...Fullscreen,
     ...MyProfile,
     ...EventBus,
     ...testing,
-    ...Socket,
-    ...UserRoutes,
-    CategoryRoutes,
-    ProductRoutes
+    ...Socket
 ]
 
 export default adminRoutes
