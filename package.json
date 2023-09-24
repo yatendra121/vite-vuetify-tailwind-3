@@ -24,6 +24,7 @@
     "@vee-validate/yup": "^4.11.6",
     "@vee-validate/zod": "^4.11.6",
     "@vue/apollo-composable": "4.0.0-beta.4",
+    "apexcharts":"latest",
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
     "core-js": "^3.32.2",
