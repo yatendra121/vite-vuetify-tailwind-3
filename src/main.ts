@@ -6,7 +6,7 @@ import App from './App.vue'
 //import './assets/css/index.css'
 
 import { registerPlugins } from './plugins'
-import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
+import '@/styles/index.scss'
 
 import router from '@/router'
 import components from '@/components'

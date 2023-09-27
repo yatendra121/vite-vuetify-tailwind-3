@@ -7,7 +7,7 @@
     :rounded="false"
     :collapse="false"
     flat
-    floating="false"
+    :floating="false"
     :color="theme === 'light' ? 'primary' : undefined"
     class="main-app-bar"
   >

@@ -1,11 +1,11 @@
 <template>
   <v-layout>
-    <v-row no-gutters :style="{ height: height + 'px', overflow: 'hidden' }">
+    <v-row no-gutters class="h-screen">
       <v-col
         lg="7"
         xl="6"
         cols="12"
-        class="bg-primary d-none d-md-flex align-center justify-center"
+        class="bg-primary d-flex align-center justify-center"
       >
         <v-container>
           <v-row justify="center">
@@ -26,32 +26,10 @@
           </v-row>
         </v-container>
       </v-col>
-      <v-col
-        lg="5"
-        xl="6"
-        cols="12"
-        class="align-center"
-        :style="{ height: height + 60 + 'px', overflow: 'auto' }"
-      >
+      <v-col lg="5" xl="6" cols="12" class="align-center">
         <v-container class="spacing-playground" fluid>
-          <v-row width="100%">
-            <v-col lg="12" xl="12" cols="12">
-              <v-container>
-                <v-responsive>
-                  <slot></slot> </v-responsive></v-container></v-col
-          ></v-row>
+          <slot></slot>
         </v-container>
-        <v-col lg="12" xl="12" cols="12">
-          <div class="d-flex justify-end">
-            <v-btn
-              variant="text"
-              :to="{ name: 'forgot-password' }"
-              color="primary"
-            >
-              Forgot Password?
-            </v-btn>
-          </div>
-        </v-col>
         <v-col align-self="center" lg="12" xl="12" cols="12">
           <div class="d-flex justify-center">
             <v-btn
@@ -80,8 +58,5 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowSize } from '@vueuse/core'
 import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
-
-const { height } = useWindowSize()
 </script>

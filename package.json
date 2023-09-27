@@ -17,8 +17,8 @@
   "dependencies": {
     "@apollo/client": "^3.8.3",
     "@builder.io/partytown": "^0.7.6",
-    "@qnx/composables": "*",
-    "@qnx/vuetify": "*",
+    "@qnx/composables": "workspace:^",
+    "@qnx/vuetify": "workspace:^",
     "@tinymce/tinymce-vue": "5.1.0",
     "@trpc/client": "^10.38.3",
     "@vee-validate/yup": "^4.11.6",
@@ -93,7 +93,7 @@
     "vitest": "^0.29.8",
     "vue-loader": "^17.2.2",
     "vue-tsc": "^1.8.11",
-    "vuetify": "3.3.8",
+    "vuetify": "3.3.17",
     "webfontloader": "^1.6.28"
   }
 }

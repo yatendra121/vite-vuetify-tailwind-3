@@ -21,6 +21,7 @@ const vetur = require('@volar-plugins/vetur')
 const { resolve, join } = require('path')
 //const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
 //const srcPath = resolve(__dirname, 'src', 'sass', 'vuetify.scss')
+//const srcPath = resolve(__dirname, 'src', 'settings.scss')
 
 const currentPortal = Portal.getInstance()
 
@@ -57,7 +58,7 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             //  sass: { additionalData: `${srcPath}\n` },
-            //  scss: { additionalData: ` ${srcPath}\n` }
+            // scss: { additionalData: ` ${srcPath}\n` }
         },
         postcss: {
             plugins: [

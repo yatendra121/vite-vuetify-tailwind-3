@@ -45,29 +45,6 @@
               </v-btn>
             </div>
           </v-col>
-
-          <v-col align-self="center" lg="12" xl="12" cols="12">
-            <div class="d-flex justify-center">
-              <v-btn
-                variant="outlined"
-                class="ma-1"
-                size="large"
-                icon
-                color="primary"
-              >
-                <v-icon>{{ mdiFacebook }}</v-icon>
-              </v-btn>
-              <v-btn
-                variant="outlined"
-                class="ma-1"
-                size="large"
-                icon
-                color="primary"
-              >
-                <v-icon>{{ mdiGooglePlus }}</v-icon>
-              </v-btn>
-            </div>
-          </v-col>
         </vq-form>
       </v-col>
     </v-row>

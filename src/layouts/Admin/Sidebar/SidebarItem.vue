@@ -9,7 +9,7 @@
         v-bind="props"
         :title="item.meta.title"
         :height="height"
-        :active-color="activeColor"
+        :color="color"
         link
       >
         <template #prepend>
@@ -22,14 +22,14 @@
       :key="sidebarItem.name"
       :item="sidebarItem"
       :height="height"
-      :active-color="activeColor"
+      :color="color"
     />
   </v-list-group>
 
   <v-list-item
     v-else-if="aItem && !aItem.meta?.hidden"
     :to="{ name: aItem.name }"
-    :active-color="activeColor"
+    :color="color"
     :height="height"
     variant="flat"
     link
@@ -56,7 +56,7 @@ export default defineComponent({
   setup(props) {
     const height = ref(45)
     const iconSize = ref(25)
-    const activeColor = ref('primary')
+    const color = ref('primary')
     const getChildren = (val: any) => {
       return (
         val.children?.filter((item: any) => item?.meta?.hidden !== true) ?? []
@@ -73,7 +73,7 @@ export default defineComponent({
       getChildren,
       height,
       iconSize,
-      activeColor,
+      color,
       mdiChevronUp,
       mdiChevronDown
     }

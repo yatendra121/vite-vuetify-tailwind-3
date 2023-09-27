@@ -43,27 +43,6 @@
             </v-row>
           </v-responsive>
         </vq-form>
-
-        <div class="d-flex justify-center">
-          <v-btn
-            class="tw-m-6"
-            variant="outlined"
-            size="large"
-            icon
-            color="primary"
-          >
-            <v-icon>{{ mdiFacebook }}</v-icon>
-          </v-btn>
-          <v-btn
-            class="tw-m-6"
-            variant="outlined"
-            size="large"
-            icon
-            color="primary"
-          >
-            <v-icon>{{ mdiGooglePlus }}</v-icon>
-          </v-btn>
-        </div>
       </v-col>
     </v-row>
   </AuthLayout>

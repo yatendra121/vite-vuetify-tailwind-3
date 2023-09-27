@@ -3,7 +3,7 @@ import socket from '@/plugins/socket'
 /**
  * Socket Reposotory
  */
-export default function useSocketRepository() {
+export function useSocketRepository() {
     /**
      * Create socket listener
      */
@@ -21,6 +21,7 @@ export default function useSocketRepository() {
      * Emit data on socket event
      */
     const useEmitSocket = (eventName: string, data: any) => {
+        console.log({ eventName, data })
         socket.emit(eventName, data)
     }
 
@@ -35,7 +36,7 @@ export default function useSocketRepository() {
      * default socket off event
      */
     const defaultSocketOffEvent = () => {
-        console.log('Not assigned any socket off event')
+        console.error('Not assigned any socket off event')
     }
 
     return {
