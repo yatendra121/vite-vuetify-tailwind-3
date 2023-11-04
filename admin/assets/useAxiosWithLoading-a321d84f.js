@@ -1,0 +1,1 @@
+import{s as n}from"./index-4378573a.js";import{x as e}from"./index-74d9ea19.js";function o(o,s){const{response:r,loading:a,cancel:i}=e(o,s);n(a);return{response:r,cancelLoading:()=>{a.value&&i()}}}export{o as u};

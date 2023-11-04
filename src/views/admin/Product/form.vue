@@ -145,6 +145,9 @@ export default defineComponent({
               </v-col>
             </v-row>
           </v-col>
+          <v-col md="12" sm="12" xs="12">
+            <vq-submit-btn type="submit"></vq-submit-btn>
+          </v-col>
         </v-row>
       </v-container>
     </template>

@@ -1,16 +1,15 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiFileMultiple } from '@mdi/js'
-const Parent = () =>
-    import(
-        /* webpackChunkName: "parent-route-view" */ '@/views/ParentRouteView.vue'
-    )
+
+import ParentRouteView from '@/views/ParentRouteView.vue'
+
 const Edit = () => import(/* webpackChunkName: "static-page" */ './Edit.vue')
 
-const routes: Array<RouteRecordRaw> = [
+export const StaticPageRoutes: Array<RouteRecordRaw> = [
     {
         path: '/static-page',
-        component: Parent,
+        component: ParentRouteView,
         meta: {
             title: 'Static Pages',
             heading: 'Static Pages',
@@ -61,5 +60,3 @@ const routes: Array<RouteRecordRaw> = [
         ]
     }
 ]
-
-export default routes

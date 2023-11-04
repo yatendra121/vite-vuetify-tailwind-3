@@ -20,7 +20,7 @@ export const AdminRoutes: Array<RouteRecordRaw> = [
         } as Meta,
         children: [
             {
-                path: 'list',
+                path: '',
                 name: 'admin.list',
                 component: List,
                 meta: {

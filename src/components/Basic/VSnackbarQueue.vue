@@ -64,7 +64,7 @@ export default defineComponent({
     },
     absolute: {
       type: Boolean,
-      default: true
+      default: false
     },
     autoHeight: {
       type: Boolean,

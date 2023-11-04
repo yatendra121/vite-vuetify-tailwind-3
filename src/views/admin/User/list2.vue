@@ -12,7 +12,12 @@
                 hide-details
                 label="Gender"
                 name="gender"
-                :items="['male', 'female']"
+                item-title="title"
+                item-value="value"
+                :items="[
+                  { title: 'Male', value: 'male' },
+                  { title: 'Female', value: 'female' }
+                ]"
               ></vq-autocomplete>
             </v-col>
             <v-col lg="3" md="3" sm="3" xs="12">
@@ -43,26 +48,27 @@
     <v-card>
       <v-responsive>
         <VqDataTable :headers="headers" :id="id" action="user">
-          <template #item="{ item }">
+          <template #item="{ item, index }">
             <tr>
-              <td>{{ item.columns.id }}</td>
-              <td>{{ item.columns.name }}</td>
-              <td>{{ item.columns.email }}</td>
-              <td>{{ item.columns.address }}</td>
+              <VqSerialNo :index="index" />
+              <td>{{ item.name }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ toCapitalize(item.gender ?? '') }}</td>
+              <td>{{ toDateTime(item.createdAt) }}</td>
               <td>
                 <vq-datatable-item-change-status
                   action="user/change-status"
-                  :item-id="item.columns.id"
-                  :item-value="item.columns.status"
+                  :item-id="item.id"
+                  :item-value="item.status"
                 ></vq-datatable-item-change-status>
               </td>
               <td>
                 <vq-btn
-                  :to="{ name: 'user.edit', params: { id: item.columns.id } }"
+                  :to="{ name: 'user.edit', params: { id: item.id } }"
                 ></vq-btn>
                 <vq-datatable-item-action
                   action="user"
-                  :item-id="item.columns.id"
+                  :item-id="item.id"
                 ></vq-datatable-item-action>
               </td>
             </tr>
@@ -74,29 +80,25 @@
 </template>
 
 <script lang="ts" setup>
-import { mdiCircleEditOutline, mdiPlus, mdiAccountConvert } from '@mdi/js'
+import { mdiPlus } from '@mdi/js'
+import { useVqDataTable, VqSerialNo, collectVqHeaders } from '@qnx/vuetify'
+import { useDateRepository } from '@/composables/date'
+import { useStringRepository } from '@/composables/string'
+
+//types
 import type { User } from '@/types'
-import { useVqDataTable } from '@qnx/vuetify'
+
 const id = 'user_data_table'
-
 const VqDataTable = useVqDataTable<User>()
-
-const headers = [
-  {
-    title: 'Id',
-    sortable: false,
-    key: 'id'
-  },
+const headers = collectVqHeaders([
   { title: 'Name', key: 'name' },
   { title: 'Email', key: 'email' },
-  { title: 'Address', key: 'address' },
+  { title: 'Gender', key: 'gender' },
+  { title: 'Created At', key: 'createdAt' },
   { title: 'Status', sortable: false, key: 'status' },
   { title: 'Action', sortable: false, key: 'action' }
-]
+])
 
-defineExpose({
-  mdiCircleEditOutline,
-  mdiPlus,
-  mdiAccountConvert
-})
+const { toDateTime } = useDateRepository()
+const { toCapitalize } = useStringRepository()
 </script>

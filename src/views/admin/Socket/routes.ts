@@ -3,7 +3,7 @@ import { Meta } from '@/types/router'
 import { mdiSafeSquare } from '@mdi/js'
 const Socket = () => import(/* webpackChunkName: "fullscreen" */ './index.vue')
 
-export default [
+export const SocketRoutes: Array<RouteRecordRaw> = [
     {
         path: '/socket',
         name: 'socket',
@@ -17,4 +17,4 @@ export default [
             permission: 'admin.drawer'
         } as Meta
     }
-] as Array<RouteRecordRaw>
+]

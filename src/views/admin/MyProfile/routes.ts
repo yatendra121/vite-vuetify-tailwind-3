@@ -4,7 +4,7 @@ import { mdiAccountCircle } from '@mdi/js'
 const Fullscreen = () =>
     import(/* webpackChunkName: "myprofile" */ './index.vue')
 
-export default [
+export const MyProfileRoutes: Array<RouteRecordRaw> = [
     {
         path: '/my-profile',
         name: 'my-profile',
@@ -19,4 +19,4 @@ export default [
             hidden: true
         } as Meta
     }
-] as Array<RouteRecordRaw>
+]

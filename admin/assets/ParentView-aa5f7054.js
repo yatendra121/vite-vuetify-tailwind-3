@@ -1,0 +1,1 @@
+import{b as a}from"./index-74d9ea19.js";import{q as s,x as t,y as o,a3 as r,H as l,a5 as n}from"./chart-js-62aaaa54.js";import"./axios-5d9d9809.js";const e=a({},[["render",function(a,e){const u=s("v-layout"),f=s("v-main");return t(),o(f,null,{default:r((()=>[l(u,null,{default:r((()=>[n(a.$slots,"default")])),_:3})])),_:3})}]]);export{e as default};

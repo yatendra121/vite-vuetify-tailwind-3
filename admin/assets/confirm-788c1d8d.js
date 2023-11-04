@@ -1,0 +1,1 @@
+import{E as i}from"./index-74d9ea19.js";const s=i({id:"confirm",state:()=>({show:!1,title:"Confirmation",description:"Are you sure?",callback:()=>{}}),actions:{setConfirmValues(i){this.title=i.title,this.description=i.description,this.callback=i.callback},showDialoag(){this.show=!0},close(i){this.show=!1}}});export{s as u};

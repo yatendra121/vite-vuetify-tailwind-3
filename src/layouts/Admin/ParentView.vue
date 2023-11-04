@@ -6,6 +6,7 @@
         <!-- <v-scroll-x-transition mode="out-in"> -->
         <slot />
         <!-- </v-scroll-x-transition> -->
+        <BottomNavigation />
       </v-container>
     </v-responsive>
   </v-main>
@@ -16,6 +17,7 @@
 import { defineComponent, ref } from 'vue'
 import AppBar from './AppBar/index.vue'
 import BottomBar from './Bottom/index.vue'
+import BottomNavigation from './Bottom/BottomNavigation.vue'
 import Sidebar from './Sidebar/index.vue'
 import Notification from './AppBar/Notification.vue'
 
@@ -25,7 +27,8 @@ export default defineComponent({
     AppBar,
     BottomBar,
     Sidebar,
-    Notification
+    Notification,
+    BottomNavigation
   },
   setup() {
     const el = ref<HTMLElement | null>(null)

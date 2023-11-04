@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { VqTextField } from '@qnx/vuetify'
 
 //composables
 import {
@@ -12,7 +13,6 @@ import { validationSchema } from './formSchema'
 //types
 import type { PropType } from 'vue'
 import type { FormMethod, InitialValues } from '@/types'
-import { VqTextField } from '@qnx/vuetify'
 
 export default defineComponent({
   components: {
@@ -91,27 +91,29 @@ export default defineComponent({
               placeholder="Mobile"
             />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <!-- <v-col md="4" sm="4" xs="12">
             <vq-checkbox
               name="membership"
               label="Membership"
               placeholder="Membership"
             />
-          </v-col>
-          <v-col md="4" sm="4" xs="12">
+          </v-col> -->
+          <!-- <v-col md="4" sm="4" xs="12">
             <vq-date-picker
               id="dob"
               name="dob"
               label="Date of Birth"
               placeholder="Date of Birth"
             />
-          </v-col>
+          </v-col> -->
           <v-col md="4" sm="4" xs="12">
             <vq-autocomplete
               id="gender"
               :items="items"
               name="gender"
               label="Gender"
+              item-title="title"
+              item-value="value"
             />
           </v-col>
           <v-col md="4" sm="4" xs="12">
@@ -128,6 +130,10 @@ export default defineComponent({
           <v-col md="12" sm="12" xs="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
+          <v-col md="12" sm="12" xs="12">
+            <vq-submit-btn type="submit"></vq-submit-btn>
+          </v-col>
+
           <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
             <vq-textarea
               :name="`address[${i - 1}].test`"

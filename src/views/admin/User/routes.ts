@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
-import { mdiAccount } from '@mdi/js'
+import { mdiAccountGroup } from '@mdi/js'
 import ParentRouteView from '../../ParentRouteView.vue'
 const List = () => import(/* webpackChunkName: "user" */ './list.vue')
 const List2 = () => import(/* webpackChunkName: "user" */ './list2.vue')
@@ -15,33 +15,33 @@ export const UserRoutes: Array<RouteRecordRaw> = [
             title: 'User',
             heading: 'User',
             isPublic: false,
-            icon: mdiAccount,
+            icon: mdiAccountGroup,
             type: 'admin',
             permission: 'admin.user'
         } as Meta,
         children: [
+            // {
+            //     path: 'list',
+            //     name: 'user.table-list',
+            //     component: List,
+            //     meta: {
+            //         title: 'User List',
+            //         heading: 'User List',
+            //         isPublic: false,
+            //         icon: mdiAccount,
+            //         type: 'admin',
+            //         permission: 'admin.user'
+            //     } as Meta
+            // },
             {
-                path: 'list',
+                path: '',
                 name: 'user.list',
-                component: List,
+                component: List2,
                 meta: {
                     title: 'User',
                     heading: 'User',
                     isPublic: false,
-                    icon: mdiAccount,
-                    type: 'admin',
-                    permission: 'admin.user'
-                } as Meta
-            },
-            {
-                path: 'datatable',
-                name: 'user.list-datatable',
-                component: List2,
-                meta: {
-                    title: 'User Datatable',
-                    heading: 'User Datatable',
-                    isPublic: false,
-                    icon: mdiAccount,
+                    icon: mdiAccountGroup,
                     type: 'admin',
                     permission: 'admin.user'
                 } as Meta
@@ -54,7 +54,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
                     title: 'User',
                     heading: 'User',
                     isPublic: false,
-                    icon: mdiAccount,
+                    icon: mdiAccountGroup,
                     type: 'admin',
                     hidden: true,
                     permission: 'admin.user'
@@ -68,7 +68,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
                     title: 'Edit User',
                     heading: 'Edit User',
                     isPublic: false,
-                    icon: mdiAccount,
+                    icon: mdiAccountGroup,
                     type: 'admin',
                     hidden: true,
                     permission: 'admin.user'

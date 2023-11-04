@@ -92,6 +92,6 @@ $list-item-title-font-size: 1rem;
 }
 
 .v-list-item__prepend > .v-icon {
-  margin-inline-end: 20px;
+  margin-inline-end: 10px;
 }
 </style>

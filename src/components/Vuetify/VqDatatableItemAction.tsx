@@ -3,7 +3,7 @@ import { ConfirmState, useConfirmStore } from '@/store/reactivity/confirm'
 
 import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
-import { ApiResponse } from '@qnx/composables'
+import { ApiSuccessResponse, ApiSuccessResponseValue } from '@qnx/composables'
 
 import { updateItemValue, deleteItemValue } from '@/plugins/vqVuetify'
 import { mdiDelete } from '@mdi/js'
@@ -53,16 +53,16 @@ const VqDatatableItemAction = defineComponent({
         method: props.method,
         id: props.itemId
       })
-        .then((res: ApiResponse<{ status: string }>) => {
-          const apiRes = new ApiResponse<{ status: string }>(res)
+        .then((res: ApiSuccessResponseValue<{ status: string }>) => {
+          const apiRes = new ApiSuccessResponse<{ status: string }>(res)
 
           confirmStore.close(false)
-          useMessage.success(apiRes.getMessage() ?? '')
+          useMessage.success(apiRes.getMessage())
           if (props.method === 'PUT')
             updateItemValue(tableId.value, props.itemId, apiRes.getData())
-          else if (props.method === 'DELETE')
+          else if (props.method === 'DELETE') {
             deleteItemValue(tableId.value, props.itemId)
-          else alert('not handled')
+          } else alert('not handled')
         })
         .catch((res) => {
           confirmStore.close(false)

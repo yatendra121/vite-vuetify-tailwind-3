@@ -12,6 +12,7 @@ import * as directives from 'vuetify/directives'
 import themes from './theme'
 import defaultConfig from './defaultConfig'
 import { aliases, mdi } from 'vuetify/lib/iconsets/mdi-svg'
+import { md3 } from 'vuetify/blueprints'
 
 console.log({ components })
 
@@ -34,6 +35,7 @@ const icons: IconOptions = {
 }
 
 export default createVuetify({
+    blueprint: md3,
     icons,
     components,
     directives,

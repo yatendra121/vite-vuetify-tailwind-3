@@ -29,12 +29,13 @@ const config: VuetifyOptions['defaults'] = {
     VTooltip: {
         transition: 'scroll-y-reverse-transition',
         location: 'top'
+    },
+    VDataTableServer: {
+        hover: true
+        // itemsPerPage: 100,
+        // loadingText: 'fsdfsdfdsffsfds',
+        // noDataText: 'dssssssssssssssssssssss',
     }
-    // VDataTableServer: {
-    //     itemsPerPage: 100,
-    //     loadingText: 'fsdfsdfdsffsfds',
-    //     noDataText: 'dssssssssssssssssssssss'
-    // }
 }
 
 export default config

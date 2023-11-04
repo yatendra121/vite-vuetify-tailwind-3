@@ -91,15 +91,16 @@ export default defineComponent({
               placeholder="Mobile"
             />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <!-- <v-col md="4" sm="4" xs="12">
             <vq-checkbox
               name="membership"
               label="Membership"
               placeholder="Membership"
             />
-          </v-col>
+          </v-col> -->
           <v-col md="4" sm="4" xs="12">
             <vq-text-field
+              type="date"
               id="dob"
               name="dob"
               label="Date of Birth"
@@ -128,6 +129,10 @@ export default defineComponent({
           <v-col md="12" sm="12" xs="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
+          <v-col md="12" sm="12" xs="12">
+            <vq-submit-btn type="submit"></vq-submit-btn>
+          </v-col>
+
           <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
             <vq-textarea
               :name="`address[${i - 1}].test`"
