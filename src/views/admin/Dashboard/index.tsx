@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import graphqlTag from 'graphql-tag'
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { VDataTable } from 'vuetify/components'
 export default defineComponent({
   components: {
     VDataTable

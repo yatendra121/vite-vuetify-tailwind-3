@@ -1,1 +1,0 @@
-import{a}from"./index.esm-767a2380.js";const e=a().required().max(30).label("Name"),l=a().required().max(50).label("Email"),m=a().nullable().max(50).label("Mobile number"),b=a().nullable().max(50).label("DOB"),r=a().nullable().label("Gender");export{b as d,l as e,r as g,m,e as n};

@@ -1,1 +1,0 @@
-import{b as a}from"./index-74d9ea19.js";import{q as s,x as t,y as o,a3 as r,H as n,a5 as e}from"./chart-js-62aaaa54.js";import"./axios-5d9d9809.js";const i=a({},[["render",function(a,i){const f=s("v-container"),l=s("v-main");return t(),o(l,null,{default:r((()=>[n(f,{fluid:""},{default:r((()=>[e(a.$slots,"default")])),_:3})])),_:3})}]]);export{i as default};

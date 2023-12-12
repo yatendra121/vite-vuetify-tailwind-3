@@ -59,7 +59,6 @@ export default defineComponent({
 
 <template>
   <vq-form
-    :id="id"
     :action="action"
     :method="method"
     :validation-schema="validationSchema"
@@ -131,6 +130,8 @@ export default defineComponent({
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
           <v-col md="12" sm="12" xs="12">
+            <v-btn type="submit" block class="mt-2">Submit</v-btn>
+
             <vq-submit-btn type="submit"></vq-submit-btn>
           </v-col>
 

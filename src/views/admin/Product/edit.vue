@@ -20,7 +20,7 @@ const { response, cancelLoading } = useAxiosWithLoading<ProductWithImage>(
   }
 )
 
-const id = 'product_form'
+const formId = 'product_form'
 
 onBeforeUnmount(() => cancelLoading())
 </script>
@@ -30,7 +30,7 @@ onBeforeUnmount(() => cancelLoading())
       <title-row>
         <v-col>
           <title-button>
-            <vq-submit-btn :id="id"></vq-submit-btn>
+            <vq-submit-btn :form="formId"></vq-submit-btn>
             <vq-back-btn></vq-back-btn>
           </title-button>
         </v-col>
@@ -41,7 +41,7 @@ onBeforeUnmount(() => cancelLoading())
     <v-card>
       <v-responsive>
         <ProductForm
-          :id="id"
+          :id="formId"
           :action="`product/${route.params.id}`"
           method="PUT"
           :initial-values="response?.data"
