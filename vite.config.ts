@@ -11,12 +11,12 @@ import pwaConfig from './pwa.config'
 import { Portal } from './src/utils/portal'
 import { partytownVite } from '@builder.io/partytown/utils'
 
-import tailwindCss from 'tailwindcss'
-import tailwindCssConfig from './tailwind.config.js'
-import autoprefixer from 'autoprefixer'
+// import tailwindCss from 'tailwindcss'
+// import tailwindCssConfig from './tailwind.config.js'
+// import autoprefixer from 'autoprefixer'
 
 import type { PluginOption } from 'vite'
-const vetur = require('@volar-plugins/vetur')
+//const vetur = require('@volar-plugins/vetur')
 
 const { resolve, join } = require('path')
 //const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
@@ -37,7 +37,7 @@ export default defineConfig({
     },
     plugins: [
         //...plugins,
-        vetur(),
+        //   vetur(),
         vue(),
         vueJsx(),
         //splitVendorChunkPlugin(),
