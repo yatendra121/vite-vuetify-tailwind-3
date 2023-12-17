@@ -30,7 +30,7 @@ onBeforeUnmount(() => cancelLoading())
       <title-row>
         <v-col>
           <title-button>
-            <vq-submit-btn :form="formId"></vq-submit-btn>
+            <!-- <vq-submit-btn :form="formId"></vq-submit-btn> -->
             <vq-back-btn></vq-back-btn>
           </title-button>
         </v-col>

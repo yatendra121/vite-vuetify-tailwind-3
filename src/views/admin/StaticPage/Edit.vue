@@ -4,7 +4,7 @@
       <title-row>
         <v-col md="12" sm="12">
           <title-button>
-            <vq-submit-btn id="static_page_form"></vq-submit-btn>
+            <!-- <vq-submit-btn id="static_page_form"></vq-submit-btn> -->
           </title-button>
         </v-col>
       </title-row>

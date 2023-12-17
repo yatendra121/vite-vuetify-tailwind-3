@@ -13,6 +13,7 @@ import { validationSchema } from './formSchema'
 //types
 import type { PropType } from 'vue'
 import type { FormMethod, InitialValues } from '@/types'
+import { email } from '@/validationSchema'
 
 export default defineComponent({
   components: {
@@ -130,9 +131,7 @@ export default defineComponent({
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
           <v-col md="12" sm="12" xs="12">
-            <v-btn type="submit" block class="mt-2">Submit</v-btn>
-
-            <vq-submit-btn type="submit"></vq-submit-btn>
+            <vq-submit-btn></vq-submit-btn>
           </v-col>
 
           <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">

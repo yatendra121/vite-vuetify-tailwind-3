@@ -130,7 +130,7 @@ export default defineComponent({
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
           <v-col md="12" sm="12" xs="12">
-            <vq-submit-btn type="submit"></vq-submit-btn>
+            <vq-submit-btn></vq-submit-btn>
           </v-col>
 
           <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">

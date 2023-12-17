@@ -14,7 +14,7 @@ const id = 'category_form'
       <title-row>
         <v-col md="12" sm="12">
           <title-button>
-            <vq-submit-btn :id="id"></vq-submit-btn>
+            <!-- <vq-submit-btn :id="id"></vq-submit-btn> -->
             <vq-back-btn></vq-back-btn>
           </title-button>
         </v-col>

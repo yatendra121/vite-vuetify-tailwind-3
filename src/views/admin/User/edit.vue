@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useAxiosWithLoading } from '@/composables/axios'
-import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
+import { defineAsyncComponent, onBeforeUnmount, ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 
 //types
@@ -15,7 +15,7 @@ const UserForm = defineAsyncComponent(
 )
 
 const route = useRoute()
-const valuesSchema = ref({ roleUsers: 'roleUsers.*.role.id' })
+const valuesSchema = reactive({ roleUsers: 'roleUsers.*.role.id' })
 
 const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
   `user/${route.params.id}`,
@@ -34,7 +34,7 @@ onBeforeUnmount(() => cancelLoading())
       <title-row>
         <v-col>
           <title-button>
-            <vq-submit-btn :id="id"></vq-submit-btn>
+            <!-- <vq-submit-btn :from="id"></vq-submit-btn> -->
             <vq-back-btn></vq-back-btn>
           </title-button>
         </v-col>
