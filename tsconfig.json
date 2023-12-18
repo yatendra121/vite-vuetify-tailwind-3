@@ -16,7 +16,8 @@
     "lib": ["esnext", "dom"],
     "allowJs": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "types": ["vitest"]
     },
     "baseUrl": "."
   },

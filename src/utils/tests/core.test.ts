@@ -1,5 +1,5 @@
 import { useDebouncedRef } from '../core'
-import { vi } from 'vitest'
+import { vi, describe, it, expect } from 'vitest'
 
 describe('useDebouncedRef', () => {
     it('should return a ref object with the correct initial value', () => {
