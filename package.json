@@ -16,7 +16,7 @@
   "dependencies": {
     "@apollo/client": "^3.8.8",
     "@builder.io/partytown": "^0.7.6",
-    "@qnx/composables": "workspace:^",
+    "@qnx/composables": "latest",
     "@qnx/vuetify": "latest",
     "@tinymce/tinymce-vue": "5.1.0",
     "@trpc/client": "^10.44.1",
