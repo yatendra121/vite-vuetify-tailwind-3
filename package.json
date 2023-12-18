@@ -11,8 +11,8 @@
     "lint": "eslint . --config=.eslintrc.js --fix",
     "format": "prettier .  --write",
     "test:e2e": "cypress open",
-    "test:unit": "jest --verbose",
-    "test:unit-vite": "vitest"
+    "test:unit": "vitest",
+    "test:unit-jest": "jest --verbose"
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",
