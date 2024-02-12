@@ -13,7 +13,6 @@ import { validationSchema } from './formSchema'
 //types
 import type { PropType } from 'vue'
 import type { FormMethod, InitialValues } from '@/types'
-import { email } from '@/validationSchema'
 
 export default defineComponent({
   components: {
@@ -62,7 +61,6 @@ export default defineComponent({
   <vq-form
     :action="action"
     :method="method"
-    :validation-schema="validationSchema"
     :values-schema="valuesSchema"
     :initial-values="initialValues"
     @submited-success="useFormSuccess"
@@ -73,7 +71,7 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col md="6" sm="6" xs="12">
-            <VqTextField name="name" label="Name" placeho lder="Name" />
+            <VqTextField variant="outlined" name="name" placeholder="" />
           </v-col>
           <v-col md="6" sm="6" xs="12">
             <vq-text-field
@@ -128,19 +126,19 @@ export default defineComponent({
             />
           </v-col>
           <v-col md="12" sm="12" xs="12">
-            <vq-textarea name="address" label="Address" placeholder="Address" />
+            <!-- <vq-textarea name="address" label="Address" placeholder="Address" /> -->
+
+            <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
+              <vq-textarea
+                :name="`address[${i - 1}].name`"
+                label="Address"
+                placeholder="Address"
+              />
+            </v-col>
           </v-col>
           <v-col md="12" sm="12" xs="12">
             <vq-submit-btn></vq-submit-btn>
           </v-col>
-
-          <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
-            <vq-textarea
-              :name="`address[${i - 1}].test`"
-              label="Address"
-              placeholder="Address"
-            />
-          </v-col> -->
         </v-row>
         <!-- <vq-file-input name="profile_image"></vq-file-input> -->
       </v-container>
