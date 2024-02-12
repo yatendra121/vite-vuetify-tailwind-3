@@ -27,7 +27,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 6.24.3
+          version: latest
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -36,7 +36,11 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: 'pnpm'
 
+<<<<<<< HEAD
       - run: pnpm install
+=======
+      - run: pnpm install --no-frozen-lockfile
+>>>>>>> 1b222f1a2497f2645fee52f6c38e3b591b99e69b
 
       - name: Build
         run: pnpm build-force

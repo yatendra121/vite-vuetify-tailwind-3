@@ -1,5 +1,6 @@
 import { Portal } from '../portal'
 import portalsConfigs from '../../../portals'
+import { describe, beforeEach, it, expect } from 'vitest'
 
 describe('Portal', () => {
     let portal: Portal
