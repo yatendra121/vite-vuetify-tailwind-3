@@ -71,7 +71,7 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col md="6" sm="6" xs="12">
-            <VqTextField variant="outlined" name="name" placeholder="" />
+            <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
           <v-col md="6" sm="6" xs="12">
             <vq-text-field
@@ -83,7 +83,6 @@ export default defineComponent({
           </v-col>
           <v-col md="4" sm="4" xs="12">
             <vq-text-field
-              id="mobileNo"
               name="mobileNo"
               label="Mobile"
               placeholder="Mobile"
@@ -96,17 +95,9 @@ export default defineComponent({
               placeholder="Membership"
             />
           </v-col> -->
-          <!-- <v-col md="4" sm="4" xs="12">
-            <vq-date-picker
-              id="dob"
-              name="dob"
-              label="Date of Birth"
-              placeholder="Date of Birth"
-            />
-          </v-col> -->
+
           <v-col md="4" sm="4" xs="12">
             <vq-autocomplete
-              id="gender"
               :items="items"
               name="gender"
               label="Gender"
@@ -117,7 +108,6 @@ export default defineComponent({
           <v-col md="4" sm="4" xs="12">
             <vq-autocomplete
               multiple
-              id="role"
               item-title="title"
               item-value="id"
               action="role"
@@ -128,13 +118,38 @@ export default defineComponent({
           <v-col md="12" sm="12" xs="12">
             <!-- <vq-textarea name="address" label="Address" placeholder="Address" /> -->
 
-            <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
+            <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
               <vq-textarea
                 :name="`address[${i - 1}].name`"
                 label="Address"
                 placeholder="Address"
               />
-            </v-col>
+            </v-col> -->
+          </v-col>
+          <v-col md="4" sm="4" xs="12">
+            <vq-date-picker
+              id="dob"
+              name="dob"
+              label="Date of Birth"
+              placeholder="Date of Birth"
+            />
+          </v-col>
+          <v-col md="4" sm="4" xs="12">
+            <vq-color-picker
+              id="color"
+              name="color"
+              label="Color"
+              placeholder="Color"
+            />
+          </v-col>
+          <v-col md="4" sm="4" xs="12">
+            <vq-otp-input
+              variant="filled"
+              id="otp"
+              name="otp"
+              label="otp"
+              placeholder="otp"
+            />
           </v-col>
           <v-col md="12" sm="12" xs="12">
             <vq-submit-btn></vq-submit-btn>

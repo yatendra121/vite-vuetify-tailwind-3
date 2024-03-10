@@ -18,7 +18,7 @@
     "allowJs": true,
     "paths": {
       "@/*": ["src/*"],
-      "types": ["vitest"]
+      "types": ["vitest", "@qnx/vuetify"]
     },
     "baseUrl": "."
   },

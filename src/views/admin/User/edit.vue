@@ -23,7 +23,6 @@ const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
     method: 'GET'
   }
 )
-
 const id = 'user_form'
 
 onBeforeUnmount(() => cancelLoading())

@@ -15,16 +15,16 @@ import type { App } from 'vue'
 import { Portal } from '@/utils/portal'
 //import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 
-// import type {
-//     VqTextField,
-//     VqTextarea,
-//     VqAutocomplete,
-//     VqForm,
-//     VqList,
-//     VqSubmitBtn,
-//     VqListLoadMoreBtn,
-//     VqTableFilter
-// } from '@qnx/vuetify'
+import type {
+    VqTextField,
+    VqTextarea,
+    VqAutocomplete,
+    VqForm,
+    VqList,
+    VqSubmitBtn,
+    VqListLoadMoreBtn,
+    VqTableFilter
+} from '@qnx/vuetify'
 /*export default {
     install: (app: App) => {
         //@ts-ignore
@@ -62,17 +62,17 @@ export default { vqVuetify, VqVuetifyIntegrations }
 setAxiosInstance(_axios)
 setConfig({ baseUrl: Portal.getInstance().getBaseUrl() })
 
-// declare module 'vue' {
-//     export interface GlobalComponents {
-//         VqTextField: VqTextField
-//         VqTextarea: VqTextarea
-//         VqAutocomplete: VqAutocomplete
-//         // VqDatatableItemAction: typeof VqDatatableItemAction
-//         VqForm: VqForm
-//         VqTableFilter: VqTableFilter
-//         VqSubmitBtn: VqSubmitBtn
-//         // VqBackBtn: typeof VqBackBtn
-//         VqList: VqList
-//         VqListLoadMoreBtn: VqListLoadMoreBtn
-//     }
-// }
+declare module 'vue' {
+    interface GlobalComponents {
+        VqTextField: VqTextField
+        VqTextarea: VqTextarea
+        VqAutocomplete: typeof VqAutocomplete
+        // VqDatatableItemAction: typeof VqDatatableItemAction
+        VqForm: VqForm
+        VqTableFilter: VqTableFilter
+        VqSubmitBtn: VqSubmitBtn
+        // VqBackBtn: typeof VqBackBtn
+        VqList: VqList
+        VqListLoadMoreBtn: VqListLoadMoreBtn
+    }
+}

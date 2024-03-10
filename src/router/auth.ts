@@ -50,30 +50,30 @@ const AuthRoutes: Array<RouteRecordRaw> = [
             icon: mdiLanguageKotlin,
             permission: 'admin.reset-password'
         }
-    },
-    {
-        path: '/verify',
-        component: () =>
-            import(/* webpackChunkName: "about" */ '@/views/admin/Dashboard/'),
-        children: [
-            {
-                path: '/',
-                name: 'verify.email_or_mobile',
-
-                component: () =>
-                    import(
-                        /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
-                    )
-            },
-            {
-                path: 'otp',
-                name: 'verify.otp',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
-                    )
-            }
-        ]
     }
+    // {
+    //     path: '/verify',
+    //     component: () =>
+    //         import(/* webpackChunkName: "about" */ '@/views/admin/Dashboard/'),
+    //     children: [
+    //         {
+    //             path: '/',
+    //             name: 'verify.email_or_mobile',
+
+    //             component: () =>
+    //                 import(
+    //                     /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
+    //                 )
+    //         },
+    //         {
+    //             path: 'otp',
+    //             name: 'verify.otp',
+    //             component: () =>
+    //                 import(
+    //                     /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
+    //                 )
+    //         }
+    //     ]
+    // }
 ]
 export default AuthRoutes
