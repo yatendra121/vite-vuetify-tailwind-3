@@ -11,13 +11,20 @@
           action="reset-password"
           method="POST"
           :validation-schema="schema"
+          :initial-values="initialValues"
           @submited-success="useFormSuccess"
           @submited-error="useFormError"
         >
           <v-responsive>
             <v-row no-gutters>
               <v-col cols="12">
-                <vq-text-field name="email" label="Email" placeholder="Email" />
+                <vq-text-field
+                  :clearable="false"
+                  :readonly="true"
+                  name="email"
+                  label="Email"
+                  placeholder="Email"
+                />
               </v-col>
               <v-col cols="12">
                 <v-sheet
@@ -39,17 +46,13 @@
                     divider="•"
                     length="4"
                     variant="outlined"
-                    color="primary"
                     name="token"
                   />
 
                   <div class="text-caption">
-                    <v-btn
-                      color="primary"
-                      size="x-small"
-                      text="Send New Code"
-                      variant="text"
-                    ></v-btn>
+                    <v-btn color="primary" size="x-small" variant="text"
+                      >Send New Code</v-btn
+                    >
                   </div>
                 </v-sheet>
 
@@ -82,12 +85,13 @@
   </AuthLayout>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import * as yup from 'yup'
 import useFormRepository, { useFormError } from '@/composables/formResponse'
 import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
 import loginImage from '@/assets/images/loginImage.jpg'
 import AuthLayout from './layout.vue'
+import { useRoute } from 'vue-router'
 export default defineComponent({
   components: {
     AuthLayout
@@ -100,8 +104,16 @@ export default defineComponent({
     })
 
     const { useFormSuccess } = useFormRepository('login')
+    const route = useRoute()
+
+    const initialValues = reactive({
+      email: route.query?.email
+    })
 
     const loading = ref(false)
+
+    console.log(route)
+    console.log(route.query)
 
     return {
       schema,
@@ -109,6 +121,7 @@ export default defineComponent({
       loginImage,
       mdiFacebook,
       mdiGooglePlus,
+      initialValues,
       useFormSuccess,
       useFormError
     }

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import illustrationJohnDark from '@/assets/images/illustration-john-dark.png'
 import illustrationJohnLight from '@/assets/images/illustration-john-light.png'
+import { useProfileStore } from '@/store/reactivity/profile'
 import { computed } from 'vue'
 import { useTheme } from 'vuetify'
+
+//State management
+const profileStore = useProfileStore()
 
 const { global } = useTheme()
 const illustrationJohn = computed(() =>
@@ -16,7 +20,7 @@ const illustrationJohn = computed(() =>
       <VCol cols="12" sm="8" order="2" order-sm="1">
         <VCardItem>
           <VCardTitle class="text-md-h5 text-primary">
-            Congratulations John! 🎉
+            Congratulations {{ profileStore.authProfile?.name }}! 🎉
           </VCardTitle>
         </VCardItem>
 

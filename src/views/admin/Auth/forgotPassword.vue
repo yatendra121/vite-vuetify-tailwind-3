@@ -5,7 +5,6 @@
         <h3 class="font-weight-bold mt-4">Forgot Password</h3>
       </v-col>
       <v-col lg="12" xl="12" cols="12">
-        <h2 class="font-weight-bold mt-4">Sign in</h2>
         <vq-form
           action="forgot-password"
           method="POST"
@@ -18,6 +17,7 @@
               <v-row no-gutters>
                 <v-col cols="12">
                   <vq-text-field
+                    v-model="email"
                     class="email"
                     name="email"
                     label="Email"
@@ -53,8 +53,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import * as yup from 'yup'
-import useFormRepository, { useFormError } from '@/composables/formResponse'
+import {
+  useFormError,
+  useFormSuccessOnlyMessage
+} from '@/composables/formResponse'
 import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
+import { ApiResponse } from '@qnx/composables'
+import router from '@/router'
 import AuthLayout from './layout.vue'
 export default defineComponent({
   components: {
@@ -65,9 +70,18 @@ export default defineComponent({
       email: yup.string().required().max(50).label('Email')
     })
 
-    const { useFormSuccess } = useFormRepository('reset-password')
+    const useFormSuccess = (response: ApiResponse) => {
+      useFormSuccessOnlyMessage(response)
+      router.push({
+        name: 'reset-password',
+        query: {
+          email: email.value
+        }
+      })
+    }
 
     const loading = ref(false)
+    const email = ref('')
 
     return {
       schema,
@@ -75,7 +89,8 @@ export default defineComponent({
       mdiFacebook,
       mdiGooglePlus,
       useFormSuccess,
-      useFormError
+      useFormError,
+      email
     }
   }
 })

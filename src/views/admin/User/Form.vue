@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { VqTextField } from '@qnx/vuetify'
+import { VqTextField, VqTimePicker } from '@qnx/vuetify'
 
 //composables
 import {
@@ -16,7 +16,8 @@ import type { FormMethod, InitialValues } from '@/types'
 
 export default defineComponent({
   components: {
-    VqTextField
+    VqTextField,
+    VqTimePicker
   },
   props: {
     id: {
@@ -134,15 +135,15 @@ export default defineComponent({
               placeholder="Date of Birth"
             />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <!-- <v-col md="4" sm="4" xs="12">
             <vq-color-picker
               id="color"
               name="color"
               label="Color"
               placeholder="Color"
             />
-          </v-col>
-          <v-col md="4" sm="4" xs="12">
+          </v-col> -->
+          <!-- <v-col md="4" sm="4" xs="12">
             <vq-otp-input
               variant="filled"
               id="otp"
@@ -150,7 +151,15 @@ export default defineComponent({
               label="otp"
               placeholder="otp"
             />
-          </v-col>
+          </v-col> -->
+          <!-- <v-col md="4" sm="4" xs="12">
+            <VqTimePicker
+              variant="filled"
+              id="time"
+              name="time"
+              label="Time "
+            />
+          </v-col> -->
           <v-col md="12" sm="12" xs="12">
             <vq-submit-btn></vq-submit-btn>
           </v-col>
