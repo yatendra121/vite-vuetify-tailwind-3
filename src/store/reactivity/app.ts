@@ -7,6 +7,7 @@ export type AppState = {
     color: string
     image: string
     sidebarBackgroundColor: string
+    sidebarWidth: number
 }
 
 export const useAppStore = defineStore({
@@ -18,11 +19,16 @@ export const useAppStore = defineStore({
             loading: false,
             color: 'primary',
             image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
-            sidebarBackgroundColor: 'rgba(27, 27, 27, 0.74)'
-        } as AppState),
+            sidebarBackgroundColor: 'rgba(27, 27, 27, 0.74)',
+            sidebarWidth: 256
+        }) as AppState,
     getters: {
         sidebarValue(): boolean {
             return this.sidebar
+        },
+
+        sidebarWidthValue(): number {
+            return this.sidebarWidth
         },
         themeValue(): string {
             return this.theme

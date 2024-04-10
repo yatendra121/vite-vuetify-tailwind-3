@@ -1,5 +1,13 @@
 <template>
-  <v-footer :elevation="2" :border="false" :rounded="10" :absolute="true" app>
+  <v-footer
+    :elevation="2"
+    :border="false"
+    rounded="lg"
+    :absolute="true"
+    app
+    class="main-bottom-bar"
+    :style="styles"
+  >
     <v-responsive>
       <v-card :elevation="0" class="text-center">
         <v-container style="padding: 0px">
@@ -19,13 +27,34 @@
   </v-footer>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, reactive } from 'vue'
 import { mdiClock, mdiAccount, mdiFlag } from '@mdi/js'
+import { useAppStore } from '@/store/reactivity/app'
 
 export default defineComponent({
   setup() {
     const icons = [mdiClock, mdiAccount, mdiFlag]
-    return { icons }
+
+    const appStore = useAppStore()
+
+    const width = computed(() =>
+      appStore.sidebarValue ? appStore.sidebarWidth : 0
+    )
+    const styles = reactive({
+      get left() {
+        return `${width.value}px !important`
+      },
+      get width() {
+        return `calc(100% - ${width.value + 30}px) !important`
+      }
+    })
+
+    return { icons, styles }
   }
 })
 </script>
+<style lang="scss">
+.main-bottom-bar {
+  margin: 0px 0px 6px 15px;
+}
+</style>

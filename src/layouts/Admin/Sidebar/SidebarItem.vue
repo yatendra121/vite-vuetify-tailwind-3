@@ -10,6 +10,7 @@
         :title="item.meta.title"
         :height="height"
         :color="color"
+        rounded="xl"
         link
       >
         <template #prepend>
@@ -23,6 +24,7 @@
       :item="sidebarItem"
       :height="height"
       :color="color"
+      rounded="xl"
     />
   </v-list-group>
 
@@ -32,6 +34,7 @@
     :color="color"
     :height="height"
     variant="flat"
+    rounded="xl"
     link
     :title="aItem.meta.title"
   >

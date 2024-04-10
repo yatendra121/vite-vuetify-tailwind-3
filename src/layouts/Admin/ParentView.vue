@@ -1,4 +1,5 @@
 <template>
+  <Sidebar></Sidebar>
   <AppBar :fullscreen="toggle" />
   <v-main>
     <v-responsive :full-height="true">
@@ -10,7 +11,7 @@
       </v-container>
     </v-responsive>
   </v-main>
-  <Sidebar />
+
   <BottomBar />
 </template>
 <script lang="ts">

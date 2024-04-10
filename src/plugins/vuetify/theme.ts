@@ -2,6 +2,65 @@ import type { VuetifyOptions } from 'vuetify'
 
 export const staticPrimaryColor = '#696CFF'
 
+const lightColors1 = {
+    primary: '#36b3cf',
+    'on-primary': '#fff',
+    secondary: '#509cad',
+    'on-secondary': '#fff',
+    success: '#71DD37',
+    'on-success': '#fff',
+    info: '#03C3EC',
+    'on-info': '#fff',
+    warning: '#FFAB00',
+    'on-warning': '#fff',
+    error: '#FF3E1D',
+    background: '#F5F5F9',
+    'on-background': '#32475C',
+    'on-surface': '#32475C',
+    'grey-50': '#FAFAFA',
+    'grey-100': '#EBEEF0',
+    'grey-200': '#EEEEEE',
+    'grey-300': '#E0E0E0',
+    'grey-400': '#BDBDBD',
+    'grey-500': '#9E9E9E',
+    'grey-600': '#757575',
+    'grey-700': '#616161',
+    'grey-800': '#424242',
+    'grey-900': '#212121',
+    'perfect-scrollbar-thumb': '#DBDADE',
+    'skin-bordered-background': '#fff',
+    'skin-bordered-surface': '#fff'
+}
+
+const lightColors2 = {
+    primary: '#0085db',
+    secondary: '#707a82',
+    info: '#46caeb',
+    success: '#4bd08b',
+    warning: '#f8c076',
+    error: '#fb977d',
+    indigo: '#8763da',
+    lightprimary: '#e5f3fb',
+    lightinfo: '#e1f5fa',
+    lightsecondary: '#e7ecf0',
+    lightsuccess: '#dffff3',
+    lighterror: '#ffede9',
+    lightwarning: '#fff6ea',
+    lightindigo: '#f1ebff',
+    textPrimary: '#2A3547',
+    textSecondary: '#2A3547',
+    borderColor: '#e5eaef',
+    inputBorder: '#DFE5EF',
+    containerBg: '#ffffff',
+    background: '#f0f5f9',
+    hoverColor: '#f6f9fc',
+    surface: '#fff',
+    grey100: '#707a82',
+    grey200: '#111c2d',
+    darkbg: '#2a3447',
+    bglight: '#f5f8fb'
+}
+
 const theme: VuetifyOptions['theme'] = {
     defaultTheme: 'light',
     variations: {
@@ -12,35 +71,7 @@ const theme: VuetifyOptions['theme'] = {
     themes: {
         light: {
             dark: false,
-            colors: {
-                primary: '#36b3cf',
-                'on-primary': '#fff',
-                secondary: '#509cad',
-                'on-secondary': '#fff',
-                success: '#71DD37',
-                'on-success': '#fff',
-                info: '#03C3EC',
-                'on-info': '#fff',
-                warning: '#FFAB00',
-                'on-warning': '#fff',
-                error: '#FF3E1D',
-                background: '#F5F5F9',
-                'on-background': '#32475C',
-                'on-surface': '#32475C',
-                'grey-50': '#FAFAFA',
-                'grey-100': '#EBEEF0',
-                'grey-200': '#EEEEEE',
-                'grey-300': '#E0E0E0',
-                'grey-400': '#BDBDBD',
-                'grey-500': '#9E9E9E',
-                'grey-600': '#757575',
-                'grey-700': '#616161',
-                'grey-800': '#424242',
-                'grey-900': '#212121',
-                'perfect-scrollbar-thumb': '#DBDADE',
-                'skin-bordered-background': '#fff',
-                'skin-bordered-surface': '#fff'
-            },
+            colors: lightColors1,
 
             variables: {
                 'code-color': '#d400ff',

@@ -1,15 +1,15 @@
 <template>
   <v-app-bar
-    theme="dark"
     height="62"
     :border="true"
     :elevation="10"
-    :rounded="false"
+    rounded="lg"
     :collapse="false"
     flat
     :floating="false"
-    :color="theme === 'light' ? 'primary' : undefined"
+    :color="theme === 'light' ? undefined : undefined"
     class="main-app-bar"
+    :style="styles"
   >
     <v-app-bar-nav-icon @click="appStore.changeSidebar"></v-app-bar-nav-icon>
 
@@ -133,7 +133,7 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, reactive } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { useRouter } from 'vue-router'
@@ -222,6 +222,19 @@ export default defineComponent({
       })
     }
 
+    const width = computed(() =>
+      appStore.sidebarValue ? appStore.sidebarWidth : 0
+    )
+    const styles = reactive({
+      active: true,
+      get left() {
+        return `${width.value}px !important`
+      },
+      get width() {
+        return `calc(100% - ${width.value + 30}px) !important`
+      }
+    })
+
     const notificationToggle = ref(false)
     const notificationHandler = (val: boolean) =>
       (notificationToggle.value = val)
@@ -245,7 +258,9 @@ export default defineComponent({
       authProfile: computed(() => profileStore.authProfile),
       notificationToggle,
       logoutUser,
-      myProfileRoute
+      myProfileRoute,
+      styles,
+      width
     }
   }
 })
@@ -253,5 +268,8 @@ export default defineComponent({
 <style>
 .main-app-bar .v-toolbar__append {
   align-items: center;
+}
+.main-app-bar {
+  margin: 6px 0px 0px 15px;
 }
 </style>
