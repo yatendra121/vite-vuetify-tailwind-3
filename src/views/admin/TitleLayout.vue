@@ -1,7 +1,7 @@
 <template>
   <v-responsive>
     <v-container fluid>
-      <v-card :rounded="true" :elevation="1">
+      <v-card :border="true" :elevation="10" rounded="lg">
         <v-row style="min-height: 70px" class="pa-5" align-self="center">
           <v-col align-self="center" md="3" sm="3" xs="12">
             <span class="tw-text-center text-h6">{{

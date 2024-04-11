@@ -270,6 +270,6 @@ export default defineComponent({
   align-items: center;
 }
 .main-app-bar {
-  margin: 6px 0px 0px 15px;
+  margin: 6px 0px 0px 16px;
 }
 </style>

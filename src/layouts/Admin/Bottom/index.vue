@@ -1,7 +1,7 @@
 <template>
   <v-footer
-    :elevation="2"
-    :border="false"
+    :border="true"
+    :elevation="10"
     rounded="lg"
     :absolute="true"
     app
@@ -55,6 +55,6 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .main-bottom-bar {
-  margin: 0px 0px 6px 15px;
+  margin: 0px 0px 6px 16px;
 }
 </style>

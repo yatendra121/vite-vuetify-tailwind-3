@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue'
 
 //composables
 import {
-  useFormSuccess,
+  useFormSuccessOnlyMessage,
   useFormError,
   useFormClientError
 } from '@/composables/formResponse'
@@ -15,10 +15,6 @@ import type { FormMethod, InitialValues } from '@/types'
 
 export default defineComponent({
   props: {
-    id: {
-      type: String,
-      required: true
-    },
     action: {
       type: String,
       default: () => 'user'
@@ -39,7 +35,7 @@ export default defineComponent({
     ])
 
     return {
-      useFormSuccess,
+      useFormSuccessOnlyMessage,
       validationSchema,
       useFormError,
       items,
@@ -56,49 +52,33 @@ export default defineComponent({
     method="PUT"
     :validation-schema="validationSchema"
     :initial-values="initialValues"
-    @submited-success="useFormSuccess"
+    @submited-success="useFormSuccessOnlyMessage"
     @submited-error="useFormError"
     @submited-client-error="useFormClientError"
   >
     <template #default>
       <v-container>
         <v-row>
-          <v-col md="6" sm="6" xs="12">
-            <vq-text-field
-              id="name"
-              name="name"
-              label="Name"
-              placeholder="Name"
-            />
+          <v-col md="4" sm="4" xs="12">
+            <vq-text-field name="name" label="Name" placeholder="Name" />
           </v-col>
-
-          <v-col md="6" sm="6" xs="12">
+          <v-col md="4" sm="4" xs="12">
             <vq-text-field
-              id="mobileNo"
               name="mobileNo"
               label="Mobile"
               placeholder="Mobile"
             />
           </v-col>
-          <v-col md="6" sm="6" xs="12">
-            <vq-text-field
-              id="address"
-              name="address"
-              label="Address"
-              placeholder="Address"
-            />
-          </v-col>
-          <v-col md="6" sm="6" xs="12">
-            <vq-autocomplete
-              id="gender"
-              :items="items"
-              name="gender"
-              label="Gender"
-            />
+
+          <v-col md="4" sm="4" xs="12">
+            <vq-text-field name="email" label="Email" placeholder="Email" />
           </v-col>
 
           <v-col md="12" sm="12" xs="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
+          </v-col>
+          <v-col md="12" sm="12" xs="12">
+            <vq-submit-btn></vq-submit-btn>
           </v-col>
         </v-row>
       </v-container>

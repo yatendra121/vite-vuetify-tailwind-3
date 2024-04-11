@@ -12,7 +12,7 @@ export const MyProfileRoutes: Array<RouteRecordRaw> = [
         meta: {
             title: 'My Profile',
             heading: 'My Profile',
-            isPublic: true,
+            isPublic: false,
             icon: mdiAccountCircle,
             type: 'admin',
             permission: 'admin.drawer',

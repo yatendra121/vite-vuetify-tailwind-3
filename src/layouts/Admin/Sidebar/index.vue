@@ -4,7 +4,7 @@
     v-model="drawer"
     :elevation="5"
     rounded="lg"
-    class="ma-2 main-side-bar"
+    class="main-side-bar"
     :width="width"
   >
     <!-- <template #image>
@@ -52,9 +52,10 @@ export default defineComponent({
 </script>
 <style>
 .scrollnavbar {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 50px);
 }
 .main-side-bar {
   height: calc(100% - 15px) !important;
+  margin: 8px 0px 0px 10px;
 }
 </style>
