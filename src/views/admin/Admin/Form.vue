@@ -98,7 +98,7 @@ export default defineComponent({
               placeholder="Membership"
             />
           </v-col> -->
-          <v-col md="4" sm="4" xs="12">
+          <!-- <v-col md="4" sm="4" xs="12">
             <vq-text-field
               type="date"
               id="dob"
@@ -106,7 +106,7 @@ export default defineComponent({
               label="Date of Birth"
               placeholder="Date of Birth"
             />
-          </v-col>
+          </v-col> -->
           <v-col md="4" sm="4" xs="12">
             <vq-autocomplete
               id="gender"
