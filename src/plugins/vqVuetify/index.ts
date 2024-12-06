@@ -57,6 +57,9 @@ import type {
 //setHandleUnauthenticated(logout)
 export { updateItemKeyValue, updateItemValue, deleteItemValue }
 
+debugger
+console.log({ Portal })
+console.log(Portal.getInstance())
 export default { vqVuetify, VqVuetifyIntegrations }
 
 setAxiosInstance(_axios)
