@@ -42,7 +42,7 @@
                 />
               </v-col>
               <v-col cols="12">
-                <vq-submit-btn block type="submit"></vq-submit-btn
+                <vq-submit-btn form="loginForm" block></vq-submit-btn
               ></v-col>
             </v-row>
           </template>
