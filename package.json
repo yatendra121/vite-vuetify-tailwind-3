@@ -18,8 +18,8 @@
   "dependencies": {
     "@apollo/client": "^3.12.6",
     "@builder.io/partytown": "^0.10.3",
-    "@qnx/composables": "workspace:^",
-    "@qnx/vuetify": "workspace:^",
+    "@qnx/composables": "latest",
+    "@qnx/vuetify": "latest",
     "@tinymce/tinymce-vue": "6.1.0",
     "@trpc/client": "^10.45.2",
     "@vee-validate/yup": "^4.15.0",
