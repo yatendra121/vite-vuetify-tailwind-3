@@ -7,15 +7,14 @@ export type ConfirmState = {
     callback: () => void | Promise<void>
 }
 
-export const useConfirmStore = defineStore({
-    id: 'confirm',
+export const useConfirmStore = defineStore('confirm', {
     state: () =>
         ({
             show: false,
             title: 'Confirmation',
             description: 'Are you sure?',
             callback: () => console.log('Not initialized yet.')
-        } as ConfirmState),
+        }) as ConfirmState,
     actions: {
         setConfirmValues(item: ConfirmState) {
             this.title = item.title
