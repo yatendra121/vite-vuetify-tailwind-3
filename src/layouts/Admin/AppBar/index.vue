@@ -228,10 +228,10 @@ export default defineComponent({
     const styles = reactive({
       active: true,
       get left() {
-        return `${width.value}px !important`
+        return `${width.value + 30}px !important`
       },
       get width() {
-        return `calc(100% - ${width.value + 30}px) !important`
+        return `calc(100% - ${width.value + 60}px) !important`
       }
     })
 
@@ -266,10 +266,7 @@ export default defineComponent({
 })
 </script>
 <style>
-.main-app-bar .v-toolbar__append {
-  align-items: center;
-}
 .main-app-bar {
-  margin: 6px 0px 0px 16px;
+  margin-top: 6px;
 }
 </style>

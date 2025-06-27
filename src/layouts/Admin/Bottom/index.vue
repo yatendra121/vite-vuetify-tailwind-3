@@ -42,10 +42,10 @@ export default defineComponent({
     )
     const styles = reactive({
       get left() {
-        return `${width.value}px !important`
+        return `${width.value + 30}px !important`
       },
       get width() {
-        return `calc(100% - ${width.value + 30}px) !important`
+        return `calc(100% - ${width.value + 60}px) !important`
       }
     })
 
@@ -55,6 +55,6 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .main-bottom-bar {
-  margin: 0px 0px 6px 16px;
+  margin-bottom: 6px;
 }
 </style>
