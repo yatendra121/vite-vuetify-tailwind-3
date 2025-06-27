@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import { defineConfig, splitVendorChunkPlugin } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -18,7 +18,7 @@ import { partytownVite } from '@builder.io/partytown/utils'
 import type { PluginOption } from 'vite'
 //const vetur = require('@volar-plugins/vetur')
 
-const { resolve, join } = require('path')
+import { resolve, join } from 'node:path'
 //const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
 //const srcPath = resolve(__dirname, 'src', 'sass', 'vuetify.scss')
 //const srcPath = resolve(__dirname, 'src', 'settings.scss')
@@ -40,7 +40,6 @@ export default defineConfig({
         //   vetur(),
         vue(),
         vueJsx(),
-        //splitVendorChunkPlugin(),
         vuetify({
             autoImport: false
             //to use vuetify scss variables
