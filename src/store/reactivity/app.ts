@@ -10,8 +10,7 @@ export type AppState = {
     sidebarWidth: number
 }
 
-export const useAppStore = defineStore({
-    id: 'app',
+export const useAppStore = defineStore('app', {
     state: () =>
         ({
             sidebar: true,

@@ -5,12 +5,11 @@ type UserProfileStore = {
     profile: UserProfile | null
 }
 
-export const useProfileStore = defineStore({
-    id: 'profile',
+export const useProfileStore = defineStore('profile', {
     state: () =>
         ({
             profile: null
-        } as UserProfileStore),
+        }) as UserProfileStore,
     getters: {
         authProfile(): UserProfile | null {
             return this.profile

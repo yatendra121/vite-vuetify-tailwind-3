@@ -16,13 +16,12 @@ export type MessageState = {
     id: number
 }
 
-export const useMessageStore = defineStore({
-    id: 'message',
+export const useMessageStore = defineStore('message', {
     state: () =>
         ({
             items: [],
             id: 1
-        } as MessageState),
+        }) as MessageState,
     getters: {
         itemsArray(): MessageItem[] {
             return this.items
