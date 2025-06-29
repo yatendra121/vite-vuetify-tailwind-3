@@ -8,12 +8,16 @@ import {
   useFormClientError
 } from '@/composables/formResponse'
 import { validationSchema } from './formSchema'
+import { VqFileUpload } from '@qnx/vuetify'
 
 //types
 import type { PropType } from 'vue'
 import type { FormMethod, InitialValues } from '@/types'
 
 export default defineComponent({
+  components: {
+    VqFileUpload
+  },
   props: {
     action: {
       type: String,
@@ -50,6 +54,7 @@ export default defineComponent({
     id="my_profile_form"
     action="my-profile"
     method="PUT"
+    :form-data="true"
     :validation-schema="validationSchema"
     :initial-values="initialValues"
     @submited-success="useFormSuccessOnlyMessage"
@@ -72,6 +77,17 @@ export default defineComponent({
 
           <v-col md="4" sm="4" xs="12">
             <vq-text-field name="email" label="Email" placeholder="Email" />
+          </v-col>
+
+          <v-col md="4" sm="4" xs="12">
+            <VqFileUpload
+              density="compact"
+              clearable
+              show-size
+              name="test"
+              label="Email"
+              placeholder="Email"
+            />
           </v-col>
 
           <v-col md="12" sm="12" xs="12">
