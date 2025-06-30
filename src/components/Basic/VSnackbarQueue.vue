@@ -1,32 +1,31 @@
 <template>
-  <div>
-    <v-snackbar
-      v-for="(item, i) in items"
-      @update:model-value="removeItem"
-      :key="item.id"
-      :model-value="i === 0"
-      :timeout="timeout"
-      :color="item.color"
-      :absolute="absolute"
-      :auto-height="autoHeight"
-      location="center top"
-      :multi-line="multiLine"
-      :vertical="vertical"
-      :close-on-back="false"
-      transition="scale-transition"
-    >
-      <template #default>
-        <!-- <v-icon :icon="mdiInformation"></v-icon> -->
-        {{ item.message }}
-      </template>
+  <v-snackbar
+    class="snackbar-queue"
+    v-for="(item, i) in items"
+    @update:model-value="removeItem"
+    :key="item.id"
+    :model-value="i === 0"
+    :timeout="timeout"
+    :color="item.color"
+    :absolute="absolute"
+    :auto-height="autoHeight"
+    location="center top"
+    :multi-line="multiLine"
+    :vertical="vertical"
+    :close-on-back="false"
+    transition="scale-transition"
+  >
+    <template #default>
+      <!-- <v-icon :icon="mdiInformation"></v-icon> -->
+      {{ item.message }}
+    </template>
 
-      <template #actions>
-        <v-btn color="white" variant="text" @click="removeItem(item.id)">
-          {{ items.length > 1 ? `Next(${items.length - 1})` : 'Close' }}
-        </v-btn>
-      </template>
-    </v-snackbar>
-  </div>
+    <template #actions>
+      <v-btn color="white" variant="text" @click="removeItem(item.id)">
+        {{ items.length > 1 ? `Next(${items.length - 1})` : 'Close' }}
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script>
@@ -96,3 +95,8 @@ export default defineComponent({
   }
 })
 </script>
+<style scoped>
+.snackbar-queue {
+  margin-top: -50px;
+}
+</style>
