@@ -11,11 +11,9 @@
       <v-img :src="sidebarImage"></v-img>
     </template> -->
     <!-- v-model="drawer" -->
-    <perfect-scrollbar class="scrollnavbar"
-      ><v-list nav rounded="xl">
-        <sidebar-item v-for="route in router" :key="route.name" :item="route" />
-      </v-list>
-    </perfect-scrollbar>
+    <v-list nav rounded="xl">
+      <sidebar-item v-for="route in router" :key="route.name" :item="route" />
+    </v-list>
   </v-navigation-drawer>
 </template>
 <script lang="ts">
