@@ -1,4 +1,4 @@
-import type { VuetifyOptions } from 'vuetify/lib/framework.mjs'
+import type { VuetifyOptions } from 'vuetify/lib/framework'
 
 const config: VuetifyOptions['defaults'] = {
     VBtn: {},

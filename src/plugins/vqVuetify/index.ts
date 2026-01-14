@@ -57,7 +57,6 @@ import type {
 //setHandleUnauthenticated(logout)
 export { updateItemKeyValue, updateItemValue, deleteItemValue }
 
-debugger
 console.log({ Portal })
 console.log(Portal.getInstance())
 export default { vqVuetify, VqVuetifyIntegrations }
@@ -65,17 +64,17 @@ export default { vqVuetify, VqVuetifyIntegrations }
 setAxiosInstance(_axios)
 setConfig({ baseUrl: Portal.getInstance().getBaseUrl() })
 
-declare module 'vue' {
-    interface GlobalComponents {
-        VqTextField: VqTextField
-        VqTextarea: VqTextarea
-        VqAutocomplete: typeof VqAutocomplete
-        // VqDatatableItemAction: typeof VqDatatableItemAction
-        VqForm: VqForm
-        VqTableFilter: VqTableFilter
-        VqSubmitBtn: VqSubmitBtn
-        // VqBackBtn: typeof VqBackBtn
-        VqList: VqList
-        VqListLoadMoreBtn: VqListLoadMoreBtn
-    }
-}
+// declare module 'vue' {
+//     interface GlobalComponents {
+//         VqTextField: VqTextField
+//         VqTextarea: VqTextarea
+//         VqAutocomplete: typeof VqAutocomplete
+//         // VqDatatableItemAction: typeof VqDatatableItemAction
+//         VqForm: VqForm
+//         VqTableFilter: VqTableFilter
+//         VqSubmitBtn: VqSubmitBtn
+//         // VqBackBtn: typeof VqBackBtn
+//         VqList: VqList
+//         VqListLoadMoreBtn: VqListLoadMoreBtn
+//     }
+// }
