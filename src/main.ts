@@ -6,11 +6,17 @@ import App from './App.vue'
 //import './assets/css/index.css'
 
 import { registerPlugins } from './plugins'
-import '@/styles/index.scss'
+//import '@/styles/index.scss'
+
+//import '@mdi/font/css/materialdesignicons.css'
+//import 'vuetify/styles'
 
 import router from '@/router'
 import components from '@/components'
 import directives from '@/directives'
+
+// Styles
+import '@/styles/_variables.scss'
 
 //import { DefaultApolloClient } from '@vue/apollo-composable'
 //import { apolloClient } from './plugins/graphql'

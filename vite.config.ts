@@ -2,26 +2,14 @@
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vuetify from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import eslintPlugin from 'vite-plugin-eslint'
 import { VitePWA } from 'vite-plugin-pwa'
 import pwaConfig from './pwa.config'
 import { Portal } from './src/utils/portal'
-import { partytownVite } from '@builder.io/partytown/utils'
-
-// import tailwindCss from 'tailwindcss'
-// import tailwindCssConfig from './tailwind.config.js'
-// import autoprefixer from 'autoprefixer'
-
-import type { PluginOption } from 'vite'
-//const vetur = require('@volar-plugins/vetur')
-
-import { resolve, join } from 'node:path'
-//const srcPath = resolve(__dirname, 'src', 'styles', '_variables.scss')
-//const srcPath = resolve(__dirname, 'src', 'sass', 'vuetify.scss')
-//const srcPath = resolve(__dirname, 'src', 'settings.scss')
+import { resolve } from 'node:path'
 
 const currentPortal = Portal.getInstance()
 
@@ -36,40 +24,17 @@ export default defineConfig({
         }
     },
     plugins: [
-        //...plugins,
-        //   vetur(),
-        vue(),
+        vue({ template: { transformAssetUrls } }),
         vueJsx(),
-        vuetify({
-            autoImport: false
-            //to use vuetify scss variables
-            //  styles: { configFile: 'src/settings.scss' }
-        })
-        // AutoImport({
-        //     imports: ['vue', 'pinia', 'vue-router']
-        // })
-        // partytownVite({
-        //     dest: join(__dirname, 'admin', '~partytown')
-        // })
-
-        //  ...plugins
+        vuetify({ autoImport: true })
     ],
     css: {
         preprocessorOptions: {
-            //  sass: { additionalData: `${srcPath}\n` },
-            // scss: { additionalData: ` ${srcPath}\n` }
-        },
-        postcss: {
-            plugins: [
-                //  postcssImport,
-                //tailwindNesting,
-                //tailwindCss(tailwindCssConfig),
-                // postcssColorFunction,
-                //autoprefixer
-            ]
+            scss: {
+                api: 'modern-compiler'
+            }
         }
     },
-
     base: currentPortal.getBaseUrl(),
     server: {
         port: currentPortal.getPort()
@@ -83,20 +48,6 @@ export default defineConfig({
                     'chart-js': ['chart.js', 'vue-chartjs'],
                     'vue3-apexcharts': ['vue3-apexcharts'],
                     axios: ['axios']
-                    //vuetify: ['vuetify'],
-                    // 'vq-vuetify': ['@qnx/vuetify', 'vuetify'],
-                    // validate: [
-                    //     'yup',
-                    //     'vee-validate',
-                    //     'zod',
-                    //     '@vee-validate/zod'
-                    // ],
-                    //    pinia: ['pinia'],
-                    //  trpc: ['@trpc/server', '@trpc/client']
-                    // graphql: ['graphql'],
-                    // 'apollo-composable': ['@vue/apollo-composable'],
-                    // 'graphql-tag': ['graphql-tag']
-                    //     test: ['vue-router', 'vuex', 'yup', 'vee-validate', 'axios']
                 }
             }
         },
@@ -109,11 +60,6 @@ export default defineConfig({
         }
     },
     optimizeDeps: {
-        //  include: ['vue', 'vuetify']
+        exclude: ['vuetify']
     }
-    //@ts-ignore
-    // test: {
-    //     /* for example, use global to avoid globals imports (describe, test, expect): */
-    //     globals: true
-    // }
 })

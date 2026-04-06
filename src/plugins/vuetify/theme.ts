@@ -32,42 +32,12 @@ const lightColors1 = {
     'skin-bordered-surface': '#fff'
 }
 
-const lightColors2 = {
-    primary: '#0085db',
-    secondary: '#707a82',
-    info: '#46caeb',
-    success: '#4bd08b',
-    warning: '#f8c076',
-    error: '#fb977d',
-    indigo: '#8763da',
-    lightprimary: '#e5f3fb',
-    lightinfo: '#e1f5fa',
-    lightsecondary: '#e7ecf0',
-    lightsuccess: '#dffff3',
-    lighterror: '#ffede9',
-    lightwarning: '#fff6ea',
-    lightindigo: '#f1ebff',
-    textPrimary: '#2A3547',
-    textSecondary: '#2A3547',
-    borderColor: '#e5eaef',
-    inputBorder: '#DFE5EF',
-    containerBg: '#ffffff',
-    background: '#f0f5f9',
-    hoverColor: '#f6f9fc',
-    surface: '#fff',
-    grey100: '#707a82',
-    grey200: '#111c2d',
-    darkbg: '#2a3447',
-    bglight: '#f5f8fb'
-}
-
 const theme: VuetifyOptions['theme'] = {
-    defaultTheme: 'light',
-    variations: {
-        colors: [],
-        lighten: 0,
-        darken: 0
-    },
+    // V4: default changed to 'system' — keep explicit 'light' to preserve existing behavior
+    defaultTheme: 'system',
+    // V4: use `false` instead of { lighten: 0, darken: 0 } to suppress color variant CSS
+    // generation; the object form interacts unexpectedly with V4's new transparency support.
+    variations: false,
     themes: {
         light: {
             dark: false,
