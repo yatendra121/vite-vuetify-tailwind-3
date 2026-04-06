@@ -2,56 +2,30 @@
 import VueApexCharts from 'vue3-apexcharts'
 import { useTheme } from 'vuetify'
 import { computed } from 'vue'
-
 import { hexToRgb } from '@/utils/core'
 
 const vuetifyTheme = useTheme()
-
 const series = [45, 80, 20, 40]
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
   const variableTheme = vuetifyTheme.current.value.variables
 
-  const disabledTextColor = `rgba(${hexToRgb(
-    String(currentTheme['on-surface'])
-  )},${variableTheme['disabled-opacity']})`
-  const primaryTextColor = `rgba(${hexToRgb(
-    String(currentTheme['on-surface'])
-  )},${variableTheme['high-emphasis-opacity']})`
+  const disabledTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['disabled-opacity']})`
+  const primaryTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['high-emphasis-opacity']})`
 
   return {
-    chart: {
-      sparkline: { enabled: true },
-      animations: { enabled: false }
-    },
-    stroke: {
-      width: 6,
-      colors: [currentTheme.surface]
-    },
+    chart: { sparkline: { enabled: true }, animations: { enabled: false } },
+    stroke: { width: 6, colors: [currentTheme.surface] },
     legend: { show: false },
     tooltip: { enabled: false },
     dataLabels: { enabled: false },
     labels: ['Fashion', 'Electronic', 'Sports', 'Decor'],
-    colors: [
-      currentTheme.success,
-      currentTheme.primary,
-      currentTheme.secondary,
-      currentTheme.info
-    ],
-    grid: {
-      padding: {
-        top: -7,
-        bottom: 5
-      }
-    },
+    colors: [currentTheme.success, currentTheme.primary, currentTheme.secondary, currentTheme.info],
+    grid: { padding: { top: -7, bottom: 5 } },
     states: {
-      hover: {
-        filter: { type: 'none' }
-      },
-      active: {
-        filter: { type: 'none' }
-      }
+      hover: { filter: { type: 'none' } },
+      active: { filter: { type: 'none' } }
     },
     plotOptions: {
       pie: {
@@ -60,26 +34,9 @@ const chartOptions = computed(() => {
           size: '75%',
           labels: {
             show: true,
-            name: {
-              offsetY: 17,
-              fontSize: '14px',
-              color: disabledTextColor,
-              fontFamily: 'Public Sans'
-            },
-            value: {
-              offsetY: -17,
-              fontSize: '24px',
-              color: primaryTextColor,
-              fontFamily: 'Public Sans'
-            },
-            total: {
-              show: true,
-              label: 'Weekly',
-              fontSize: '14px',
-              formatter: () => '38%',
-              color: disabledTextColor,
-              fontFamily: 'Public Sans'
-            }
+            name: { offsetY: 17, fontSize: '13px', color: disabledTextColor, fontFamily: 'DM Sans' },
+            value: { offsetY: -17, fontSize: '22px', color: primaryTextColor, fontFamily: 'DM Sans' },
+            total: { show: true, label: 'Weekly', fontSize: '13px', formatter: () => '38%', color: disabledTextColor, fontFamily: 'DM Sans' }
           }
         }
       }
@@ -88,100 +45,57 @@ const chartOptions = computed(() => {
 })
 
 const orders = [
-  {
-    amount: '82.5k',
-    title: 'Electronic',
-    avatarColor: 'primary',
-    subtitle: 'Mobile, Earbuds, TV',
-    avatarIcon: 'bx-mobile-alt'
-  },
-  {
-    amount: '23.8k',
-    title: 'Fashion',
-    avatarColor: 'success',
-    subtitle: 'Tshirt, Jeans, Shoes',
-    avatarIcon: 'bx-closet'
-  },
-  {
-    amount: 849,
-    title: 'Decor',
-    avatarColor: 'info',
-    subtitle: 'Fine Art, Dining',
-    avatarIcon: 'bx-home'
-  },
-  {
-    amount: 99,
-    title: 'Sports',
-    avatarColor: 'secondary',
-    subtitle: 'Football, Cricket Kit',
-    avatarIcon: 'bx-football'
-  }
-]
-
-const moreList = [
-  { title: 'Share', value: 'Share' },
-  { title: 'Refresh', value: 'Refresh' },
-  { title: 'Update', value: 'Update' }
+  { amount: '82.5k', title: 'Electronic', avatarColor: 'primary', subtitle: 'Mobile, Earbuds, TV',      avatarIcon: 'mdi-cellphone'    },
+  { amount: '23.8k', title: 'Fashion',    avatarColor: 'success', subtitle: 'T-shirt, Jeans, Shoes',    avatarIcon: 'mdi-hanger'       },
+  { amount: '849',   title: 'Decor',      avatarColor: 'info',    subtitle: 'Fine Art, Dining',          avatarIcon: 'mdi-home-outline' },
+  { amount: '99',    title: 'Sports',     avatarColor: 'secondary',subtitle: 'Football, Cricket Kit',   avatarIcon: 'mdi-soccer'       }
 ]
 </script>
 
 <template>
   <VCard>
-    <VCardItem class="pb-3">
-      <VCardTitle class="mb-1"> Order Statistics </VCardTitle>
+    <VCardItem class="pb-2">
+      <VCardTitle class="text-body-1 font-weight-bold">Order Statistics</VCardTitle>
       <VCardSubtitle>42.82k Total Sales</VCardSubtitle>
-
-      <template #append>
-        <div class="me-n3 mt-n8">
-          <MoreBtn :menu-list="moreList" />
-        </div>
-      </template>
     </VCardItem>
 
     <VCardText>
-      <div class="d-flex align-center justify-space-between mb-3">
-        <div class="flex-grow-1">
-          <h4 class="text-h4 mb-1">8,258</h4>
-          <span>Total Orders</span>
-        </div>
-
+      <div class="d-flex align-center justify-space-between mb-4">
         <div>
-          <VueApexCharts
-            type="donut"
-            :height="125"
-            width="105"
-            :options="chartOptions"
-            :series="series"
-          />
+          <h4 class="text-h4 font-weight-bold mb-0">8,258</h4>
+          <span class="text-caption text-medium-emphasis">Total Orders</span>
         </div>
+        <VueApexCharts
+          type="donut"
+          :height="120"
+          width="110"
+          :options="chartOptions"
+          :series="series"
+        />
       </div>
 
-      <VList class="card-list mt-7">
-        <VListItem v-for="order in orders" :key="order.title">
+      <VDivider class="mb-3" />
+
+      <VList lines="two" class="pa-0">
+        <VListItem
+          v-for="order in orders"
+          :key="order.title"
+          class="px-0"
+        >
           <template #prepend>
-            <VAvatar rounded variant="tonal" :color="order.avatarColor">
-              <VIcon :icon="order.avatarIcon" />
+            <VAvatar rounded="lg" variant="tonal" :color="order.avatarColor" size="38" class="me-3">
+              <VIcon :icon="order.avatarIcon" size="20" />
             </VAvatar>
           </template>
 
-          <VListItemTitle class="mb-1">
-            {{ order.title }}
-          </VListItemTitle>
-          <VListItemSubtitle class="text-disabled">
-            {{ order.subtitle }}
-          </VListItemSubtitle>
+          <VListItemTitle class="text-body-2 font-weight-medium">{{ order.title }}</VListItemTitle>
+          <VListItemSubtitle class="text-caption">{{ order.subtitle }}</VListItemSubtitle>
 
           <template #append>
-            <span>{{ order.amount }}</span>
+            <span class="text-body-2 font-weight-bold">{{ order.amount }}</span>
           </template>
         </VListItem>
       </VList>
     </VCardText>
   </VCard>
 </template>
-
-<style lang="scss" scoped>
-.card-list {
-  --v-card-list-gap: 21px;
-}
-</style>

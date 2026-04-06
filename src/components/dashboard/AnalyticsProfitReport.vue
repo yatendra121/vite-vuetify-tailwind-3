@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import VueApexCharts from 'vue3-apexcharts'
 import { useDisplay, useTheme } from 'vuetify'
-
 import { hexToRgb } from '@/utils/core'
 import { computed } from 'vue'
 
 const vuetifyTheme = useTheme()
 const display = useDisplay()
+const currentYear = new Date().getFullYear()
 
 const series = [{ data: [30, 58, 35, 53, 50, 68] }]
 
@@ -28,45 +28,25 @@ const chartOptions = computed(() => {
     },
     tooltip: { enabled: false },
     colors: [`rgba(${hexToRgb(String(currentTheme.warning))}, 1)`],
-    stroke: {
-      width: 4,
-      curve: 'smooth',
-      lineCap: 'round'
-    },
+    stroke: { width: 4, curve: 'smooth', lineCap: 'round' },
     grid: {
       show: false,
-      padding: {
-        top: -21,
-        left: -5,
-        bottom: -8
-      }
+      padding: { top: -21, left: -5, bottom: -8 }
     },
     xaxis: {
       labels: { show: false },
       axisTicks: { show: false },
       axisBorder: { show: false }
     },
-    yaxis: {
-      labels: { show: false }
-    },
+    yaxis: { labels: { show: false } },
     responsive: [
       {
         breakpoint: display.thresholds.value.lg,
-        options: {
-          chart: {
-            height: 151,
-            width: '100%'
-          }
-        }
+        options: { chart: { height: 151, width: '100%' } }
       },
       {
         breakpoint: display.thresholds.value.md,
-        options: {
-          chart: {
-            height: 131,
-            width: '100%'
-          }
-        }
+        options: { chart: { height: 131, width: '100%' } }
       }
     ]
   }
@@ -75,32 +55,33 @@ const chartOptions = computed(() => {
 
 <template>
   <VCard>
-    <VCardText class="d-flex justify-space-between h-100">
-      <div class="d-flex flex-column justify-space-between gap-y-4">
+    <VCardText class="d-flex justify-space-between align-center h-100 pa-5">
+      <div class="d-flex flex-column justify-space-between ga-4">
         <div>
-          <h6 class="text-h6 text-no-wrap mb-1">Profile Report</h6>
-          <VChip color="warning"> Year 2022 </VChip>
+          <p class="text-caption text-medium-emphasis text-uppercase font-weight-medium mb-1" style="letter-spacing: 0.5px">
+            Profit Report
+          </p>
+          <VChip color="warning" size="small" variant="tonal">
+            {{ currentYear }}
+          </VChip>
         </div>
 
         <div>
-          <div class="text-success text-sm">
-            <VIcon icon="bx-up-arrow-alt" size="18" class="me-1" />
-            <span>68.2%</span>
+          <div class="text-success d-flex align-center ga-1 mb-1">
+            <VIcon icon="mdi-trending-up" size="16" />
+            <span class="text-body-2 font-weight-medium">68.2%</span>
           </div>
-
-          <h5 class="text-h5">$84,686k</h5>
+          <h5 class="text-h5 font-weight-bold">$84,686k</h5>
         </div>
       </div>
 
-      <div class="h-100 d-flex align-center">
-        <VueApexCharts
-          type="line"
-          :height="131"
-          width="80%"
-          :options="chartOptions"
-          :series="series"
-        />
-      </div>
+      <VueApexCharts
+        type="line"
+        :height="131"
+        width="60%"
+        :options="chartOptions"
+        :series="series"
+      />
     </VCardText>
   </VCard>
 </template>

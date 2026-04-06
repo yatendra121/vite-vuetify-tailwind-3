@@ -18,31 +18,24 @@ const isPositive = controlledComputed(
 
 <template>
   <VCard>
-    <VCardText class="d-flex align-center pb-4">
-      <img width="42" :src="props.image" alt="image" />
+    <VCardText class="pa-5">
+      <div class="d-flex align-center justify-space-between mb-4">
+        <img width="40" height="40" :src="props.image" alt="stat icon" />
+        <VChip
+          size="small"
+          :color="isPositive ? 'success' : 'error'"
+          variant="tonal"
+          class="font-weight-medium"
+        >
+          <VIcon start size="14" :icon="isPositive ? 'mdi-trending-up' : 'mdi-trending-down'" />
+          {{ isPositive ? '+' : '' }}{{ props.change }}%
+        </VChip>
+      </div>
 
-      <VSpacer />
-
-      <MoreBtn size="x-small" class="me-n3 mt-n4" />
-    </VCardText>
-
-    <VCardText>
-      <p class="mb-1">
+      <p class="text-caption text-medium-emphasis mb-1 text-uppercase font-weight-medium" style="letter-spacing: 0.5px">
         {{ props.title }}
       </p>
-      <h5 class="text-h5 text-no-wrap mb-3">
-        {{ props.stats }}
-      </h5>
-      <span
-        :class="isPositive ? 'text-success' : 'text-error'"
-        class="d-flex align-center gap-1 text-sm"
-      >
-        <VIcon
-          size="18"
-          :icon="isPositive ? 'bx-up-arrow-alt' : 'bx-down-arrow-alt'"
-        />
-        {{ isPositive ? Math.abs(props.change) : props.change }}%
-      </span>
+      <h5 class="text-h5 font-weight-bold">{{ props.stats }}</h5>
     </VCardText>
   </VCard>
 </template>

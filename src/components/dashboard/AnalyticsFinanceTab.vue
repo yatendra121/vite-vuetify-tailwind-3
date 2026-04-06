@@ -167,60 +167,58 @@ const chartConfig = computed(() => {
 
 <template>
   <VCard>
-    <VCardItem>
-      <VTabs v-model="currentTab" class="v-tabs-pill">
-        <VTab value="income"> Income </VTab>
-        <VTab value="expenses"> Expenses </VTab>
-        <VTab value="profit"> Profit </VTab>
+    <VCardItem class="pb-0">
+      <VTabs v-model="currentTab" density="compact" color="primary">
+        <VTab value="income">Income</VTab>
+        <VTab value="expenses">Expenses</VTab>
+        <VTab value="profit">Profit</VTab>
       </VTabs>
     </VCardItem>
 
-    <VCardText class="d-flex align-center gap-3">
-      <VAvatar size="46" rounded :image="tabData.avatar" />
-
+    <VCardText class="d-flex align-center ga-3 pt-4 pb-2">
+      <VAvatar size="44" rounded="lg" :image="tabData.avatar" />
       <div>
-        <p class="mb-0">
-          {{ tabData.title }}
-        </p>
-        <div class="d-flex align-center gap-2">
-          <h6 class="text-h6">
-            {{ tabData.stats }}
-          </h6>
+        <p class="text-caption text-medium-emphasis mb-0">{{ tabData.title }}</p>
+        <div class="d-flex align-center ga-2">
+          <h6 class="text-h6 font-weight-bold">{{ tabData.stats }}</h6>
           <span
-            class="text-sm"
+            class="text-body-2 d-flex align-center ga-1"
             :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
           >
-            <VIcon size="24" icon="bx-chevron-up" />
+            <VIcon size="16" :icon="tabData.profitLoss > 0 ? 'mdi-trending-up' : 'mdi-trending-down'" />
             {{ tabData.profitLoss }}%
           </span>
         </div>
       </div>
     </VCardText>
 
-    <VCardText>
+    <VCardText class="pt-0">
       <VueApexCharts
         type="area"
-        :height="241"
+        :height="200"
         :options="chartConfig"
         :series="series[currentTab]"
       />
     </VCardText>
 
-    <VCardText class="d-flex align-center justify-center gap-3">
-      <VProgressCircular size="45" :model-value="tabData.profitLoss">
-        <span class="text-xs text-medium-emphasis">{{
-          tabData.profitLossAmount
-        }}</span>
-      </VProgressCircular>
+    <VDivider />
 
+    <VCardText class="d-flex align-center ga-3 pa-4">
+      <VProgressCircular
+        size="44"
+        width="3"
+        color="primary"
+        :model-value="tabData.profitLoss"
+      >
+        <span class="text-caption font-weight-bold">{{ tabData.profitLossAmount }}</span>
+      </VProgressCircular>
       <div>
-        <h6 class="text-base font-weight-regular">
-          <span class="text-capitalize">{{ currentTab }}</span>
-          <span> this week</span>
-        </h6>
-        <span class="text-sm text-disabled"
-          >{{ tabData.compareToLastWeek }} less than last week</span
-        >
+        <p class="text-body-2 font-weight-medium mb-0">
+          <span class="text-capitalize">{{ currentTab }}</span> this week
+        </p>
+        <span class="text-caption text-medium-emphasis">
+          {{ tabData.compareToLastWeek }} less than last week
+        </span>
       </div>
     </VCardText>
   </VCard>

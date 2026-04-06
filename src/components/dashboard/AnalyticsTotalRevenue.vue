@@ -53,7 +53,7 @@ const chartOptions = computed(() => {
         position: 'top',
         fontSize: '14px',
         horizontalAlign: 'left',
-        fontFamily: 'Public Sans',
+        fontFamily: 'DM Sans',
         labels: {
           colors: currentTheme.secondary
         },
@@ -99,7 +99,7 @@ const chartOptions = computed(() => {
           style: {
             fontSize: '14px',
             colors: disabledTextColor,
-            fontFamily: 'Public Sans'
+            fontFamily: 'DM Sans'
           }
         }
       },
@@ -108,7 +108,7 @@ const chartOptions = computed(() => {
           style: {
             fontSize: '14px',
             colors: disabledTextColor,
-            fontFamily: 'Public Sans'
+            fontFamily: 'DM Sans'
           }
         }
       },
@@ -186,14 +186,14 @@ const chartOptions = computed(() => {
               fontWeight: 600,
               fontSize: '16px',
               color: currentTheme.secondary,
-              fontFamily: 'Public Sans'
+              fontFamily: 'DM Sans'
             },
             value: {
               offsetY: -15,
               fontWeight: 500,
               fontSize: '24px',
               color: primaryTextColor,
-              fontFamily: 'Public Sans'
+              fontFamily: 'DM Sans'
             }
           }
         }
@@ -246,11 +246,6 @@ const balanceData = [
         <VCardItem class="pb-0">
           <VCardTitle>Total Revenue</VCardTitle>
 
-          <template #append>
-            <div class="me-n3">
-              <MoreBtn />
-            </div>
-          </template>
         </VCardItem>
 
         <!-- bar chart -->
@@ -268,7 +263,7 @@ const balanceData = [
           <VBtn
             size="small"
             variant="tonal"
-            append-icon="bx-chevron-down"
+            append-icon="mdi-chevron-down"
             class="mt-4"
           >
             2023
