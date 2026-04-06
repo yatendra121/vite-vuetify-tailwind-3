@@ -1,64 +1,47 @@
 <template>
   <v-navigation-drawer
-    :rail="false"
     v-model="drawer"
+    :width="width"
     :elevation="5"
     rounded="lg"
-    :class="drawer ? 'main-side-bar-open' : 'main-side-bar-close'"
-    :width="width"
+    :style="drawer
+      ? 'height: calc(100% - 16px); margin: 8px 0 8px 10px;'
+      : 'height: calc(100% - 16px); margin: 8px 0 8px 0;'"
   >
-    <!-- <template #image>
-      <v-img :src="sidebarImage"></v-img>
-    </template> -->
-    <!-- v-model="drawer" -->
-    <v-list nav rounded="xl">
+    <!-- Brand -->
+    <div class="d-flex align-center ga-2 px-4 py-4 mb-2">
+      <v-icon size="28" color="primary">mdi-hexagon-multiple</v-icon>
+      <span class="text-subtitle-1 font-weight-bold">Vuetify<strong>Admin</strong></span>
+    </div>
+
+    <v-divider class="mb-2" />
+
+    <v-list nav density="compact">
       <sidebar-item v-for="route in router" :key="route.name" :item="route" />
     </v-list>
   </v-navigation-drawer>
 </template>
+
 <script lang="ts">
-/* eslint-disable vue/no-use-v-if-with-v-for */
 import { defineComponent, computed } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
 import router from '@/router/admin'
 import SidebarItem from './SidebarItem.vue'
-import sidebarImage from '@/assets/images/sidebar.jpg'
 
 export default defineComponent({
   name: 'Sidebar',
-  components: {
-    SidebarItem
-  },
+  components: { SidebarItem },
   setup() {
     const store = useAppStore()
-
-    const width = computed(() => store.sidebarWidth)
-
     return {
       drawer: computed({
         get: () => store.sidebarValue,
-        set: (val: boolean) => {
-          store.updateSidebar(val)
-        }
+        set: (val: boolean) => store.updateSidebar(val)
       }),
-      sidebarImage,
       router,
-      width
+      width: computed(() => store.sidebarWidth)
     }
   }
 })
 </script>
-<style>
-.scrollnavbar {
-  height: calc(100vh - 50px);
-}
-.main-side-bar-open {
-  height: calc(100% - 15px) !important;
-  margin: 8px 0px 0px 10px;
-}
 
-.main-side-bar-close {
-  height: calc(100% - 15px) !important;
-  margin: 8px 0px 0px 0px;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <MessageQueue />
-  <ConfirmAndAction />
+  <!-- <ConfirmAndAction /> -->
   <component :is="currentView"><slot /> </component>
 </template>
 <script lang="ts">

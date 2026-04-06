@@ -2,10 +2,9 @@
   <v-app-bar
     height="62"
     :border="true"
-    :elevation="10"
+    :elevation="1"
     rounded="lg"
     :collapse="false"
-    flat
     :floating="false"
     :color="theme === 'light' ? undefined : undefined"
     class="main-app-bar"
@@ -32,7 +31,7 @@
               <v-icon size="24px" :icon="mdiChevronDown"> </v-icon>
             </v-btn>
           </template>
-          <v-sheet rounded="md" width="200" elevation="10" class="mt-2">
+          <v-sheet rounded="md" width="200" elevation="4" class="mt-2">
             <v-list class="py-0" lines="one">
               <v-list-item
                 class="p-2"
@@ -108,11 +107,11 @@
 
           <v-card class="mx-auto" max-width="450">
             <v-toolbar color="cyan-lighten-1">
-              <v-btn variant="text" icon="mdi-menu"></v-btn>
+              <v-btn variant="text" :icon="mdiMenu"></v-btn>
 
               <v-toolbar-title>Inbox</v-toolbar-title>
 
-              <v-btn variant="text" icon="mdi-magnify"></v-btn>
+              <v-btn variant="text" :icon="mdiMagnify"></v-btn>
             </v-toolbar>
 
             <v-list :items="items" item-props lines="three">
@@ -150,7 +149,9 @@ import {
   mdiCogOutline,
   mdiNotificationClearAll,
   mdiMessageReplyOutline,
-  mdiTableColumn
+  mdiTableColumn,
+  mdiMenu,
+  mdiMagnify
 } from '@mdi/js'
 
 export default defineComponent({
@@ -228,10 +229,10 @@ export default defineComponent({
     const styles = reactive({
       active: true,
       get left() {
-        return `${width.value + 30}px !important`
+        return `${width.value + 30}px`
       },
       get width() {
-        return `calc(100% - ${width.value + 60}px) !important`
+        return `calc(100% - ${width.value + 60}px)`
       }
     })
 
@@ -266,7 +267,9 @@ export default defineComponent({
 })
 </script>
 <style>
-.main-app-bar {
-  margin-top: 6px;
+@layer overrides {
+  .main-app-bar {
+    margin-top: 6px;
+  }
 }
 </style>

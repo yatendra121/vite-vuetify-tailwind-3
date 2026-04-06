@@ -1,7 +1,7 @@
 <template>
   <v-footer
     :border="true"
-    :elevation="10"
+    :elevation="1"
     rounded="lg"
     :absolute="true"
     app
@@ -42,10 +42,10 @@ export default defineComponent({
     )
     const styles = reactive({
       get left() {
-        return `${width.value + 30}px !important`
+        return `${width.value + 30}px`
       },
       get width() {
-        return `calc(100% - ${width.value + 60}px) !important`
+        return `calc(100% - ${width.value + 60}px)`
       }
     })
 
@@ -54,7 +54,9 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-.main-bottom-bar {
-  margin-bottom: 6px;
+@layer overrides {
+  .main-bottom-bar {
+    margin-bottom: 6px;
+  }
 }
 </style>
