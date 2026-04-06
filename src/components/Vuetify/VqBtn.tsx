@@ -1,6 +1,7 @@
 import { mdiCircleEditOutline } from '@mdi/js'
 import { toRefs } from '@vueuse/core'
 import { defineComponent } from 'vue'
+import { VBtn, VTooltip } from 'vuetify/components'
 export default defineComponent({
   name: 'VqBtn',
   props: {
@@ -26,22 +27,22 @@ export default defineComponent({
     const { variant, color, icon } = toRefs(props)
     return () => (
       <>
-        <v-tooltip text={props.hintTitle}>
+        <VTooltip text={props.hintTitle}>
           {{
             activator: ({ props }: any) => (
               <>
-                <v-btn
+                <VBtn
                   variant={variant.value}
                   color={color.value}
                   icon={icon.value}
                   v-slots={slots}
                   {...attrs}
                   {...props}
-                ></v-btn>
+                />
               </>
             )
           }}
-        </v-tooltip>
+        </VTooltip>
       </>
     )
   }

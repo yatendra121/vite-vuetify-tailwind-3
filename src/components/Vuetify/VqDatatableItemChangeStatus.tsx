@@ -1,4 +1,5 @@
 import { defineComponent, inject, PropType, Ref, ref } from 'vue'
+import { VSwitch } from 'vuetify/components'
 import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 
@@ -63,15 +64,15 @@ const VqDatatableItemChangeStatus = defineComponent({
 
     return () => (
       <>
-        <v-switch
-          hide-details
+        <VSwitch
+          hideDetails
           color="primary"
           modelValue={props.itemValue}
-          true-value={props.trueValue}
-          false-value={props.falseValue}
+          trueValue={props.trueValue}
+          falseValue={props.falseValue}
           loading={loading.value}
           onUpdate:modelValue={updateValue}
-        ></v-switch>
+        />
       </>
     )
   }

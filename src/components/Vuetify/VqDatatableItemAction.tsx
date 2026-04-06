@@ -1,4 +1,5 @@
 import { defineComponent, inject, PropType, ref, Ref, toRefs } from 'vue'
+import { VBtn, VTooltip } from 'vuetify/components'
 import { ConfirmState, useConfirmStore } from '@/store/reactivity/confirm'
 
 import { useAsyncAxios } from '@qnx/composables/axios'
@@ -80,22 +81,22 @@ const VqDatatableItemAction = defineComponent({
     }
     return () => (
       <>
-        <v-tooltip text={props.hintTitle}>
+        <VTooltip text={props.hintTitle}>
           {{
             activator: ({ props }: any) => (
               <>
-                <v-btn
+                <VBtn
                   variant="text"
                   {...props}
                   {...attrs}
                   onClick={showConfirmAction}
                   color="error"
                   icon={icon.value}
-                ></v-btn>
+                />
               </>
             )
           }}
-        </v-tooltip>
+        </VTooltip>
       </>
     )
   }
