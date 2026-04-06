@@ -1,10 +1,10 @@
 <template>
   <v-layout :full-height="true">
     <v-container fluid>
-      <v-hover v-slot="{ hover, props }" open-delay="0">
+      <v-hover v-slot="{ isHovering, props }" open-delay="0">
         <v-card
-          :elevation="hover ? 24 : 2"
-          :class="{ 'on-hover': hover }"
+          :elevation="isHovering ? 5 : 2"
+          :class="{ 'on-hover': isHovering }"
           class="mx-auto"
           height="500"
           max-width="500"

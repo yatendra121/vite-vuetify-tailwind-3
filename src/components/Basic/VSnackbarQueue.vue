@@ -8,15 +8,12 @@
     :timeout="timeout"
     :color="item.color"
     :absolute="absolute"
-    :auto-height="autoHeight"
     location="center top"
-    :multi-line="multiLine"
     :vertical="vertical"
     :close-on-back="false"
     transition="scale-transition"
   >
     <template #default>
-      <!-- <v-icon :icon="mdiInformation"></v-icon> -->
       {{ item.message }}
     </template>
 
@@ -53,33 +50,9 @@ export default defineComponent({
       type: String,
       default: 'success'
     },
-    top: {
-      type: Boolean,
-      default: true
-    },
-    right: {
-      type: Boolean,
-      default: true
-    },
     absolute: {
       type: Boolean,
       default: false
-    },
-    autoHeight: {
-      type: Boolean,
-      default: false
-    },
-    bottom: {
-      type: Boolean,
-      default: false
-    },
-    left: {
-      type: Boolean,
-      default: false
-    },
-    multiLine: {
-      type: Boolean,
-      default: true
     },
     vertical: {
       type: Boolean,
@@ -98,5 +71,10 @@ export default defineComponent({
 <style scoped>
 .snackbar-queue {
   margin-top: -50px;
+}
+
+/* V4: multi-line content — previously handled by :multi-line prop */
+.snackbar-queue :deep(.v-snackbar__content) {
+  white-space: pre-wrap;
 }
 </style>

@@ -56,11 +56,11 @@
               <td>{{ toCapitalize(item.gender ?? '') }}</td>
               <td>{{ toDateTime(item.createdAt) }}</td>
               <td>
-                <vq-datatable-item-change-status
+                <VqDatatableItemChangeStatus
                   action="user/change-status"
                   :item-id="item.id"
                   :item-value="item.status"
-                ></vq-datatable-item-change-status>
+                ></VqDatatableItemChangeStatus>
               </td>
               <td>
                 <vq-btn
@@ -84,6 +84,7 @@ import { mdiPlus } from '@mdi/js'
 import { useVqDataTable, VqSerialNo, collectVqHeaders } from '@qnx/vuetify'
 import { useDateRepository } from '@/composables/date'
 import { useStringRepository } from '@/composables/string'
+import VqDatatableItemChangeStatus from '@/components/Vuetify/VqDatatableItemChangeStatus'
 
 //types
 import type { User } from '@/types'
