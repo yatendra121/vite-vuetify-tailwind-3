@@ -1,10 +1,10 @@
-import type { VuetifyOptions } from 'vuetify/lib/framework'
+import type { VuetifyOptions } from 'vuetify'
 
 const config: VuetifyOptions['defaults'] = {
     VBtn: {},
-    VCard: {
-        elevation: 2
-    },
+    // VCard: {
+    //     elevation: 1
+    // },
     VSheet: {
         color: ''
     },

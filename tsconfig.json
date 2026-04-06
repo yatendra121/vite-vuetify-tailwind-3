@@ -1,10 +1,10 @@
 {
-  // "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
@@ -16,12 +16,13 @@
     "noImplicitThis": true,
     "lib": ["esnext", "dom"],
     "allowJs": true,
+    "types": ["vitest/globals", "@qnx/vuetify"], 
     "paths": {
-      "@/*": ["src/*"],
-      "types": ["vitest", "@qnx/vuetify"]
+      "@/*": ["src/*"]   
     },
     "baseUrl": "."
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["src/**/*.test_spec.ts", "tests/**/*.ts"]
 }
+

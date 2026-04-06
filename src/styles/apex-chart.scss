@@ -1,5 +1,7 @@
+// V4: removed `@use 'vuetify/lib/styles/tools/_elevation'` — internal lib paths are
+// unstable and removed in V4. Elevation mixin replaced with an equivalent box-shadow.
+// Also updated settings import to use the public @use '../settings.scss' reference.
 @use '../settings.scss' as vuetify;
-@use 'vuetify/lib/styles/tools/_elevation' as mixins_elevation;
 
 .v-application .apexcharts-canvas {
   &line[stroke='transparent'] {
@@ -7,7 +9,11 @@
   }
 
   .apexcharts-tooltip {
-    @include mixins_elevation.elevation(3);
+    // V4: replaces @include mixins_elevation.elevation(3) — dp3 equivalent shadow
+    box-shadow:
+      0px 3px 3px -2px rgba(var(--v-theme-on-surface), 0.06),
+      0px 3px 4px 0px rgba(var(--v-theme-on-surface), 0.04),
+      0px 1px 8px 0px rgba(var(--v-theme-on-surface), 0.02);
 
     border-color: rgba(var(--v-border-color), var(--v-border-opacity));
     background: rgb(var(--v-theme-surface));
@@ -76,7 +82,7 @@
   .apexcharts-xaxistooltip-text,
   .apexcharts-yaxistooltip-text,
   .apexcharts-legend-text {
-    font-family: vuetify.$body-font-family !important;
+    font-family: var(--v-font-family, inherit);
   }
 
   .apexcharts-pie-label {
@@ -89,6 +95,6 @@
   }
 
   .apexcharts-legend-marker {
-    margin-inline-end: 0.3875rem !important;
+    margin-inline-end: 0.3875rem;
   }
 }

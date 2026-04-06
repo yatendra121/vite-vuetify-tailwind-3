@@ -8,19 +8,19 @@ $ps-track-size: 0.5rem;
 }
 
 .ps__thumb-x {
-  block-size: $ps-size !important;
+  block-size: $ps-size;
 }
 
 .ps__rail-x {
-  background: transparent !important;
+  background: transparent;
   block-size: $ps-track-size;
 }
 
 .ps__rail-y {
-  background: transparent !important;
-  inline-size: $ps-track-size !important;
-  inset-inline-end: 0.125rem !important;
-  inset-inline-start: unset !important;
+  background: transparent;
+  inline-size: $ps-track-size;
+  inset-inline-end: 0.125rem;
+  inset-inline-start: unset;
 }
 
 .ps__rail-y.ps--clicking .ps__thumb-y,
@@ -31,5 +31,5 @@ $ps-track-size: 0.5rem;
 
 .ps__thumb-x,
 .ps__thumb-y {
-  background-color: rgb(var(--v-theme-perfect-scrollbar-thumb)) !important;
+  background-color: rgb(var(--v-theme-perfect-scrollbar-thumb));
 }
