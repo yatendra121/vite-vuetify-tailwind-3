@@ -1,62 +1,39 @@
 <template>
   <AuthLayout>
-    <v-row class="h-100" justify="center" align="center" no-gutters>
-      <v-col md="12" sm="12" xs="12">
-        <h2 class="font-weight-bold mt-4">Sign in</h2>
-      </v-col>
-      <v-col md="12" sm="12" xs="12">
-        <h6 class="text-subtitle-1 text-grey-darken-1">
-          Don't have an account?
-          <v-btn variant="text" :to="{ path: 'test' }" color="primary">
-            Sign Up
-          </v-btn>
-        </h6>
-      </v-col>
-      <v-col md="12" sm="12" xs="12">
-        <vq-form
-          id="loginForm"
-          action="login"
-          method="POST"
-          :validation-schema="schema"
-          :initial-values="initialValues"
-          @submited-success="useFormSuccess"
-          @submited-error="useFormError"
-          @submited-client-error="useFormClientError"
-        >
-          <template #default>
-            <v-row justify="center">
-              <v-col cols="12" class="d-flex align-center">
-                <vq-text-field
-                  class="email"
-                  name="email"
-                  label="Email"
-                  placeholder="Email"
-                />
-              </v-col>
-              <v-col cols="12">
-                <vq-text-field
-                  class="password"
-                  name="password"
-                  label="Password"
-                  placeholder="Password"
-                />
-              </v-col>
-              <v-col cols="12">
-                <vq-submit-btn form="loginForm" block></vq-submit-btn
-              ></v-col>
-            </v-row>
-          </template>
-        </vq-form>
-      </v-col>
-    </v-row>
-
-    <v-col lg="12" xl="12" cols="12">
-      <div class="d-flex justify-end">
-        <v-btn variant="text" :to="{ name: 'forgot-password' }" color="primary">
-          Forgot Password?
+    <div class="mb-6">
+      <h2 class="text-h5 font-weight-bold">Sign in</h2>
+      <p class="text-body-2 text-medium-emphasis mt-1">
+        Don't have an account?
+        <v-btn variant="text" :to="{ path: 'test' }" color="primary" density="compact" class="px-1">
+          Sign Up
         </v-btn>
-      </div>
-    </v-col>
+      </p>
+    </div>
+
+    <vq-form
+      id="loginForm"
+      action="login"
+      method="POST"
+      :validation-schema="schema"
+      :initial-values="initialValues"
+      @submited-success="useFormSuccess"
+      @submited-error="useFormError"
+      @submited-client-error="useFormClientError"
+    >
+      <template #default>
+        <vq-text-field name="email" label="Email" placeholder="Email" class="mb-3" />
+
+        <vq-text-field name="password" label="Password" placeholder="Password" class="mb-1" />
+
+        <div class="d-flex justify-end mb-4">
+          <v-btn variant="text" :to="{ name: 'forgot-password' }" color="primary" density="compact">
+            Forgot Password?
+          </v-btn>
+        </div>
+
+        <vq-submit-btn form="loginForm" block />
+      </template>
+    </vq-form>
   </AuthLayout>
 </template>
 <script lang="ts">
