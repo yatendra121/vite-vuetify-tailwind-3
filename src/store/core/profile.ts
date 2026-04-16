@@ -49,12 +49,12 @@ export type Actions = {
 }
 
 export const actions: ActionTree<State, State> & Actions = {
-    async [ActionTypes.CHANGE]({ commit }, { data }) {
+    async [ActionTypes.CHANGE]({ commit }, data) {
         commit(MutationType.CHANGE, data)
     },
 
-    async [ActionTypes.MIX]({ commit }, { data }) {
-        commit(MutationType.MIX, data.data)
+    async [ActionTypes.MIX]({ commit }, data) {
+        commit(MutationType.MIX, data)
     },
 
     async [ActionTypes.DELETE]({ commit }) {
@@ -67,10 +67,10 @@ export const mutations: MutationTree<State> & Mutations = {
         state.profile = data
     },
     [MutationType.UPDATE](state, data) {
-        //state.profile = data;
+        state.profile = data[0] ?? state.profile
     },
     [MutationType.MIX](state, newItem) {
-        //state.profile = { ...state.data[item], ...newItem };
+        if (state.profile) state.profile = { ...state.profile, ...newItem }
     },
     [MutationType.DELETE](state, data) {
         state.profile = data
@@ -81,8 +81,4 @@ export default {
     state,
     mutations,
     actions
-}
-// eslint-disable-next-line no-unused-vars
-function data(CHANGE: MutationType, data: any) {
-    throw new Error('Function not implemented.')
 }

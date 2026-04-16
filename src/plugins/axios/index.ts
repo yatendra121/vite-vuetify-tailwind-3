@@ -35,8 +35,6 @@ _axios.interceptors.request.use(
         return config
     },
     (error) => {
-        console.log({ error })
-        // Do something with request error
         return Promise.reject(error)
     }
 )
@@ -51,10 +49,9 @@ _axios.interceptors.response.use(
         // Do something with response error
         // if (error)
         // console.log(error.status, error.request, 'Error')
-        if (error && error.request && error.request.status === 401) {
+        if (error && error.response && error.response.status === 401) {
             removeToken()
             removeRefreshToken()
-            // logOutUser();
         }
         return Promise.reject(error)
     }

@@ -83,17 +83,16 @@ export default defineComponent({
     const title = useTitle()
 
     router.beforeEach((to, from, next) => {
-      if (!profileStore.authProfile) {
-        if (profileStore.authProfile && to.meta.isPublic) return
-        if (!profileStore.authProfile && !to.meta.isPublic) return
+      if (!profileStore.authProfile && !to.meta.isPublic) {
+        next({ name: 'login' })
+        return
       }
       next()
 
       // Browser Tab Title
-      setTimeout(() => {
-        // @ts-ignore
-        title.value = to.meta.title
-      }, 300)
+      if (to.meta.title) {
+        title.value = to.meta.title as string
+      }
     })
 
     // Close loader if exist

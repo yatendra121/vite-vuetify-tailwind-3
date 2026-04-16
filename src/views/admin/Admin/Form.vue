@@ -73,7 +73,7 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col md="6" sm="6" xs="12">
-            <VqTextField name="name" label="Name" placeho lder="Name" />
+            <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
           <v-col md="6" sm="6" xs="12">
             <vq-text-field
