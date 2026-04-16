@@ -88,8 +88,6 @@
 import { defineComponent, reactive, ref } from 'vue'
 import * as yup from 'yup'
 import useFormRepository, { useFormError } from '@/composables/formResponse'
-import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
-import loginImage from '@/assets/images/loginImage.jpg'
 import AuthLayout from './layout.vue'
 import { useRoute } from 'vue-router'
 export default defineComponent({
@@ -112,15 +110,9 @@ export default defineComponent({
 
     const loading = ref(false)
 
-    console.log(route)
-    console.log(route.query)
-
     return {
       schema,
       loading,
-      loginImage,
-      mdiFacebook,
-      mdiGooglePlus,
       initialValues,
       useFormSuccess,
       useFormError

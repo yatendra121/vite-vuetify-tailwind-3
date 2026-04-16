@@ -7,7 +7,7 @@ export function useSocketRepository() {
     /**
      * Create socket listener
      */
-    const useOnSocket = (eventName: string, callback: Function | any) => {
+    const useOnSocket = (eventName: string, callback: (...args: unknown[]) => void) => {
         socket.on(eventName, callback)
 
         const offSocketEvent = () => {
@@ -20,8 +20,7 @@ export function useSocketRepository() {
     /**
      * Emit data on socket event
      */
-    const useEmitSocket = (eventName: string, data: any) => {
-        console.log({ eventName, data })
+    const useEmitSocket = (eventName: string, data: unknown) => {
         socket.emit(eventName, data)
     }
 
@@ -36,7 +35,7 @@ export function useSocketRepository() {
      * default socket off event
      */
     const defaultSocketOffEvent = () => {
-        console.error('Not assigned any socket off event')
+        console.warn('Not assigned any socket off event')
     }
 
     return {

@@ -57,7 +57,6 @@ import {
   useFormError,
   useFormSuccessOnlyMessage
 } from '@/composables/formResponse'
-import { mdiFacebook, mdiGooglePlus } from '@mdi/js'
 import { ApiResponse } from '@qnx/composables'
 import router from '@/router'
 import AuthLayout from './layout.vue'
@@ -86,8 +85,6 @@ export default defineComponent({
     return {
       schema,
       loading,
-      mdiFacebook,
-      mdiGooglePlus,
       useFormSuccess,
       useFormError,
       email

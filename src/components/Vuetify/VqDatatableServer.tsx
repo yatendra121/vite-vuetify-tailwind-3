@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { VDataTableServer } from 'vuetify/labs/VDataTable'
 
 export const VqDataTableServer = defineComponent({
@@ -175,7 +175,6 @@ export const VqDataTableServer = defineComponent({
       }
     ])
     const loading = ref(false)
-    const options = reactive({})
     const headers = ref([
       {
         title: 'Dessert (100g serving)',
@@ -188,10 +187,6 @@ export const VqDataTableServer = defineComponent({
       { title: 'Iron (%)', key: 'iron' }
     ])
 
-    const testing = (event: any) => {
-      console.log({ event })
-    }
-
     return () => (
       <>
         <VDataTableServer
@@ -203,7 +198,6 @@ export const VqDataTableServer = defineComponent({
           show-select
           show-expand
           class="elevation-1"
-          onUpdate:options={(event) => testing(event)}
         ></VDataTableServer>
       </>
     )

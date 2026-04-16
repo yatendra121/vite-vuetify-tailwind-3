@@ -33,11 +33,8 @@ export const useFormError = (response: ApiResponse<unknown>) => {
     const message = response.getMessage() ?? errorDefaultMessage
     useMessage.error(message)
 }
-export const useFormClientError: InvalidSubmissionHandler = (e) => {
-    console.log([e])
+export const useFormClientError: InvalidSubmissionHandler = () => {
     const errorDefaultMessage =
         'Your input is not valid. Please check the form.'
-
-    const message = errorDefaultMessage
-    useMessage.error(message)
+    useMessage.error(errorDefaultMessage)
 }
