@@ -37,17 +37,13 @@
   </AuthLayout>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
-import { Field, Form as LoginForm } from 'vee-validate'
+import { defineComponent, reactive } from 'vue'
 import * as yup from 'yup'
-import loginImage from '@/assets/images/loginImage.jpg'
 import AuthLayout from './layout.vue'
 import { useFormError, useFormClientError } from '@/composables/formResponse'
 import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 export default defineComponent({
   components: {
-    Field,
-    LoginForm,
     AuthLayout
   },
   setup() {
@@ -57,19 +53,18 @@ export default defineComponent({
     })
 
     const initialValues = reactive({
-      email: 'yatendra@singsys.com',
-      password: '12345678Yk'
+      email: '',
+      password: ''
     })
 
-    const { loginReponseHandler: useFormSuccess } = useAuthProfileRepository()
+    const { loginResponseHandler: useFormSuccess } = useAuthProfileRepository()
 
     return {
       useFormError,
       useFormClientError,
       schema,
       initialValues,
-      useFormSuccess,
-      loginImage
+      useFormSuccess
     }
   }
 })

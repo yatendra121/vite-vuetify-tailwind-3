@@ -1,4 +1,3 @@
-import { _axios } from '@/plugins/axios'
 import router from '@/router'
 import { setTokens, removeTokens } from './useAuthRepository'
 import { UserProfile } from '@/types/auth'
@@ -8,18 +7,18 @@ import { ApiSuccessResponse, ApiSuccessResponseValue } from '@qnx/composables'
 
 export function useAuthProfileRepository() {
     /**
-     * Using for handle reponse of login api
+     * Using for handle response of login api
      *
      * @param response
      * @returns void
      */
-    const loginReponseHandler = (
+    const loginResponseHandler = (
         response: ApiSuccessResponse<{ user: UserProfile; token: any }>
     ) => {
         const { user, token } = response.getData()
         const profileStore = useProfileStore()
         profileStore.change(user)
-        userProfileAuthStore(token)
+        setTokens(token)
         router.push('/dashboard')
     }
 
@@ -45,25 +44,14 @@ export function useAuthProfileRepository() {
      * @returns void
      */
     const logout = async () => {
-        //data: { socketId: string }
-        const response = await useAsyncAxios<ApiSuccessResponse<undefined>>(
-            'logout',
-            {
-                method: 'POST'
-                //data
-            }
-        )
+        await useAsyncAxios<ApiSuccessResponse<undefined>>('logout', {
+            method: 'POST'
+        })
 
         const profileStore = useProfileStore()
         profileStore.delete()
         removeTokens()
     }
 
-    /**
-     * To store auth into cookie.
-     */
-    const userProfileAuthStore = (token: any) => {
-        setTokens(token)
-    }
-    return { myProfile, loginReponseHandler, logout }
+    return { myProfile, loginResponseHandler, logout }
 }
