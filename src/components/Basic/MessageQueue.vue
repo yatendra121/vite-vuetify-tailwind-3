@@ -5,8 +5,8 @@
     :items="items"
   ></VSnackbarQueue>
 </template>
-<script>
-import { defineComponent, toRefs } from 'vue'
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
 import VSnackbarQueue from './VSnackbarQueue.vue'
 import { useMessageStore } from '@/store/reactivity/message'
 export default defineComponent({
@@ -17,9 +17,10 @@ export default defineComponent({
   setup() {
     const messageStore = useMessageStore()
 
-    const { items, removeMessage } = toRefs(messageStore)
-
-    return { items, removeMessage }
+    return {
+      items: computed(() => messageStore.items),
+      removeMessage: () => messageStore.removeMessage()
+    }
   }
 })
 </script>

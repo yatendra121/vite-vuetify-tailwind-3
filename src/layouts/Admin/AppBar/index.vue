@@ -140,16 +140,12 @@ import defaultProfileImage from '@/assets/images/profile.png'
 import Notification from './Notification.vue'
 import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 import {
-  mdiAccount,
   mdiLockOutline,
   mdiChevronDown,
   mdiWeatherSunny,
   mdiWeatherNight,
-  mdiFullscreen,
   mdiCogOutline,
   mdiNotificationClearAll,
-  mdiMessageReplyOutline,
-  mdiTableColumn,
   mdiMenu,
   mdiMagnify
 } from '@mdi/js'
@@ -165,17 +161,8 @@ export default defineComponent({
       required: true
     }
   },
-  data: () => ({
-    fav: true,
-    menu: false,
-    message: false,
-    hints: true,
-    items2: [
-      { text: 'Real-Time', icon: 'mdi-clock' },
-      { text: 'Audience', icon: 'mdi-account' },
-      { text: 'Conversions', icon: 'mdi-flag' }
-    ],
-    items: [
+  setup() {
+    const items = [
       {
         prependAvatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
         title: 'Brunch this weekend?',
@@ -205,8 +192,6 @@ export default defineComponent({
           '<span class="text-primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.'
       }
     ]
-  }),
-  setup() {
     //State management
     const appStore = useAppStore()
     const profileStore = useProfileStore()
@@ -216,12 +201,8 @@ export default defineComponent({
     const myProfileRoute = () => router.push({ name: 'my-profile' })
 
     //Auth Composable
-    const logoutUser = () => {
-      const { logout } = useAuthProfileRepository()
-      logout().then(() => {
-        router.push('/')
-      })
-    }
+    const { logout } = useAuthProfileRepository()
+    const logoutUser = () => logout().then(() => router.push('/'))
 
     const width = computed(() =>
       appStore.sidebarValue ? appStore.sidebarWidth : 0
@@ -242,18 +223,17 @@ export default defineComponent({
 
     return {
       notificationHandler,
-      mdiAccount,
       mdiLockOutline,
       mdiChevronDown,
       mdiWeatherSunny,
       mdiWeatherNight,
-      mdiFullscreen,
       appStore,
       defaultProfileImage,
       mdiCogOutline,
       mdiNotificationClearAll,
-      mdiMessageReplyOutline,
-      mdiTableColumn,
+      mdiMenu,
+      mdiMagnify,
+      items,
       sidebar: computed(() => appStore.sidebarValue),
       theme: computed(() => appStore.themeValue),
       authProfile: computed(() => profileStore.authProfile),

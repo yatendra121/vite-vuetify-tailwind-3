@@ -1,14 +1,14 @@
 import { customRef } from 'vue'
 
-export function useDebouncedRef(value: any, delay = 200) {
-    let timeout: any
-    return customRef((track: any, trigger: any) => {
+export function useDebouncedRef<T>(value: T, delay = 200) {
+    let timeout: ReturnType<typeof setTimeout>
+    return customRef<T>((track, trigger) => {
         return {
             get() {
                 track()
                 return value
             },
-            set(newValue: any) {
+            set(newValue: T) {
                 clearTimeout(timeout)
                 timeout = setTimeout(() => {
                     value = newValue

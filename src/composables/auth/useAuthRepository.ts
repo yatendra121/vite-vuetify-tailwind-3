@@ -1,35 +1,25 @@
-//@ts-ignore
 import Cookies from 'js-cookie'
 import { Portal } from '@/utils/portal'
-const currentPortal = Portal.getInstance()
 
+const currentPortal = Portal.getInstance()
 const prefix = currentPortal.getCookiePrefix()
 
 const TokenKey = prefix + 'X-TOKEN'
 const RefreshTokenKey = prefix + 'X-REFRESH-TOKEN'
 const DeviceIdKey = 'DEVICE-ID'
 
-/**
- * To get the Authentication token
- */
-const getToken = () => {
-    return Cookies.get(TokenKey)
+type TokenPair = {
+    access_token: string
+    refresh_token: string
 }
 
-/**
- * To Get the Refresh Token
- */
-const getRefreshToken = () => {
-    return Cookies.get(RefreshTokenKey)
-}
-/**
- * To get the device token
- */
-const getDeviceId = () => {
-    return Cookies.get(DeviceIdKey)
-}
+const getToken = () => Cookies.get(TokenKey)
 
-const setTokens = (token: any) => {
+const getRefreshToken = () => Cookies.get(RefreshTokenKey)
+
+const getDeviceId = () => Cookies.get(DeviceIdKey)
+
+const setTokens = (token: TokenPair) => {
     const domain = currentPortal.getBaseUrl()
     removeToken()
     removeRefreshToken()
@@ -43,34 +33,22 @@ const removeTokens = () => {
 }
 
 const setToken = (token: string, path: string, domain: string) => {
-    return Cookies.set(TokenKey, token, {
-        expires: 30,
-        path
-    })
+    return Cookies.set(TokenKey, token, { expires: 30, path, domain })
 }
 
 const setRefreshToken = (token: string, path: string, domain: string) => {
-    return Cookies.set(RefreshTokenKey, token, {
-        expires: 45,
-        path
-    })
+    return Cookies.set(RefreshTokenKey, token, { expires: 45, path, domain })
 }
 
 const setDeviceId = (deviceId: string) => {
-    return Cookies.set(DeviceIdKey, deviceId, { expires: 200000 })
+    return Cookies.set(DeviceIdKey, deviceId, { expires: 365 })
 }
 
-const removeToken = () => {
-    return Cookies.remove(TokenKey)
-}
+const removeToken = () => Cookies.remove(TokenKey)
 
-const removeRefreshToken = () => {
-    return Cookies.remove(RefreshTokenKey)
-}
+const removeRefreshToken = () => Cookies.remove(RefreshTokenKey)
 
-const removeDeviceId = () => {
-    return Cookies.remove(DeviceIdKey)
-}
+const removeDeviceId = () => Cookies.remove(DeviceIdKey)
 
 export {
     getToken,

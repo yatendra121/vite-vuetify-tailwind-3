@@ -52,13 +52,11 @@ const VqDatatableItemChangeStatus = defineComponent({
           useMessage.success(apiRes.getMessage() ?? '')
           updateItemValue(tableId.value, props.itemId, apiRes.getData())
         })
-        .catch((res) => {
+        .catch(() => {
           useMessage.error('Please check input values.')
         })
         .finally(() => {
-          setTimeout(() => {
-            loading.value = false
-          }, 300)
+          loading.value = false
         })
     }
 

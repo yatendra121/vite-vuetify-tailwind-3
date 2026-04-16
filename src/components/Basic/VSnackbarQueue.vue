@@ -25,22 +25,17 @@
   </v-snackbar>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import { mdiInformation } from '@mdi/js'
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
+import type { MessageItem } from '@/store/reactivity/message'
 
 export default defineComponent({
   name: 'VSnackbarQueue',
   emits: ['remove'],
   props: {
     items: {
-      type: Array,
+      type: Array as PropType<MessageItem[]>,
       required: true
-    },
-
-    value: {
-      type: Boolean,
-      default: false
     },
     timeout: {
       type: Number,
@@ -60,11 +55,11 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
-    const removeItem = (p) => {
+    const removeItem = (p: number | unknown) => {
       emit('remove', p)
     }
 
-    return { mdiInformation, removeItem }
+    return { removeItem }
   }
 })
 </script>
