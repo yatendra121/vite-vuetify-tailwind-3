@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(currentPortal.getDomianPrefix()),
+    history: createWebHistory(currentPortal.getDomainPrefix()),
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
         return { top: 0 }

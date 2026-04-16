@@ -17,8 +17,8 @@ export default defineComponent({
           title={confirmStore.title}
           description={confirmStore.description}
           modelValue={confirmStore.show}
-          onClick:close={(val: boolean) => confirmStore.close(val)}
-          onClick:confirm={(val: boolean) => confirmStore.callback()}
+          onClick:close={() => confirmStore.close()}
+          onClick:confirm={() => confirmStore.callback()}
         />
       </>
     )

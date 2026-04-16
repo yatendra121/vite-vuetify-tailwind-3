@@ -57,16 +57,16 @@ const VqDatatableItemAction = defineComponent({
         .then((res: ApiSuccessResponseValue<{ status: string }>) => {
           const apiRes = new ApiSuccessResponse<{ status: string }>(res)
 
-          confirmStore.close(false)
+          confirmStore.close()
           useMessage.success(apiRes.getMessage())
           if (props.method === 'PUT')
             updateItemValue(tableId.value, props.itemId, apiRes.getData())
           else if (props.method === 'DELETE') {
             deleteItemValue(tableId.value, props.itemId)
-          } else alert('not handled')
+          }
         })
-        .catch((res) => {
-          confirmStore.close(false)
+        .catch(() => {
+          confirmStore.close()
           useMessage.error('Please check input values.')
         })
 
@@ -77,7 +77,7 @@ const VqDatatableItemAction = defineComponent({
         callback
       } as ConfirmState)
 
-      confirmStore.showDialoag()
+      confirmStore.showDialog()
     }
     return () => (
       <>

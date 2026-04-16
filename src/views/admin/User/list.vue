@@ -90,7 +90,7 @@
               </tbody>
               <tbody v-else>
                 <tr>
-                  <td>No record founds.</td>
+                  <td>No records found.</td>
                 </tr>
               </tbody>
             </v-table>

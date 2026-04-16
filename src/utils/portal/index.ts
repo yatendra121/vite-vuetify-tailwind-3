@@ -62,10 +62,10 @@ export class Portal {
     }
 
     /**
-     * Gets the domain prifix.
+     * Gets the domain prefix.
      * @returns string
      */
-    public getDomianPrefix = (): string | undefined => {
+    public getDomainPrefix = (): string | undefined => {
         return this.portalConfig.VUE_APP_DOMAIN_PREFIX
     }
 

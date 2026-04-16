@@ -21,10 +21,10 @@ export const useConfirmStore = defineStore('confirm', {
             this.description = item.description
             this.callback = item.callback
         },
-        showDialoag() {
+        showDialog() {
             this.show = true
         },
-        close(val: boolean) {
+        close() {
             this.show = false
         }
     }
