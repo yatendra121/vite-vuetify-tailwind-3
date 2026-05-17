@@ -1,18 +1,18 @@
 <template>
-  <VSnackbarQueue
+  <VqSnackbarQueue
     @remove="removeMessage"
     :timeout="2500"
     :items="items"
-  ></VSnackbarQueue>
+  ></VqSnackbarQueue>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import VSnackbarQueue from './VSnackbarQueue.vue'
+import { defineComponent, computed, } from 'vue'
+import VqSnackbarQueue from './VqSnackbarQueue.vue'
 import { useMessageStore } from '@/store/reactivity/message'
 export default defineComponent({
   name: 'MessageQueue',
   components: {
-    VSnackbarQueue
+    VqSnackbarQueue
   },
   setup() {
     const messageStore = useMessageStore()
