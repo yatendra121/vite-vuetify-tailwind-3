@@ -11,9 +11,7 @@
     "lint": "eslint . --config=.eslintrc.js --fix",
     "format": "prettier .  --write",
     "test:e2e": "cypress open",
-    "test:unit": "jest --verbose",
-    "test:unit-vite": "vitest",
-    "for_cypress": "'@cypress/vite-dev-server': '^5.0.7', '@cypress/vue': '^5.0.5', 'cypress': '^12.17.4'"
+    "test:unit": "vitest"
   },
   "dependencies": {
     "@apollo/client": "^4.1.6",
@@ -37,7 +35,7 @@
     "vee-validate": "^4.15.1",
     "vue": "^3.5.30",
     "vue-chartjs": "^5.3.3",
-    "vue-router": "^5.0.4",
+    "vue-router": "^4.5.1",
     "vue3-apexcharts": "^1.11.1",
     "yup": "^1.7.1",
     "zod": "^4.3.6"
@@ -48,7 +46,6 @@
     "@rushstack/eslint-patch": "^1.16.1",
     "@trpc/server": "^11.14.1",
     "@types/crypto-js": "^4.2.2",
-    "@types/jest": "^30.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.24",
     "@types/node": "^25.5.0",
@@ -75,11 +72,8 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-vue": "^10.8.0",
     "eslint-plugin-vuetify": "^2.7.2",
-    "jest": "^30.3.0",
     "lodash": "^4.17.23",
-    "node": "^25.8.1",
     "nprogress": "^0.2.0",
-    "pnpm": "^10.32.1",
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "roboto-fontface": "^0.10.0",
