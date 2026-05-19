@@ -11,7 +11,10 @@ myProfile()
   .then(() => {
     authStatus.value = 'authenticated'
   })
-  .catch(() => (authStatus.value = 'unauthenticated'))
+  .catch((err) => {
+    console.error('[Auth] profile fetch failed', err)
+    authStatus.value = 'unauthenticated'
+  })
   .finally(() => {
     finished.value = true
   })
