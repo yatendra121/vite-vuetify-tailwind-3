@@ -19,7 +19,7 @@ const data = {
 const options = {
   plugins: {
     legend: {
-      position: 'right'
+      position: 'right' as const
     }
   }
 }

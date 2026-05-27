@@ -83,7 +83,7 @@ const chartConfig = computed(() => {
     dataLabels: { enabled: false },
     stroke: {
       width: 3,
-      curve: 'smooth'
+      curve: 'smooth' as const
     },
     grid: {
       strokeDashArray: 4.5,
@@ -107,12 +107,12 @@ const chartConfig = computed(() => {
             {
               offset: 0,
               opacity: 0.4,
-              color: currentTheme.primary
+              color: String(currentTheme.primary)
             },
             {
               offset: 100,
               opacity: 0.2,
-              color: currentTheme.surface
+              color: String(currentTheme.surface)
             }
           ]
         ]
@@ -121,9 +121,9 @@ const chartConfig = computed(() => {
     theme: {
       monochrome: {
         enabled: true,
-        shadeTo: 'light',
+        shadeTo: 'light' as const,
         shadeIntensity: 1,
-        color: currentTheme.primary
+        color: String(currentTheme.primary)
       }
     },
     xaxis: {
@@ -156,7 +156,7 @@ const chartConfig = computed(() => {
           size: 8,
           seriesIndex: 0,
           fillColor: '#fff',
-          strokeColor: currentTheme.primary,
+          strokeColor: String(currentTheme.primary),
           dataPointIndex: series[currentTab.value][0].data.length - 1
         }
       ]

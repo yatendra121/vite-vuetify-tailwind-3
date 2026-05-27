@@ -8,7 +8,7 @@
     :timeout="timeout"
     :color="item.color"
     :absolute="absolute"
-    location="center top"
+    location="top center"
     :vertical="vertical"
     :close-on-back="false"
     transition="scale-transition"

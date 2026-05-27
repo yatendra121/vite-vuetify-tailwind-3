@@ -23,8 +23,8 @@ const chartOptions = computed(() => {
     dataLabels: { enabled: false },
     stroke: {
       width: 3,
-      curve: 'smooth',
-      lineCap: 'round'
+      curve: 'smooth' as const,
+      lineCap: 'round' as const
     },
     grid: {
       show: false,
@@ -46,12 +46,12 @@ const chartOptions = computed(() => {
             {
               offset: 0,
               opacity: 0.6,
-              color: currentTheme.success
+              color: String(currentTheme.success)
             },
             {
               offset: 100,
               opacity: 0.1,
-              color: currentTheme.surface
+              color: String(currentTheme.surface)
             }
           ]
         ]
@@ -60,9 +60,9 @@ const chartOptions = computed(() => {
     theme: {
       monochrome: {
         enabled: true,
-        shadeTo: 'light',
+        shadeTo: 'light' as const,
         shadeIntensity: 1,
-        color: currentTheme.success
+        color: String(currentTheme.success)
       }
     },
     xaxis: {
@@ -84,7 +84,7 @@ const chartOptions = computed(() => {
           size: 6,
           seriesIndex: 0,
           fillColor: '#fff',
-          strokeColor: currentTheme.success,
+          strokeColor: String(currentTheme.success),
           dataPointIndex: series[0].data.length - 1
         }
       ]

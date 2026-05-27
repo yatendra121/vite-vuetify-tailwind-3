@@ -23,12 +23,12 @@ const chartOptions = computed(() => {
         left: 0,
         enabled: true,
         opacity: 0.12,
-        color: currentTheme.warning
+        color: String(currentTheme.warning)
       }
     },
     tooltip: { enabled: false },
     colors: [`rgba(${hexToRgb(String(currentTheme.warning))}, 1)`],
-    stroke: { width: 4, curve: 'smooth', lineCap: 'round' },
+    stroke: { width: 4, curve: 'smooth' as const, lineCap: 'round' as const },
     grid: {
       show: false,
       padding: { top: -21, left: -5, bottom: -8 }

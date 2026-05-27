@@ -41,8 +41,8 @@ const chartOptions = computed(() => {
       dataLabels: { enabled: false },
       stroke: {
         width: 6,
-        lineCap: 'round',
-        colors: [currentTheme.surface]
+        lineCap: 'round' as const,
+        colors: [String(currentTheme.surface)]
       },
       colors: [
         `rgba(${hexToRgb(String(currentTheme.primary))}, 1)`,
@@ -50,12 +50,12 @@ const chartOptions = computed(() => {
       ],
       legend: {
         offsetX: -10,
-        position: 'top',
+        position: 'top' as const,
         fontSize: '14px',
-        horizontalAlign: 'left',
+        horizontalAlign: 'left' as const,
         fontFamily: 'DM Sans',
         labels: {
-          colors: currentTheme.secondary
+          colors: String(currentTheme.secondary)
         },
         itemMargin: {
           vertical: 4,
@@ -171,7 +171,7 @@ const chartOptions = computed(() => {
           shadeIntensity: 0.5,
           stops: [30, 70, 100],
           inverseColors: false,
-          gradientToColors: [currentTheme.primary]
+          gradientToColors: [String(currentTheme.primary)]
         }
       },
       plotOptions: {
@@ -185,7 +185,7 @@ const chartOptions = computed(() => {
               offsetY: 25,
               fontWeight: 600,
               fontSize: '16px',
-              color: currentTheme.secondary,
+              color: String(currentTheme.secondary),
               fontFamily: 'DM Sans'
             },
             value: {

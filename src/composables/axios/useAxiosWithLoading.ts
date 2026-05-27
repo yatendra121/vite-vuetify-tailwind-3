@@ -1,7 +1,7 @@
 import { useAxios } from '@qnx/composables/axios'
 import { syncRefLoading } from '../loading'
 import type { RawAxiosRequestConfig } from 'axios'
-import type { ApiSuccessResponseValue } from '@qnx/composables/*'
+import type { ApiSuccessResponseValue } from '@qnx/composables'
 
 export function useAxiosWithLoading<T>(
     url: string,

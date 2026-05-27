@@ -13,7 +13,7 @@
   <v-container fluid>
     <v-card>
       <v-responsive>
-        <StaticPageForm :initial-values="response?.data" />
+        <StaticPageForm :initial-values="response" />
       </v-responsive>
     </v-card>
   </v-container>

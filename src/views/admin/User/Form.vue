@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { VqTextField, VqTimePicker } from '@qnx/vuetify'
+import { VqTextField } from '@qnx/vuetify'
 
 //composables
 import {
@@ -16,8 +16,7 @@ import type { FormMethod, InitialValues } from '@/types'
 
 export default defineComponent({
   components: {
-    VqTextField,
-    VqTimePicker
+    VqTextField
   },
   props: {
     id: {

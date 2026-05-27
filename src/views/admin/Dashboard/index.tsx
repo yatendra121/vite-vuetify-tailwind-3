@@ -21,11 +21,10 @@ export default defineComponent({
     return () => (
       <div class="wrapper">
         <VDataTable
-          itemTitle="name"
           itemValue="email"
           items={[{ id: 1, name: 'yatendra', email: 'test' }]}
         />
-        {result.value?.users.map((item, i) => (
+        {result.value?.users.map((item: any, i: number) => (
           <li key={i}>
             {item.name} {item.email} {item.id} {item.gender}
           </li>

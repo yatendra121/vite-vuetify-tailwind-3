@@ -28,7 +28,7 @@ class Message {
     }
 
     success(message: string) {
-        this.messageStore.addMessage({ message, color: 'secondary' })
+        this.messageStore.addMessage({ message, color: 'success' })
     }
 
     warning(message: string) {

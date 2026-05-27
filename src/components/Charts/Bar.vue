@@ -95,7 +95,7 @@ export default defineComponent({
             padding: 10,
             font: {
               size: 14,
-              weight: '300',
+              weight: 300,
               family: 'Roboto',
               style: 'normal',
               lineHeight: 2

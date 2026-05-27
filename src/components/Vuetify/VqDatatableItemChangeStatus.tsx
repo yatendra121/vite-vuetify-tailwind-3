@@ -3,7 +3,7 @@ import { VSwitch } from 'vuetify/components'
 import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 
-import { ApiResponse } from '@qnx/composables'
+import { ApiResponse, ApiResponseValue } from '@qnx/composables'
 import { updateItemValue } from '@/plugins/vqVuetify'
 
 //types
@@ -42,12 +42,13 @@ const VqDatatableItemChangeStatus = defineComponent({
     const tableId: Ref<string> = inject('tableListId', ref('form'))
 
     const loading = ref(false)
-    const updateValue = (value: Value) => {
+    const updateValue = (value: Value | null) => {
+      if (!value) return
       loading.value = true
-      useAsyncAxios(`${props.action}/${props.itemId}`, {
+      useAsyncAxios<ApiResponseValue<{ status: string }>>(`${props.action}/${props.itemId}`, {
         method: props.method
       })
-        .then((res: ApiResponse<{ status: string }>) => {
+        .then((res) => {
           const apiRes = new ApiResponse<{ status: string }>(res)
           useMessage.success(apiRes.getMessage() ?? '')
           updateItemValue(tableId.value, props.itemId, apiRes.getData())

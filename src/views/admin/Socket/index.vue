@@ -40,7 +40,8 @@ const executeCommand = () => {
   useEmitSocket('execute-command', command.value)
 }
 
-const executeCommandEvent = (response: CommandResponse) => {
+const executeCommandEvent = (...args: unknown[]) => {
+  const response = args[0] as CommandResponse
   if (response.code !== undefined) {
     commandExecutionRes.value[0].status = response.code
       ? 'rejected'

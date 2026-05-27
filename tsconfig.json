@@ -16,13 +16,17 @@
     "noImplicitThis": true,
     "lib": ["esnext", "dom"],
     "allowJs": true,
-    "types": ["vitest/globals", "@qnx/vuetify"], 
+    "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["src/*"]   
+      "@/*": ["src/*"],
+      "vue": ["./node_modules/vue"],
+      "vue/dist/*": ["./node_modules/vue/dist/*"],
+      "@vue/reactivity": ["./node_modules/@vue/reactivity"],
+      "@vue/runtime-core": ["./node_modules/@vue/runtime-core"]
     },
     "baseUrl": "."
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["src/**/*.test_spec.ts", "tests/**/*.ts"]
+  "exclude": ["src/**/*.test_spec.ts", "tests/**/*.ts", "src/store/core/**"]
 }
 

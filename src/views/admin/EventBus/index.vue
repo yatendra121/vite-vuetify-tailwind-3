@@ -75,11 +75,11 @@ const useFormSuccess = () => {
   alert('success')
 }
 
-const useFormError = (data) => {
+const useFormError = (data: unknown) => {
   console.log({ data })
 }
 
-const useFormClientError = (data) => {
+const useFormClientError = (data: unknown) => {
   console.log({ data })
 }
 </script>

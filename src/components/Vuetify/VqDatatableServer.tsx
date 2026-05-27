@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { VDataTableServer } from 'vuetify/labs/VDataTable'
+import { VDataTableServer } from 'vuetify/components'
 
 export const VqDataTableServer = defineComponent({
   name: 'VqDataTableServer',
@@ -192,11 +192,11 @@ export const VqDataTableServer = defineComponent({
         <VDataTableServer
           headers={headers.value}
           items={items.value}
-          items-length={items.value.length}
+          itemsLength={items.value.length}
           loading={loading.value}
-          item-value="name"
-          show-select
-          show-expand
+          itemValue="name"
+          showSelect
+          showExpand
           class="elevation-1"
         ></VDataTableServer>
       </>

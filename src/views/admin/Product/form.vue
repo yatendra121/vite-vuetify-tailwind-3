@@ -1,4 +1,4 @@
-<script lang="ts" generic="T">
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 //composables

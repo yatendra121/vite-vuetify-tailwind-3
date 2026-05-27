@@ -3,9 +3,8 @@ import { syncRef } from '@vueuse/core'
 import { toRefs } from 'vue'
 import type { Ref } from 'vue'
 
-const appStore = useAppStore()
-const { loading } = toRefs(appStore)
-
 export const syncRefLoading = (refValue: Ref<boolean>) => {
+    const appStore = useAppStore()
+    const { loading } = toRefs(appStore)
     syncRef(refValue, loading)
 }

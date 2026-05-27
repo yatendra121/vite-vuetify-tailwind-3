@@ -6,7 +6,7 @@ export type PortalConfig = {
     VUE_APP_OUTPUT_DIR?: string | undefined
     VUE_APP_API_BASE_URL?: string | undefined
     VUE_APP_WEB_BASE_URL?: string | undefined
-    VUE_APP_PORT?: number | undefined
+    VUE_APP_PORT?: number | string | undefined
     VUE_APP_CLIENT_ID?: string | undefined
     VUE_APP_CHECK_ESLINT?: string | undefined
     VUE_APP_ADD_PWA?: string | undefined
@@ -14,7 +14,7 @@ export type PortalConfig = {
     VUE_APP_GRAPH_QL_URL?: string | undefined
 }
 
-export type PortalName = 'admin' | 'front'
+export type PortalName = 'admin'
 /**
  * Class for interacting with portal
  *
@@ -98,7 +98,8 @@ export class Portal {
      * @returns url
      */
     public getPort = (): number | undefined => {
-        return this.portalConfig.VUE_APP_PORT
+        const port = this.portalConfig.VUE_APP_PORT
+        return port !== undefined ? Number(port) : undefined
     }
 
     /**
