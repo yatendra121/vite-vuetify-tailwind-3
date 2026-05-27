@@ -136,7 +136,6 @@ import { defineComponent, computed, ref, reactive } from 'vue'
 import { useAppStore } from '@/store/reactivity/app'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { useRouter } from 'vue-router'
-import defaultProfileImage from '@/assets/images/profile.png'
 import Notification from './Notification.vue'
 import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 import {
@@ -228,7 +227,6 @@ export default defineComponent({
       mdiWeatherSunny,
       mdiWeatherNight,
       appStore,
-      defaultProfileImage,
       mdiCogOutline,
       mdiNotificationClearAll,
       mdiMenu,
@@ -240,8 +238,7 @@ export default defineComponent({
       notificationToggle,
       logoutUser,
       myProfileRoute,
-      styles,
-      width
+      styles
     }
   }
 })

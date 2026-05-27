@@ -28,13 +28,10 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent, reactive } from 'vue'
-import { mdiClock, mdiAccount, mdiFlag } from '@mdi/js'
 import { useAppStore } from '@/store/reactivity/app'
 
 export default defineComponent({
   setup() {
-    const icons = [mdiClock, mdiAccount, mdiFlag]
-
     const appStore = useAppStore()
 
     const width = computed(() =>
@@ -49,7 +46,7 @@ export default defineComponent({
       }
     })
 
-    return { icons, styles }
+    return { styles }
   }
 })
 </script>

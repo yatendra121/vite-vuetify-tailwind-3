@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     v-bind="$attrs"
-    model-value="true"
+    :model-value="true"
     location="right"
     :elevation="1"
     width="350"
@@ -121,24 +121,15 @@
     </v-window>
   </v-navigation-drawer>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
-import {
-  mdiAccessPoint,
-  mdiAbTesting,
-  mdiAbacus,
-  mdiAlertBoxOutline,
-  mdiMessageReplyOutline
-} from '@mdi/js'
+import { mdiAlertBoxOutline, mdiMessageReplyOutline } from '@mdi/js'
 export default defineComponent({
   name: 'Notification',
   setup() {
-    const tabs = ref(null)
+    const tabs = ref<string | null>(null)
     return {
       tabs,
-      mdiAccessPoint,
-      mdiAbTesting,
-      mdiAbacus,
       mdiAlertBoxOutline,
       mdiMessageReplyOutline
     }

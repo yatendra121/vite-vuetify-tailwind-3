@@ -20,7 +20,6 @@ import AppBar from './AppBar/index.vue'
 import BottomBar from './Bottom/index.vue'
 import BottomNavigation from './Bottom/BottomNavigation.vue'
 import Sidebar from './Sidebar/index.vue'
-import Notification from './AppBar/Notification.vue'
 
 import { useFullscreen } from '@vueuse/core'
 export default defineComponent({
@@ -28,7 +27,6 @@ export default defineComponent({
     AppBar,
     BottomBar,
     Sidebar,
-    Notification,
     BottomNavigation
   },
   setup() {
