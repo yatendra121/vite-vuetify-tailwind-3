@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import { mdiLanguageKotlin } from '@mdi/js'
+import { mdiLogin, mdiLockReset, mdiLockQuestion } from '@mdi/js'
 const Login = () =>
     import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/login.vue')
 const ResetPassword = () =>
@@ -21,7 +21,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
             heading: 'Login',
             isPublic: true,
             type: 'auth',
-            icon: mdiLanguageKotlin,
+            icon: mdiLogin,
             permission: 'admin.login'
         }
     },
@@ -34,7 +34,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
             heading: 'ForgotPassword',
             isPublic: true,
             type: 'auth',
-            icon: mdiLanguageKotlin,
+            icon: mdiLockQuestion,
             permission: 'admin.forgot-password'
         }
     },
@@ -47,7 +47,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
             heading: 'ResetPassword',
             isPublic: true,
             type: 'auth',
-            icon: mdiLanguageKotlin,
+            icon: mdiLockReset,
             permission: 'admin.reset-password'
         }
     }

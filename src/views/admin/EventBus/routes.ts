@@ -1,14 +1,14 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiElectronFramework } from '@mdi/js'
-const Fullscreen = () =>
-    import(/* webpackChunkName: "fullscreen" */ './index.vue')
+const EventBus = () =>
+    import(/* webpackChunkName: "eventbus" */ './index.vue')
 
 export default [
     {
         path: '/eventbus',
         name: 'eventbus',
-        component: Fullscreen,
+        component: EventBus,
         meta: {
             title: 'eventbus',
             heading: 'eventbus',

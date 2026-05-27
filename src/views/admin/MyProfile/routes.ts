@@ -1,14 +1,14 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiAccountCircle } from '@mdi/js'
-const Fullscreen = () =>
+const MyProfile = () =>
     import(/* webpackChunkName: "myprofile" */ './index.vue')
 
 export const MyProfileRoutes: Array<RouteRecordRaw> = [
     {
         path: '/my-profile',
         name: 'my-profile',
-        component: Fullscreen,
+        component: MyProfile,
         meta: {
             title: 'My Profile',
             heading: 'My Profile',
