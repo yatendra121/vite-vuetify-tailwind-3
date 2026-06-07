@@ -19,8 +19,36 @@ const getRefreshToken = () => Cookies.get(RefreshTokenKey)
 
 const getDeviceId = () => Cookies.get(DeviceIdKey)
 
+/**
+ * Convert the configured `VUE_APP_BASE_URL` (which is a full URL like
+ * "https://example.com/") into a value valid for the `Set-Cookie`
+ * `Domain` attribute (just a hostname). When the configured base
+ * doesn't resolve to a hostname different from the current browser
+ * host we return `undefined` so the browser uses the host of the
+ * current page — that's what we want for `localhost` development and
+ * also avoids cookies being silently dropped because the requested
+ * domain doesn't match.
+ */
+const resolveCookieDomain = (): string | undefined => {
+    const raw = currentPortal.getBaseUrl()
+    if (!raw) return undefined
+    let hostname = raw
+    try {
+        hostname = new URL(raw).hostname
+    } catch {
+        // Already a bare hostname.
+    }
+    if (!hostname || hostname === 'localhost') return undefined
+    if (typeof window !== 'undefined' && hostname !== window.location.hostname) {
+        // Configured domain isn't the host serving the page — the cookie
+        // would be discarded by the browser. Fall back to the current host.
+        return undefined
+    }
+    return hostname
+}
+
 const setTokens = (token: TokenPair) => {
-    const domain = currentPortal.getBaseUrl()
+    const domain = resolveCookieDomain()
     removeToken()
     removeRefreshToken()
     setToken(token.access_token, '/', domain)
@@ -32,11 +60,11 @@ const removeTokens = () => {
     removeRefreshToken()
 }
 
-const setToken = (token: string, path: string, domain: string) => {
+const setToken = (token: string, path: string, domain?: string) => {
     return Cookies.set(TokenKey, token, { expires: 30, path, domain })
 }
 
-const setRefreshToken = (token: string, path: string, domain: string) => {
+const setRefreshToken = (token: string, path: string, domain?: string) => {
     return Cookies.set(RefreshTokenKey, token, { expires: 45, path, domain })
 }
 
