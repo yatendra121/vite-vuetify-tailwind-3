@@ -1,9 +1,6 @@
 /**
  * Flat ESLint config.
  *
- * ESLint v9 deprecated and v10 removed the legacy `.eslintrc.*` /
- * `.eslintignore` files, so this replaces the old config.
- *
  * Composition (in order):
  *   1. Ignores  — keep this first so subsequent blocks don't scan
  *      generated/vendored paths.
