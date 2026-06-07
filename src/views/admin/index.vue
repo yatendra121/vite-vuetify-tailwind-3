@@ -62,20 +62,33 @@ export default defineComponent({
     const router = useRouter()
     const { authStatus } = toRefs(props)
 
-    const redirectToAuth = () => {
-      if (route.meta.type === 'not_found') {
-        console.log('Not Found')
-      } else if (props.authStatus === 'authenticated') {
-        if (route.meta.isPublic) router.push({ name: 'dashboard' })
-      } else {
-        router.push({ name: 'login' })
-      }
+    // `useRoute()` in this App-level component can still hold the
+    // pre-resolution START_LOCATION ('/', empty meta) at the moment our
+    // watcher first fires, because the router's initial navigation runs
+    // in parallel with App.vue's `myProfile()` call. To make a reliable
+    // decision we (a) wait for `router.isReady()` so the route object is
+    // fully populated and (b) double-check the live URL via
+    // `window.location.pathname` for public auth pages.
+    const PUBLIC_AUTH_PATH = /\/(auth|forgot-password|reset-password)(\/|$)/
+
+    const isOnPublicAuthPath = () => {
+      if (route.meta?.isPublic === true) return true
+      if (typeof window === 'undefined') return false
+      return PUBLIC_AUTH_PATH.test(window.location.pathname)
     }
 
-    watch(authStatus, () => {
-      redirectToAuth()
-    })
-    if (authStatus.value === 'authenticated') redirectToAuth()
+    const redirectToAuth = async () => {
+      await router.isReady()
+      if (route.meta.type === 'not_found') return
+      if (props.authStatus === 'authenticated') {
+        if (isOnPublicAuthPath()) router.push({ name: 'dashboard' })
+      } else if (props.authStatus === 'unauthenticated') {
+        if (!isOnPublicAuthPath()) router.push({ name: 'login' })
+      }
+      // Intentionally do nothing while authStatus === 'pending'.
+    }
+
+    watch(authStatus, () => redirectToAuth(), { immediate: true })
 
     // Navigation Guard
     const profileStore = useProfileStore()
@@ -88,12 +101,19 @@ export default defineComponent({
         return
       }
       next()
-
-      // Browser Tab Title
-      if (to.meta.title) {
-        title.value = to.meta.title as string
-      }
     })
+
+    // Browser tab title is updated in `afterEach` because `beforeEach` is
+    // skipped on the initial navigation (this guard is registered AFTER
+    // the router has started resolving the first route). `afterEach`
+    // *does* run for the initial navigation once it settles.
+    const applyTitle = (to: { meta?: { title?: string } }) => {
+      if (to.meta?.title) title.value = to.meta.title as string
+    }
+    router.afterEach((to) => applyTitle(to))
+    // Cover the initial nav explicitly in case it had already settled
+    // before this component mounted.
+    router.isReady().then(() => applyTitle(route))
 
     // Close loader if exist
     onMounted(() => {
