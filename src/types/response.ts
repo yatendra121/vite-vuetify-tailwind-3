@@ -3,7 +3,7 @@ export type Response = {
     data: any
     error: null | string
     errorCode: null | string
-    errors: null | Object
+    errors: null | object
     exception: null | string
     message: null | string
     trace: null | string

@@ -96,7 +96,7 @@ export default defineComponent({
                   cover
                   class="bg-grey-lighten-2"
                 >
-                  <template v-slot:placeholder>
+                  <template #placeholder>
                     <v-row
                       class="fill-height ma-0"
                       align="center"

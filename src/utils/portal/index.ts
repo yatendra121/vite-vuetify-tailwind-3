@@ -28,7 +28,6 @@ export class Portal {
      */
     portalConfig: PortalConfig = {}
 
-    // eslint-disable-next-line no-use-before-define
     static instance: Portal
 
     private constructor(portal: PortalName) {

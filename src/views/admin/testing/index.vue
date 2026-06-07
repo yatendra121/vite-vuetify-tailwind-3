@@ -6,7 +6,7 @@
     <v-row>
       <v-col md="3" v-for="(item, i) in filter" :key="i">
         <v-hover>
-          <template v-slot:default="{ isHovering, props }">
+          <template #default="{ isHovering, props }">
             <v-switch label="Switch"></v-switch>
 
             {{ isHovering }}

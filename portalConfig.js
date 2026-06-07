@@ -1,4 +1,3 @@
-/* eslint-disable node/no-path-concat */
 const fs = require('fs')
 const dotenv = require('dotenv')
 if (!fs.existsSync(__dirname + '/.env')) {

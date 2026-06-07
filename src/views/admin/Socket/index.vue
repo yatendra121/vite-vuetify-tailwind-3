@@ -126,7 +126,7 @@ const clearResponse = () => {
                       class="pa-1"
                     ></v-icon> -->
 
-                    <template v-slot:default="{ expanded }">
+                    <template #default="{ expanded }">
                       <v-row no-gutters>
                         <v-col cols="11" class="d-flex justify-start">
                           {{ res.name }}

@@ -1,6 +1,0 @@
-{
-    "ignorePatterns": [ **.d.ts ,"temp.js", "**/vendor/*.js"],
-    "rules": {
-        //...
-    }
-}

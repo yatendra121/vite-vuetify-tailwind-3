@@ -1,10 +1,8 @@
 import { useMessageStore } from '@/store/reactivity/message'
 
 class Message {
-    // eslint-disable-next-line no-use-before-define
     static instance: Message
 
-    // eslint-disable-next-line no-useless-constructor
     private constructor() {}
 
     // Late-bind the store via a getter instead of caching it in a field.
