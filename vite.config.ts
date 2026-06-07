@@ -37,10 +37,15 @@ export default defineConfig({
         manifest: currentPortal.getAddPWA(),
         rollupOptions: {
             output: {
-                manualChunks: {
-                    'chart-js': ['chart.js', 'vue-chartjs'],
-                    'vue3-apexcharts': ['vue3-apexcharts'],
-                    axios: ['axios']
+                // Rollup 4+ (used by Vite 8) only accepts the function
+                // form of `manualChunks`; the object form throws
+                // "Invalid type: Expected Function but received Object".
+                manualChunks(id) {
+                    if (id.includes('node_modules/chart.js')) return 'chart-js'
+                    if (id.includes('node_modules/vue-chartjs')) return 'chart-js'
+                    if (id.includes('node_modules/vue3-apexcharts'))
+                        return 'vue3-apexcharts'
+                    if (id.includes('node_modules/axios')) return 'axios'
                 }
             }
         },
