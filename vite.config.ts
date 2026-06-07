@@ -54,5 +54,13 @@ export default defineConfig({
     },
     optimizeDeps: {
         exclude: ['vuetify']
+    },
+    test: {
+        // Vitest only runs unit specs from tests/unit and any *.test.ts
+        // under src/. Playwright owns everything under tests/e2e — those
+        // files use `@playwright/test` and would error if Vitest tried
+        // to execute them.
+        include: ['tests/unit/**/*.{test,spec}.ts', 'src/**/*.{test,spec}.ts'],
+        exclude: ['tests/e2e/**', 'node_modules/**', 'dist/**']
     }
 })
