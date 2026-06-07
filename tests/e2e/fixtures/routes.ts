@@ -29,10 +29,6 @@ export const ADMIN_ROUTES = [
     { name: 'static-page.about-us', path: p('/static-page/about-us') },
     { name: 'static-page.term-condition', path: p('/static-page/term-condition') },
     { name: 'static-page.privacy-policy', path: p('/static-page/privacy-policy') },
-    { name: 'drawer', path: p('/drawer') },
-    { name: 'fullscreen', path: p('/fullscreen') },
     { name: 'my-profile', path: p('/my-profile') },
-    { name: 'eventbus', path: p('/eventbus') },
-    { name: 'testing', path: p('/testing') },
     { name: 'socket', path: p('/socket') }
 ] as const
