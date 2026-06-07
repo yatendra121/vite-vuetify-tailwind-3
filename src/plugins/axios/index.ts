@@ -46,9 +46,12 @@ _axios.interceptors.response.use(
         return response
     },
     (error: AxiosError) => {
-        // Do something with response error
-        // if (error)
-        // console.log(error.status, error.request, 'Error')
+        // Generic 401 handling: clear stored tokens. The decision to
+        // navigate to the login page is intentionally NOT made here —
+        // the global interceptor doesn't know whether the caller is on
+        // a public route or whether a redirect is appropriate. Callers
+        // (e.g. `useAuthProfileRepository().myProfile()`) take that
+        // responsibility.
         if (error && error.response && error.response.status === 401) {
             removeToken()
             removeRefreshToken()
