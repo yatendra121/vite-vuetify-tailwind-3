@@ -93,13 +93,5 @@
     "vue-tsc": "^3.2.6",
     "vuetify": "^4.0.3",
     "webfontloader": "^1.6.28"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "core-js",
-      "esbuild",
-      "vue-demi"
-    ]
   }
 }

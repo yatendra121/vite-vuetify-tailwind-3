@@ -36,6 +36,20 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: 'pnpm'
 
+      # pnpm v10+ ignores postinstall scripts unless they're allowed in
+      # `pnpm-workspace.yaml`. This standalone repo isn't part of the
+      # monorepo, so write the allow-list at job time. The list mirrors
+      # the monorepo's pnpm-workspace.yaml#allowBuilds.
+      - name: Allow trusted build scripts
+        run: |
+          cat > pnpm-workspace.yaml <<'EOF'
+          allowBuilds:
+            '@parcel/watcher': true
+            core-js: true
+            esbuild: true
+            vue-demi: true
+          EOF
+
       - run: pnpm install --no-frozen-lockfile
 
       - name: Unit Test
