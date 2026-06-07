@@ -87,7 +87,7 @@
     "vitest": "^4.1.0",
     "volar-service-vetur": "^0.0.64",
     "vue-tsc": "^3.2.6",
-    "vuetify": "^4.0.3",
+    "vuetify": "~4.0.6",
     "webfontloader": "^1.6.28"
   }
 }
