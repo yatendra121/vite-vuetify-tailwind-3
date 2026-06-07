@@ -4,8 +4,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
   root: true,
   env: {
-    node: true,
-    'cypress/globals': true
+    node: true
   },
   extends: ['eslint:recommended', 'standard', 'prettier'],
   rules: {
@@ -54,10 +53,6 @@ module.exports = {
       rules: {
         'no-unused-vars': 'off'
       }
-    },
-    {
-      files: ['tests/e2e/integration/**.spec.{js,ts,jsx,tsx}'],
-      extends: ['plugin:cypress/recommended']
     }
   ]
 }
