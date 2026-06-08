@@ -1,14 +1,28 @@
 {
+  "$schema": "https://json.schemastore.org/prettierrc",
   "semi": false,
   "singleQuote": true,
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "none",
+  "endOfLine": "lf",
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": ["**/*.ts", "**/*.cts", "**/*.mts"],
       "options": {
         "tabWidth": 4
+      }
+    },
+    {
+      "files": ["**/*.md", "**/*.mdx"],
+      "options": {
+        "proseWrap": "preserve"
+      }
+    },
+    {
+      "files": ["**/*.yml", "**/*.yaml"],
+      "options": {
+        "singleQuote": false
       }
     }
   ]

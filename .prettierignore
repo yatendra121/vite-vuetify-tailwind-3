@@ -1,3 +1,35 @@
-coverage/*
-public/*
-admin/*
+# Vendored / installed
+node_modules
+.pnpm-store
+
+# Build output
+dist
+dist-ssr
+admin
+coverage
+.vite
+.turbo
+
+# Test artifacts
+playwright-report
+test-results
+blob-report
+tests/e2e/.auth
+
+# Generated files
+portals/index.ts
+auto-imports.d.ts
+src/types/components.d.ts
+
+# Lockfiles & manifests we don't want reformatted
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Vendored assets
+public
+
+# Markdown that's often auto-generated
+CHANGELOG.md
+LICENSE
+LICENSE.md
