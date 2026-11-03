@@ -71,10 +71,10 @@ const chartOptions = computed(() => {
       },
       states: {
         hover: {
-          filter: { type: 'none' }
+          filter: { type: 'none' as const }
         },
         active: {
-          filter: { type: 'none' }
+          filter: { type: 'none' as const }
         }
       },
       grid: {
@@ -157,10 +157,10 @@ const chartOptions = computed(() => {
       colors: [`rgba(${hexToRgb(String(currentTheme.primary))}, 1)`],
       states: {
         hover: {
-          filter: { type: 'none' }
+          filter: { type: 'none' as const }
         },
         active: {
-          filter: { type: 'none' }
+          filter: { type: 'none' as const }
         }
       },
       fill: {

@@ -44,10 +44,10 @@ const chartOptions = computed(() => {
     ],
     states: {
       hover: {
-        filter: { type: 'none' }
+        filter: { type: 'none' as const }
       },
       active: {
-        filter: { type: 'none' }
+        filter: { type: 'none' as const }
       }
     },
     xaxis: {

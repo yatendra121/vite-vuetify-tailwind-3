@@ -17,16 +17,16 @@ const chartOptions = computed(() => {
 
   return {
     chart: { sparkline: { enabled: true }, animations: { enabled: false } },
-    stroke: { width: 6, colors: [currentTheme.surface] },
+    stroke: { width: 6, colors: [String(currentTheme.surface)] },
     legend: { show: false },
     tooltip: { enabled: false },
     dataLabels: { enabled: false },
     labels: ['Fashion', 'Electronic', 'Sports', 'Decor'],
-    colors: [currentTheme.success, currentTheme.primary, currentTheme.secondary, currentTheme.info],
+    colors: [currentTheme.success, currentTheme.primary, currentTheme.secondary, currentTheme.info].map(String),
     grid: { padding: { top: -7, bottom: 5 } },
     states: {
-      hover: { filter: { type: 'none' } },
-      active: { filter: { type: 'none' } }
+      hover: { filter: { type: 'none' as const } },
+      active: { filter: { type: 'none' as const } }
     },
     plotOptions: {
       pie: {
