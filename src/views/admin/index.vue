@@ -30,6 +30,7 @@ import {
 import { useTitle } from '@vueuse/core'
 import { useTheme } from 'vuetify'
 import { useRouter, useRoute } from 'vue-router'
+import type { RouteMeta } from 'vue-router'
 import { useAppStore } from '@/store/reactivity/app'
 import AdminApp from './adminApp.vue'
 import FallbackComponent from '@/components/Loading/FallbackComponent'
@@ -111,8 +112,8 @@ export default defineComponent({
     // skipped on the initial navigation (this guard is registered AFTER
     // the router has started resolving the first route). `afterEach`
     // *does* run for the initial navigation once it settles.
-    const applyTitle = (to: { meta?: { title?: string } }) => {
-      if (to.meta?.title) title.value = to.meta.title as string
+    const applyTitle = (to: { meta: RouteMeta }) => {
+      if (to.meta.title) title.value = to.meta.title as string
     }
     router.afterEach((to) => applyTitle(to))
     // Cover the initial nav explicitly in case it had already settled

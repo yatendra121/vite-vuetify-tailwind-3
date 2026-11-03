@@ -57,7 +57,7 @@ const chartOptions = computed(() => {
 <template>
   <VCard>
     <VCardText class="d-flex justify-space-between align-center h-100 pa-5">
-      <div class="d-flex flex-column justify-space-between ga-4">
+      <div class="d-flex flex-column justify-space-between flex-shrink-0 ga-4">
         <div>
           <p class="text-body-small text-medium-emphasis text-uppercase font-weight-medium mb-1" style="letter-spacing: 0.5px">
             Profit Report
@@ -76,13 +76,15 @@ const chartOptions = computed(() => {
         </div>
       </div>
 
-      <VueApexCharts
-        type="line"
-        :height="131"
-        width="60%"
-        :options="chartOptions"
-        :series="series"
-      />
+      <div class="flex-grow-1" style="min-width: 0">
+        <VueApexCharts
+          type="line"
+          :height="131"
+          width="100%"
+          :options="chartOptions"
+          :series="series"
+        />
+      </div>
     </VCardText>
   </VCard>
 </template>
