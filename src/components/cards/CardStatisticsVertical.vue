@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { controlledComputed } from '@vueuse/core'
+import { mdiTrendingDown, mdiTrendingUp } from '@mdi/js'
 
 interface Props {
   title: string
@@ -17,7 +18,7 @@ const isPositive = controlledComputed(
 </script>
 
 <template>
-  <VCard>
+  <VCard class="h-100">
     <VCardText class="pa-5">
       <div class="d-flex align-center justify-space-between mb-4">
         <img width="40" height="40" :src="props.image" alt="stat icon" />
@@ -27,15 +28,15 @@ const isPositive = controlledComputed(
           variant="tonal"
           class="font-weight-medium"
         >
-          <VIcon start size="14" :icon="isPositive ? 'mdi-trending-up' : 'mdi-trending-down'" />
+          <VIcon start size="14" :icon="isPositive ? mdiTrendingUp : mdiTrendingDown" />
           {{ isPositive ? '+' : '' }}{{ props.change }}%
         </VChip>
       </div>
 
-      <p class="text-caption text-medium-emphasis mb-1 text-uppercase font-weight-medium" style="letter-spacing: 0.5px">
+      <p class="text-body-small text-medium-emphasis mb-1 text-uppercase font-weight-medium" style="letter-spacing: 0.5px">
         {{ props.title }}
       </p>
-      <h5 class="text-h5 font-weight-bold">{{ props.stats }}</h5>
+      <h5 class="text-headline-small font-weight-bold">{{ props.stats }}</h5>
     </VCardText>
   </VCard>
 </template>

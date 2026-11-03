@@ -50,11 +50,11 @@ const VqDatatableItemChangeStatus = defineComponent({
       })
         .then((res) => {
           const apiRes = new ApiResponse<{ status: string }>(res)
-          useMessage.success(apiRes.getMessage() ?? '')
+          useMessage.success(apiRes.getMessage() || 'Status updated.')
           updateItemValue(tableId.value, props.itemId, apiRes.getData())
         })
         .catch(() => {
-          useMessage.error('Please check input values.')
+          useMessage.error('Could not update the status. Please try again.')
         })
         .finally(() => {
           loading.value = false
@@ -65,6 +65,9 @@ const VqDatatableItemChangeStatus = defineComponent({
       <>
         <VSwitch
           hideDetails
+          inset
+          density="compact"
+          aria-label="Change status"
           color="primary"
           modelValue={props.itemValue}
           trueValue={props.trueValue}

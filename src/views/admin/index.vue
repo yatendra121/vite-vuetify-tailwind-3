@@ -3,8 +3,7 @@
     <admin-app>
       <router-view :key="$route.path" v-slot="{ Component, route }">
         <v-fade-transition mode="out-in" appear>
-          <v-responsive>
-            <!-- v-if="!authLoading" -->
+          <div>
             <suspense>
               <template #default>
                 <component :is="Component" :key="route.name" />
@@ -13,7 +12,7 @@
                 <FallbackComponent />
               </template>
             </suspense>
-          </v-responsive>
+          </div>
         </v-fade-transition>
       </router-view>
     </admin-app>
@@ -29,6 +28,7 @@ import {
   onMounted
 } from 'vue'
 import { useTitle } from '@vueuse/core'
+import { useTheme } from 'vuetify'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppStore } from '@/store/reactivity/app'
 import AdminApp from './adminApp.vue'
@@ -56,6 +56,10 @@ export default defineComponent({
     // Current theme light/dark
     const appStore = useAppStore()
     const theme = computed(() => appStore.themeValue)
+
+    // Charts and overlays read the global theme, not the one on <v-app>.
+    const vuetifyTheme = useTheme()
+    watch(theme, (value) => vuetifyTheme.change(value), { immediate: true })
 
     // Navigation redirection
     const route = useRoute()

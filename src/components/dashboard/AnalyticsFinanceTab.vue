@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { mdiTrendingDown, mdiTrendingUp } from '@mdi/js'
 import VueApexCharts from 'vue3-apexcharts'
 import { useTheme } from 'vuetify'
 import statsVerticalChart from '@/assets/images/cards/chart-success.png'
@@ -178,14 +179,14 @@ const chartConfig = computed(() => {
     <VCardText class="d-flex align-center ga-3 pt-4 pb-2">
       <VAvatar size="44" rounded="lg" :image="tabData.avatar" />
       <div>
-        <p class="text-caption text-medium-emphasis mb-0">{{ tabData.title }}</p>
+        <p class="text-body-small text-medium-emphasis mb-0">{{ tabData.title }}</p>
         <div class="d-flex align-center ga-2">
-          <h6 class="text-h6 font-weight-bold">{{ tabData.stats }}</h6>
+          <h6 class="text-title-large font-weight-bold">{{ tabData.stats }}</h6>
           <span
-            class="text-body-2 d-flex align-center ga-1"
+            class="text-body-medium d-flex align-center ga-1"
             :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
           >
-            <VIcon size="16" :icon="tabData.profitLoss > 0 ? 'mdi-trending-up' : 'mdi-trending-down'" />
+            <VIcon size="16" :icon="tabData.profitLoss > 0 ? mdiTrendingUp : mdiTrendingDown" />
             {{ tabData.profitLoss }}%
           </span>
         </div>
@@ -210,13 +211,13 @@ const chartConfig = computed(() => {
         color="primary"
         :model-value="tabData.profitLoss"
       >
-        <span class="text-caption font-weight-bold">{{ tabData.profitLossAmount }}</span>
+        <span class="text-body-small font-weight-bold">{{ tabData.profitLossAmount }}</span>
       </VProgressCircular>
       <div>
-        <p class="text-body-2 font-weight-medium mb-0">
+        <p class="text-body-medium font-weight-medium mb-0">
           <span class="text-capitalize">{{ currentTab }}</span> this week
         </p>
-        <span class="text-caption text-medium-emphasis">
+        <span class="text-body-small text-medium-emphasis">
           {{ tabData.compareToLastWeek }} less than last week
         </span>
       </div>

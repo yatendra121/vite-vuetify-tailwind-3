@@ -1,53 +1,38 @@
 <template>
   <AuthLayout>
-    <v-row>
-      <v-col lg="12" xl="12" cols="12">
-        <h3 class="font-weight-bold mt-4">Forgot Password</h3>
-      </v-col>
-      <v-col lg="12" xl="12" cols="12">
-        <vq-form
-          action="forgot-password"
-          method="POST"
-          :validation-schema="schema"
-          @submited-success="useFormSuccess"
-          @submited-error="useFormError"
-        >
-          <v-container>
-            <v-responsive>
-              <v-row no-gutters>
-                <v-col cols="12">
-                  <vq-text-field
-                    v-model="email"
-                    class="email"
-                    name="email"
-                    label="Email"
-                    placeholder="Email"
-                  />
-                </v-col>
+    <div class="mb-6">
+      <h2 class="text-headline-small font-weight-bold">Forgot Password</h2>
+      <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
+        We'll email you a code to reset your password.
+      </p>
+    </div>
 
-                <v-col cols="12">
-                  <v-btn
-                    width="100%"
-                    color="primary"
-                    :loading="loading"
-                    type="submit"
-                  >
-                    Submit
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-responsive>
-          </v-container>
-          <v-col lg="12" xl="12" cols="12">
-            <div class="d-flex justify-end">
-              <v-btn variant="text" :to="{ name: 'login' }" color="primary">
-                Login
-              </v-btn>
-            </div>
-          </v-col>
-        </vq-form>
-      </v-col>
-    </v-row>
+    <vq-form
+      id="forgotPasswordForm"
+      action="forgot-password"
+      method="POST"
+      :validation-schema="schema"
+      @submited-success="useFormSuccess"
+      @submited-error="useFormError"
+    >
+      <vq-text-field
+        v-model="email"
+        class="email mb-3"
+        name="email"
+        label="Email"
+        placeholder="Email"
+        type="email"
+        autocomplete="username"
+      />
+
+      <vq-submit-btn block size="large" />
+
+      <div class="d-flex justify-center mt-4">
+        <v-btn variant="text" :to="{ name: 'login' }" color="primary" size="small">
+          Back to Login
+        </v-btn>
+      </div>
+    </vq-form>
   </AuthLayout>
 </template>
 <script lang="ts">
@@ -79,12 +64,10 @@ export default defineComponent({
       })
     }
 
-    const loading = ref(false)
     const email = ref('')
 
     return {
       schema,
-      loading,
       useFormSuccess,
       useFormError,
       email

@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import { useNProgress } from '@vueuse/integrations/useNProgress'
+import { VProgressCircular } from 'vuetify/components'
 
 export default defineComponent({
   name: 'FallbackComponent',
@@ -13,7 +14,9 @@ export default defineComponent({
 
     return () => (
       <>
-        <div>Loading...</div>
+        <div class="d-flex justify-center pa-12">
+          <VProgressCircular indeterminate color="primary" aria-label="Loading" />
+        </div>
       </>
     )
   }

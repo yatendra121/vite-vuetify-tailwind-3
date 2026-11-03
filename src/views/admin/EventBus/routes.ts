@@ -10,8 +10,9 @@ export default [
         name: 'eventbus',
         component: EventBus,
         meta: {
-            title: 'eventbus',
-            heading: 'eventbus',
+            section: 'Developer',
+            title: 'Event Bus',
+            heading: 'Event Bus',
             isPublic: false,
             icon: mdiElectronFramework,
             type: 'admin',

@@ -13,6 +13,15 @@ import { UserRoutes } from '@/views/admin/User/routes'
 import { CategoryRoutes } from '@/views/admin/Category/routes'
 import { ProductRoutes } from '@/views/admin/Product/routes'
 
+// Sidebar groups, in display order. Each route picks one through `meta.section`.
+export const navSections = [
+    'Overview',
+    'Accounts',
+    'Catalog',
+    'Content',
+    'Developer'
+]
+
 // Main routes
 const adminRoutes: Array<RouteRecordRaw> = [
     ...DashboardRoutes,

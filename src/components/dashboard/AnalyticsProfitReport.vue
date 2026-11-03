@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { mdiTrendingUp } from '@mdi/js'
 import VueApexCharts from 'vue3-apexcharts'
 import { useDisplay, useTheme } from 'vuetify'
 import { hexToRgb } from '@/utils/core'
@@ -58,7 +59,7 @@ const chartOptions = computed(() => {
     <VCardText class="d-flex justify-space-between align-center h-100 pa-5">
       <div class="d-flex flex-column justify-space-between ga-4">
         <div>
-          <p class="text-caption text-medium-emphasis text-uppercase font-weight-medium mb-1" style="letter-spacing: 0.5px">
+          <p class="text-body-small text-medium-emphasis text-uppercase font-weight-medium mb-1" style="letter-spacing: 0.5px">
             Profit Report
           </p>
           <VChip color="warning" size="small" variant="tonal">
@@ -68,10 +69,10 @@ const chartOptions = computed(() => {
 
         <div>
           <div class="text-success d-flex align-center ga-1 mb-1">
-            <VIcon icon="mdi-trending-up" size="16" />
-            <span class="text-body-2 font-weight-medium">68.2%</span>
+            <VIcon :icon="mdiTrendingUp" size="16" />
+            <span class="text-body-medium font-weight-medium">68.2%</span>
           </div>
-          <h5 class="text-h5 font-weight-bold">$84,686k</h5>
+          <h5 class="text-headline-small font-weight-bold">$84,686k</h5>
         </div>
       </div>
 

@@ -62,12 +62,12 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <v-container>
+      <div class="pa-4 pa-md-6">
         <v-row>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field name="name" label="Name" placeholder="Name" />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field
               name="mobileNo"
               label="Mobile"
@@ -75,29 +75,29 @@ export default defineComponent({
             />
           </v-col>
 
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field name="email" label="Email" placeholder="Email" />
           </v-col>
 
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12">
             <VqFileUpload
               density="compact"
               clearable
               show-size
               name="test"
-              label="Email"
-              placeholder="Email"
+              label="Attachment"
+              placeholder="Attachment"
             />
           </v-col>
 
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12" class="d-flex justify-end">
             <vq-submit-btn></vq-submit-btn>
           </v-col>
         </v-row>
-      </v-container>
+      </div>
     </template>
   </vq-form>
 </template>

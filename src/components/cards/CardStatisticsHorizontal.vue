@@ -28,15 +28,15 @@ const isPositive = true
       </VAvatar>
 
       <div>
-        <span class="text-caption">{{ props.title }}</span>
+        <span class="text-body-small">{{ props.title }}</span>
         <div class="d-flex align-center flex-wrap">
-          <span class="text-h6 font-weight-semibold">{{ props.stats }}</span>
+          <span class="text-title-large font-weight-semibold">{{ props.stats }}</span>
           <div
             v-if="props.change"
             :class="`${isPositive ? 'text-success' : 'text-error'} mt-1`"
           >
             <VIcon :icon="isPositive ? 'bx-chevron-up' : 'bx-chevron-down'" />
-            <span class="text-caption font-weight-semibold"
+            <span class="text-body-small font-weight-semibold"
               >{{ Math.abs(props.change) }}%</span
             >
           </div>

@@ -66,9 +66,9 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <v-container>
+      <div class="pa-4 pa-md-6">
         <v-row>
-          <v-col md="6" sm="6" xs="12">
+          <v-col cols="12" sm="6">
             <vq-autocomplete
               item-title="name"
               item-value="id"
@@ -77,20 +77,20 @@ export default defineComponent({
               label="Category"
             />
           </v-col>
-          <v-col md="6" sm="6" xs="12">
+          <v-col cols="12" sm="6">
             <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field
               name="quantity"
               label="Quantity"
               placeholder="Quantity"
             />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field name="price" label="Price" placeholder="Price" />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field
               name="salePrice"
               label="Sale Price"
@@ -98,14 +98,14 @@ export default defineComponent({
             />
           </v-col>
 
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12">
             <vq-textarea
               name="description"
               label="Description"
               placeholder="Description"
             />
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12">
             <VqFileInput
               multiple
               name="images"
@@ -113,12 +113,10 @@ export default defineComponent({
               placeholder="Product Image"
             />
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12">
             <v-row>
               <v-col
-                md="2"
-                sm="2"
-                xs="6"
+cols="6" sm="2"
                 v-for="image in initialValues?.images"
                 :key="image.id"
               >
@@ -127,7 +125,7 @@ export default defineComponent({
                   :lazy-src="image.thumbPath"
                   aspect-ratio="1"
                   cover
-                  class="bg-grey-lighten-2"
+                  class="bg-surface-variant rounded-lg"
                 >
                   <template #placeholder>
                     <v-row
@@ -137,7 +135,7 @@ export default defineComponent({
                     >
                       <v-progress-circular
                         indeterminate
-                        color="grey-lighten-5"
+                        color="primary"
                       ></v-progress-circular>
                     </v-row>
                   </template>
@@ -145,11 +143,11 @@ export default defineComponent({
               </v-col>
             </v-row>
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12" class="d-flex justify-end">
             <vq-submit-btn :form="id"></vq-submit-btn>
           </v-col>
         </v-row>
-      </v-container>
+      </div>
     </template>
   </vq-form>
 </template>

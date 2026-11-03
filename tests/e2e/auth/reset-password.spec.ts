@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Reset password page', () => {
-    test('renders the ResetPassword heading', async ({ page }) => {
+    test('renders the Reset Password heading', async ({ page }) => {
         await page.goto('/admin/reset-password')
         await expect(
-            page.getByRole('heading', { name: /resetpassword/i })
+            page.getByRole('heading', { name: /reset password/i })
         ).toBeVisible()
     })
 
@@ -28,8 +28,8 @@ test.describe('Reset password page', () => {
         ).toBeVisible()
     })
 
-    test('sets the page title to ResetPassword', async ({ page }) => {
+    test('sets the page title to Reset Password', async ({ page }) => {
         await page.goto('/admin/reset-password')
-        await expect(page).toHaveTitle(/resetpassword/i, { timeout: 10_000 })
+        await expect(page).toHaveTitle(/reset password/i, { timeout: 10_000 })
     })
 })

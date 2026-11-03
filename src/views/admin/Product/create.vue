@@ -10,23 +10,10 @@ const id = 'product_form'
 
 <template>
   <title-layout>
-    <template #default>
-      <title-row>
-        <v-col md="12" sm="12">
-          <title-button>
-            <!-- <vq-submit-btn :id="id"></vq-submit-btn> -->
-            <vq-back-btn></vq-back-btn>
-          </title-button>
-        </v-col>
-      </title-row>
-    </template>
+    <vq-back-btn></vq-back-btn>
   </title-layout>
 
-  <v-container fluid>
-    <v-card>
-      <v-responsive>
-        <ProductForm :id="id" />
-      </v-responsive>
-    </v-card>
-  </v-container>
+  <v-card class="form-card">
+    <ProductForm :id="id" />
+  </v-card>
 </template>

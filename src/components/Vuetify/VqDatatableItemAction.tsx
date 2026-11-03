@@ -7,11 +7,11 @@ import { useMessage } from '@/composables/message'
 import { ApiSuccessResponse, ApiSuccessResponseValue } from '@qnx/composables'
 
 import { updateItemValue, deleteItemValue } from '@/plugins/vqVuetify'
-import { mdiDelete } from '@mdi/js'
+import { mdiDeleteOutline } from '@mdi/js'
 
 type ActionMethod = 'PUT' | 'DELETE'
 const VqDatatableItemAction = defineComponent({
-  name: 'VqDatatableItemAction',
+  name: 'VqDatatableDeleteAction',
   props: {
     itemId: {
       type: String as PropType<string>,
@@ -23,7 +23,7 @@ const VqDatatableItemAction = defineComponent({
     },
     description: {
       type: String as PropType<string>,
-      default: () => 'Are you sure to want delete this record?'
+      default: () => 'This record will be permanently deleted.'
     },
     hintTitle: {
       type: String as PropType<string>,
@@ -39,14 +39,14 @@ const VqDatatableItemAction = defineComponent({
     },
     icon: {
       type: String as PropType<string>,
-      default: () => mdiDelete
+      default: () => mdiDeleteOutline
     }
   },
 
   setup(props, { attrs, slots }) {
     const tableId: Ref<string> = inject('tableListId', ref('form'))
     const confirmStore = useConfirmStore()
-    const { icon } = toRefs(props)
+    const { icon, hintTitle } = toRefs(props)
 
     const callback = () =>
       executeConfirmAction({
@@ -58,7 +58,7 @@ const VqDatatableItemAction = defineComponent({
           const apiRes = new ApiSuccessResponse<{ status: string }>(res)
 
           confirmStore.close()
-          useMessage.success(apiRes.getMessage())
+          useMessage.success(apiRes.getMessage() || 'Record deleted.')
           if (props.method === 'PUT')
             updateItemValue(tableId.value, props.itemId, apiRes.getData())
           else if (props.method === 'DELETE') {
@@ -67,7 +67,7 @@ const VqDatatableItemAction = defineComponent({
         })
         .catch(() => {
           confirmStore.close()
-          useMessage.error('Please check input values.')
+          useMessage.error('Could not complete this action. Please try again.')
         })
 
     const showConfirmAction = () => {
@@ -87,6 +87,8 @@ const VqDatatableItemAction = defineComponent({
               <>
                 <VBtn
                   variant="text"
+                  size="small"
+                  aria-label={hintTitle.value}
                   {...props}
                   {...attrs}
                   onClick={showConfirmAction}

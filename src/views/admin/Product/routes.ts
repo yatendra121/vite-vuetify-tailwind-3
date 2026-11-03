@@ -11,8 +11,9 @@ export const ProductRoutes: RouteRecordRaw[] = [
         path: '/product',
         component: ParentRouteView,
         meta: {
+            section: 'Catalog',
             title: 'Product',
-            heading: 'Product',
+            heading: 'Products',
             isPublic: false,
             icon: mdiShopping,
             type: 'admin',
@@ -25,7 +26,7 @@ export const ProductRoutes: RouteRecordRaw[] = [
                 component: List,
                 meta: {
                     title: 'Product',
-                    heading: 'Product',
+                    heading: 'Products',
                     isPublic: false,
                     icon: mdiShopping,
                     type: 'admin',
@@ -37,8 +38,8 @@ export const ProductRoutes: RouteRecordRaw[] = [
                 name: 'product.create',
                 component: Create,
                 meta: {
-                    title: 'Product',
-                    heading: 'Product',
+                    title: 'Create Product',
+                    heading: 'Create Product',
                     isPublic: false,
                     icon: mdiShopping,
                     type: 'admin',

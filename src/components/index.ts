@@ -1,10 +1,12 @@
 import { defineAsyncComponent } from 'vue'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
-import TitleRow from '@/views/admin/TitleRow.vue'
-import TitleButton from '@/views/admin/TitleButton.vue'
+import EmptyState from '@/components/Basic/EmptyState.vue'
+import VqPasswordField from '@/components/Vuetify/VqPasswordField.vue'
 import type { App } from 'vue'
 
-const VqDatatableItemAction = defineAsyncComponent(
+// Registered under its own name: `VqDatatableItemAction` belongs to @qnx/vuetify,
+// which overwrote this one and turned every delete icon into a PUT request.
+const VqDatatableDeleteAction = defineAsyncComponent(
     () =>
         import(
             /* webpackChunkName: "vq-vuetify" */ './Vuetify/VqDatatableItemAction'
@@ -27,7 +29,7 @@ const VqBtn = defineAsyncComponent(
 )
 
 const components: { [key: string]: any } = {
-    VqDatatableItemAction,
+    VqDatatableDeleteAction,
     VqDatatableItemChangeStatus,
     VqBackBtn,
     VqBtn
@@ -35,8 +37,8 @@ const components: { [key: string]: any } = {
 
 const titleComponents: { [key: string]: any } = {
     TitleLayout,
-    TitleRow,
-    TitleButton
+    EmptyState,
+    VqPasswordField
 }
 export default {
     install: (app: App) => {

@@ -16,7 +16,6 @@ export function useAuthProfileRepository() {
     const loginResponseHandler = (
         response: ApiSuccessResponse<{ user: UserProfile; token: any }>
     ) => {
-        debugger
         const { user, token } = response.getData()
         const profileStore = useProfileStore()
         profileStore.change(user)

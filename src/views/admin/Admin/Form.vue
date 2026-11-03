@@ -70,12 +70,12 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <v-container>
+      <div class="pa-4 pa-md-6">
         <v-row>
-          <v-col md="6" sm="6" xs="12">
+          <v-col cols="12" sm="6">
             <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
-          <v-col md="6" sm="6" xs="12">
+          <v-col cols="12" sm="6">
             <vq-text-field
               id="email"
               name="email"
@@ -83,7 +83,7 @@ export default defineComponent({
               placeholder="Email"
             />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-text-field
               id="mobileNo"
               name="mobileNo"
@@ -91,14 +91,14 @@ export default defineComponent({
               placeholder="Mobile"
             />
           </v-col>
-          <!-- <v-col md="4" sm="4" xs="12">
+          <!-- <v-col cols="12" sm="4">
             <vq-checkbox
               name="membership"
               label="Membership"
               placeholder="Membership"
             />
           </v-col> -->
-          <!-- <v-col md="4" sm="4" xs="12">
+          <!-- <v-col cols="12" sm="4">
             <vq-text-field
               type="date"
               id="dob"
@@ -107,7 +107,7 @@ export default defineComponent({
               placeholder="Date of Birth"
             />
           </v-col> -->
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-autocomplete
               id="gender"
               :items="items"
@@ -115,7 +115,7 @@ export default defineComponent({
               label="Gender"
             />
           </v-col>
-          <v-col md="4" sm="4" xs="12">
+          <v-col cols="12" sm="4">
             <vq-autocomplete
               multiple
               id="role"
@@ -126,14 +126,14 @@ export default defineComponent({
               label="Role"
             />
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12" class="d-flex justify-end">
             <vq-submit-btn></vq-submit-btn>
           </v-col>
 
-          <!-- <v-col md="12" sm="12" xs="12" v-for="i in 2" :key="i">
+          <!-- <v-col cols="12" v-for="i in 2" :key="i">
             <vq-textarea
               :name="`address[${i - 1}].test`"
               label="Address"
@@ -142,7 +142,7 @@ export default defineComponent({
           </v-col> -->
         </v-row>
         <!-- <vq-file-input name="profile_image"></vq-file-input> -->
-      </v-container>
+      </div>
     </template>
   </vq-form>
 </template>

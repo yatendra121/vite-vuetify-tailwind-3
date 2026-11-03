@@ -85,48 +85,47 @@ const useFormClientError = (data: unknown) => {
 </script>
 
 <template>
-  <title-layout> </title-layout>
-  <v-container fluid>
-    <v-card>
-      {{ test }}
-      {{ workerStatus }}
-      <v-btn @click="exceute()">start</v-btn>
-      <v-responsive>
-        <vq-form
-          id="userForm"
-          action="test"
-          method="POST"
-          :validation-schema="validationSchema"
-          @submited-success="useFormSuccess"
-          @submited-error="useFormError"
-          @submited-client-error="useFormClientError"
-        >
-          <template #default>
-            <v-container>
-              <v-row>
-                <v-col
-                  md="12"
-                  sm="12"
-                  v-for="fieldObj in fields.blocks"
-                  :key="fieldObj.token"
-                >
-                  <vq-checkbox
-                    v-if="fieldObj.type == 'checkbox'"
-                    :name="fieldObj.token"
-                    :label="fieldObj.props.title"
-                    :placeholder="fieldObj.props.placeholder"
-                  />
-                  <vq-text-field
-                    v-else
-                    :name="fieldObj.token"
-                    :label="fieldObj.props.title"
-                    :placeholder="fieldObj.props.placeholder"
-                  />
-                </v-col>
-              </v-row>
-            </v-container>
+  <title-layout />
+  <v-card class="form-card mb-4" title="Web worker">
+    <v-card-text class="d-flex flex-wrap align-center ga-3 pt-0">
+      <v-btn color="primary" variant="tonal" @click="exceute()">Start</v-btn>
+      <v-chip size="small">{{ workerStatus }}</v-chip>
+      <code v-if="test.length" class="text-break">{{ test }}</code>
+    </v-card-text>
+  </v-card>
+
+  <v-card class="form-card" title="Dynamic form">
+    <vq-form
+      id="userForm"
+      action="test"
+      method="POST"
+      :validation-schema="validationSchema"
+      @submited-success="useFormSuccess"
+      @submited-error="useFormError"
+      @submited-client-error="useFormClientError"
+    >
+      <template #default>
+        <div class="pa-4 pt-0">
+          <template v-for="fieldObj in fields.blocks" :key="fieldObj.token">
+            <vq-checkbox
+              v-if="fieldObj.type == 'checkbox'"
+              :name="fieldObj.token"
+              :label="fieldObj.props.title"
+              :placeholder="fieldObj.props.placeholder"
+            />
+            <vq-text-field
+              v-else
+              class="mb-3"
+              :name="fieldObj.token"
+              :label="fieldObj.props.title"
+              :placeholder="fieldObj.props.placeholder"
+            />
           </template>
-        </vq-form>
-        <vq-submit-btn id="userForm"></vq-submit-btn> </v-responsive></v-card
-  ></v-container>
+          <div class="d-flex justify-end">
+            <vq-submit-btn form="userForm"></vq-submit-btn>
+          </div>
+        </div>
+      </template>
+    </vq-form>
+  </v-card>
 </template>

@@ -18,6 +18,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/:catchAll(.*)',
         name: 'PageNotFound',
         meta: {
+            title: 'Page not found',
             type: 'not_found'
         } as Meta,
         component: () => import('../views/PageNotFound.vue')

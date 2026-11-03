@@ -1,12 +1,9 @@
 <template>
   <AuthLayout>
     <div class="mb-6">
-      <h2 class="text-h5 font-weight-bold">Sign in</h2>
-      <p class="text-body-2 text-medium-emphasis mt-1">
-        Don't have an account?
-        <v-btn variant="text" :to="{ path: 'test' }" color="primary" density="compact" class="px-1">
-          Sign Up
-        </v-btn>
+      <h2 class="text-headline-small font-weight-bold">Sign in</h2>
+      <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
+        Enter your details to access your dashboard.
       </p>
     </div>
 
@@ -21,17 +18,29 @@
       @submited-client-error="useFormClientError"
     >
       <template #default>
-        <vq-text-field name="email" label="Email" placeholder="Email" class="mb-3" />
+        <vq-text-field
+          name="email"
+          label="Email"
+          placeholder="Email"
+          type="email"
+          autocomplete="username"
+          class="mb-3"
+        />
 
-        <vq-text-field name="password" label="Password" placeholder="Password" class="mb-1" />
+        <VqPasswordField name="password" label="Password" placeholder="Password" />
 
-        <div class="d-flex justify-end mb-4">
-          <v-btn variant="text" :to="{ name: 'forgot-password' }" color="primary" density="compact">
+        <div class="d-flex justify-end my-2">
+          <v-btn
+            variant="text"
+            :to="{ name: 'forgot-password' }"
+            color="primary"
+            size="small"
+          >
             Forgot Password?
           </v-btn>
         </div>
 
-        <vq-submit-btn form="loginForm" block />
+        <vq-submit-btn form="loginForm" block size="large" />
       </template>
     </vq-form>
   </AuthLayout>

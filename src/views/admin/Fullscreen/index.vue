@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import test from './test.vue'
+import { mdiFullscreen } from '@mdi/js'
 import { useFullscreen } from '@vueuse/core'
 
 const el = ref(null)
@@ -8,20 +8,17 @@ const { toggle } = useFullscreen(el)
 </script>
 
 <template>
-  <title-layout> {{ 'casnjcnsan' }} </title-layout>
-  <div class="text-center">
-    <test v-slot="slotProps">
-      {{ slotProps }}
-    </test>
+  <title-layout>
+    <v-btn color="primary" :prepend-icon="mdiFullscreen" @click="toggle">
+      Go Fullscreen
+    </v-btn>
+  </title-layout>
+  <v-card class="form-card overflow-hidden">
     <video
       ref="el"
-      class="mb-2"
+      class="d-block w-100"
       src="https://vjs.zencdn.net/v/oceans.mp4"
-      width="500"
       controls
     />
-    <br />
-    <br />
-    <button @click="toggle">Go Fullscreen</button>
-  </div>
+  </v-card>
 </template>

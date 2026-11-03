@@ -10,6 +10,7 @@ export default [
         name: 'fullscreen',
         component: Fullscreen,
         meta: {
+            section: 'Developer',
             title: 'Fullscreen',
             heading: 'Fullscreen',
             isPublic: false,

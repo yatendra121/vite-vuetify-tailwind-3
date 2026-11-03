@@ -1,4 +1,4 @@
-import { defineAsyncComponent, defineComponent } from 'vue'
+import { defineAsyncComponent, defineComponent, ref } from 'vue'
 import { useConfirmStore } from '@/store/reactivity/confirm'
 
 const ConfirmDialog = defineAsyncComponent(
@@ -11,14 +11,24 @@ export default defineComponent({
   },
   setup() {
     const confirmStore = useConfirmStore()
+    const loading = ref(false)
+    const confirm = async () => {
+      loading.value = true
+      try {
+        await confirmStore.callback()
+      } finally {
+        loading.value = false
+      }
+    }
     return () => (
       <>
         <ConfirmDialog
           title={confirmStore.title}
           description={confirmStore.description}
           modelValue={confirmStore.show}
+          loading={loading.value}
           onClick:close={() => confirmStore.close()}
-          onClick:confirm={() => confirmStore.callback()}
+          onClick:confirm={confirm}
         />
       </>
     )

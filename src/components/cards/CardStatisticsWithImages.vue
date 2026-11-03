@@ -23,11 +23,11 @@ const isPositive = true
           {{ props.title }}
         </h6>
         <div class="d-flex align-center flex-wrap mb-4">
-          <h5 class="text-h5 font-weight-semibold me-2">
+          <h5 class="text-headline-small font-weight-semibold me-2">
             {{ props.stats }}
           </h5>
           <span
-            class="text-caption"
+            class="text-body-small"
             :class="isPositive ? 'text-success' : 'text-error'"
           >
             {{ isPositive ? `+${props.change}` : props.change }}%

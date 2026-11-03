@@ -8,20 +8,20 @@
     @submited-success="useFormSuccess"
     @submited-error="useFormError"
   >
-    <v-container>
+    <div class="pa-4 pa-md-6">
       <v-row>
-        <v-col md="12" sm="12" xs="12">
+        <v-col cols="12">
           <vq-text-field name="title" label="Title" placeholder="Title" />
         </v-col>
 
-        <v-col md="12" sm="12" xs="12">
+        <v-col cols="12">
           <vq-text-editor :is-dark="isDark" name="description" />
         </v-col>
-        <v-col md="12" sm="12" xs="12">
-          <vq-submit-btn></vq-submit-btn>
+        <v-col cols="12" class="d-flex justify-end">
+            <vq-submit-btn></vq-submit-btn>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
     <!-- <v-btn color="primary" type="submit">Submit</v-btn> -->
   </vq-form>
 </template>

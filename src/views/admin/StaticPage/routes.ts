@@ -11,6 +11,7 @@ export const StaticPageRoutes: Array<RouteRecordRaw> = [
         path: '/static-page',
         component: ParentRouteView,
         meta: {
+            section: 'Content',
             title: 'Static Pages',
             heading: 'Static Pages',
             permission: 'admin.static-page.view',
@@ -37,7 +38,7 @@ export const StaticPageRoutes: Array<RouteRecordRaw> = [
                 component: Edit,
                 meta: {
                     title: 'Term & Condition',
-                    heading: 'Term & Condition',
+                    heading: 'Terms & Conditions',
                     permission: 'admin.static-page.view',
                     icon: mdiFileMultiple,
                     key: 'term_condition',
