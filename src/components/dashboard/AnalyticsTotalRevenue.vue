@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { mdiChevronDown } from '@mdi/js'
 import VueApexCharts from 'vue3-apexcharts'
 import { useDisplay, useTheme } from 'vuetify'
 import { mdiWallet } from '@mdi/js'
@@ -263,7 +264,7 @@ const balanceData = [
           <VBtn
             size="small"
             variant="tonal"
-            append-icon="mdi-chevron-down"
+            :append-icon="mdiChevronDown"
             class="mt-4"
           >
             2023
@@ -293,12 +294,12 @@ const balanceData = [
             62% Company Growth
           </p>
           <div
-            class="d-flex align-center justify-center gap-x-8 gap-y-4 flex-wrap"
+            class="d-flex align-center justify-center ga-6 flex-wrap"
           >
             <div
               v-for="data in balanceData"
               :key="data.year"
-              class="d-flex align-center gap-3"
+              class="d-flex align-center ga-3"
             >
               <VAvatar
                 :icon="data.icon"
@@ -309,8 +310,8 @@ const balanceData = [
               />
 
               <div class="text-start">
-                <span class="text-sm"> {{ data.year }}</span>
-                <h6 class="text-base font-weight-medium">
+                <span class="text-body-small"> {{ data.year }}</span>
+                <h6 class="text-body-medium font-weight-medium">
                   {{ data.amount }}
                 </h6>
               </div>

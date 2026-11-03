@@ -1,40 +1,39 @@
 import type { VuetifyOptions } from 'vuetify'
 
+const fieldDefaults = {
+    variant: 'outlined',
+    density: 'comfortable',
+    color: 'primary',
+    clearable: true
+}
+
 const config: VuetifyOptions['defaults'] = {
-    VBtn: {},
-    // VCard: {
-    //     elevation: 1
-    // },
+    VBtn: {
+        rounded: 'lg',
+        elevation: 0,
+        class: 'text-none'
+    },
+    VCard: {
+        flat: true,
+        border: true,
+        rounded: 'lg'
+    },
     VSheet: {
         color: ''
     },
-    VTextField: {
-        //density: 'compact',
-        ///variant: 'outlined',
-        color: 'primary',
-        clearable: true
-    },
-    VTextarea: {
-        //density: 'compact',
-        ///variant: 'outlined',
-        color: 'primary',
-        clearable: true
-    },
-    VAutocomplete: {
-        //density: 'compact',
-        ///variant: 'outlined',
-        color: 'primary',
-        clearable: true
-    },
+    VTextField: fieldDefaults,
+    VTextarea: { ...fieldDefaults, rows: 3 },
+    VAutocomplete: fieldDefaults,
+    VFileInput: { ...fieldDefaults, clearable: false },
     VTooltip: {
         transition: 'scroll-y-reverse-transition',
         location: 'top'
     },
+    VDialog: {
+        maxWidth: 480
+    },
     VDataTableServer: {
         hover: true
-        // itemsPerPage: 100,
-        // loadingText: 'fsdfsdfdsffsfds',
-        // noDataText: 'dssssssssssssssssssssss',
     }
 }
 

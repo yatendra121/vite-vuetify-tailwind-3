@@ -97,7 +97,7 @@ const chartOptions = computed(() => {
   <VCard>
     <VCardText class="pb-1">
       <h6 class="text-base font-weight-regular">Order</h6>
-      <h5 class="text-h5 font-weight-medium">276k</h5>
+      <h5 class="text-headline-small font-weight-medium">276k</h5>
     </VCardText>
 
     <VueApexCharts

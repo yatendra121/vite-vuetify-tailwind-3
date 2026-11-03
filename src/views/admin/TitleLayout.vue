@@ -1,31 +1,17 @@
 <template>
-  <v-responsive>
-    <v-container fluid>
-      <v-card :border="true" :elevation="10" rounded="lg">
-        <v-row style="min-height: 70px" class="pa-5" align-self="center">
-          <v-col align-self="center" md="3" sm="3" xs="12">
-            <span class="tw-text-center text-h6">{{
-              $route.meta.heading
-            }}</span>
-          </v-col>
-          <v-col md="9" sm="9" xs="12">
-            <slot />
-            <!-- <v-col>
-                <slot name="button"></slot>
-              </v-col> -->
-
-            <!-- <div id="form_submit_button"></div> -->
-          </v-col>
-        </v-row>
-      </v-card>
-      <v-progress-linear
-        height="2"
-        :active="loadingValue"
-        :indeterminate="true"
-        color="primary"
-      ></v-progress-linear>
-    </v-container>
-  </v-responsive>
+  <header class="d-flex flex-wrap align-center justify-space-between ga-3 mb-4">
+    <h1 class="text-headline-small font-weight-bold">{{ $route.meta.heading }}</h1>
+    <div v-if="$slots.default" class="d-flex flex-wrap align-center ga-2">
+      <slot />
+    </div>
+  </header>
+  <v-progress-linear
+    v-if="loadingValue"
+    class="mb-4"
+    height="2"
+    indeterminate
+    color="primary"
+  />
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'

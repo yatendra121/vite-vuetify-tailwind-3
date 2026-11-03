@@ -1,47 +1,70 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :width="width"
-    :elevation="5"
-    rounded="lg"
-    :style="drawer
-      ? 'height: calc(100% - 16px); margin: 8px 0 8px 10px;'
-      : 'height: calc(100% - 16px); margin: 8px 0 8px 0;'"
-  >
-    <!-- Brand -->
-    <div class="d-flex align-center ga-2 px-4 py-4 mb-2">
-      <v-icon size="28" color="primary">mdi-hexagon-multiple</v-icon>
-      <span class="text-subtitle-1 font-weight-bold">Vuetify<strong>Admin</strong></span>
+  <v-navigation-drawer v-model="drawer" :width="width">
+    <div class="px-4 py-4">
+      <AppLogo />
     </div>
 
-    <v-divider class="mb-2" />
+    <v-divider />
 
-    <v-list nav density="compact">
-      <sidebar-item v-for="route in routes" :key="route.name" :item="route" />
+    <v-list nav density="compact" aria-label="Main navigation">
+      <template v-for="section in sections" :key="section.title">
+        <v-list-subheader class="text-uppercase font-weight-bold">
+          {{ section.title }}
+        </v-list-subheader>
+        <sidebar-item
+          v-for="route in section.routes"
+          :key="route.path"
+          :item="route"
+        />
+      </template>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useDisplay } from 'vuetify'
 import { useAppStore } from '@/store/reactivity/app'
-import routes from '@/router/admin'
+import routes, { navSections } from '@/router/admin'
+import AppLogo from '@/components/Basic/AppLogo.vue'
 import SidebarItem from './SidebarItem.vue'
 
 export default defineComponent({
   name: 'Sidebar',
-  components: { SidebarItem },
+  components: { SidebarItem, AppLogo },
   setup() {
     const store = useAppStore()
+    const { mobile } = useDisplay()
+    const route = useRoute()
+
+    // The drawer overlays the page on small screens, so it must start closed
+    // there and get out of the way after each navigation.
+    if (mobile.value) store.updateSidebar(false)
+    watch(
+      () => route.path,
+      () => {
+        if (mobile.value) store.updateSidebar(false)
+      }
+    )
+
+    const sections = navSections
+      .map((title) => ({
+        title,
+        routes: routes.filter(
+          (item) => item.meta?.section === title && !item.meta?.hidden
+        )
+      }))
+      .filter((section) => section.routes.length)
+
     return {
       drawer: computed({
         get: () => store.sidebarValue,
         set: (val: boolean) => store.updateSidebar(val)
       }),
-      routes,
+      sections,
       width: computed(() => store.sidebarWidth)
     }
   }
 })
 </script>
-

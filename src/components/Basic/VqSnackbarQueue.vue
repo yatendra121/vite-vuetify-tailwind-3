@@ -8,7 +8,7 @@
     :timeout="timeout"
     :color="item.color"
     :absolute="absolute"
-    location="top center"
+    location="top"
     :vertical="vertical"
     :close-on-back="false"
     transition="scale-transition"
@@ -68,10 +68,6 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.snackbar-queue {
-  margin-top: -50px;
-}
-
 /* V4: multi-line content — previously handled by :multi-line prop */
 .snackbar-queue :deep(.v-snackbar__content) {
   white-space: pre-wrap;

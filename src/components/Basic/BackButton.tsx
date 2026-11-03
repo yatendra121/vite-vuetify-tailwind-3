@@ -1,6 +1,10 @@
 import { defineComponent } from 'vue'
 import { mdiArrowLeft } from '@mdi/js'
 import { useRouter } from 'vue-router'
+import { VBtn } from 'vuetify/components'
+
+// `onClick` is missing from VBtn's generated JSX types.
+const Btn: any = VBtn
 
 export default defineComponent({
   name: 'BackButton',
@@ -15,10 +19,9 @@ export default defineComponent({
     }
     return () => (
       <>
-        <v-btn variant="text" onClick={goBack}>
-          <v-icon icon={mdiArrowLeft} />
+        <Btn variant="text" prependIcon={mdiArrowLeft} onClick={goBack}>
           Back
-        </v-btn>
+        </Btn>
       </>
     )
   }

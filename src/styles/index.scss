@@ -1,23 +1,54 @@
-//@use 'apex-chart.scss';
+// App-wide rules Vuetify has no prop or utility for.
 
-@media (min-width: 200px) and (max-width: 600px) {
-  div[xs='3'] {
-    flex: 0 0 25%;
-    max-width: 25%;
+html {
+  overflow-y: auto;
+}
+
+// Keep long values from stretching a table; pair with a `title` attribute.
+.cell-truncate {
+  display: block;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v-data-table {
+  thead th {
+    background: rgb(var(--v-theme-surface));
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
   }
 
-  div[xs='4'] {
-    flex: 0 0 30%;
-    max-width: 30%;
+  tbody td {
+    white-space: nowrap;
   }
+}
 
-  div[xs='6'] {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
+// Filter bar above a table: fields wrap, and take the full row on phones.
+.table-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
 
-  div[xs='12'] {
-    flex: 0 0 100%;
-    max-width: 100%;
+.form-card {
+  max-width: 960px;
+}
+
+// Headings and paragraphs get their spacing from utility classes. Inside
+// Vuetify's lowest layer so `mb-4` and friends still win.
+@layer vuetify-core {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
   }
 }

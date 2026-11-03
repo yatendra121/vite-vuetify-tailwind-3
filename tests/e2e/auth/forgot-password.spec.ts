@@ -32,7 +32,7 @@ test.describe('Forgot password page', () => {
         await expect(page).toHaveURL(/\/admin\/auth$/)
     })
 
-    test('sets the page title to ForgotPassword', async ({ page }) => {
-        await expect(page).toHaveTitle(/forgotpassword/i, { timeout: 10_000 })
+    test('sets the page title to Forgot Password', async ({ page }) => {
+        await expect(page).toHaveTitle(/forgot password/i, { timeout: 10_000 })
     })
 })

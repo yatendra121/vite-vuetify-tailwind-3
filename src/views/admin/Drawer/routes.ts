@@ -9,8 +9,9 @@ export const DrawerRoutes: Array<RouteRecordRaw> = [
         name: 'drawer',
         component: Drawer,
         meta: {
+            section: 'Developer',
             title: 'Drawer',
-            heading: 'Drawer',
+            heading: 'Charts',
             isPublic: false,
             icon: mdiDatabasePlusOutline,
             type: 'admin',

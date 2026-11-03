@@ -3,6 +3,7 @@ export type Meta = {
     heading?: string
     isPublic?: boolean
     icon?: string
+    section?: string
     type?: string
     permission?: Array<string> | string | undefined | null
     [key: string]: any

@@ -23,7 +23,7 @@ const formatAmount = (amount: number) => {
 <template>
   <VCard>
     <VCardItem class="pb-0">
-      <VCardTitle class="text-body-1 font-weight-bold">Transactions</VCardTitle>
+      <VCardTitle class="text-body-large font-weight-bold">Transactions</VCardTitle>
       <VCardSubtitle>Latest activity</VCardSubtitle>
     </VCardItem>
 
@@ -45,16 +45,16 @@ const formatAmount = (amount: number) => {
             />
           </template>
 
-          <VListItemTitle class="text-body-2 font-weight-medium">
+          <VListItemTitle class="text-body-medium font-weight-medium">
             {{ item.description }}
           </VListItemTitle>
-          <VListItemSubtitle class="text-caption">
+          <VListItemSubtitle class="text-body-small">
             {{ item.paymentMethod }}
           </VListItemSubtitle>
 
           <template #append>
             <span
-              class="text-body-2 font-weight-semibold"
+              class="text-body-medium font-weight-semibold"
               :class="item.amount > 0 ? 'text-success' : 'text-error'"
             >
               {{ formatAmount(item.amount) }}

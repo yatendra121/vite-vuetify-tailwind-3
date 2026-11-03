@@ -11,8 +11,9 @@ export const AdminRoutes: Array<RouteRecordRaw> = [
         path: '/admin',
         component: ParentRouteView,
         meta: {
+            section: 'Accounts',
             title: 'Admin',
-            heading: 'Admin',
+            heading: 'Admins',
             isPublic: false,
             icon: mdiAccount,
             type: 'admin',
@@ -25,7 +26,7 @@ export const AdminRoutes: Array<RouteRecordRaw> = [
                 component: List,
                 meta: {
                     title: 'Admin',
-                    heading: 'Admin',
+                    heading: 'Admins',
                     isPublic: false,
                     icon: mdiAccount,
                     type: 'admin',
@@ -38,8 +39,8 @@ export const AdminRoutes: Array<RouteRecordRaw> = [
                 name: 'admin.create',
                 component: Create,
                 meta: {
-                    title: 'Admin',
-                    heading: 'Admin',
+                    title: 'Create Admin',
+                    heading: 'Create Admin',
                     isPublic: false,
                     icon: mdiAccount,
                     type: 'admin',

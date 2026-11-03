@@ -65,7 +65,7 @@ export default defineComponent({
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
-          backgroundColor: 'rgba(255, 255, 255, .8)',
+          backgroundColor: '#0E7490',
           data: props.data,
           maxBarThickness: 6
         }
@@ -89,18 +89,17 @@ export default defineComponent({
             display: true,
             drawOnChartArea: true,
             drawTicks: false,
-            color: 'rgba(255, 255, 255, .2)'
+            color: 'rgba(100, 116, 139, .2)'
           },
           ticks: {
             padding: 10,
             font: {
               size: 14,
               weight: 300,
-              family: 'Roboto',
               style: 'normal',
               lineHeight: 2
             },
-            color: '#fff'
+            color: '#64748B'
           }
         },
         x: {
@@ -108,15 +107,14 @@ export default defineComponent({
             display: true,
             drawOnChartArea: true,
             drawTicks: false,
-            color: 'rgba(255, 255, 255, .2)'
+            color: 'rgba(100, 116, 139, .2)'
           },
           ticks: {
             display: true,
-            color: '#f8f9fa',
+            color: '#64748B',
             padding: 10,
             font: {
               size: 14,
-              family: 'Roboto',
               style: 'normal',
               lineHeight: 2
             }

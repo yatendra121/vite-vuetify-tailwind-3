@@ -9,8 +9,9 @@ export default [
         name: 'testing',
         component: Fullscreen,
         meta: {
-            title: 'testing',
-            heading: 'testing',
+            section: 'Developer',
+            title: 'Testing',
+            heading: 'Testing',
             isPublic: false,
             icon: mdiElectronFramework,
             type: 'admin',

@@ -67,12 +67,12 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <v-container>
+      <div class="pa-4 pa-md-6">
         <v-row>
-          <v-col md="6" sm="6" xs="12">
+          <v-col cols="12" sm="6">
             <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
-          <v-col md="6" sm="6" xs="12">
+          <v-col cols="12" sm="6">
             <VqFileInput
               multiple
               name="images"
@@ -80,12 +80,10 @@ export default defineComponent({
               placeholder="Category Image"
             />
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12">
             <v-row>
               <v-col
-                md="2"
-                sm="2"
-                xs="6"
+cols="6" sm="2"
                 v-for="image in initialValues?.images"
                 :key="image.id"
               >
@@ -94,7 +92,7 @@ export default defineComponent({
                   :lazy-src="image.thumbPath"
                   aspect-ratio="1"
                   cover
-                  class="bg-grey-lighten-2"
+                  class="bg-surface-variant rounded-lg"
                 >
                   <template #placeholder>
                     <v-row
@@ -104,18 +102,18 @@ export default defineComponent({
                     >
                       <v-progress-circular
                         indeterminate
-                        color="grey-lighten-5"
+                        color="primary"
                       ></v-progress-circular>
                     </v-row>
                   </template>
                 </v-img> </v-col
             ></v-row>
           </v-col>
-          <v-col md="12" sm="12" xs="12">
+          <v-col cols="12" class="d-flex justify-end">
             <vq-submit-btn></vq-submit-btn>
           </v-col>
         </v-row>
-      </v-container>
+      </div>
     </template>
   </vq-form>
 </template>

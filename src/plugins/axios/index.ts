@@ -9,6 +9,7 @@ import {
 //@ts-ignore
 //import { getTimeOffset } from "@/utils";
 import { Portal } from '@/utils/portal'
+import { useMessage } from '@/composables/message'
 const currentPortal = Portal.getInstance()
 
 const CancelToken = axios.CancelToken
@@ -55,6 +56,15 @@ _axios.interceptors.response.use(
         if (error && error.response && error.response.status === 401) {
             removeToken()
             removeRefreshToken()
+        } else if (
+            // Failed page data would otherwise look like an empty list. Forms
+            // report their own errors, and the session probe fails by design
+            // for signed-out visitors.
+            error?.config?.method?.toLowerCase() === 'get' &&
+            error.config.url !== 'my-profile' &&
+            !axios.isCancel(error)
+        ) {
+            useMessage.error('Could not load data. Please try again.')
         }
         return Promise.reject(error)
     }

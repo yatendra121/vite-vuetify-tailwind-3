@@ -11,8 +11,9 @@ export const CategoryRoutes: RouteRecordRaw[] = [
         path: '/category',
         component: ParentRouteView,
         meta: {
+            section: 'Catalog',
             title: 'Category',
-            heading: 'Category',
+            heading: 'Categories',
             isPublic: false,
             icon: mdiShape,
             type: 'admin',
@@ -25,7 +26,7 @@ export const CategoryRoutes: RouteRecordRaw[] = [
                 component: List,
                 meta: {
                     title: 'Category',
-                    heading: 'Category',
+                    heading: 'Categories',
                     isPublic: false,
                     icon: mdiShape,
                     type: 'admin',
@@ -37,8 +38,8 @@ export const CategoryRoutes: RouteRecordRaw[] = [
                 name: 'category.create',
                 component: Create,
                 meta: {
-                    title: 'Category',
-                    heading: 'Category',
+                    title: 'Create Category',
+                    heading: 'Create Category',
                     isPublic: false,
                     icon: mdiShape,
                     type: 'admin',

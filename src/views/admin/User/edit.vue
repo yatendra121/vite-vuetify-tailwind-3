@@ -29,28 +29,16 @@ onBeforeUnmount(() => cancelLoading())
 </script>
 <template>
   <title-layout>
-    <template #default>
-      <title-row>
-        <v-col>
-          <title-button>
-            <!-- <vq-submit-btn :from="id"></vq-submit-btn> -->
-            <vq-back-btn></vq-back-btn>
-          </title-button>
-        </v-col>
-      </title-row>
-    </template>
+    <vq-back-btn></vq-back-btn>
   </title-layout>
-  <v-container fluid>
-    <v-card>
-      <v-responsive>
-        <UserForm
-          :id="id"
-          :action="`user/${route.params.id}`"
-          :values-schema="valuesSchema"
-          method="PUT"
-          :initial-values="response?.data"
-        />
-      </v-responsive>
-    </v-card>
-  </v-container>
+
+  <v-card class="form-card">
+    <UserForm
+        :id="id"
+        :action="`user/${route.params.id}`"
+        :values-schema="valuesSchema"
+        method="PUT"
+        :initial-values="response?.data"
+      />
+  </v-card>
 </template>

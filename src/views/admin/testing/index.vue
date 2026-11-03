@@ -1,55 +1,26 @@
 <template>
-  <v-container fluid>
-    <h1>Hello</h1>
-    <VTextField v-model="search" />
+  <title-layout />
+  <v-text-field v-model="search" label="Search" class="mb-2" />
 
-    <v-row>
-      <v-col md="3" v-for="(item, i) in filter" :key="i">
-        <v-hover>
-          <template #default="{ isHovering, props }">
-            <v-switch label="Switch"></v-switch>
-
-            {{ isHovering }}
-            <v-card
-              :title="item.brand"
-              :subtitle="item.model"
-              :text="item.year"
-              v-bind="props"
-              :color="isHovering ? '#008000' : undefined"
-            >
-              <v-card-actions class="pt-0">
-                <template v-for="val in item.features">
-                  <v-chip> {{ val }} </v-chip>
-                </template>
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-hover>
-      </v-col>
-    </v-row>
-    <!-- <v-table>
-      <thead>
-        <tr>
-          <th class="text-left">Brand</th>
-          <th class="text-left">Model</th>
-          <th class="text-left">Year</th>
-          <th class="text-left">Features</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, i) in filter" :key="i">
-          <td>{{ item.brand }}</td>
-          <td>{{ item.model }}</td>
-          <td>{{ item.year }}</td>
-          <td>
-            <template v-for="val in item.features">
-              <v-chip> {{ val }} </v-chip>
-            </template>
-          </td>
-        </tr>
-      </tbody>
-    </v-table> -->
-  </v-container>
+  <v-row v-if="filter.length">
+    <v-col v-for="(item, i) in filter" :key="i" cols="12" sm="6" lg="3">
+      <v-card
+        class="h-100 text-capitalize"
+        :title="item.brand"
+        :subtitle="item.model"
+        :text="`${item.year}`"
+      >
+        <v-card-actions class="flex-wrap ga-1 pt-0 px-4 pb-4">
+          <v-chip v-for="val in item.features" :key="val" size="small">
+            {{ val }}
+          </v-chip>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
+  <v-card v-else>
+    <EmptyState description="Try a different search." />
+  </v-card>
 </template>
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'

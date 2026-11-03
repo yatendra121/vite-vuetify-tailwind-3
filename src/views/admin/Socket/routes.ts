@@ -9,6 +9,7 @@ export const SocketRoutes: Array<RouteRecordRaw> = [
         name: 'socket',
         component: Socket,
         meta: {
+            section: 'Developer',
             title: 'Socket',
             heading: 'Socket',
             isPublic: false,

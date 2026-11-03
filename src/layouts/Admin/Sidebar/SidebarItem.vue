@@ -8,15 +8,14 @@
     <template #activator="{ props }">
       <v-list-item
         v-bind="props"
-        :title="item.meta.title"
-        :height="height"
+        :title="item.meta.heading"
+        :min-height="height"
         :color="color"
-        variant="flat"
         rounded="lg"
         link
       >
         <template #prepend>
-          <v-icon :size="iconSize" :icon="item.meta.icon" class="me-2" />
+          <v-icon :size="iconSize" :icon="item.meta.icon" class="me-3" />
         </template>
       </v-list-item>
     </template>
@@ -34,14 +33,13 @@
     v-else-if="aItem && !aItem.meta?.hidden"
     :to="{ name: aItem.name }"
     :color="color"
-    :height="height"
-    variant="flat"
+    :min-height="height"
     rounded="lg"
     link
-    :title="aItem.meta.title"
+    :title="aItem.meta.heading"
   >
     <template #prepend>
-      <v-icon :size="iconSize" :icon="aItem.meta.icon" class="me-2" />
+      <v-icon :size="iconSize" :icon="aItem.meta.icon" class="me-3" />
     </template>
   </v-list-item>
 </template>
@@ -59,8 +57,8 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const height = ref(44)
-    const iconSize = ref(22)
+    const height = ref(40)
+    const iconSize = ref(20)
     const color = ref('primary')
 
     const getChildren = (val: any) =>
@@ -85,8 +83,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@use 'vuetify/settings' as v;
-
 @layer overrides {
   .v-list-group {
     --list-indent-size: 0px;
@@ -94,7 +90,7 @@ export default defineComponent({
   }
 
   .v-list-item--nav .v-list-item-title {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
   }
 
   .sidebar-group__children .v-list-item {

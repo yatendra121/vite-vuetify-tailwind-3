@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { mdiCellphone, mdiHanger, mdiHomeOutline, mdiSoccer } from '@mdi/js'
 import VueApexCharts from 'vue3-apexcharts'
 import { useTheme } from 'vuetify'
 import { computed } from 'vue'
@@ -45,25 +46,25 @@ const chartOptions = computed(() => {
 })
 
 const orders = [
-  { amount: '82.5k', title: 'Electronic', avatarColor: 'primary', subtitle: 'Mobile, Earbuds, TV',      avatarIcon: 'mdi-cellphone'    },
-  { amount: '23.8k', title: 'Fashion',    avatarColor: 'success', subtitle: 'T-shirt, Jeans, Shoes',    avatarIcon: 'mdi-hanger'       },
-  { amount: '849',   title: 'Decor',      avatarColor: 'info',    subtitle: 'Fine Art, Dining',          avatarIcon: 'mdi-home-outline' },
-  { amount: '99',    title: 'Sports',     avatarColor: 'secondary',subtitle: 'Football, Cricket Kit',   avatarIcon: 'mdi-soccer'       }
+  { amount: '82.5k', title: 'Electronic', avatarColor: 'primary', subtitle: 'Mobile, Earbuds, TV',      avatarIcon: mdiCellphone    },
+  { amount: '23.8k', title: 'Fashion',    avatarColor: 'success', subtitle: 'T-shirt, Jeans, Shoes',    avatarIcon: mdiHanger       },
+  { amount: '849',   title: 'Decor',      avatarColor: 'info',    subtitle: 'Fine Art, Dining',          avatarIcon: mdiHomeOutline },
+  { amount: '99',    title: 'Sports',     avatarColor: 'secondary',subtitle: 'Football, Cricket Kit',   avatarIcon: mdiSoccer       }
 ]
 </script>
 
 <template>
   <VCard>
     <VCardItem class="pb-2">
-      <VCardTitle class="text-body-1 font-weight-bold">Order Statistics</VCardTitle>
+      <VCardTitle class="text-body-large font-weight-bold">Order Statistics</VCardTitle>
       <VCardSubtitle>42.82k Total Sales</VCardSubtitle>
     </VCardItem>
 
     <VCardText>
       <div class="d-flex align-center justify-space-between mb-4">
         <div>
-          <h4 class="text-h4 font-weight-bold mb-0">8,258</h4>
-          <span class="text-caption text-medium-emphasis">Total Orders</span>
+          <h4 class="text-headline-medium font-weight-bold mb-0">8,258</h4>
+          <span class="text-body-small text-medium-emphasis">Total Orders</span>
         </div>
         <VueApexCharts
           type="donut"
@@ -88,11 +89,11 @@ const orders = [
             </VAvatar>
           </template>
 
-          <VListItemTitle class="text-body-2 font-weight-medium">{{ order.title }}</VListItemTitle>
-          <VListItemSubtitle class="text-caption">{{ order.subtitle }}</VListItemSubtitle>
+          <VListItemTitle class="text-body-medium font-weight-medium">{{ order.title }}</VListItemTitle>
+          <VListItemSubtitle class="text-body-small">{{ order.subtitle }}</VListItemSubtitle>
 
           <template #append>
-            <span class="text-body-2 font-weight-bold">{{ order.amount }}</span>
+            <span class="text-body-medium font-weight-bold">{{ order.amount }}</span>
           </template>
         </VListItem>
       </VList>

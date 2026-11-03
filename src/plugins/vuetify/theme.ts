@@ -3,20 +3,22 @@ import type { VuetifyOptions } from 'vuetify'
 export const staticPrimaryColor = '#696CFF'
 
 const lightColors1 = {
-    primary: '#36b3cf',
+    primary: '#0E7490',
     'on-primary': '#fff',
-    secondary: '#509cad',
+    secondary: '#475569',
     'on-secondary': '#fff',
-    success: '#71DD37',
+    success: '#15803D',
     'on-success': '#fff',
-    info: '#03C3EC',
+    info: '#0369A1',
     'on-info': '#fff',
-    warning: '#FFAB00',
+    warning: '#B45309',
     'on-warning': '#fff',
-    error: '#FF3E1D',
-    background: '#F5F5F9',
-    'on-background': '#32475C',
-    'on-surface': '#32475C',
+    error: '#DC2626',
+    'on-error': '#fff',
+    background: '#F5F7FA',
+    'on-background': '#1E293B',
+    surface: '#FFFFFF',
+    'on-surface': '#1E293B',
     'grey-50': '#FAFAFA',
     'grey-100': '#EBEEF0',
     'grey-200': '#EEEEEE',
@@ -33,8 +35,9 @@ const lightColors1 = {
 }
 
 const theme: VuetifyOptions['theme'] = {
-    // V4: default changed to 'system' — keep explicit 'light' to preserve existing behavior
-    defaultTheme: 'system',
+    // Overlays, charts and <body> follow the global theme, so it must start in
+    // step with the app store (see views/admin/index.vue) rather than the OS.
+    defaultTheme: 'light',
     // V4: use `false` instead of { lighten: 0, darken: 0 } to suppress color variant CSS
     // generation; the object form interacts unexpectedly with V4's new transparency support.
     variations: false,
@@ -47,12 +50,12 @@ const theme: VuetifyOptions['theme'] = {
                 'code-color': '#d400ff',
                 'overlay-scrim-background': '#32475C',
                 'overlay-scrim-opacity': 0.5,
-                'border-color': '#32475C',
-                'snackbar-background': '#32475C',
+                'border-color': '#334155',
+                'snackbar-background': '#1E293B',
                 'snackbar-color': '#ffffff',
                 'tooltip-background': '#262732',
                 'tooltip-opacity': 0.9,
-                'table-header-background': '#F5F5F7',
+                'table-header-background': '#F8FAFC',
 
                 // Shadows
                 'shadow-key-umbra-opacity':
@@ -66,21 +69,22 @@ const theme: VuetifyOptions['theme'] = {
         dark: {
             dark: true,
             colors: {
-                primary: '#2d90a6',
-                'on-primary': '#fff',
-                secondary: '#46818f',
-                'on-secondary': '#fff',
-                success: '#71DD37',
-                'on-success': '#fff',
-                info: '#03C3EC',
-                'on-info': '#fff',
-                warning: '#FFAB00',
-                'on-warning': '#fff',
-                error: '#FF3E1D',
-                background: '#232333',
-                'on-background': '#DBDBEB',
-                surface: '#2B2C40',
-                'on-surface': '#DBDBEB',
+                primary: '#22B8CF',
+                'on-primary': '#06262D',
+                secondary: '#94A3B8',
+                'on-secondary': '#0F172A',
+                success: '#4ADE80',
+                'on-success': '#052E16',
+                info: '#38BDF8',
+                'on-info': '#082F49',
+                warning: '#FBBF24',
+                'on-warning': '#451A03',
+                error: '#F87171',
+                'on-error': '#450A0A',
+                background: '#0F172A',
+                'on-background': '#E2E8F0',
+                surface: '#1E293B',
+                'on-surface': '#E2E8F0',
                 'grey-50': '#2A2E42',
                 'grey-100': '#444463',
                 'grey-200': '#4A5072',
@@ -99,12 +103,12 @@ const theme: VuetifyOptions['theme'] = {
                 'code-color': '#d400ff',
                 'overlay-scrim-background': '#0D0E24',
                 'overlay-scrim-opacity': 0.6,
-                'border-color': '#DBDBEB',
-                'snackbar-background': '#DBDBEB',
-                'snackbar-color': '#2B2C40',
+                'border-color': '#CBD5E1',
+                'snackbar-background': '#E2E8F0',
+                'snackbar-color': '#1E293B',
                 'tooltip-background': '#464A65',
                 'tooltip-opacity': 0.9,
-                'table-header-background': '#3A3E5B',
+                'table-header-background': '#172033',
 
                 // Shadows
                 'shadow-key-umbra-opacity': 'rgba(20, 21, 33, 0.06)',

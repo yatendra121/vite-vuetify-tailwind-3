@@ -1,5 +1,16 @@
 import { computed, defineComponent, PropType } from 'vue'
-import { mdiAlert } from '@mdi/js'
+import { mdiAlertCircleOutline } from '@mdi/js'
+import {
+  VBtn,
+  VCard,
+  VCardActions,
+  VCardText,
+  VDialog,
+  VSpacer
+} from 'vuetify/components'
+
+// `onClick` is missing from VBtn's generated JSX types.
+const Btn: any = VBtn
 
 export default defineComponent({
   name: 'ConfirmDialog',
@@ -16,9 +27,9 @@ export default defineComponent({
       type: String as PropType<number | string>,
       default: () => '25rem'
     },
-    minHeight: {
-      type: String as PropType<number | string>,
-      default: () => '12rem'
+    loading: {
+      type: Boolean as PropType<boolean>,
+      default: () => false
     },
     modelValue: {
       type: Boolean as PropType<boolean>,
@@ -26,8 +37,8 @@ export default defineComponent({
     }
   },
   emits: {
-    'click:close': (val: boolean) => undefined,
-    'click:confirm': (val: boolean) => undefined
+    'click:close': (_val: boolean) => true,
+    'click:confirm': (_val: boolean) => true
   },
   setup(props, { attrs, emit, slots }) {
     const modelValue = computed(() => {
@@ -36,30 +47,35 @@ export default defineComponent({
 
     return () => (
       <>
-        <v-dialog
-          model-value={modelValue.value}
+        <VDialog
+          modelValue={modelValue.value}
           onUpdate:modelValue={() => emit('click:close', false)}
           v-slots={slots}
           {...attrs}
-          scrollable
-          width={props.width}
-          min-height={props.minHeight}
+          persistent={props.loading}
+          maxWidth={props.width}
         >
-          <v-card prepend-icon={mdiAlert} title={props.title}>
-            <v-card-text>{props.description}</v-card-text>
-            <v-card-actions>
-              <v-btn
-                color="primary"
+          <VCard prependIcon={mdiAlertCircleOutline} title={props.title}>
+            <VCardText>{props.description}</VCardText>
+            <VCardActions>
+              <VSpacer />
+              <Btn
+                disabled={props.loading}
+                onClick={() => emit('click:close', false)}
+              >
+                Cancel
+              </Btn>
+              <Btn
+                color="error"
+                variant="flat"
+                loading={props.loading}
                 onClick={() => emit('click:confirm', true)}
               >
-                Yes
-              </v-btn>
-              <v-btn color="primary" onClick={() => emit('click:close', false)}>
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+                Confirm
+              </Btn>
+            </VCardActions>
+          </VCard>
+        </VDialog>
       </>
     )
   }

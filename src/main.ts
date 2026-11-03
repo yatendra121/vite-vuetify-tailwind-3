@@ -9,6 +9,7 @@ import directives from '@/directives'
 
 // Styles
 import '@/styles/_variables.scss'
+import '@/styles/index.scss'
 
 const app = createApp({
     render: () => h(App)

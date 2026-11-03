@@ -12,8 +12,9 @@ export const UserRoutes: Array<RouteRecordRaw> = [
         path: '/user',
         component: ParentRouteView,
         meta: {
+            section: 'Accounts',
             title: 'User',
-            heading: 'User',
+            heading: 'Users',
             isPublic: false,
             icon: mdiAccountGroup,
             type: 'admin',
@@ -39,7 +40,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
                 component: List2,
                 meta: {
                     title: 'User',
-                    heading: 'User',
+                    heading: 'Users',
                     isPublic: false,
                     icon: mdiAccountGroup,
                     type: 'admin',
@@ -51,8 +52,8 @@ export const UserRoutes: Array<RouteRecordRaw> = [
                 name: 'user.create',
                 component: Create,
                 meta: {
-                    title: 'User',
-                    heading: 'User',
+                    title: 'Create User',
+                    heading: 'Create User',
                     isPublic: false,
                     icon: mdiAccountGroup,
                     type: 'admin',

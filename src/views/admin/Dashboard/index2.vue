@@ -116,9 +116,9 @@ const monthtable = ref([
           <v-card color="primary">
             <v-card-item>
               <div>
-                <div class="text-overline mb-1">OVERLINE</div>
-                <div class="text-h6 mb-1">Headline</div>
-                <div class="text-caption">
+                <div class="text-label-small mb-1">OVERLINE</div>
+                <div class="text-title-large mb-1">Headline</div>
+                <div class="text-body-small">
                   Greyhound divisely hello coldly fonwderfully
                 </div>
               </div>
@@ -133,9 +133,9 @@ const monthtable = ref([
           <v-card color="success">
             <v-card-item>
               <div>
-                <div class="text-overline mb-1">OVERLINE</div>
-                <div class="text-h6 mb-1">Headline</div>
-                <div class="text-caption">
+                <div class="text-label-small mb-1">OVERLINE</div>
+                <div class="text-title-large mb-1">Headline</div>
+                <div class="text-body-small">
                   Greyhound divisely hello coldly fonwderfully
                 </div>
               </div>
@@ -150,9 +150,9 @@ const monthtable = ref([
           <v-card color="warning">
             <v-card-item>
               <div>
-                <div class="text-overline mb-1">OVERLINE</div>
-                <div class="text-h6 mb-1">Headline</div>
-                <div class="text-caption">
+                <div class="text-label-small mb-1">OVERLINE</div>
+                <div class="text-title-large mb-1">Headline</div>
+                <div class="text-body-small">
                   Greyhound divisely hello coldly fonwderfully
                 </div>
               </div>
@@ -167,9 +167,9 @@ const monthtable = ref([
           <v-card color="info">
             <v-card-item>
               <div>
-                <div class="text-overline mb-1">OVERLINE</div>
-                <div class="text-h6 mb-1">Headline</div>
-                <div class="text-caption">
+                <div class="text-label-small mb-1">OVERLINE</div>
+                <div class="text-title-large mb-1">Headline</div>
+                <div class="text-body-small">
                   Greyhound divisely hello coldly fonwderfully
                 </div>
               </div>
@@ -191,10 +191,10 @@ const monthtable = ref([
                   src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
                 />
                 <v-card-text>
-                  <h5 class="text-h6 font-weight-medium mb-2 text-h6">
+                  <h5 class="text-title-large font-weight-medium mb-2 text-title-large">
                     Super awesome, Vue 3 is coming soon!
                   </h5>
-                  <p class="mb-3 text-body-2 text-grey-darken-1">
+                  <p class="mb-3 text-body-medium text-grey-darken-1">
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </p>
@@ -209,10 +209,10 @@ const monthtable = ref([
                   src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
                 />
                 <v-card-text>
-                  <h5 class="text-h6 font-weight-medium mb-2 text-h6">
+                  <h5 class="text-title-large font-weight-medium mb-2 text-title-large">
                     Super awesome, Vue 3 is coming soon!
                   </h5>
-                  <p class="mb-3 text-body-2 text-grey-darken-1">
+                  <p class="mb-3 text-body-medium text-grey-darken-1">
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </p>
@@ -227,10 +227,10 @@ const monthtable = ref([
                   src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
                 />
                 <v-card-text>
-                  <h5 class="text-h6 font-weight-medium mb-2 text-h6">
+                  <h5 class="text-title-large font-weight-medium mb-2 text-title-large">
                     Super awesome, Vue 3 is coming soon!
                   </h5>
-                  <p class="mb-3 text-body-2 text-grey-darken-1">
+                  <p class="mb-3 text-body-medium text-grey-darken-1">
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </p>
@@ -272,7 +272,7 @@ const monthtable = ref([
             <v-card-text>
               <div class="d-sm-flex align-center">
                 <div>
-                  <h5 class="text-h6 text-h6 font-weight-medium">
+                  <h5 class="text-title-large text-title-large font-weight-medium">
                     Product Performance
                   </h5>
                 </div>
@@ -291,15 +291,15 @@ const monthtable = ref([
                 <template #default>
                   <thead>
                     <tr>
-                      <th class="font-weight-medium text-subtitle-1">Id</th>
-                      <th class="font-weight-medium text-subtitle-1">
+                      <th class="font-weight-medium text-title-medium">Id</th>
+                      <th class="font-weight-medium text-title-medium">
                         Assigned
                       </th>
-                      <th class="font-weight-medium text-subtitle-1">Name</th>
-                      <th class="font-weight-medium text-subtitle-1">
+                      <th class="font-weight-medium text-title-medium">Name</th>
+                      <th class="font-weight-medium text-title-medium">
                         Priority
                       </th>
-                      <th class="font-weight-medium text-subtitle-1">Budget</th>
+                      <th class="font-weight-medium text-title-medium">Budget</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -315,14 +315,14 @@ const monthtable = ref([
                           {{ item.leadname }}
                         </h4>
                         <h6
-                          class="text-no-wrap font-weight-regular text-body-2 text-grey-darken-1"
+                          class="text-no-wrap font-weight-regular text-body-medium text-grey-darken-1"
                         >
                           {{ item.leademail }}
                         </h6>
                       </td>
                       <td>
                         <h5
-                          class="font-weight-medium text-no-wrap text-body-2 text-grey-darken-1"
+                          class="font-weight-medium text-no-wrap text-body-medium text-grey-darken-1"
                         >
                           {{ item.projectname }}
                         </h5>

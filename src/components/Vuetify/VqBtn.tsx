@@ -1,4 +1,4 @@
-import { mdiCircleEditOutline } from '@mdi/js'
+import { mdiPencilOutline } from '@mdi/js'
 import { toRefs } from '@vueuse/core'
 import { defineComponent } from 'vue'
 import { VBtn, VTooltip } from 'vuetify/components'
@@ -7,7 +7,7 @@ export default defineComponent({
   props: {
     icon: {
       type: String,
-      default: () => mdiCircleEditOutline
+      default: () => mdiPencilOutline
     },
     hintTitle: {
       type: String,
@@ -24,7 +24,7 @@ export default defineComponent({
   },
   inheritAttrs: false,
   setup(props, { attrs, slots }) {
-    const { variant, color, icon } = toRefs(props)
+    const { variant, color, icon, hintTitle } = toRefs(props)
     return () => (
       <>
         <VTooltip text={props.hintTitle}>
@@ -35,6 +35,8 @@ export default defineComponent({
                   variant={variant.value}
                   color={color.value}
                   icon={icon.value}
+                  size="small"
+                  aria-label={hintTitle.value}
                   v-slots={slots}
                   {...attrs}
                   {...props}

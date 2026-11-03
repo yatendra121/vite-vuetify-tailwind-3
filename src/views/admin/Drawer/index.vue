@@ -1,52 +1,30 @@
 <template>
+  <title-layout />
   <v-row>
-    <v-col md="12" sm="12">
-      <v-card>
-        <v-responsive>
-          <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
-          <v-row>
-            <!-- <v-col md="4">
-              <v-card height="200" elevation="10">
-                <canvas
-                  id="chart-line"
-                  class="chart-canvas"
-                  height="300"
-                ></canvas>
-              </v-card>
-            </v-col> -->
-            <v-col md="4">
-              <v-card height="200" color="primary">
-                <!-- <chart-holder-card
-              title="Website Views"
-              subtitle="Last Campaign Performance"
-              update="campaign sent 2 days ago"
-            > -->
-                <BarChart
-                  :height="200"
-                  :data="[50, 20, 10, 22, 50, 40]"
-                  :labels="[10, 312, 32, 23, 33, 33]"
-                />
-                <!-- </chart-holder-card> -->
-              </v-card>
-            </v-col>
-            <v-col md="4">
-              <v-card height="200">
-                <BubbleChart />
-              </v-card>
-            </v-col>
-
-            <v-col md="4">
-              <v-card height="200">
-                <LineChart />
-              </v-card>
-            </v-col>
-            <v-col md="4">
-              <v-card height="300">
-                <PieChart />
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-responsive>
+    <v-col cols="12" sm="6" lg="4">
+      <v-card title="Bar">
+        <div class="chart-box">
+          <BarChart
+            :height="200"
+            :data="[50, 20, 10, 22, 50, 40]"
+            :labels="[10, 312, 32, 23, 33, 33]"
+          />
+        </div>
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="6" lg="4">
+      <v-card title="Bubble">
+        <div class="chart-box"><BubbleChart /></div>
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="6" lg="4">
+      <v-card title="Line">
+        <div class="chart-box"><LineChart /></div>
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="6" lg="4">
+      <v-card title="Pie">
+        <div class="chart-box"><PieChart /></div>
       </v-card>
     </v-col>
   </v-row>
@@ -180,3 +158,11 @@ const PieChart = defineAsyncComponent(
 //   })
 // }
 </script>
+
+<style scoped>
+.chart-box {
+  position: relative;
+  height: 240px;
+  padding: 0 16px 16px;
+}
+</style>

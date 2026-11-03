@@ -13,52 +13,30 @@ const illustrationJohn = computed(() =>
 </script>
 
 <template>
-  <VCard class="congratulations-card overflow-hidden" min-height="180">
-    <VRow no-gutters class="h-100">
-      <VCol cols="12" sm="8" class="d-flex flex-column justify-center pa-6">
-        <p class="text-caption text-medium-emphasis text-uppercase font-weight-bold mb-1" style="letter-spacing: 1px">
-          Welcome back 👋
-        </p>
-        <h5 class="text-h5 font-weight-bold text-primary mb-2">
-          {{ profileStore.authProfile?.name || 'User' }}!
-        </h5>
-        <p class="text-body-2 text-medium-emphasis mb-4">
-          You have done <strong class="text-high-emphasis">72%</strong> more sales today.
-          Check your new badge in your profile.
+  <VCard class="h-100 overflow-hidden">
+    <div class="d-flex h-100">
+      <div class="d-flex flex-column justify-center pa-6" style="min-width: 0">
+        <p class="text-body-medium text-medium-emphasis mb-1">Welcome back</p>
+        <h2 class="text-headline-small font-weight-bold mb-2 text-break">
+          {{ profileStore.authProfile?.name || 'User' }}
+        </h2>
+        <p class="text-body-medium text-medium-emphasis mb-4">
+          Here's an overview of what's happening today.
         </p>
         <div>
-          <VBtn color="primary" variant="tonal" size="small" rounded="lg">
-            View Badges
+          <VBtn color="primary" variant="tonal" size="small" :to="{ name: 'my-profile' }">
+            View Profile
           </VBtn>
         </div>
-      </VCol>
+      </div>
 
-      <VCol cols="12" sm="4" class="d-flex align-end justify-center position-relative">
-        <img
-          :src="illustrationJohn"
-          class="john-illustration"
-          alt="illustration"
-          height="170"
-        />
-      </VCol>
-    </VRow>
+      <img
+        :src="illustrationJohn"
+        class="d-none d-sm-block align-self-end ms-auto me-4 flex-shrink-0"
+        alt=""
+        height="170"
+      />
+    </div>
   </VCard>
 </template>
 
-<style lang="scss" scoped>
-@use 'vuetify/settings' as v;
-
-.congratulations-card {
-  background: linear-gradient(
-    135deg,
-    rgba(var(--v-theme-primary), 0.06) 0%,
-    rgba(var(--v-theme-surface), 1) 60%
-  );
-}
-
-.john-illustration {
-  position: absolute;
-  bottom: 0;
-  inset-inline-end: 1.5rem;
-}
-</style>

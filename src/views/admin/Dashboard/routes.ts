@@ -11,6 +11,7 @@ export const DashboardRoutes: Array<RouteRecordRaw> = [
         name: 'dashboard',
         component: Dashboard,
         meta: {
+            section: 'Overview',
             title: 'Dashboard',
             heading: 'Dashboard',
             isPublic: false,

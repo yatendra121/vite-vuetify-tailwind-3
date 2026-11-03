@@ -30,8 +30,8 @@ const AuthRoutes: Array<RouteRecordRaw> = [
         name: 'forgot-password',
         component: ForgotPassword,
         meta: {
-            title: 'ForgotPassword',
-            heading: 'ForgotPassword',
+            title: 'Forgot Password',
+            heading: 'Forgot Password',
             isPublic: true,
             type: 'auth',
             icon: mdiLockQuestion,
@@ -43,8 +43,8 @@ const AuthRoutes: Array<RouteRecordRaw> = [
         name: 'reset-password',
         component: ResetPassword,
         meta: {
-            title: 'ResetPassword',
-            heading: 'ResetPassword',
+            title: 'Reset Password',
+            heading: 'Reset Password',
             isPublic: true,
             type: 'auth',
             icon: mdiLockReset,

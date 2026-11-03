@@ -19,6 +19,8 @@ const icons: IconOptions = {
 export default createVuetify({
     blueprint: md3,
     icons,
+    // Default is 'lg' (1145px), which turned 1024px laptops into "mobile".
+    display: { mobileBreakpoint: 'md' },
     defaults: defaultConfig,
     theme: themes
 })

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, onUnmounted, onMounted, reactive } from 'vue'
 import { useSocketRepository } from '@/composables/socket'
-import { mdiCheck, mdiWindowClose } from '@mdi/js'
+import { mdiCheck, mdiConsole, mdiWindowClose } from '@mdi/js'
 
 interface CommandResponse {
   data?: string
@@ -59,132 +59,62 @@ const clearResponse = () => {
 </script>
 
 <template>
-  <title-layout> </title-layout>
+  <title-layout />
 
-  <v-container fluid>
-    <v-card>
-      <v-responsive>
-        <v-container>
-          <v-row>
-            <v-col md="12" sm="12" xs="12">
-              <v-form @submit.prevent="executeCommand">
-                <v-row>
-                  <v-col md="9" sm="7" xs="12">
-                    <v-text-field
-                      v-model="command"
-                      label="Command Name"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col md="3" sm="5" xs="12">
-                    <v-row justify="center">
-                      <v-col>
-                        <v-btn
-                          density="comfortable"
-                          type="submit"
-                          color="primary"
-                          stacked
-                          variant="elevated"
-                          :loading="loading"
-                        >
-                          Execute
-                        </v-btn>
-                      </v-col>
-                      <v-col>
-                        <v-btn
-                          density="comfortable"
-                          @click="clearResponse"
-                          color="white"
-                          stacked
-                          variant="elevated"
-                        >
-                          Clear
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                </v-row>
-              </v-form>
-            </v-col>
-            <v-col md="12" sm="12" xs="12">
-              <v-divider></v-divider>
-            </v-col>
+  <v-card class="mb-4">
+    <v-form class="d-flex flex-wrap align-start ga-3 pa-4" @submit.prevent="executeCommand">
+      <v-text-field
+        v-model="command"
+        label="Command Name"
+        hide-details
+        style="min-width: 220px; flex: 1 1 320px"
+      ></v-text-field>
+      <v-btn type="submit" color="primary" size="large" :loading="loading">
+        Execute
+      </v-btn>
+      <v-btn variant="tonal" size="large" @click="clearResponse">Clear</v-btn>
+    </v-form>
+  </v-card>
 
-            <v-col md="12" sm="12" xs="12">
-              <v-expansion-panels
-                class="mb-12"
-                color="primary"
-                :model-value="0"
-              >
-                <v-expansion-panel
-                  v-for="(res, index) in commandExecutionRes"
-                  :key="index"
-                >
-                  <v-expansion-panel-title>
-                    <!-- <v-icon
-                      color="info"
-                      :icon="mdiTicketAccount"
-                      class="pa-1"
-                    ></v-icon> -->
-
-                    <template #default="{ expanded }">
-                      <v-row no-gutters>
-                        <v-col cols="11" class="d-flex justify-start">
-                          {{ res.name }}
-                        </v-col>
-                        <v-col cols="1" class="d-flex justify-center">
-                          <v-fade-transition leave-absolute>
-                            <span v-if="res.status == 'pending'" key="0">
-                              <v-progress-circular
-                                color="primary"
-                                :size="22"
-                                indeterminate
-                              ></v-progress-circular>
-                            </span>
-                            <span v-else-if="res.status == 'completed'" key="1">
-                              <v-icon color="info" :icon="mdiCheck"></v-icon>
-                            </span>
-                            <span v-else-if="res.status == 'rejected'" key="2">
-                              <v-icon
-                                color="error"
-                                :icon="mdiWindowClose"
-                              ></v-icon>
-                            </span>
-                          </v-fade-transition>
-                        </v-col>
-                      </v-row>
-                    </template>
-                    <!-- <template #actions v-if="loading && !index">
-                      <v-progress-circular
-                        color="primary"
-                        indeterminate
-                      ></v-progress-circular>
-                    </template> -->
-                  </v-expansion-panel-title>
-                  <v-expansion-panel-text>
-                    <v-container
-                      style="max-height: 200px"
-                      class="overflow-auto"
-                    >
-                      <v-row no-gutters>
-                        <v-col
-                          md="12"
-                          sm="12"
-                          xs="12"
-                          v-for="text in res.response"
-                          :key="text.data"
-                        >
-                          <span style="color: green"> {{ text.data }} </span>
-                          <span style="color: red"> {{ text.error }} </span>
-                        </v-col>
-                      </v-row>
-                    </v-container>
-                  </v-expansion-panel-text>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-responsive>
-    </v-card>
-  </v-container>
+  <v-expansion-panels v-if="commandExecutionRes.length" :model-value="0">
+    <v-expansion-panel v-for="(res, index) in commandExecutionRes" :key="index">
+      <v-expansion-panel-title>
+        <div class="d-flex align-center justify-space-between ga-3 w-100 pe-3">
+          <span class="text-truncate">{{ res.name }}</span>
+          <v-progress-circular
+            v-if="res.status == 'pending'"
+            color="primary"
+            :size="20"
+            :width="2"
+            indeterminate
+          ></v-progress-circular>
+          <v-icon
+            v-else-if="res.status == 'completed'"
+            color="success"
+            :icon="mdiCheck"
+          ></v-icon>
+          <v-icon
+            v-else-if="res.status == 'rejected'"
+            color="error"
+            :icon="mdiWindowClose"
+          ></v-icon>
+        </div>
+      </v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <div class="overflow-auto" style="max-height: 240px">
+          <div v-for="text in res.response" :key="text.data" class="text-break">
+            <span class="text-success">{{ text.data }}</span>
+            <span class="text-error">{{ text.error }}</span>
+          </div>
+        </div>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
+  <v-card v-else>
+    <EmptyState
+      :icon="mdiConsole"
+      title="No commands yet"
+      description="Run a command to see its output here."
+    />
+  </v-card>
 </template>
