@@ -1,5 +1,6 @@
 <template>
-  <v-navigation-drawer v-model="drawer" :width="width">
+  <!-- A closed drawer stays in the page; keep keyboard focus out of it. -->
+  <v-navigation-drawer v-model="drawer" :width="width" :inert="!drawer">
     <div class="px-4 py-4">
       <AppLogo />
     </div>

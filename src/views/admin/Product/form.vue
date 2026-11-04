@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 //composables
 import {
@@ -41,8 +41,17 @@ export default defineComponent({
       default: () => undefined
     }
   },
-  setup() {
+  setup(props) {
+    // `images` only holds new uploads. Saved images are shown below, and
+    // sending them back would post each one as "[object Object]".
+    const formValues = computed(() => {
+      if (!props.initialValues) return undefined
+      const { images: _savedImages, ...values } = props.initialValues
+      return values
+    })
+
     return {
+      formValues,
       useFormSuccess,
       validationSchema,
       useFormError,
@@ -59,7 +68,7 @@ export default defineComponent({
     :method="method"
     :validation-schema="validationSchema"
     :values-schema="valuesSchema"
-    :initial-values="initialValues"
+    :initial-values="formValues"
     :form-data="true"
     @submited-success="useFormSuccess"
     @submited-error="useFormError"
@@ -67,7 +76,7 @@ export default defineComponent({
   >
     <template #default>
       <div class="pa-4 pa-md-6">
-        <v-row>
+        <v-row density="compact">
           <v-col cols="12" sm="6">
             <vq-autocomplete
               item-title="name"
@@ -116,7 +125,8 @@ export default defineComponent({
           <v-col cols="12">
             <v-row>
               <v-col
-cols="6" sm="2"
+                cols="6"
+                sm="2"
                 v-for="image in initialValues?.images"
                 :key="image.id"
               >
@@ -143,8 +153,8 @@ cols="6" sm="2"
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn :form="id"></vq-submit-btn>
+          <v-col cols="12" class="d-flex justify-end mt-2">
+            <vq-submit-btn :form="id" :text="method === 'PUT' ? 'Save changes' : 'Create'"></vq-submit-btn>
           </v-col>
         </v-row>
       </div>

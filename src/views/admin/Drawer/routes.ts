@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import type { Meta } from '@/types/router'
-import { mdiDatabasePlusOutline } from '@mdi/js'
+import { mdiChartBar } from '@mdi/js'
 const Drawer = () => import(/* webpackChunkName: "dashboard" */ './index.vue')
 
 export const DrawerRoutes: Array<RouteRecordRaw> = [
@@ -13,7 +13,7 @@ export const DrawerRoutes: Array<RouteRecordRaw> = [
             title: 'Drawer',
             heading: 'Charts',
             isPublic: false,
-            icon: mdiDatabasePlusOutline,
+            icon: mdiChartBar,
             type: 'admin',
             permission: 'admin.drawer'
         } as Meta

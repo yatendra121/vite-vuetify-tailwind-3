@@ -29,6 +29,12 @@ export const useMessageStore = defineStore('message', {
     },
     actions: {
         addMessage(item: MessageItemWithoutId) {
+            // Several requests can fail at once with the same message.
+            const queued = this.items.some(
+                ({ message, color }) =>
+                    message === item.message && color === item.color
+            )
+            if (queued) return
             this.items.push({ id: this.id++, ...item })
         },
         removeMessage() {

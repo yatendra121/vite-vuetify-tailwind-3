@@ -1,7 +1,7 @@
 <template>
   <AuthLayout>
     <div class="mb-6">
-      <h2 class="text-headline-small font-weight-bold">Forgot Password</h2>
+      <h1 class="text-headline-small font-weight-bold">Forgot password</h1>
       <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
         We'll email you a code to reset your password.
       </p>
@@ -25,11 +25,11 @@
         autocomplete="username"
       />
 
-      <vq-submit-btn block size="large" />
+      <vq-submit-btn text="Send code" block size="large" />
 
       <div class="d-flex justify-center mt-4">
         <v-btn variant="text" :to="{ name: 'login' }" color="primary" size="small">
-          Back to Login
+          Back to login
         </v-btn>
       </div>
     </vq-form>
@@ -51,7 +51,7 @@ export default defineComponent({
   },
   setup() {
     const schema = yup.object({
-      email: yup.string().required().max(50).label('Email')
+      email: yup.string().required().email().max(50).label('Email')
     })
 
     const useFormSuccess = (response: ApiResponse) => {

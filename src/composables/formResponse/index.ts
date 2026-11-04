@@ -1,6 +1,7 @@
 import { ApiResponse } from '@qnx/composables'
 import { useMessage } from '../message'
 import router from '@/router'
+import { goBack } from '@/router/navigation'
 import type { InvalidSubmissionHandler } from 'vee-validate'
 
 export default function useFormRepository(routeName: string, options = {}) {
@@ -14,12 +15,7 @@ export default function useFormRepository(routeName: string, options = {}) {
 
 export const useFormSuccess = (response: ApiResponse<unknown>) => {
     useMessage.success(response.getMessage() ?? '')
-
-    if (window.history.length > 2) {
-        router.back()
-    } else {
-        router.push({ name: 'dashboard' })
-    }
+    goBack()
 }
 
 export const useFormSuccessOnlyMessage = (response: ApiResponse<unknown>) => {

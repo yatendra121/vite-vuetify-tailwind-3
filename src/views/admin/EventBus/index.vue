@@ -2,6 +2,12 @@
 import * as yup from 'yup'
 import { useDateFormat, useTimestamp, useWebWorkerFn } from '@vueuse/core'
 import { ref } from 'vue'
+import {
+  useFormClientError,
+  useFormError,
+  useFormSuccessOnlyMessage
+} from '@/composables/formResponse'
+import { useMessage } from '@/composables/message'
 const test = ref<number[]>([])
 const heavyTask = () => {
   const randomNumber = () => Math.trunc(Math.random() * 5_000_00)
@@ -10,11 +16,14 @@ const heavyTask = () => {
   // test.value = numbers
   return numbers.slice(0, 5)
 }
-const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(heavyTask)
+const { workerFn, workerStatus } = useWebWorkerFn(heavyTask)
 
-const exceute = async () => {
-  const val = await workerFn()
-  test.value = val
+const execute = async () => {
+  try {
+    test.value = await workerFn()
+  } catch {
+    useMessage.error('The background task failed. Please try again.')
+  }
 }
 
 const fields = {
@@ -71,24 +80,20 @@ const validationSchema = yup.object({
   ...schema
 })
 
-const useFormSuccess = () => {
-  alert('success')
-}
-
-const useFormError = (data: unknown) => {
-  console.log({ data })
-}
-
-const useFormClientError = (data: unknown) => {
-  console.log({ data })
-}
 </script>
 
 <template>
   <title-layout />
   <v-card class="form-card mb-4" title="Web worker">
     <v-card-text class="d-flex flex-wrap align-center ga-3 pt-0">
-      <v-btn color="primary" variant="tonal" @click="exceute()">Start</v-btn>
+      <v-btn
+        color="primary"
+        variant="tonal"
+        :loading="workerStatus === 'RUNNING'"
+        @click="execute()"
+      >
+        Start
+      </v-btn>
       <v-chip size="small">{{ workerStatus }}</v-chip>
       <code v-if="test.length" class="text-break">{{ test }}</code>
     </v-card-text>
@@ -100,7 +105,7 @@ const useFormClientError = (data: unknown) => {
       action="test"
       method="POST"
       :validation-schema="validationSchema"
-      @submited-success="useFormSuccess"
+      @submited-success="useFormSuccessOnlyMessage"
       @submited-error="useFormError"
       @submited-client-error="useFormClientError"
     >

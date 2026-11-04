@@ -81,6 +81,7 @@ import {
 import { useAppStore } from '@/store/reactivity/app'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
+import { getInitials } from '@/composables/string'
 import AppLogo from '@/components/Basic/AppLogo.vue'
 import Notification from './Notification.vue'
 
@@ -92,13 +93,7 @@ const profileStore = useProfileStore()
 const theme = computed(() => appStore.themeValue)
 const authProfile = computed(() => profileStore.authProfile)
 
-const initials = computed(() =>
-  (authProfile.value?.name ?? '')
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((word: string) => word.charAt(0).toUpperCase())
-    .join('')
-)
+const initials = computed(() => getInitials(authProfile.value?.name))
 
 //Router
 const router = useRouter()

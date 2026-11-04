@@ -39,7 +39,10 @@ const resolveCookieDomain = (): string | undefined => {
         // Already a bare hostname.
     }
     if (!hostname || hostname === 'localhost') return undefined
-    if (typeof window !== 'undefined' && hostname !== window.location.hostname) {
+    if (
+        typeof window !== 'undefined' &&
+        hostname !== window.location.hostname
+    ) {
         // Configured domain isn't the host serving the page — the cookie
         // would be discarded by the browser. Fall back to the current host.
         return undefined
@@ -72,9 +75,15 @@ const setDeviceId = (deviceId: string) => {
     return Cookies.set(DeviceIdKey, deviceId, { expires: 365 })
 }
 
-const removeToken = () => Cookies.remove(TokenKey)
+// A cookie is only removed when the domain matches the one it was set with.
+const removeToken = () =>
+    Cookies.remove(TokenKey, { path: '/', domain: resolveCookieDomain() })
 
-const removeRefreshToken = () => Cookies.remove(RefreshTokenKey)
+const removeRefreshToken = () =>
+    Cookies.remove(RefreshTokenKey, {
+        path: '/',
+        domain: resolveCookieDomain()
+    })
 
 const removeDeviceId = () => Cookies.remove(DeviceIdKey)
 

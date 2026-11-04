@@ -22,7 +22,12 @@ const chartOptions = computed(() => {
     tooltip: { enabled: false },
     dataLabels: { enabled: false },
     labels: ['Fashion', 'Electronic', 'Sports', 'Decor'],
-    colors: [currentTheme.success, currentTheme.primary, currentTheme.secondary, currentTheme.info].map(String),
+    colors: [
+      currentTheme.success,
+      currentTheme.primary,
+      currentTheme.secondary,
+      currentTheme.info
+    ].map(String),
     grid: { padding: { top: -7, bottom: 5 } },
     states: {
       hover: { filter: { type: 'none' as const } },
@@ -35,9 +40,26 @@ const chartOptions = computed(() => {
           size: '75%',
           labels: {
             show: true,
-            name: { offsetY: 17, fontSize: '13px', color: disabledTextColor, fontFamily: 'DM Sans' },
-            value: { offsetY: -17, fontSize: '22px', color: primaryTextColor, fontFamily: 'DM Sans' },
-            total: { show: true, label: 'Weekly', fontSize: '13px', formatter: () => '38%', color: disabledTextColor, fontFamily: 'DM Sans' }
+            name: {
+              offsetY: 17,
+              fontSize: '13px',
+              color: disabledTextColor,
+              fontFamily: 'DM Sans'
+            },
+            value: {
+              offsetY: -17,
+              fontSize: '22px',
+              color: primaryTextColor,
+              fontFamily: 'DM Sans'
+            },
+            total: {
+              show: true,
+              label: 'Weekly',
+              fontSize: '13px',
+              formatter: () => '38%',
+              color: disabledTextColor,
+              fontFamily: 'DM Sans'
+            }
           }
         }
       }
@@ -46,24 +68,50 @@ const chartOptions = computed(() => {
 })
 
 const orders = [
-  { amount: '82.5k', title: 'Electronic', avatarColor: 'primary', subtitle: 'Mobile, Earbuds, TV',      avatarIcon: mdiCellphone    },
-  { amount: '23.8k', title: 'Fashion',    avatarColor: 'success', subtitle: 'T-shirt, Jeans, Shoes',    avatarIcon: mdiHanger       },
-  { amount: '849',   title: 'Decor',      avatarColor: 'info',    subtitle: 'Fine Art, Dining',          avatarIcon: mdiHomeOutline },
-  { amount: '99',    title: 'Sports',     avatarColor: 'secondary',subtitle: 'Football, Cricket Kit',   avatarIcon: mdiSoccer       }
+  {
+    amount: '82.5k',
+    title: 'Electronic',
+    avatarColor: 'primary',
+    subtitle: 'Mobile, Earbuds, TV',
+    avatarIcon: mdiCellphone
+  },
+  {
+    amount: '23.8k',
+    title: 'Fashion',
+    avatarColor: 'success',
+    subtitle: 'T-shirt, Jeans, Shoes',
+    avatarIcon: mdiHanger
+  },
+  {
+    amount: '849',
+    title: 'Decor',
+    avatarColor: 'info',
+    subtitle: 'Fine Art, Dining',
+    avatarIcon: mdiHomeOutline
+  },
+  {
+    amount: '99',
+    title: 'Sports',
+    avatarColor: 'secondary',
+    subtitle: 'Football, Cricket Kit',
+    avatarIcon: mdiSoccer
+  }
 ]
 </script>
 
 <template>
   <VCard>
     <VCardItem class="pb-2">
-      <VCardTitle class="text-body-large font-weight-bold">Order Statistics</VCardTitle>
+      <VCardTitle class="text-body-large font-weight-bold"
+        >Order Statistics</VCardTitle
+      >
       <VCardSubtitle>42.82k Total Sales</VCardSubtitle>
     </VCardItem>
 
     <VCardText>
       <div class="d-flex align-center justify-space-between mb-4">
         <div>
-          <h4 class="text-headline-medium font-weight-bold mb-0">8,258</h4>
+          <p class="text-headline-medium font-weight-bold mb-0">8,258</p>
           <span class="text-body-small text-medium-emphasis">Total Orders</span>
         </div>
         <VueApexCharts
@@ -78,22 +126,30 @@ const orders = [
       <VDivider class="mb-3" />
 
       <VList lines="two" class="pa-0">
-        <VListItem
-          v-for="order in orders"
-          :key="order.title"
-          class="px-0"
-        >
+        <VListItem v-for="order in orders" :key="order.title" class="px-0">
           <template #prepend>
-            <VAvatar rounded="lg" variant="tonal" :color="order.avatarColor" size="38" class="me-3">
+            <VAvatar
+              rounded="lg"
+              variant="tonal"
+              :color="order.avatarColor"
+              size="38"
+              class="me-3"
+            >
               <VIcon :icon="order.avatarIcon" size="20" />
             </VAvatar>
           </template>
 
-          <VListItemTitle class="text-body-medium font-weight-medium">{{ order.title }}</VListItemTitle>
-          <VListItemSubtitle class="text-body-small">{{ order.subtitle }}</VListItemSubtitle>
+          <VListItemTitle class="text-body-medium font-weight-medium">{{
+            order.title
+          }}</VListItemTitle>
+          <VListItemSubtitle class="text-body-small">{{
+            order.subtitle
+          }}</VListItemSubtitle>
 
           <template #append>
-            <span class="text-body-medium font-weight-bold">{{ order.amount }}</span>
+            <span class="text-body-medium font-weight-bold">{{
+              order.amount
+            }}</span>
           </template>
         </VListItem>
       </VList>

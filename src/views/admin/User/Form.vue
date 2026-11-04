@@ -62,6 +62,7 @@ export default defineComponent({
     :id="id"
     :action="action"
     :method="method"
+    :validation-schema="validationSchema"
     :values-schema="valuesSchema"
     :initial-values="initialValues"
     @submited-success="useFormSuccess"
@@ -70,7 +71,7 @@ export default defineComponent({
   >
     <template #default>
       <div class="pa-4 pa-md-6">
-        <v-row>
+        <v-row density="compact">
           <v-col cols="12" sm="6">
             <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
@@ -144,8 +145,8 @@ export default defineComponent({
               label="Time "
             />
           </v-col> -->
-          <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
+          <v-col cols="12" class="d-flex justify-end mt-2">
+            <vq-submit-btn :text="method === 'PUT' ? 'Save changes' : 'Create'"></vq-submit-btn>
           </v-col>
         </v-row>
         <!-- <vq-file-input name="profile_image"></vq-file-input> -->

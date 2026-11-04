@@ -15,9 +15,9 @@ test.describe('Forgot password page', () => {
         await expect(page.getByText('Email').first()).toBeVisible()
     })
 
-    test('renders a Submit button', async ({ page }) => {
+    test('renders a Send code button', async ({ page }) => {
         await expect(
-            page.getByRole('button', { name: /submit/i }).first()
+            page.getByRole('button', { name: /send code/i }).first()
         ).toBeVisible()
     })
 

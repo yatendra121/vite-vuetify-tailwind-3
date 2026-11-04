@@ -3,21 +3,21 @@
     <v-col
       cols="12"
       md="6"
-      class="bg-primary d-none d-md-flex flex-column justify-space-between pa-12"
+      class="bg-brand d-none d-md-flex flex-column justify-space-between pa-12"
     >
       <AppLogo inverted />
 
       <div style="max-width: 480px">
-        <h2 class="text-headline-medium font-weight-bold mb-4">
+        <p class="text-headline-medium font-weight-bold mb-4">
           Run your gym from one place
-        </h2>
+        </p>
         <p class="text-body-large" style="opacity: 0.9">
           Manage organizations, members and day-to-day operations from a single
           dashboard.
         </p>
       </div>
 
-      <p class="text-body-small mb-0" style="opacity: 0.8">
+      <p class="text-body-small mb-0">
         &copy; {{ new Date().getFullYear() }} {{ APP_NAME }}
       </p>
     </v-col>

@@ -135,7 +135,7 @@ const chartConfig = computed(() => {
         style: {
           fontSize: '14px',
           colors: disabledTextColor,
-          fontFamily: 'Public Sans'
+          fontFamily: 'DM Sans'
         }
       }
     },
@@ -169,24 +169,35 @@ const chartConfig = computed(() => {
 <template>
   <VCard>
     <VCardItem class="pb-0">
-      <VTabs v-model="currentTab" density="compact" color="primary">
-        <VTab value="income">Income</VTab>
-        <VTab value="expenses">Expenses</VTab>
-        <VTab value="profit">Profit</VTab>
+      <VTabs
+        v-model="currentTab"
+        class="finance-tabs"
+        density="compact"
+        color="primary"
+        grow
+      >
+        <VTab value="income" min-width="0">Income</VTab>
+        <VTab value="expenses" min-width="0">Expenses</VTab>
+        <VTab value="profit" min-width="0">Profit</VTab>
       </VTabs>
     </VCardItem>
 
     <VCardText class="d-flex align-center ga-3 pt-4 pb-2">
       <VAvatar size="44" rounded="lg" :image="tabData.avatar" />
       <div>
-        <p class="text-body-small text-medium-emphasis mb-0">{{ tabData.title }}</p>
+        <p class="text-body-small text-medium-emphasis mb-0">
+          {{ tabData.title }}
+        </p>
         <div class="d-flex align-center ga-2">
-          <h6 class="text-title-large font-weight-bold">{{ tabData.stats }}</h6>
+          <p class="text-title-large font-weight-bold">{{ tabData.stats }}</p>
           <span
             class="text-body-medium d-flex align-center ga-1"
             :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
           >
-            <VIcon size="16" :icon="tabData.profitLoss > 0 ? mdiTrendingUp : mdiTrendingDown" />
+            <VIcon
+              size="16"
+              :icon="tabData.profitLoss > 0 ? mdiTrendingUp : mdiTrendingDown"
+            />
             {{ tabData.profitLoss }}%
           </span>
         </div>
@@ -211,7 +222,9 @@ const chartConfig = computed(() => {
         color="primary"
         :model-value="tabData.profitLoss"
       >
-        <span class="text-body-small font-weight-bold">{{ tabData.profitLossAmount }}</span>
+        <span class="text-body-small font-weight-bold">{{
+          tabData.profitLossAmount
+        }}</span>
       </VProgressCircular>
       <div>
         <p class="text-body-medium font-weight-medium mb-0">
@@ -224,3 +237,10 @@ const chartConfig = computed(() => {
     </VCardText>
   </VCard>
 </template>
+
+<style scoped>
+/* Three short labels fit a narrow card once the default side padding goes. */
+.finance-tabs :deep(.v-tab) {
+  padding-inline: 8px;
+}
+</style>

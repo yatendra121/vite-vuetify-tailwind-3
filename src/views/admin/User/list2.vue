@@ -58,6 +58,9 @@
             </td>
           </tr>
         </template>
+      <template #loading>
+        <v-skeleton-loader type="table-row@5" />
+      </template>
       <template #no-data>
         <EmptyState />
       </template>

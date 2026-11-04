@@ -24,7 +24,13 @@ const config: VuetifyOptions['defaults'] = {
     VTextField: fieldDefaults,
     VTextarea: { ...fieldDefaults, rows: 3 },
     VAutocomplete: fieldDefaults,
-    VFileInput: { ...fieldDefaults, clearable: false },
+    // An icon inside the field keeps it aligned with the fields around it.
+    VFileInput: {
+        ...fieldDefaults,
+        clearable: false,
+        prependIcon: '',
+        prependInnerIcon: '$file'
+    },
     VTooltip: {
         transition: 'scroll-y-reverse-transition',
         location: 'top'

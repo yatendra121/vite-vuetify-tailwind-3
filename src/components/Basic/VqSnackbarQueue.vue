@@ -5,7 +5,7 @@
     @update:model-value="removeItem"
     :key="item.id"
     :model-value="i === 0"
-    :timeout="timeout"
+    :timeout="item.color === 'error' ? errorTimeout : timeout"
     :color="item.color"
     :absolute="absolute"
     location="top"
@@ -18,8 +18,9 @@
     </template>
 
     <template #actions>
-      <v-btn color="white" variant="text" @click="removeItem(item.id)">
-        {{ items.length > 1 ? `Next(${items.length - 1})` : 'Close' }}
+      <!-- `inherit` follows the snackbar text instead of the primary default. -->
+      <v-btn color="inherit" variant="text" @click="removeItem(item.id)">
+        {{ items.length > 1 ? `Next (${items.length - 1})` : 'Close' }}
       </v-btn>
     </template>
   </VSnackbar>
@@ -27,13 +28,13 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { VSnackbar } from 'vuetify/components';
+import { VSnackbar } from 'vuetify/components'
 import type { MessageItem } from '@/store/reactivity/message'
 
 export default defineComponent({
   name: 'VqSnackbarQueue',
   emits: ['remove'],
-  components:{
+  components: {
     VSnackbar
   },
   props: {
@@ -44,6 +45,11 @@ export default defineComponent({
     timeout: {
       type: Number,
       default: 50000
+    },
+    // Errors stay longer: they usually need reading and acting on.
+    errorTimeout: {
+      type: Number,
+      default: 6000
     },
     color: {
       type: String,

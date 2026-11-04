@@ -13,7 +13,7 @@ const ProductForm = defineAsyncComponent(
 
 const route = useRoute()
 
-const { response, cancelLoading } = useAxiosWithLoading<ProductWithImage>(
+const { response, loading, failed, cancelLoading } = useAxiosWithLoading<ProductWithImage>(
   `product/${route.params.id}`,
   {
     method: 'GET'
@@ -30,11 +30,13 @@ onBeforeUnmount(() => cancelLoading())
   </title-layout>
 
   <v-card class="form-card">
+    <LoadState :loading="loading" :failed="failed">
     <ProductForm
         :id="formId"
         :action="`product/${route.params.id}`"
         method="PUT"
         :initial-values="response?.data"
       />
+    </LoadState>
   </v-card>
 </template>

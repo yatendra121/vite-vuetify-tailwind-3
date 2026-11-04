@@ -1,7 +1,7 @@
 <template>
   <AuthLayout>
     <div class="mb-6">
-      <h2 class="text-headline-small font-weight-bold">{{ $route.meta.heading }}</h2>
+      <h1 class="text-headline-small font-weight-bold">{{ $route.meta.heading }}</h1>
       <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
         Enter the code we emailed you and choose a new password.
       </p>
@@ -18,14 +18,14 @@
     >
       <vq-text-field
         :clearable="false"
-        :readonly="true"
+        :readonly="hasEmailFromLink"
         name="email"
         label="Email"
         placeholder="Email"
         class="mb-3"
       />
 
-      <h3 class="text-title-small font-weight-medium mb-2">Verification Code</h3>
+      <h2 class="text-title-small font-weight-medium mb-2">Verification code</h2>
       <vq-otp-input
         class="mb-1"
         divider="•"
@@ -40,19 +40,19 @@
           variant="text"
           :to="{ name: 'forgot-password' }"
         >
-          Send New Code
+          Send a new code
         </v-btn>
       </div>
 
       <VqPasswordField
         name="password"
-        label="Password"
-        placeholder="Password"
+        label="New password"
+        placeholder="New password"
         autocomplete="new-password"
         class="mb-3"
       />
 
-      <vq-submit-btn block size="large" />
+      <vq-submit-btn text="Reset password" block size="large" />
     </vq-form>
   </AuthLayout>
 </template>
@@ -68,7 +68,7 @@ export default defineComponent({
   },
   setup() {
     const schema = yup.object({
-      email: yup.string().required().max(50).label('Email'),
+      email: yup.string().required().email().max(50).label('Email'),
       password: yup.string().required().max(50).label('Password'),
       token: yup.string().required().max(10).label('OTP')
     })
@@ -76,11 +76,17 @@ export default defineComponent({
     const { useFormSuccess } = useFormRepository('login')
     const route = useRoute()
 
+    // The email comes from the forgot-password step; someone opening this page
+    // directly has to be able to type it.
+    const emailFromLink =
+      typeof route.query.email === 'string' ? route.query.email : ''
+
     const initialValues = reactive({
-      email: route.query?.email
+      email: emailFromLink
     })
 
     return {
+      hasEmailFromLink: !!emailFromLink,
       schema,
       initialValues,
       useFormSuccess,

@@ -5,6 +5,8 @@ export const staticPrimaryColor = '#696CFF'
 const lightColors1 = {
     primary: '#0E7490',
     'on-primary': '#fff',
+    brand: '#0E7490',
+    'on-brand': '#fff',
     secondary: '#475569',
     'on-secondary': '#fff',
     success: '#15803D',
@@ -47,6 +49,8 @@ const theme: VuetifyOptions['theme'] = {
             colors: lightColors1,
 
             variables: {
+                // Muted text and field labels need this to reach 4.5:1.
+                'medium-emphasis-opacity': 0.75,
                 'code-color': '#d400ff',
                 'overlay-scrim-background': '#32475C',
                 'overlay-scrim-opacity': 0.5,
@@ -71,6 +75,9 @@ const theme: VuetifyOptions['theme'] = {
             colors: {
                 primary: '#22B8CF',
                 'on-primary': '#06262D',
+                // The bright primary is too loud for a full-height panel.
+                brand: '#155E75',
+                'on-brand': '#fff',
                 secondary: '#94A3B8',
                 'on-secondary': '#0F172A',
                 success: '#4ADE80',

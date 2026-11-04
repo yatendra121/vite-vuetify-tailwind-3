@@ -7,11 +7,14 @@ export function useSocketRepository() {
     /**
      * Create socket listener
      */
-    const useOnSocket = (eventName: string, callback: (...args: unknown[]) => void) => {
+    const useOnSocket = (
+        eventName: string,
+        callback: (...args: unknown[]) => void
+    ) => {
         socket.on(eventName, callback)
 
         const offSocketEvent = () => {
-            socket.off(eventName)
+            socket.off(eventName, callback)
         }
 
         return offSocketEvent

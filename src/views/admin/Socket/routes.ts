@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
-import { mdiSafeSquare } from '@mdi/js'
+import { mdiConsole } from '@mdi/js'
 const Socket = () => import(/* webpackChunkName: "socket" */ './index.vue')
 
 export const SocketRoutes: Array<RouteRecordRaw> = [
@@ -13,7 +13,7 @@ export const SocketRoutes: Array<RouteRecordRaw> = [
             title: 'Socket',
             heading: 'Socket',
             isPublic: false,
-            icon: mdiSafeSquare,
+            icon: mdiConsole,
             type: 'admin',
             permission: 'admin.drawer'
         } as Meta

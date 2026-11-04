@@ -86,7 +86,7 @@ test.describe('User — create', () => {
             .click()
         await page.keyboard.press('Escape')
 
-        await page.getByRole('button', { name: /^submit$/i }).first().click()
+        await page.getByRole('button', { name: /^(create|save changes)$/i }).first().click()
 
         const request = await postPromise
         const payload = request.postData() ?? ''
@@ -106,7 +106,7 @@ test.describe('User — create', () => {
         await page.goto('/admin/user/create')
         await page.waitForLoadState('networkidle')
 
-        await page.getByRole('button', { name: /^submit$/i }).first().click()
+        await page.getByRole('button', { name: /^(create|save changes)$/i }).first().click()
 
         // The form surfaces one Vuetify alert per failing field.
         const alerts = page.getByRole('alert')
@@ -187,7 +187,7 @@ test.describe('User — edit', () => {
         await expect(nameField).toHaveValue('Old Name', { timeout: 10_000 })
         await nameField.fill('Updated Name')
 
-        await page.getByRole('button', { name: /^submit$/i }).first().click()
+        await page.getByRole('button', { name: /^(create|save changes)$/i }).first().click()
 
         const request = await putPromise
         const payload = request.postData() ?? ''

@@ -13,7 +13,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
         component: ParentRouteView,
         meta: {
             section: 'Accounts',
-            title: 'User',
+            title: 'Users',
             heading: 'Users',
             isPublic: false,
             icon: mdiAccountGroup,
@@ -39,7 +39,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
                 name: 'user.list',
                 component: List2,
                 meta: {
-                    title: 'User',
+                    title: 'Users',
                     heading: 'Users',
                     isPublic: false,
                     icon: mdiAccountGroup,

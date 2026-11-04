@@ -30,7 +30,9 @@
   <v-card class="form-card">
     <v-window v-model="tab">
       <v-window-item :value="1">
-        <MyProfileForm :initial-values="response?.data" />
+        <LoadState :loading="loading" :failed="failed">
+          <MyProfileForm :initial-values="response?.data" />
+        </LoadState>
       </v-window-item>
       <v-window-item :value="2">
         <EmptyState
@@ -49,7 +51,7 @@ import { mdiCogOutline } from '@mdi/js'
 import { useAxiosWithLoading } from '@/composables/axios'
 import type { User } from '@/types'
 import { useProfileStore } from '@/store/reactivity/profile'
-import { useStringRepository } from '@/composables/string'
+import { getInitials, useStringRepository } from '@/composables/string'
 
 const MyProfileForm = defineAsyncComponent(
   () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
@@ -60,16 +62,14 @@ const tab = ref(1)
 const { toCapitalize } = useStringRepository()
 const profileStore = useProfileStore()
 
-const roleName = computed(() => toCapitalize(profileStore.profile?.role?.name))
-const initials = computed(() =>
-  (profileStore.profile?.name ?? '')
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((word: string) => word.charAt(0).toUpperCase())
-    .join('')
+const roleName = computed(
+  () =>
+    profileStore.profile?.role?.title ??
+    toCapitalize(profileStore.profile?.role?.name)
 )
+const initials = computed(() => getInitials(profileStore.profile?.name))
 
-const { response, cancelLoading } = useAxiosWithLoading<User>(
+const { response, loading, failed, cancelLoading } = useAxiosWithLoading<User>(
   'my-profile/show',
   {
     method: 'GET'

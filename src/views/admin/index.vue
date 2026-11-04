@@ -4,7 +4,7 @@
       <router-view :key="$route.path" v-slot="{ Component, route }">
         <v-fade-transition mode="out-in" appear>
           <div>
-            <suspense>
+            <suspense v-if="Component">
               <template #default>
                 <component :is="Component" :key="route.name" />
               </template>
@@ -36,6 +36,7 @@ import AdminApp from './adminApp.vue'
 import FallbackComponent from '@/components/Loading/FallbackComponent'
 import type { AuthStatus } from '@/types/auth'
 import { useProfileStore } from '@/store/reactivity/profile'
+import { APP_NAME } from '@/config/brand'
 export default defineComponent({
   components: {
     AdminApp,
@@ -100,12 +101,10 @@ export default defineComponent({
 
     const title = useTitle()
 
-    router.beforeEach((to, from, next) => {
+    router.beforeEach((to) => {
       if (!profileStore.authProfile && !to.meta.isPublic) {
-        next({ name: 'login' })
-        return
+        return { name: 'login' }
       }
-      next()
     })
 
     // Browser tab title is updated in `afterEach` because `beforeEach` is
@@ -113,7 +112,7 @@ export default defineComponent({
     // the router has started resolving the first route). `afterEach`
     // *does* run for the initial navigation once it settles.
     const applyTitle = (to: { meta: RouteMeta }) => {
-      if (to.meta.title) title.value = to.meta.title as string
+      if (to.meta.title) title.value = `${to.meta.title} · ${APP_NAME}`
     }
     router.afterEach((to) => applyTitle(to))
     // Cover the initial nav explicitly in case it had already settled

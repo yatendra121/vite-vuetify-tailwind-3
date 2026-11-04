@@ -59,7 +59,10 @@ const chartOptions = computed(() => {
     <VCardText class="d-flex justify-space-between align-center h-100 pa-5">
       <div class="d-flex flex-column justify-space-between flex-shrink-0 ga-4">
         <div>
-          <p class="text-body-small text-medium-emphasis text-uppercase font-weight-medium mb-1" style="letter-spacing: 0.5px">
+          <p
+            class="text-body-small text-medium-emphasis text-uppercase font-weight-medium mb-1"
+            style="letter-spacing: 0.5px"
+          >
             Profit Report
           </p>
           <VChip color="warning" size="small" variant="tonal">
@@ -72,11 +75,11 @@ const chartOptions = computed(() => {
             <VIcon :icon="mdiTrendingUp" size="16" />
             <span class="text-body-medium font-weight-medium">68.2%</span>
           </div>
-          <h5 class="text-headline-small font-weight-bold">$84,686k</h5>
+          <p class="text-title-large font-weight-bold">$84,686k</p>
         </div>
       </div>
 
-      <div class="flex-grow-1" style="min-width: 0">
+      <div class="flex-grow-1 ms-2" style="min-width: 0">
         <VueApexCharts
           type="line"
           :height="131"

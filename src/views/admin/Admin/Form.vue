@@ -71,7 +71,7 @@ export default defineComponent({
   >
     <template #default>
       <div class="pa-4 pa-md-6">
-        <v-row>
+        <v-row density="compact">
           <v-col cols="12" sm="6">
             <VqTextField name="name" label="Name" placeholder="Name" />
           </v-col>
@@ -129,8 +129,8 @@ export default defineComponent({
           <v-col cols="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
-          <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
+          <v-col cols="12" class="d-flex justify-end mt-2">
+            <vq-submit-btn :text="method === 'PUT' ? 'Save changes' : 'Create'"></vq-submit-btn>
           </v-col>
 
           <!-- <v-col cols="12" v-for="i in 2" :key="i">

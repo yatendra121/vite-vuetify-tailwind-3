@@ -1,6 +1,3 @@
-import './socket'
-import './trpc'
-
 import vuetify from './vuetify'
 import vqVuetify from './vqVuetify'
 import { loadFonts } from './vuetify/webfontloader'

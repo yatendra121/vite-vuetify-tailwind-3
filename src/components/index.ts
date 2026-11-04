@@ -1,6 +1,7 @@
 import { defineAsyncComponent } from 'vue'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
 import EmptyState from '@/components/Basic/EmptyState.vue'
+import LoadState from '@/components/Basic/LoadState.vue'
 import VqPasswordField from '@/components/Vuetify/VqPasswordField.vue'
 import type { App } from 'vue'
 
@@ -38,6 +39,7 @@ const components: { [key: string]: any } = {
 const titleComponents: { [key: string]: any } = {
     TitleLayout,
     EmptyState,
+    LoadState,
     VqPasswordField
 }
 export default {

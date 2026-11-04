@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 //composables
 import {
@@ -7,42 +7,38 @@ import {
   useFormError,
   useFormClientError
 } from '@/composables/formResponse'
+import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 import { validationSchema } from './formSchema'
 import { VqFileUpload } from '@qnx/vuetify'
 
 //types
 import type { PropType } from 'vue'
-import type { FormMethod, InitialValues } from '@/types'
+import type { ApiResponse } from '@qnx/composables'
+import type { InitialValues } from '@/types'
 
 export default defineComponent({
   components: {
     VqFileUpload
   },
   props: {
-    action: {
-      type: String,
-      default: () => 'user'
-    },
-    method: {
-      type: String as PropType<FormMethod>,
-      default: () => 'POST'
-    },
     initialValues: {
       type: Object as PropType<InitialValues>,
       default: () => undefined
     }
   },
   setup() {
-    const items = ref([
-      { title: 'Male', value: 'male' },
-      { title: 'Female', value: 'female' }
-    ])
+    const { myProfile } = useAuthProfileRepository()
+
+    // The app bar and profile header read the signed-in user from the store.
+    const onSaved = (response: ApiResponse<unknown>) => {
+      useFormSuccessOnlyMessage(response)
+      myProfile().catch(() => {})
+    }
 
     return {
-      useFormSuccessOnlyMessage,
+      onSaved,
       validationSchema,
       useFormError,
-      items,
       useFormClientError
     }
   }
@@ -57,17 +53,17 @@ export default defineComponent({
     :form-data="true"
     :validation-schema="validationSchema"
     :initial-values="initialValues"
-    @submited-success="useFormSuccessOnlyMessage"
+    @submited-success="onSaved"
     @submited-error="useFormError"
     @submited-client-error="useFormClientError"
   >
     <template #default>
       <div class="pa-4 pa-md-6">
-        <v-row>
-          <v-col cols="12" sm="4">
+        <v-row density="compact">
+          <v-col cols="12" sm="6">
             <vq-text-field name="name" label="Name" placeholder="Name" />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="6">
             <vq-text-field
               name="mobileNo"
               label="Mobile"
@@ -75,11 +71,12 @@ export default defineComponent({
             />
           </v-col>
 
-          <v-col cols="12" sm="4">
+          <v-col cols="12">
             <vq-text-field name="email" label="Email" placeholder="Email" />
           </v-col>
 
           <v-col cols="12">
+            <p class="text-body-medium font-weight-medium mb-2">Attachment</p>
             <VqFileUpload
               density="compact"
               clearable
@@ -93,8 +90,8 @@ export default defineComponent({
           <v-col cols="12">
             <vq-textarea name="address" label="Address" placeholder="Address" />
           </v-col>
-          <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
+          <v-col cols="12" class="d-flex justify-end mt-2">
+            <vq-submit-btn text="Save changes"></vq-submit-btn>
           </v-col>
         </v-row>
       </div>

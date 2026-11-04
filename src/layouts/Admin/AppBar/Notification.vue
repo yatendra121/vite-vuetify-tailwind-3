@@ -6,6 +6,7 @@
     temporary
     @update:model-value="$emit('update:modelValue', $event)"
   >
+    <template v-if="modelValue">
     <div class="d-flex align-center justify-space-between pa-4">
       <h2 class="text-title-medium font-weight-bold">Notifications</h2>
       <v-btn
@@ -22,6 +23,7 @@
       title="You're all caught up"
       description="New notifications will appear here."
     />
+    </template>
   </v-navigation-drawer>
 </template>
 <script lang="ts" setup>

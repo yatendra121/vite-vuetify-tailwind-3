@@ -1,12 +1,21 @@
 <template>
   <title-layout />
-  <v-text-field v-model="search" label="Search" class="mb-2" />
+  <v-card class="mb-4">
+    <div class="table-filters">
+      <v-text-field
+        v-model="search"
+        label="Search"
+        hide-details
+        :prepend-inner-icon="mdiMagnify"
+      />
+    </div>
+  </v-card>
 
   <v-row v-if="filter.length">
     <v-col v-for="(item, i) in filter" :key="i" cols="12" sm="6" lg="3">
       <v-card
         class="h-100 text-capitalize"
-        :title="item.brand"
+        :title="toCapitalize(item.brand)"
         :subtitle="item.model"
         :text="`${item.year}`"
       >
@@ -25,13 +34,15 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { VTextField } from 'vuetify/components'
+import { mdiMagnify } from '@mdi/js'
+import { useStringRepository } from '@/composables/string'
 
 export default defineComponent({
   components: {
     VTextField
   },
   setup() {
-    const search = ref('')
+    const search = ref<string | null>('')
 
     const data = ref([
       {
@@ -61,15 +72,16 @@ export default defineComponent({
     ])
 
     const filter = computed(() => {
+      // Clearing the field sets it to null.
+      const term = (search.value ?? '').trim().toLowerCase()
       return data.value.filter(
         (item) =>
-          item.brand.includes(search.value) ||
-          item.model.includes(search.value) ||
-          item.model.includes(search.value) ||
-          item.features.find((val) => val.includes(search.value))
+          item.brand.includes(term) ||
+          item.model.includes(term) ||
+          item.features.some((val) => val.includes(term))
       )
     })
-    return { data, search, filter }
+    return { data, search, filter, mdiMagnify, ...useStringRepository() }
   }
 })
 </script>

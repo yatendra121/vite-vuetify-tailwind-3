@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onUnmounted, onMounted, reactive } from 'vue'
 import { useSocketRepository } from '@/composables/socket'
+import { useMessage } from '@/composables/message'
 import { mdiCheck, mdiConsole, mdiWindowClose } from '@mdi/js'
 
 interface CommandResponse {
@@ -10,31 +11,57 @@ interface CommandResponse {
 }
 
 interface CommandWithResponse {
+  id: number
   name: string
   status: 'pending' | 'completed' | 'rejected'
   response: Array<CommandResponse>
 }
 
 let { defaultSocketOffEvent: messageOffEvent } = useSocketRepository()
-const { useOnSocket, useEmitSocket } = useSocketRepository()
+const { useOnSocket, useEmitSocket, socket } = useSocketRepository()
+
+const failCommand = () => {
+  if (!loading.value) return
+  loading.value = false
+  if (commandExecutionRes.value[0]) {
+    commandExecutionRes.value[0].status = 'rejected'
+  }
+  useMessage.error('Lost the connection before the command finished.')
+}
 
 onMounted(() => {
   messageOffEvent = useOnSocket('execute-command', executeCommandEvent)
+  socket.on('disconnect', failCommand)
+  socket.connect()
 })
 
 onUnmounted(() => {
   messageOffEvent()
+  socket.off('disconnect', failCommand)
+  socket.disconnect()
 })
 
 const command = ref('')
 const loading = ref(false)
 const commandExecutionRes = ref<Array<CommandWithResponse>>([])
 
+let nextCommandId = 1
+
 const executeCommand = () => {
-  if (!command.value) return
+  // Enter still submits the form while the button shows its spinner.
+  if (!command.value || loading.value) return
+  if (!socket.connected) {
+    useMessage.error('Not connected to the server. Please try again.')
+    return
+  }
   loading.value = true
   commandExecutionRes.value.unshift(
-    reactive({ name: command.value, status: 'pending', response: [] })
+    reactive({
+      id: nextCommandId++,
+      name: command.value,
+      status: 'pending',
+      response: []
+    })
   )
   if (commandExecutionRes.value.length > 5) commandExecutionRes.value.pop()
   useEmitSocket('execute-command', command.value)
@@ -42,15 +69,17 @@ const executeCommand = () => {
 
 const executeCommandEvent = (...args: unknown[]) => {
   const response = args[0] as CommandResponse
+  const current = commandExecutionRes.value[0]
+  if (!current) return
   if (response.code !== undefined) {
-    commandExecutionRes.value[0].status = response.code
+    current.status = response.code
       ? 'rejected'
       : 'completed'
     loading.value = false
     command.value = ''
     return
   }
-  commandExecutionRes.value[0].response.push(response)
+  current.response.push(response)
 }
 
 const clearResponse = () => {
@@ -72,12 +101,19 @@ const clearResponse = () => {
       <v-btn type="submit" color="primary" size="large" :loading="loading">
         Execute
       </v-btn>
-      <v-btn variant="tonal" size="large" @click="clearResponse">Clear</v-btn>
+      <v-btn
+        variant="tonal"
+        size="large"
+        :disabled="loading"
+        @click="clearResponse"
+      >
+        Clear
+      </v-btn>
     </v-form>
   </v-card>
 
   <v-expansion-panels v-if="commandExecutionRes.length" :model-value="0">
-    <v-expansion-panel v-for="(res, index) in commandExecutionRes" :key="index">
+    <v-expansion-panel v-for="res in commandExecutionRes" :key="res.id">
       <v-expansion-panel-title>
         <div class="d-flex align-center justify-space-between ga-3 w-100 pe-3">
           <span class="text-truncate">{{ res.name }}</span>
@@ -102,7 +138,11 @@ const clearResponse = () => {
       </v-expansion-panel-title>
       <v-expansion-panel-text>
         <div class="overflow-auto" style="max-height: 240px">
-          <div v-for="text in res.response" :key="text.data" class="text-break">
+          <div
+            v-for="(text, line) in res.response"
+            :key="line"
+            class="text-break"
+          >
             <span class="text-success">{{ text.data }}</span>
             <span class="text-error">{{ text.error }}</span>
           </div>

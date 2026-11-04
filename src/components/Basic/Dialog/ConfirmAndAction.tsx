@@ -25,6 +25,7 @@ export default defineComponent({
         <ConfirmDialog
           title={confirmStore.title}
           description={confirmStore.description}
+          confirmText={confirmStore.confirmText}
           modelValue={confirmStore.show}
           loading={loading.value}
           onClick:close={() => confirmStore.close()}

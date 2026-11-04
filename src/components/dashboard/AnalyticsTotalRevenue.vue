@@ -245,8 +245,9 @@ const balanceData = [
         :class="$vuetify.display.smAndUp ? 'border-e' : 'border-b'"
       >
         <VCardItem class="pb-0">
-          <VCardTitle>Total Revenue</VCardTitle>
-
+          <VCardTitle class="text-body-large font-weight-bold"
+            >Total Revenue</VCardTitle
+          >
         </VCardItem>
 
         <!-- bar chart -->
@@ -293,9 +294,7 @@ const balanceData = [
           <p class="font-weight-medium text-high-emphasis mb-7">
             62% Company Growth
           </p>
-          <div
-            class="d-flex align-center justify-center ga-6 flex-wrap"
-          >
+          <div class="d-flex align-center justify-center ga-6 flex-wrap">
             <div
               v-for="data in balanceData"
               :key="data.year"
@@ -311,9 +310,9 @@ const balanceData = [
 
               <div class="text-start">
                 <span class="text-body-small"> {{ data.year }}</span>
-                <h6 class="text-body-medium font-weight-medium">
+                <p class="text-body-medium font-weight-medium">
                   {{ data.amount }}
-                </h6>
+                </p>
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ export const StaticPageRoutes: Array<RouteRecordRaw> = [
                 name: 'static-page.term-condition',
                 component: Edit,
                 meta: {
-                    title: 'Term & Condition',
+                    title: 'Terms & Conditions',
                     heading: 'Terms & Conditions',
                     permission: 'admin.static-page.view',
                     icon: mdiFileMultiple,

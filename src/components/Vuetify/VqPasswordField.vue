@@ -1,11 +1,20 @@
 <template>
   <vq-text-field
     :type="visible ? 'text' : 'password'"
-    :append-inner-icon="visible ? mdiEyeOffOutline : mdiEyeOutline"
     :clearable="false"
     autocomplete="current-password"
-    @click:append-inner="visible = !visible"
-  />
+  >
+    <template #append-inner>
+      <v-btn
+        :icon="visible ? mdiEyeOffOutline : mdiEyeOutline"
+        :aria-label="visible ? 'Hide password' : 'Show password'"
+        variant="text"
+        size="small"
+        density="comfortable"
+        @click="visible = !visible"
+      />
+    </template>
+  </vq-text-field>
 </template>
 
 <script lang="ts" setup>

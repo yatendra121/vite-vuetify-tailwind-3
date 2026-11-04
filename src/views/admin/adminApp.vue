@@ -71,9 +71,8 @@ export default defineComponent({
       else if (type === 'admin') ParentView.value = 'AdminView'
       else ParentView.value = 'DefaultView'
     }
-    router.beforeResolve((to, from, next) => {
+    router.beforeResolve((to) => {
       changeLayoutView(to.meta?.type)
-      next()
     })
 
     onMounted(() => {

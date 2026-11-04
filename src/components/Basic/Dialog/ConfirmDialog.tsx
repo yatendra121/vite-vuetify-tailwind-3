@@ -23,6 +23,10 @@ export default defineComponent({
       type: String as PropType<string>,
       default: () => 'Are you sure?'
     },
+    confirmText: {
+      type: String as PropType<string>,
+      default: () => 'Confirm'
+    },
     width: {
       type: String as PropType<number | string>,
       default: () => '25rem'
@@ -71,7 +75,7 @@ export default defineComponent({
                 loading={props.loading}
                 onClick={() => emit('click:confirm', true)}
               >
-                Confirm
+                {props.confirmText}
               </Btn>
             </VCardActions>
           </VCard>

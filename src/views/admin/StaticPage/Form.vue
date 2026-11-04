@@ -9,16 +9,19 @@
     @submited-error="useFormError"
   >
     <div class="pa-4 pa-md-6">
-      <v-row>
+      <v-row density="compact">
         <v-col cols="12">
           <vq-text-field name="title" label="Title" placeholder="Title" />
         </v-col>
 
         <v-col cols="12">
-          <vq-text-editor :is-dark="isDark" name="description" />
+          <p class="text-body-medium font-weight-medium mb-2">Description</p>
+          <div class="static-page-editor">
+            <vq-text-editor :is-dark="isDark" name="description" />
+          </div>
         </v-col>
-        <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
+        <v-col cols="12" class="d-flex justify-end mt-2">
+            <vq-submit-btn text="Save changes"></vq-submit-btn>
         </v-col>
       </v-row>
     </div>
@@ -48,7 +51,7 @@ export default defineComponent({
 
     const schema = yup.object({
       title: yup.string().required().max(50).label('Title'),
-      description: yup.string().required().max(5000).label('Name')
+      description: yup.string().required().max(5000).label('Description')
     })
 
     const route = useRoute()
@@ -63,3 +66,17 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+/* Shown until the rich text editor loads, or if its script can't be fetched. */
+.static-page-editor :deep(textarea) {
+  display: block;
+  width: 100%;
+  min-height: 240px;
+  padding: 12px 16px;
+  border: thin solid rgba(var(--v-border-color), 0.4);
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+}
+</style>

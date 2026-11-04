@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
-import { mdiElectronFramework } from '@mdi/js'
+import { mdiFlaskOutline } from '@mdi/js'
 const Fullscreen = () => import(/* webpackChunkName: "testing" */ './index.vue')
 
 export default [
@@ -13,7 +13,7 @@ export default [
             title: 'Testing',
             heading: 'Testing',
             isPublic: false,
-            icon: mdiElectronFramework,
+            icon: mdiFlaskOutline,
             type: 'admin',
             permission: 'admin.testing'
         } as Meta

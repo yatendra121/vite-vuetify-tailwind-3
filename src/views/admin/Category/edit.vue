@@ -13,7 +13,7 @@ const CategoryForm = defineAsyncComponent(
 
 const route = useRoute()
 
-const { response, cancelLoading } = useAxiosWithLoading<CategoryWithImage>(
+const { response, loading, failed, cancelLoading } = useAxiosWithLoading<CategoryWithImage>(
   `category/${route.params.id}`,
   {
     method: 'GET'
@@ -30,11 +30,13 @@ onBeforeUnmount(() => cancelLoading())
   </title-layout>
 
   <v-card class="form-card">
+    <LoadState :loading="loading" :failed="failed">
     <CategoryForm
         :id="id"
         :action="`category/${route.params.id}`"
         method="PUT"
         :initial-values="response?.data"
       />
+    </LoadState>
   </v-card>
 </template>

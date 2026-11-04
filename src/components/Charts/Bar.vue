@@ -6,6 +6,7 @@
 <script lang="ts">
 import { defineComponent, PropType, reactive } from 'vue'
 import { Bar, ChartProps } from 'vue-chartjs'
+import { useTheme } from 'vuetify'
 
 import {
   Chart as ChartJS,
@@ -57,6 +58,7 @@ export default defineComponent({
     }
   },
   setup(props) {
+    const theme = useTheme()
     const chartData = reactive<ChartData<'bar'>>({
       labels: props.labels,
       datasets: [
@@ -65,7 +67,7 @@ export default defineComponent({
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
-          backgroundColor: '#0E7490',
+          backgroundColor: String(theme.current.value.colors.primary),
           data: props.data,
           maxBarThickness: 6
         }
@@ -88,8 +90,7 @@ export default defineComponent({
           grid: {
             display: true,
             drawOnChartArea: true,
-            drawTicks: false,
-            color: 'rgba(100, 116, 139, .2)'
+            drawTicks: false
           },
           ticks: {
             padding: 10,
@@ -98,20 +99,17 @@ export default defineComponent({
               weight: 300,
               style: 'normal',
               lineHeight: 2
-            },
-            color: '#64748B'
+            }
           }
         },
         x: {
           grid: {
             display: true,
             drawOnChartArea: true,
-            drawTicks: false,
-            color: 'rgba(100, 116, 139, .2)'
+            drawTicks: false
           },
           ticks: {
             display: true,
-            color: '#64748B',
             padding: 10,
             font: {
               size: 14,

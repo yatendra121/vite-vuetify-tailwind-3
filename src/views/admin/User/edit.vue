@@ -17,7 +17,7 @@ const UserForm = defineAsyncComponent(
 const route = useRoute()
 const valuesSchema = reactive({ roleUsers: 'roleUsers.*.role.id' })
 
-const { response, cancelLoading } = useAxiosWithLoading<UserWithRole>(
+const { response, loading, failed, cancelLoading } = useAxiosWithLoading<UserWithRole>(
   `user/${route.params.id}`,
   {
     method: 'GET'
@@ -33,6 +33,7 @@ onBeforeUnmount(() => cancelLoading())
   </title-layout>
 
   <v-card class="form-card">
+    <LoadState :loading="loading" :failed="failed">
     <UserForm
         :id="id"
         :action="`user/${route.params.id}`"
@@ -40,5 +41,6 @@ onBeforeUnmount(() => cancelLoading())
         method="PUT"
         :initial-values="response?.data"
       />
+    </LoadState>
   </v-card>
 </template>
