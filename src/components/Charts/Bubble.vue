@@ -11,12 +11,14 @@ import {
   LinearScale
 } from 'chart.js'
 import { Bubble } from 'vue-chartjs'
+import { useTheme } from 'vuetify'
 
+const { colors } = useTheme().current.value
 const data = {
   datasets: [
     {
       label: 'Data One',
-      backgroundColor: '#f87979',
+      backgroundColor: String(colors.primary),
       data: [
         {
           x: 20,
@@ -37,7 +39,7 @@ const data = {
     },
     {
       label: 'Data Two',
-      backgroundColor: '#7C8CF8',
+      backgroundColor: String(colors.info),
       data: [
         {
           x: 10,

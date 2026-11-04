@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
+import { useCustomizerStore } from './customizer'
 
 export type AppState = {
     sidebar: boolean
-    theme: string
     loading: boolean
     color: string
     image: string
@@ -10,21 +10,10 @@ export type AppState = {
     sidebarWidth: number
 }
 
-const THEME_KEY = 'app_theme'
-
-const readStoredTheme = (): string => {
-    try {
-        return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'
-    } catch {
-        return 'light'
-    }
-}
-
 export const useAppStore = defineStore('app', {
     state: () =>
         ({
             sidebar: true,
-            theme: readStoredTheme(),
             loading: false,
             color: 'primary',
             image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
@@ -39,8 +28,11 @@ export const useAppStore = defineStore('app', {
         sidebarWidthValue(): number {
             return this.sidebarWidth
         },
+        theme(): string {
+            return useCustomizerStore().resolvedTheme
+        },
         themeValue(): string {
-            return this.theme
+            return useCustomizerStore().resolvedTheme
         },
         loadingValue(): boolean {
             return this.loading
@@ -54,12 +46,11 @@ export const useAppStore = defineStore('app', {
             this.sidebar = val
         },
         changeTheme() {
-            this.theme = this.theme === 'light' ? 'dark' : 'light'
-            try {
-                localStorage.setItem(THEME_KEY, this.theme)
-            } catch {
-                // Storage can be blocked; the choice then lasts for this visit.
-            }
+            const customizer = useCustomizerStore()
+            customizer.update(
+                'mode',
+                customizer.resolvedTheme === 'light' ? 'dark' : 'light'
+            )
         },
         startLoading() {
             this.loading = true

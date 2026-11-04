@@ -4,19 +4,29 @@ const fieldDefaults = {
     variant: 'outlined',
     density: 'comfortable',
     color: 'primary',
+    rounded: 'lg',
     clearable: true
 }
 
 const config: VuetifyOptions['defaults'] = {
     VBtn: {
-        rounded: 'lg',
+        rounded: 'pill',
         elevation: 0,
         class: 'text-none'
     },
     VCard: {
-        flat: true,
+        elevation: 1,
         border: true,
+        rounded: 'xl'
+    },
+    VChip: {
+        rounded: 'pill'
+    },
+    VListItem: {
         rounded: 'lg'
+    },
+    VMenu: {
+        transition: 'slide-y-transition'
     },
     VSheet: {
         color: ''
@@ -36,7 +46,7 @@ const config: VuetifyOptions['defaults'] = {
         location: 'top'
     },
     VDialog: {
-        maxWidth: 480
+        maxWidth: 440
     },
     VDataTableServer: {
         hover: true

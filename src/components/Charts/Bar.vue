@@ -65,11 +65,11 @@ export default defineComponent({
         {
           label: 'Mobile apps',
           borderWidth: 0,
-          borderRadius: 4,
+          borderRadius: 8,
           borderSkipped: false,
           backgroundColor: String(theme.current.value.colors.primary),
           data: props.data,
-          maxBarThickness: 6
+          maxBarThickness: 14
         }
       ]
     })

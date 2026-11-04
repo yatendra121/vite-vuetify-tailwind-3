@@ -29,16 +29,20 @@ export const useMessageStore = defineStore('message', {
     },
     actions: {
         addMessage(item: MessageItemWithoutId) {
-            // Several requests can fail at once with the same message.
-            const queued = this.items.some(
-                ({ message, color }) =>
-                    message === item.message && color === item.color
-            )
-            if (queued) return
+            // One page's failed requests all report the same error at once, and
+            // queueing each would keep it on screen for far too long. Every other
+            // message reports its own action, so it always takes a turn.
+            const repeatedError =
+                item.color === 'error' &&
+                this.items.some(
+                    ({ message, color }) =>
+                        message === item.message && color === item.color
+                )
+            if (repeatedError) return
             this.items.push({ id: this.id++, ...item })
         },
-        removeMessage() {
-            this.items.splice(0, 1)
+        removeMessage(id: number) {
+            this.items = this.items.filter((item) => item.id !== id)
         }
     }
 })

@@ -97,8 +97,8 @@ const VqDatatableItemAction = defineComponent({
             activator: ({ props }: any) => (
               <>
                 <VBtn
-                  variant="text"
-                  size="small"
+                  variant="tonal"
+                  size={32}
                   aria-label={hintTitle.value}
                   {...props}
                   {...attrs}

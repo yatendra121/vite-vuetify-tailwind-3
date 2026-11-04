@@ -3,7 +3,9 @@
   <EmptyState
     v-else-if="failed"
     :icon="mdiAlertCircleOutline"
-    title="Could not load this page"
+    :title="
+      section ? 'Could not load this section' : 'Could not load this page'
+    "
     description="Check your connection and try again."
   >
     <v-btn color="primary" variant="tonal" class="mt-2" @click="reload">
@@ -17,7 +19,7 @@
 import { mdiAlertCircleOutline } from '@mdi/js'
 import EmptyState from './EmptyState.vue'
 
-defineProps<{ loading: boolean; failed: boolean }>()
+defineProps<{ loading: boolean; failed: boolean; section?: boolean }>()
 
 const reload = () => window.location.reload()
 </script>

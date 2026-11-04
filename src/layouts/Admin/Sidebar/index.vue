@@ -1,15 +1,31 @@
 <template>
   <!-- A closed drawer stays in the page; keep keyboard focus out of it. -->
-  <v-navigation-drawer v-model="drawer" :width="width" :inert="!drawer">
-    <div class="px-4 py-4">
+  <v-navigation-drawer
+    v-if="visible"
+    v-model="drawer"
+    :width="width"
+    :inert="!drawer"
+    :location="settings.sidebarPosition"
+    :rail="rail"
+    :expand-on-hover="!mobile && settings.sidebarMode === 'hover'"
+    :floating="settings.sidebarFloating"
+    :color="isInk ? 'ink' : undefined"
+    :theme="isInk ? 'dark' : undefined"
+    :border="isInk || settings.sidebarFloating ? 0 : undefined"
+  >
+    <div class="py-3" :class="rail ? 'px-2' : 'px-5'">
       <AppLogo />
     </div>
 
-    <v-divider />
-
-    <v-list nav density="compact" aria-label="Main navigation">
+    <v-list
+      nav
+      density="compact"
+      :bg-color="isInk ? 'ink' : undefined"
+      aria-label="Main navigation"
+    >
       <template v-for="section in sections" :key="section.title">
-        <v-list-subheader class="text-uppercase font-weight-bold">
+        <v-divider v-if="rail" class="my-1" />
+        <v-list-subheader v-else class="text-uppercase font-weight-bold mt-2">
           {{ section.title }}
         </v-list-subheader>
         <sidebar-item
@@ -27,21 +43,43 @@ import { defineComponent, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { useAppStore } from '@/store/reactivity/app'
-import routes, { navSections } from '@/router/admin'
+import { useCustomizerStore } from '@/store/reactivity/customizer'
 import AppLogo from '@/components/Basic/AppLogo.vue'
 import SidebarItem from './SidebarItem.vue'
+import { useNavSections } from '../useNavSections'
 
 export default defineComponent({
   name: 'Sidebar',
   components: { SidebarItem, AppLogo },
   setup() {
     const store = useAppStore()
+    const customizer = useCustomizerStore()
     const { mobile } = useDisplay()
     const route = useRoute()
 
+    const settings = computed(() => customizer.settings)
+
+    // Horizontal navigation replaces the sidebar, except on small screens.
+    const visible = computed(
+      () => mobile.value || settings.value.navLayout === 'vertical'
+    )
+    const rail = computed(
+      () =>
+        !mobile.value &&
+        (settings.value.sidebarMode === 'mini' ||
+          settings.value.sidebarMode === 'hover')
+    )
+
     // The drawer overlays the page on small screens, so it must start closed
     // there and get out of the way after each navigation.
-    if (mobile.value) store.updateSidebar(false)
+    watch(
+      [mobile, () => settings.value.sidebarMode],
+      () =>
+        store.updateSidebar(
+          !mobile.value && settings.value.sidebarMode !== 'collapsed'
+        ),
+      { immediate: true }
+    )
     watch(
       () => route.path,
       () => {
@@ -49,22 +87,18 @@ export default defineComponent({
       }
     )
 
-    const sections = navSections
-      .map((title) => ({
-        title,
-        routes: routes.filter(
-          (item) => item.meta?.section === title && !item.meta?.hidden
-        )
-      }))
-      .filter((section) => section.routes.length)
-
     return {
       drawer: computed({
         get: () => store.sidebarValue,
         set: (val: boolean) => store.updateSidebar(val)
       }),
-      sections,
-      width: computed(() => store.sidebarWidth)
+      sections: useNavSections(),
+      width: computed(() => store.sidebarWidth),
+      settings,
+      visible,
+      rail,
+      mobile,
+      isInk: computed(() => settings.value.sidebarStyle === 'ink')
     }
   }
 })

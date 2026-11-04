@@ -1,13 +1,27 @@
 <template>
-  <v-app-bar height="64" flat border="b">
+  <v-app-bar
+    height="60"
+    flat
+    color="background"
+    :absolute="customizer.settings.header === 'static'"
+    :extended="horizontal"
+    extension-height="44"
+  >
     <v-app-bar-nav-icon
+      v-if="!horizontal"
       aria-label="Toggle navigation"
       @click="appStore.changeSidebar"
     />
 
-    <AppLogo v-if="mobile" class="ms-1" />
+    <AppLogo v-if="mobile || horizontal" class="ms-3" />
 
     <v-spacer />
+    <v-btn
+      :icon="mdiTuneVariant"
+      aria-label="Customize appearance"
+      @click="customizer.panelOpen = !customizer.panelOpen"
+    />
+
 
     <v-btn
       :icon="theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight"
@@ -30,7 +44,7 @@
           :class="{ 'px-2': !mobile }"
           aria-label="Account menu"
         >
-          <v-avatar color="primary" size="32" class="text-body-small font-weight-bold">
+          <v-avatar color="accent" size="32" class="text-body-small font-weight-bold">
             {{ initials }}
           </v-avatar>
           <template v-if="!mobile">
@@ -63,6 +77,10 @@
         </v-list>
       </v-card>
     </v-menu>
+
+    <template v-if="horizontal" #extension>
+      <HorizontalNav />
+    </template>
   </v-app-bar>
   <Notification v-model="notificationToggle" />
 </template>
@@ -75,17 +93,25 @@ import {
   mdiBellOutline,
   mdiChevronDown,
   mdiLogout,
+  mdiTuneVariant,
   mdiWeatherNight,
   mdiWeatherSunny
 } from '@mdi/js'
 import { useAppStore } from '@/store/reactivity/app'
 import { useProfileStore } from '@/store/reactivity/profile'
+import { useCustomizerStore } from '@/store/reactivity/customizer'
 import { useAuthProfileRepository } from '@/composables/auth/useAuthUserRepository'
 import { getInitials } from '@/composables/string'
 import AppLogo from '@/components/Basic/AppLogo.vue'
 import Notification from './Notification.vue'
+import HorizontalNav from './HorizontalNav.vue'
 
 const { mobile } = useDisplay()
+
+const customizer = useCustomizerStore()
+const horizontal = computed(
+  () => !mobile.value && customizer.settings.navLayout === 'horizontal'
+)
 
 //State management
 const appStore = useAppStore()

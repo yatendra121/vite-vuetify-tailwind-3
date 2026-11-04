@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire" :theme="theme">
+    <v-defaults-provider :defaults="customizerDefaults">
     <admin-app>
       <router-view :key="$route.path" v-slot="{ Component, route }">
         <v-fade-transition mode="out-in" appear>
@@ -16,6 +17,7 @@
         </v-fade-transition>
       </router-view>
     </admin-app>
+    </v-defaults-provider>
   </v-app>
 </template>
 <script lang="ts">
@@ -37,6 +39,7 @@ import FallbackComponent from '@/components/Loading/FallbackComponent'
 import type { AuthStatus } from '@/types/auth'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { APP_NAME } from '@/config/brand'
+import { useApplyCustomizer } from '@/composables/customizer'
 export default defineComponent({
   components: {
     AdminApp,
@@ -62,6 +65,7 @@ export default defineComponent({
     // Charts and overlays read the global theme, not the one on <v-app>.
     const vuetifyTheme = useTheme()
     watch(theme, (value) => vuetifyTheme.change(value), { immediate: true })
+    const customizerDefaults = useApplyCustomizer()
 
     // Navigation redirection
     const route = useRoute()
@@ -127,7 +131,7 @@ export default defineComponent({
       }, 100)
     })
 
-    return { theme }
+    return { theme, customizerDefaults }
   }
 })
 </script>

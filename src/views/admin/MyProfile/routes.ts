@@ -11,6 +11,7 @@ export const MyProfileRoutes: Array<RouteRecordRaw> = [
         component: MyProfile,
         meta: {
             title: 'My Profile',
+            section: 'Account',
             heading: 'My Profile',
             isPublic: false,
             icon: mdiAccountCircle,

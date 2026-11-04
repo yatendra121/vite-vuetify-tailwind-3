@@ -7,7 +7,7 @@ html {
 // Keep long values from stretching a table; pair with a `title` attribute.
 .cell-truncate {
   display: block;
-  max-width: 180px;
+  max-width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -16,8 +16,10 @@ html {
 .v-data-table {
   thead th {
     background: rgb(var(--v-table-header-background));
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     white-space: nowrap;
     color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
   }
@@ -57,7 +59,7 @@ html {
 
 .form-card,
 .page-header:has(+ .form-card) {
-  max-width: 960px;
+  max-width: 1040px;
 }
 
 // The dropzone's fixed title size overflows a phone-width card.

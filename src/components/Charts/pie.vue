@@ -6,12 +6,20 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 
 import { Pie, ChartProps } from 'vue-chartjs'
+import { useTheme } from 'vuetify'
 
+const { colors } = useTheme().current.value
 const data = {
   labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
   datasets: [
     {
-      backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+      backgroundColor: [
+        colors.primary,
+        colors.info,
+        colors.secondary,
+        colors.warning
+      ].map(String),
+      borderColor: String(colors.surface),
       data: [40, 20, 80, 10]
     }
   ]

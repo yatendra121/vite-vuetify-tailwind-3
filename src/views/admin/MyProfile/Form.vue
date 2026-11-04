@@ -58,43 +58,36 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <div class="pa-4 pa-md-6">
-        <v-row density="compact">
-          <v-col cols="12" sm="6">
-            <vq-text-field name="name" label="Name" placeholder="Name" />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <vq-text-field
-              name="mobileNo"
-              label="Mobile"
-              placeholder="Mobile"
-            />
-          </v-col>
-
-          <v-col cols="12">
-            <vq-text-field name="email" label="Email" placeholder="Email" />
-          </v-col>
-
-          <v-col cols="12">
-            <p class="text-body-medium font-weight-medium mb-2">Attachment</p>
-            <VqFileUpload
-              density="compact"
-              clearable
-              show-size
-              name="test"
-              label="Attachment"
-              placeholder="Attachment"
-            />
-          </v-col>
-
-          <v-col cols="12">
-            <vq-textarea name="address" label="Address" placeholder="Address" />
-          </v-col>
-          <v-col cols="12" class="d-flex justify-end mt-2">
-            <vq-submit-btn text="Save changes"></vq-submit-btn>
-          </v-col>
-        </v-row>
-      </div>
+      <FormSection title="Personal details" description="Shown across the app and used to contact you.">
+        <v-col cols="12" sm="6">
+          <vq-text-field name="name" label="Name" placeholder="Name" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-text-field name="mobileNo" label="Mobile" placeholder="Mobile" />
+        </v-col>
+        <v-col cols="12">
+          <vq-text-field name="email" label="Email" placeholder="Email" />
+        </v-col>
+        <v-col cols="12">
+          <vq-textarea name="address" label="Address" placeholder="Address" />
+        </v-col>
+      </FormSection>
+      <v-divider />
+      <FormSection title="Attachment" description="Upload a file to your profile.">
+        <v-col cols="12">
+          <VqFileUpload
+            density="compact"
+            clearable
+            show-size
+            name="test"
+            label="Attachment"
+            placeholder="Attachment"
+          />
+        </v-col>
+      </FormSection>
+      <FormActions hide-cancel>
+        <vq-submit-btn text="Save changes"></vq-submit-btn>
+      </FormActions>
     </template>
   </vq-form>
 </template>

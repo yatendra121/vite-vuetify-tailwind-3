@@ -78,10 +78,8 @@ const VqDatatableItemChangeStatus = defineComponent({
       <>
         <VSwitch
           hideDetails
-          inset
           density="compact"
           aria-label="Change status"
-          color="primary"
           modelValue={props.itemValue}
           trueValue={props.trueValue}
           falseValue={props.falseValue}

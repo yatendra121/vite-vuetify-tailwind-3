@@ -44,7 +44,7 @@ const themeName = computed(() => {
   ChartJS.defaults.borderColor = dark
     ? 'rgba(203, 213, 225, 0.15)'
     : 'rgba(71, 85, 105, 0.15)'
-  return theme.global.name.value
+  return `${theme.global.name.value}-${theme.current.value.colors.primary}-${theme.current.value.colors.info}`
 })
 
 const BarChart = defineAsyncComponent(

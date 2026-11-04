@@ -6,7 +6,7 @@
   ></VqSnackbarQueue>
 </template>
 <script lang="ts">
-import { defineComponent, computed, } from 'vue'
+import { defineComponent, computed } from 'vue'
 import VqSnackbarQueue from './VqSnackbarQueue.vue'
 import { useMessageStore } from '@/store/reactivity/message'
 export default defineComponent({
@@ -19,7 +19,7 @@ export default defineComponent({
 
     return {
       items: computed(() => messageStore.items),
-      removeMessage: () => messageStore.removeMessage()
+      removeMessage: (id: number) => messageStore.removeMessage(id)
     }
   }
 })

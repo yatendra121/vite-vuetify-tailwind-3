@@ -2,6 +2,10 @@ import { defineAsyncComponent } from 'vue'
 import TitleLayout from '@/views/admin/TitleLayout.vue'
 import EmptyState from '@/components/Basic/EmptyState.vue'
 import LoadState from '@/components/Basic/LoadState.vue'
+import FormSection from '@/components/Basic/FormSection.vue'
+import FormActions from '@/components/Basic/FormActions.vue'
+import IdentityAvatar from '@/components/Basic/IdentityAvatar.vue'
+import IdentityCell from '@/components/Basic/IdentityCell.vue'
 import VqPasswordField from '@/components/Vuetify/VqPasswordField.vue'
 import type { App } from 'vue'
 
@@ -40,6 +44,10 @@ const titleComponents: { [key: string]: any } = {
     TitleLayout,
     EmptyState,
     LoadState,
+    FormSection,
+    FormActions,
+    IdentityAvatar,
+    IdentityCell,
     VqPasswordField
 }
 export default {

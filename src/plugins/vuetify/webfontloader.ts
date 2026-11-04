@@ -12,7 +12,7 @@ export async function loadFonts() {
 
     load({
         google: {
-            families: ['DM Sans:400,500,600,700&display=swap']
+            families: ['DM Sans:400,500,600,700', 'Sora:600,700&display=swap']
         }
     })
 }

@@ -1,7 +1,7 @@
 <template>
   <AuthLayout>
-    <div class="mb-6">
-      <h1 class="text-headline-small font-weight-bold">Sign in</h1>
+    <div class="mb-8">
+      <h1 class="text-headline-medium font-weight-bold">Sign in</h1>
       <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
         Enter your details to access your dashboard.
       </p>

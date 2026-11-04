@@ -1,11 +1,13 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { mdiAlertCircleOutline } from '@mdi/js'
 import {
+  VAvatar,
   VBtn,
   VCard,
   VCardActions,
   VCardText,
   VDialog,
+  VIcon,
   VSpacer
 } from 'vuetify/components'
 
@@ -59,8 +61,18 @@ export default defineComponent({
           persistent={props.loading}
           maxWidth={props.width}
         >
-          <VCard prependIcon={mdiAlertCircleOutline} title={props.title}>
-            <VCardText>{props.description}</VCardText>
+          <VCard class="pa-2">
+            <VCardText>
+              <VAvatar color="error" variant="tonal" size="48" class="mb-4">
+                <VIcon icon={mdiAlertCircleOutline} />
+              </VAvatar>
+              <p class="text-title-large font-weight-bold mb-1">
+                {props.title}
+              </p>
+              <p class="text-body-medium text-medium-emphasis">
+                {props.description}
+              </p>
+            </VCardText>
             <VCardActions>
               <VSpacer />
               <Btn

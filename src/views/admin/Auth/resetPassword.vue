@@ -1,7 +1,7 @@
 <template>
   <AuthLayout>
-    <div class="mb-6">
-      <h1 class="text-headline-small font-weight-bold">{{ $route.meta.heading }}</h1>
+    <div class="mb-8">
+      <h1 class="text-headline-medium font-weight-bold">{{ $route.meta.heading }}</h1>
       <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
         Enter the code we emailed you and choose a new password.
       </p>

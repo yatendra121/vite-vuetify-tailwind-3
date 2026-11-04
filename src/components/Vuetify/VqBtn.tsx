@@ -15,7 +15,7 @@ export default defineComponent({
     },
     variant: {
       type: String,
-      default: () => 'text'
+      default: () => 'tonal'
     },
     color: {
       type: String,
@@ -35,7 +35,7 @@ export default defineComponent({
                   variant={variant.value}
                   color={color.value}
                   icon={icon.value}
-                  size="small"
+                  size={32}
                   aria-label={hintTitle.value}
                   v-slots={slots}
                   {...attrs}

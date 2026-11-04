@@ -1,120 +1,126 @@
 <script setup lang="ts">
-import AnalyticsCongratulations from '@/components/dashboard/AnalyticsCongratulations.vue'
-import AnalyticsFinanceTabs from '@/components/dashboard/AnalyticsFinanceTab.vue'
-import AnalyticsOrderStatistics from '@/components/dashboard/AnalyticsOrderStatistics.vue'
-import AnalyticsProfitReport from '@/components/dashboard/AnalyticsProfitReport.vue'
-import AnalyticsTotalRevenue from '@/components/dashboard/AnalyticsTotalRevenue.vue'
-import AnalyticsTransactions from '@/components/dashboard/AnalyticsTransactions.vue'
-import CardStatisticsVertical from '@/components/cards/CardStatisticsVertical.vue'
+import { computed } from 'vue'
+import {
+  mdiAccountGroupOutline,
+  mdiPackageVariantClosed,
+  mdiShapeOutline,
+  mdiShieldAccountOutline
+} from '@mdi/js'
+import ActivityCard from '@/components/dashboard/ActivityCard.vue'
+import CatalogHealthCard from '@/components/dashboard/CatalogHealthCard.vue'
+import CategoryBreakdownCard from '@/components/dashboard/CategoryBreakdownCard.vue'
+import DashboardHero from '@/components/dashboard/DashboardHero.vue'
+import RecentProductsCard from '@/components/dashboard/RecentProductsCard.vue'
+import StatCard from '@/components/dashboard/StatCard.vue'
+import StockValueCard from '@/components/dashboard/StockValueCard.vue'
+import { useDashboardData } from './useDashboardData'
 
-// 👉 Images
-import chart from '@/assets/images/cards/chart-success.png'
-import card from '@/assets/images/cards/credit-card-primary.png'
-import paypal from '@/assets/images/cards/paypal-error.png'
-import wallet from '@/assets/images/cards/wallet-info.png'
-import { useAsyncAxios } from '@qnx/composables/axios'
-import { reactive } from 'vue'
+const { counts, products, categories, accounts } = useDashboardData()
 
-const countValues = reactive({
-  user: 0,
-  product: 0
-})
+const stats = computed(() => [
+  {
+    title: 'Active customers',
+    icon: mdiAccountGroupOutline,
+    color: 'primary',
+    value: counts.data.value?.user ?? null,
+    loading: counts.loading.value,
+    to: { name: 'user.list' }
+  },
+  {
+    title: 'Active admins',
+    icon: mdiShieldAccountOutline,
+    color: 'secondary',
+    value: counts.data.value?.admin ?? null,
+    loading: counts.loading.value,
+    to: { name: 'admin.list' }
+  },
+  {
+    title: 'Active products',
+    icon: mdiPackageVariantClosed,
+    color: 'info',
+    value: counts.data.value?.product ?? null,
+    loading: counts.loading.value,
+    to: { name: 'product.list' }
+  },
+  {
+    title: 'Categories',
+    icon: mdiShapeOutline,
+    color: 'warning',
+    value: categories.failed.value ? null : categories.data.value.length,
+    loading: categories.loading.value,
+    to: { name: 'category.list' }
+  }
+])
 
-useAsyncAxios(`user/dashboard-count`, {
-  method: 'GET'
-}).then((res) => {
-  countValues.user = res.data.user
-  countValues.product = res.data.product
-})
+const catalogLoading = computed(
+  () => products.loading.value || categories.loading.value
+)
+const catalogFailed = computed(
+  () => products.failed.value || categories.failed.value
+)
 </script>
 
 <template>
   <title-layout />
   <VRow>
-    <!-- 👉 Congratulations -->
     <VCol cols="12" md="8">
-      <AnalyticsCongratulations />
+      <DashboardHero />
     </VCol>
-
     <VCol cols="12" md="4">
-      <VRow class="h-100">
-        <!-- 👉 Profit -->
-        <VCol cols="6">
-          <CardStatisticsVertical
-            v-bind="{
-              title: 'User',
-              image: chart,
-              stats: `${countValues.user}`,
-              change: 72.8
-            }"
-          />
-        </VCol>
-
-        <!-- 👉 Sales -->
-        <VCol cols="6">
-          <CardStatisticsVertical
-            v-bind="{
-              title: 'Product',
-              image: wallet,
-              stats: `${countValues.product}`,
-              change: 28.42
-            }"
-          />
-        </VCol>
-      </VRow>
+      <StockValueCard
+        :products="products.data.value"
+        :loading="products.loading.value"
+        :failed="products.failed.value"
+      />
     </VCol>
 
-    <!-- 👉 Total Revenue -->
-    <VCol cols="12" md="8">
-      <AnalyticsTotalRevenue />
+    <VCol v-for="stat in stats" :key="stat.title" cols="12" sm="6" lg="3">
+      <StatCard v-bind="stat" />
     </VCol>
 
-    <VCol cols="12" md="4">
-      <VRow>
-        <!-- 👉 Payments -->
-        <VCol cols="6">
-          <CardStatisticsVertical
-            v-bind="{
-              title: 'Payments',
-              image: paypal,
-              stats: '$2,468',
-              change: -14.82
-            }"
-          />
-        </VCol>
-
-        <!-- 👉 Revenue -->
-        <VCol cols="6">
-          <CardStatisticsVertical
-            v-bind="{
-              title: 'Transactions',
-              image: card,
-              stats: '$14,857',
-              change: 28.14
-            }"
-          />
-        </VCol>
-
-        <!-- 👉 Profit Report -->
-        <VCol cols="12">
-          <AnalyticsProfitReport />
-        </VCol>
-      </VRow>
+    <VCol cols="12" lg="8">
+      <CategoryBreakdownCard
+        :products="products.data.value"
+        :categories="categories.data.value"
+        :loading="catalogLoading"
+        :failed="catalogFailed"
+      />
     </VCol>
-
-    <!-- 👉 Order Statistics -->
-    <VCol cols="12" sm="6" lg="4">
-      <AnalyticsOrderStatistics />
-    </VCol>
-
-    <!-- 👉 Tabs chart -->
-    <VCol cols="12" sm="6" lg="4">
-      <AnalyticsFinanceTabs />
-    </VCol>
-
-    <!-- 👉 Transactions -->
     <VCol cols="12" lg="4">
-      <AnalyticsTransactions />
+      <CatalogHealthCard
+        :products="products.data.value"
+        :loading="products.loading.value"
+        :failed="products.failed.value"
+      />
+    </VCol>
+
+    <VCol cols="12" lg="7">
+      <ActivityCard
+        :products="products.data.value"
+        :accounts="accounts.data.value"
+        :accounts-failed="accounts.failed.value"
+        :loading="products.loading.value || accounts.loading.value"
+        :failed="products.failed.value"
+      />
+    </VCol>
+    <VCol cols="12" lg="5">
+      <RecentProductsCard
+        :products="products.data.value"
+        :loading="products.loading.value"
+        :failed="products.failed.value"
+      />
+    </VCol>
+
+    <VCol cols="12">
+      <VAlert type="info">
+        <template #title>
+          <span class="text-title-small font-weight-bold">
+            Sales figures aren't available yet
+          </span>
+        </template>
+        Revenue, orders, income, expenses and transactions will appear here once
+        the store's API provides order data.
+      </VAlert>
     </VCol>
   </VRow>
 </template>

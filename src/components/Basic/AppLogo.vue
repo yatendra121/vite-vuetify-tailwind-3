@@ -1,15 +1,15 @@
 <template>
-  <div class="d-flex align-center ga-2">
-    <v-avatar :color="inverted ? 'white' : 'primary'" rounded="lg" size="32">
-      <v-icon :color="inverted ? 'primary' : 'on-primary'" :icon="mdiDumbbell" size="20" />
+  <div class="d-flex align-center ga-3">
+    <v-avatar color="accent" rounded="lg" size="36">
+      <v-icon :icon="mdiStorefrontOutline" size="22" />
     </v-avatar>
-    <span class="text-title-medium font-weight-bold text-no-wrap">{{ APP_NAME }}</span>
+    <span class="text-title-medium font-weight-bold text-no-wrap">{{
+      APP_NAME
+    }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { mdiDumbbell } from '@mdi/js'
+import { mdiStorefrontOutline } from '@mdi/js'
 import { APP_NAME } from '@/config/brand'
-
-defineProps<{ inverted?: boolean }>()
 </script>
