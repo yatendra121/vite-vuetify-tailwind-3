@@ -13,7 +13,8 @@
       @click="appStore.changeSidebar"
     />
 
-    <AppLogo v-if="mobile || horizontal" class="ms-3" />
+    <!-- Phones have no room for the name beside the header's four buttons. -->
+    <AppLogo v-if="mobile || horizontal" :icon-only="xs" class="ms-3" />
 
     <v-spacer />
     <v-btn
@@ -106,7 +107,7 @@ import AppLogo from '@/components/Basic/AppLogo.vue'
 import Notification from './Notification.vue'
 import HorizontalNav from './HorizontalNav.vue'
 
-const { mobile } = useDisplay()
+const { mobile, xs } = useDisplay()
 
 const customizer = useCustomizerStore()
 const horizontal = computed(

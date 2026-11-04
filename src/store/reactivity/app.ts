@@ -4,9 +4,6 @@ import { useCustomizerStore } from './customizer'
 export type AppState = {
     sidebar: boolean
     loading: boolean
-    color: string
-    image: string
-    sidebarBackgroundColor: string
     sidebarWidth: number
 }
 
@@ -15,9 +12,6 @@ export const useAppStore = defineStore('app', {
         ({
             sidebar: true,
             loading: false,
-            color: 'primary',
-            image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
-            sidebarBackgroundColor: 'rgba(27, 27, 27, 0.74)',
             sidebarWidth: 256
         }) as AppState,
     getters: {

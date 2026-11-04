@@ -8,91 +8,87 @@
   <v-card>
     <vq-table-filter :id="id">
       <div class="table-filters">
-        <vq-text-field name="search" label="Search" clearable hide-details></vq-text-field>
+        <vq-text-field
+          name="search"
+          label="Search"
+          clearable
+          hide-details
+          :prepend-inner-icon="mdiMagnify"
+        ></vq-text-field>
         <vq-autocomplete
           name="gender"
           label="Gender"
           clearable
           hide-details
-          :items="['male', 'female']"
+          :items="[
+            { title: 'Male', value: 'male' },
+            { title: 'Female', value: 'female' }
+          ]"
+          item-title="title"
+          item-value="value"
         ></vq-autocomplete>
       </div>
     </vq-table-filter>
     <v-divider />
-        <VqList density="compact" action="user" :id="id" :page-size="10">
-          <template #default="{ items }">
-            <v-table>
-              <thead>
-                <tr>
-                  <th class="text-left">Id</th>
-                  <th class="text-left">Name</th>
-                  <th class="text-left">Email</th>
-                  <th class="text-left">Address</th>
-                  <th class="text-left">Status</th>
-                  <th class="text-left">Action</th>
-                </tr>
-              </thead>
-              <tbody v-if="items.length">
-                <tr v-for="item in items" :key="item.id">
-                  <td>{{ item.id }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.email }}</td>
-                  <td>{{ item.address }}</td>
-                  <td>
-                    <vq-datatable-item-change-status
-                      action="user/change-status"
-                      :item-id="item.id"
-                      :item-value="item.status"
-                    ></vq-datatable-item-change-status>
-                  </td>
-                  <td>
-                    <!-- <vq-datatable-delete-action
-                      :id="id"
-                      :item-id="item.id"
-                      :icon="mdiAccountConvert"
-                      method="PUT"
-                      title="Change Status"
-                      hint-title="Change status"
-                    ></vq-datatable-delete-action> -->
-
-                    <vq-btn
-                      :to="{ name: 'user.edit', params: { id: item.id } }"
-                    ></vq-btn>
-                    <vq-datatable-delete-action
-                      action="user"
-                      :item-id="item.id"
-                    ></vq-datatable-delete-action>
-                  </td>
-                </tr>
-              </tbody>
-              <tbody v-else>
-                <tr>
-                  <td colspan="6"><EmptyState /></td>
-                </tr>
-              </tbody>
-            </v-table>
-            <v-sheet
-              class="mt-auto align-center justify-center d-flex px-2 pa-2 ma-2"
-              
-            >
-              <vq-list-load-more-btn> </vq-list-load-more-btn>
-            </v-sheet>
-          </template>
-        </VqList>
+    <VqDataTable :headers="headers" :id="id" action="user">
+      <template #item="{ item, index }">
+          <tr>
+            <VqSerialNo :index="index + 1" />
+            <td><IdentityCell :name="item.name" /></td>
+            <td><span class="cell-truncate" :title="item.email">{{ item.email }}</span></td>
+            <td>{{ toCapitalize(item.gender ?? '') }}</td>
+            <td>{{ toDateTime(item.createdAt) }}</td>
+            <td>
+              <VqDatatableItemChangeStatus
+                action="user/change-status"
+                :item-id="item.id"
+                :item-value="item.status"
+              ></VqDatatableItemChangeStatus>
+            </td>
+            <td>
+              <div class="d-flex align-center ga-1">
+                <vq-btn
+                :to="{ name: 'user.edit', params: { id: item.id } }"
+              ></vq-btn>
+              <vq-datatable-delete-action
+                action="user"
+                :item-id="item.id"
+              ></vq-datatable-delete-action>
+              </div>
+            </td>
+          </tr>
+        </template>
+      <template #loading>
+        <v-skeleton-loader type="table-row@5" />
+      </template>
+      <template #no-data>
+        <EmptyState />
+      </template>
+    </VqDataTable>
   </v-card>
 </template>
 
 <script lang="ts" setup>
-import { mdiCircleEditOutline, mdiPlus, mdiAccountConvert } from '@mdi/js'
+import { mdiMagnify, mdiPlus } from '@mdi/js'
+import { useVqDataTable, VqSerialNo, collectVqHeaders } from '@qnx/vuetify'
+import { useDateRepository } from '@/composables/date'
+import { useStringRepository } from '@/composables/string'
+import VqDatatableItemChangeStatus from '@/components/Vuetify/VqDatatableItemChangeStatus'
+
+//types
 import type { User } from '@/types'
-import { useVqList } from '@qnx/vuetify'
-const id = 'user_list'
 
-const VqList = useVqList<User>()
+const id = 'user_data_table'
+const VqDataTable = useVqDataTable<User>()
+const headers = collectVqHeaders([
+  { title: 'Name', key: 'name' },
+  { title: 'Email', key: 'email' },
+  { title: 'Gender', key: 'gender' },
+  { title: 'Created At', key: 'createdAt' },
+  { title: 'Status', sortable: false, key: 'status' },
+  { title: 'Actions', sortable: false, key: 'action' }
+])
 
-defineExpose({
-  mdiCircleEditOutline,
-  mdiPlus,
-  mdiAccountConvert
-})
+const { toDateTime } = useDateRepository()
+const { toCapitalize } = useStringRepository()
 </script>

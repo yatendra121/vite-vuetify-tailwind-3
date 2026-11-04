@@ -4,7 +4,7 @@
   </a>
   <Sidebar />
   <AppBar />
-  <Customizer />
+  <Customizer v-if="customizerUsed" />
   <v-main id="main-content" tabindex="-1">
     <!-- Keeps the footer at the bottom of the window on short pages. -->
     <div
@@ -24,15 +24,24 @@
   <BottomNavigation />
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, defineAsyncComponent, ref, watch } from 'vue'
 import AppBar from './AppBar/index.vue'
 import BottomBar from './Bottom/index.vue'
 import BottomNavigation from './Bottom/BottomNavigation.vue'
-import Customizer from './Customizer/index.vue'
 import Sidebar from './Sidebar/index.vue'
 import { useCustomizerStore } from '@/store/reactivity/customizer'
 
+// Most visits never open the panel, and its color picker is heavy.
+const Customizer = defineAsyncComponent(() => import('./Customizer/index.vue'))
+
 const customizer = useCustomizerStore()
+const customizerUsed = ref(customizer.panelOpen)
+watch(
+  () => customizer.panelOpen,
+  (open) => {
+    if (open) customizerUsed.value = true
+  }
+)
 const settings = computed(() => customizer.settings)
 
 const containerPadding = computed(

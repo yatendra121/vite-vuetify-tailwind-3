@@ -14,23 +14,23 @@ import type { App } from 'vue'
 const VqDatatableDeleteAction = defineAsyncComponent(
     () =>
         import(
-            /* webpackChunkName: "vq-vuetify" */ './Vuetify/VqDatatableItemAction'
+            './Vuetify/VqDatatableItemAction'
         )
 )
 const VqDatatableItemChangeStatus = defineAsyncComponent(
     () =>
         import(
-            /* webpackChunkName: "vq-vuetify" */ './Vuetify/VqDatatableItemChangeStatus'
+            './Vuetify/VqDatatableItemChangeStatus'
         )
 )
 
 const VqBackBtn = defineAsyncComponent(
     () =>
-        import(/* webpackChunkName: "vq-vuetify-basic" */ './Basic/BackButton')
+        import('./Basic/BackButton')
 )
 
 const VqBtn = defineAsyncComponent(
-    () => import(/* webpackChunkName: "vq-chart" */ './Vuetify/VqBtn')
+    () => import('./Vuetify/VqBtn')
 )
 
 const components: { [key: string]: any } = {

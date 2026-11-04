@@ -21,12 +21,17 @@
       mode="hex"
       :modes="['hex']"
       elevation="4"
-      @update:model-value="$emit('change', String($event))"
+      @update:model-value="change(String($event))"
     />
   </v-menu>
 </template>
 
 <script lang="ts" setup>
+import { useThrottleFn } from '@vueuse/core'
+
 defineProps<{ label: string; color: string }>()
-defineEmits<{ change: [color: string] }>()
+const emit = defineEmits<{ change: [color: string] }>()
+
+// Each change rebuilds the theme's stylesheet, which a drag would do constantly.
+const change = useThrottleFn((color: string) => emit('change', color), 80, true)
 </script>

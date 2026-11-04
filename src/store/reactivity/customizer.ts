@@ -1,6 +1,6 @@
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { usePreferredDark } from '@vueuse/core'
+import { usePreferredDark, watchDebounced } from '@vueuse/core'
 import {
     cloneDefaults,
     sanitizeSettings,
@@ -50,7 +50,8 @@ export const useCustomizerStore = defineStore('customizer', () => {
         return settings.value.mode
     })
 
-    watch(settings, saveSettings, { deep: true })
+    // Dragging the color picker changes settings many times a second.
+    watchDebounced(settings, saveSettings, { deep: true, debounce: 200 })
 
     const update = <K extends keyof CustomizerSettings>(
         key: K,

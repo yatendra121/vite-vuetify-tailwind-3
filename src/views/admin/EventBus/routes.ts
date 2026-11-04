@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiTransitConnectionVariant } from '@mdi/js'
 const EventBus = () =>
-    import(/* webpackChunkName: "eventbus" */ './index.vue')
+    import('./index.vue')
 
 export default [
     {

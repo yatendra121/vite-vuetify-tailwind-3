@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import { defineAsyncComponent } from 'vue'
-
-const CategoryForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "category" */ './form.vue')
-)
+import CategoryForm from './form.vue'
 
 const id = 'category_form'
 </script>

@@ -6,3 +6,6 @@ declare module '*.vue' {
     const component: DefineComponent<{}, {}, any>
     export default component
 }
+
+// Published without types; importing it only switches the chart legend on.
+declare module 'apexcharts/features/legend'

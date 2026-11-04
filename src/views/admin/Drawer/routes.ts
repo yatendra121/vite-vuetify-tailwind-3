@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import type { Meta } from '@/types/router'
 import { mdiChartBar } from '@mdi/js'
-const Drawer = () => import(/* webpackChunkName: "dashboard" */ './index.vue')
+const Drawer = () => import('./index.vue')
 
 export const DrawerRoutes: Array<RouteRecordRaw> = [
     {

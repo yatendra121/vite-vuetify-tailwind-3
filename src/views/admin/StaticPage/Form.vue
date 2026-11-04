@@ -26,16 +26,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineAsyncComponent, defineComponent, computed } from 'vue'
 import * as yup from 'yup'
 import { useRoute } from 'vue-router'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
 import { useAppStore } from '@/store/reactivity/app'
 
+import { Portal } from '@/utils/portal'
 import type { PropType } from 'vue'
 import type { InitialValues } from '@/types'
 
+// The rich text editor is only needed on this page.
+const VqTextEditor = defineAsyncComponent(async () => {
+  const { setConfig, VqTextEditor } = await import('@qnx/vuetify/integrations')
+  setConfig({ baseUrl: Portal.getInstance().getBaseUrl() })
+  return VqTextEditor
+})
+
 export default defineComponent({
+  components: { VqTextEditor },
   props: {
     initialValues: {
       type: Object as PropType<InitialValues>,

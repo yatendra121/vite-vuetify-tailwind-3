@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import { defineAsyncComponent } from 'vue'
-
-const ProductForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "product" */ './form.vue')
-)
+import ProductForm from './form.vue'
 
 const id = 'product_form'
 </script>

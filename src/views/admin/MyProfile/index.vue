@@ -53,17 +53,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, defineAsyncComponent, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { mdiCogOutline } from '@mdi/js'
 import BrandRings from '@/components/Basic/BrandRings.vue'
 import { useAxiosWithLoading } from '@/composables/axios'
 import type { User } from '@/types'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { getInitials, useStringRepository } from '@/composables/string'
-
-const MyProfileForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
-)
+import MyProfileForm from './Form.vue'
 
 const tab = ref(1)
 
@@ -77,11 +74,10 @@ const roleName = computed(
 )
 const initials = computed(() => getInitials(profileStore.profile?.name))
 
-const { response, loading, failed, cancelLoading } = useAxiosWithLoading<User>(
+const { response, loading, failed } = useAxiosWithLoading<User>(
   'my-profile/show',
   {
     method: 'GET'
   }
 )
-onBeforeUnmount(() => cancelLoading())
 </script>

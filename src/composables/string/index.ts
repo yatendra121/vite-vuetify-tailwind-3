@@ -1,4 +1,6 @@
-import { capitalize } from 'lodash'
+/** `hELLO wORLD` becomes `Hello world`. */
+export const capitalize = (value: string) =>
+    value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
 
 export const getInitials = (name?: string | null) =>
     (name ?? '')

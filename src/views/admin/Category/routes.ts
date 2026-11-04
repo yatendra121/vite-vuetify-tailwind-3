@@ -2,9 +2,9 @@ import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiShape } from '@mdi/js'
 import ParentRouteView from '../../ParentRouteView.vue'
-const List = () => import(/* webpackChunkName: "category" */ './list.vue')
-const Create = () => import(/* webpackChunkName: "category" */ './create.vue')
-const Edit = () => import(/* webpackChunkName: "category" */ './edit.vue')
+const List = () => import('./list.vue')
+const Create = () => import('./create.vue')
+const Edit = () => import('./edit.vue')
 
 export const CategoryRoutes: RouteRecordRaw[] = [
     {

@@ -7,19 +7,14 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import { defineAsyncComponent, onBeforeUnmount } from 'vue'
 import { useAxiosWithLoading } from '@/composables/axios'
 import { useRoute } from 'vue-router'
 import { StaticPage } from '@/types'
-const StaticPageForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "static-page" */ './Form.vue')
-)
+import StaticPageForm from './Form.vue'
 
 const route = useRoute()
-const { response, loading, failed, cancelLoading } =
+const { response, loading, failed } =
   useAxiosWithLoading<StaticPage>(`static-page/${route.meta.key}`, {
     method: 'GET'
   })
-
-onBeforeUnmount(() => cancelLoading())
 </script>

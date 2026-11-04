@@ -48,21 +48,21 @@ const themeName = computed(() => {
 })
 
 const BarChart = defineAsyncComponent(
-  () => import(/* webpackChunkName: "vq-chart" */ '@/components/Charts/Bar.vue')
+  () => import('@/components/Charts/Bar.vue')
 )
 const LineChart = defineAsyncComponent(
   () =>
-    import(/* webpackChunkName: "vq-chart" */ '@/components//Charts/Line.vue')
+    import('@/components//Charts/Line.vue')
 )
 
 const BubbleChart = defineAsyncComponent(
   () =>
-    import(/* webpackChunkName: "vq-chart" */ '@/components//Charts/Bubble.vue')
+    import('@/components//Charts/Bubble.vue')
 )
 
 const PieChart = defineAsyncComponent(
   () =>
-    import(/* webpackChunkName: "vq-chart" */ '@/components//Charts/pie.vue')
+    import('@/components//Charts/pie.vue')
 )
 
 </script>

@@ -37,22 +37,25 @@ export default defineConfig({
         manifest: currentPortal.getAddPWA(),
         rollupOptions: {
             output: {
-                // Rollup 4+ (used by Vite 8) only accepts the function
-                // form of `manualChunks`; the object form throws
-                // "Invalid type: Expected Function but received Object".
+                // Everything every page needs, as one long-cached file instead
+                // of dozens of tiny requests. Only list code that imports nothing
+                // else: a chunk takes its dependencies with it, which is how
+                // chart libraries once ended up on the login page.
                 manualChunks(id) {
-                    if (id.includes('node_modules/chart.js')) return 'chart-js'
-                    if (id.includes('node_modules/vue-chartjs')) return 'chart-js'
-                    if (id.includes('node_modules/vue3-apexcharts'))
-                        return 'vue3-apexcharts'
-                    if (id.includes('node_modules/axios')) return 'axios'
+                    if (
+                        /node_modules\/(.pnpm\/[^/]+\/node_modules\/)?(vue|@vue|vue-router|pinia|vuetify\/lib\/(util|composables|framework|directives|iconsets|blueprints|locale))\//.test(
+                            id
+                        )
+                    )
+                        return 'framework'
                 }
             }
         },
         minify: 'terser',
         terserOptions: {
             compress: {
-                drop_console: true,
+                // Keeps console.error and warn, or production errors go unseen.
+                pure_funcs: ['console.log', 'console.info', 'console.debug'],
                 drop_debugger: true
             }
         }

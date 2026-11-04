@@ -233,7 +233,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { useDisplay, useTheme } from 'vuetify'
-import { capitalize } from 'lodash'
 import { mdiCheck, mdiClose, mdiRestore } from '@mdi/js'
 import {
   COLOR_PRESETS as presets,
@@ -257,6 +256,7 @@ import {
   type CustomizerSettings,
   type ThemeColor
 } from '@/config/customizer'
+import { capitalize } from '@/composables/string'
 import { useCustomizerStore } from '@/store/reactivity/customizer'
 import ColorSwatch from './ColorSwatch.vue'
 import LivePreview from './LivePreview.vue'

@@ -1,19 +1,14 @@
 <script lang="ts" setup>
 import { useAxiosWithLoading } from '@/composables/axios'
-import { defineAsyncComponent, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 
 //types
 import { CategoryWithImage } from './types'
-
-//components
-const CategoryForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "category" */ './form.vue')
-)
+import CategoryForm from './form.vue'
 
 const route = useRoute()
 
-const { response, loading, failed, cancelLoading } = useAxiosWithLoading<CategoryWithImage>(
+const { response, loading, failed } = useAxiosWithLoading<CategoryWithImage>(
   `category/${route.params.id}`,
   {
     method: 'GET'
@@ -21,8 +16,6 @@ const { response, loading, failed, cancelLoading } = useAxiosWithLoading<Categor
 )
 
 const id = 'category_form'
-
-onBeforeUnmount(() => cancelLoading())
 </script>
 <template>
   <title-layout>

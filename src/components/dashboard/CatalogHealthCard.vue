@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { mdiCubeOffOutline, mdiImageOffOutline, mdiTagOutline } from '@mdi/js'
-import VueApexCharts from 'vue3-apexcharts'
+import VueApexCharts from './LazyChart.vue'
 import { catalogHealth, type DashboardProduct } from './dashboardStats'
 import { useChartTheme } from './useChartTheme'
 

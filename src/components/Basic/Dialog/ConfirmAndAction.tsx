@@ -2,7 +2,7 @@ import { defineAsyncComponent, defineComponent, ref } from 'vue'
 import { useConfirmStore } from '@/store/reactivity/confirm'
 
 const ConfirmDialog = defineAsyncComponent(
-  () => import(/* webpackChunkName: "vq-vuetify-basic" */ './ConfirmDialog')
+  () => import('./ConfirmDialog')
 )
 export default defineComponent({
   name: 'ConfirmAndAction',

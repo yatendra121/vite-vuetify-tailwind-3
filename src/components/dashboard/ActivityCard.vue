@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import VueApexCharts from 'vue3-apexcharts'
+import VueApexCharts from './LazyChart.vue'
 import { monthlyActivity, type DatedRecord } from './dashboardStats'
 import { useChartTheme } from './useChartTheme'
 

@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiFlaskOutline } from '@mdi/js'
-const Fullscreen = () => import(/* webpackChunkName: "testing" */ './index.vue')
+const Fullscreen = () => import('./index.vue')
 
 export default [
     {

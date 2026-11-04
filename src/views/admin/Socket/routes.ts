@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiConsole } from '@mdi/js'
-const Socket = () => import(/* webpackChunkName: "socket" */ './index.vue')
+const Socket = () => import('./index.vue')
 
 export const SocketRoutes: Array<RouteRecordRaw> = [
     {

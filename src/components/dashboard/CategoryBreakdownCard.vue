@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import VueApexCharts from 'vue3-apexcharts'
+import VueApexCharts from './LazyChart.vue'
 import {
   categoryBreakdown,
   type CategoryMetric,
@@ -49,7 +49,7 @@ const options = computed(() => {
     dataLabels: {
       enabled: true,
       formatter: format,
-      offsetX: 24,
+      offsetX: 22,
       style: { colors: [chart.text], fontWeight: 600, fontSize: '12px' }
     },
     grid: {
@@ -68,6 +68,8 @@ const options = computed(() => {
     },
     xaxis: {
       categories: rows.value.map(({ name }) => name),
+      // Room past the longest bar, where its value label sits.
+      max: Math.max(...rows.value.map(({ value }) => value), 1) * 1.25,
       labels: { show: false },
       axisBorder: { show: false },
       axisTicks: { show: false }

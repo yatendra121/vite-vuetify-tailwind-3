@@ -1,31 +1,25 @@
 <script lang="ts" setup>
 import { useAxiosWithLoading } from '@/composables/axios'
-import { defineAsyncComponent, onBeforeUnmount, ref, reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 
 //types
 import { User, RoleUserWithRole } from '@/types/user'
+import UserForm from './Form.vue'
 interface UserWithRole extends User {
   roleUsers: RoleUserWithRole[]
 }
 
-//components
-const UserForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "user" */ './Form.vue')
-)
-
 const route = useRoute()
 const valuesSchema = reactive({ roleUsers: 'roleUsers.*.role.id' })
 
-const { response, loading, failed, cancelLoading } = useAxiosWithLoading<UserWithRole>(
+const { response, loading, failed } = useAxiosWithLoading<UserWithRole>(
   `user/${route.params.id}`,
   {
     method: 'GET'
   }
 )
 const id = 'user_form'
-
-onBeforeUnmount(() => cancelLoading())
 </script>
 <template>
   <title-layout>

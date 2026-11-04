@@ -1,5 +1,16 @@
 <template>
   <v-app id="inspire" :theme="theme">
+    <v-progress-linear
+      :active="routeLoading"
+      class="position-fixed"
+      style="z-index: 2000"
+      location="top"
+      absolute
+      indeterminate
+      color="primary"
+      height="2"
+      aria-label="Loading page"
+    />
     <v-defaults-provider :defaults="customizerDefaults">
     <admin-app>
       <router-view :key="$route.path" v-slot="{ Component, route }">
@@ -40,6 +51,7 @@ import type { AuthStatus } from '@/types/auth'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { APP_NAME } from '@/config/brand'
 import { useApplyCustomizer } from '@/composables/customizer'
+import { useRouteLoading } from '@/composables/loading'
 export default defineComponent({
   components: {
     AdminApp,
@@ -70,6 +82,7 @@ export default defineComponent({
     // Navigation redirection
     const route = useRoute()
     const router = useRouter()
+    const routeLoading = useRouteLoading(router)
     const { authStatus } = toRefs(props)
 
     // `useRoute()` in this App-level component can still hold the
@@ -89,9 +102,10 @@ export default defineComponent({
 
     const redirectToAuth = async () => {
       await router.isReady()
-      if (route.meta.type === 'not_found') return
       if (props.authStatus === 'authenticated') {
-        if (isOnPublicAuthPath()) router.push({ name: 'dashboard' })
+        if (route.meta.type !== 'not_found' && isOnPublicAuthPath()) {
+          router.push({ name: 'dashboard' })
+        }
       } else if (props.authStatus === 'unauthenticated') {
         if (!isOnPublicAuthPath()) router.push({ name: 'login' })
       }
@@ -131,7 +145,7 @@ export default defineComponent({
       }, 100)
     })
 
-    return { theme, customizerDefaults }
+    return { theme, customizerDefaults, routeLoading }
   }
 })
 </script>

@@ -1,14 +1,14 @@
 import { RouteRecordRaw } from 'vue-router'
 import { mdiLogin, mdiLockReset, mdiLockQuestion } from '@mdi/js'
 const Login = () =>
-    import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/login.vue')
+    import('@/views/admin/Auth/login.vue')
 const ResetPassword = () =>
     import(
-        /* webpackChunkName: "auth" */ '@/views/admin/Auth/resetPassword.vue'
+        '@/views/admin/Auth/resetPassword.vue'
     )
 const ForgotPassword = () =>
     import(
-        /* webpackChunkName: "auth" */ '@/views/admin/Auth/forgotPassword.vue'
+        '@/views/admin/Auth/forgotPassword.vue'
     )
 
 const AuthRoutes: Array<RouteRecordRaw> = [
@@ -54,7 +54,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     // {
     //     path: '/verify',
     //     component: () =>
-    //         import(/* webpackChunkName: "about" */ '@/views/admin/Dashboard/'),
+    //         import('@/views/admin/Dashboard/'),
     //     children: [
     //         {
     //             path: '/',
@@ -62,7 +62,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
 
     //             component: () =>
     //                 import(
-    //                     /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
+    //                     '@/views/admin/Dashboard/'
     //                 )
     //         },
     //         {
@@ -70,7 +70,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     //             name: 'verify.otp',
     //             component: () =>
     //                 import(
-    //                     /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
+    //                     '@/views/admin/Dashboard/'
     //                 )
     //         }
     //     ]

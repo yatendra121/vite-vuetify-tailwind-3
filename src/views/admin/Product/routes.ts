@@ -2,9 +2,9 @@ import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiShopping } from '@mdi/js'
 import ParentRouteView from '../../ParentRouteView.vue'
-const List = () => import(/* webpackChunkName: "product" */ './list.vue')
-const Create = () => import(/* webpackChunkName: "product" */ './create.vue')
-const Edit = () => import(/* webpackChunkName: "product" */ './edit.vue')
+const List = () => import('./list.vue')
+const Create = () => import('./create.vue')
+const Edit = () => import('./edit.vue')
 
 export const ProductRoutes: RouteRecordRaw[] = [
     {

@@ -19,6 +19,20 @@ app.config.errorHandler = (err, _vm, info) => {
     console.error('[App Error]', info, err)
 }
 
+// A deploy replaces the hashed files an open tab still asks for. Reload to get
+// the new ones, but not repeatedly if the files really are unavailable.
+window.addEventListener('vite:preloadError', (event) => {
+    const key = 'app_chunk_reload'
+    try {
+        if (Date.now() - Number(sessionStorage.getItem(key)) < 10_000) return
+        sessionStorage.setItem(key, String(Date.now()))
+    } catch {
+        return
+    }
+    event.preventDefault()
+    window.location.reload()
+})
+
 app.use(createPinia())
 app.use(router)
 app.use(components)

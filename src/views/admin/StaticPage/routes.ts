@@ -4,7 +4,7 @@ import { mdiFileMultiple } from '@mdi/js'
 
 import ParentRouteView from '@/views/ParentRouteView.vue'
 
-const Edit = () => import(/* webpackChunkName: "static-page" */ './Edit.vue')
+const Edit = () => import('./Edit.vue')
 
 export const StaticPageRoutes: Array<RouteRecordRaw> = [
     {
