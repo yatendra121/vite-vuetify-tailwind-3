@@ -23,7 +23,7 @@ const formId = 'product_form'
     <vq-back-btn></vq-back-btn>
   </title-layout>
 
-  <v-card class="form-card">
+  <v-card>
     <LoadState :loading="loading" :failed="failed">
     <ProductForm
         :id="formId"

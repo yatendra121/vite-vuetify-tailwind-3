@@ -1,6 +1,6 @@
 <template>
   <title-layout></title-layout>
-  <v-card class="form-card">
+  <v-card>
     <LoadState :loading="loading" :failed="failed">
       <StaticPageForm :initial-values="response?.data" />
     </LoadState>

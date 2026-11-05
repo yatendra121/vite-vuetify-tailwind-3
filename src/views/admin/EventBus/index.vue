@@ -84,7 +84,7 @@ const validationSchema = yup.object({
 
 <template>
   <title-layout />
-  <v-card class="form-card mb-4" title="Web worker">
+  <v-card class="mb-4" title="Web worker">
     <v-card-text class="d-flex flex-wrap align-center ga-3 pt-0">
       <v-btn
         color="primary"
@@ -99,7 +99,7 @@ const validationSchema = yup.object({
     </v-card-text>
   </v-card>
 
-  <v-card class="form-card" title="Dynamic form">
+  <v-card title="Dynamic form">
     <vq-form
       id="userForm"
       action="test"

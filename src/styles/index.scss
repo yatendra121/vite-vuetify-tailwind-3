@@ -57,11 +57,6 @@ html {
   opacity: var(--v-medium-emphasis-opacity);
 }
 
-.form-card,
-.page-header:has(+ .form-card) {
-  max-width: 1040px;
-}
-
 // The dropzone's fixed title size overflows a phone-width card.
 .v-file-upload-title {
   font-size: 1rem;

@@ -1,7 +1,7 @@
 <template>
   <title-layout />
 
-  <v-card class="form-card mb-4 overflow-hidden">
+  <v-card class="mb-4 overflow-hidden">
     <v-sheet color="ink" theme="dark" height="96" class="position-relative overflow-hidden">
       <BrandRings :size="220" style="right: 24px; top: -70px" />
     </v-sheet>
@@ -34,7 +34,7 @@
     </v-tabs>
   </v-card>
 
-  <v-card class="form-card">
+  <v-card>
     <v-window v-model="tab">
       <v-window-item :value="1">
         <LoadState :loading="loading" :failed="failed">

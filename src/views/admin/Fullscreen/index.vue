@@ -13,7 +13,7 @@ const { toggle } = useFullscreen(el)
       Go Fullscreen
     </v-btn>
   </title-layout>
-  <v-card class="form-card overflow-hidden">
+  <v-card class="overflow-hidden">
     <video
       ref="el"
       class="d-block w-100"
