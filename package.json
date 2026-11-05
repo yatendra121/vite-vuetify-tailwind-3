@@ -25,13 +25,11 @@
     "@vee-validate/yup": "^4.15.1",
     "apexcharts": "^8.7.0",
     "axios": "^1.21.0",
-    "chart.js": "^4.6.1",
     "js-cookie": "^3.0.8",
     "pinia": "^4.1.0",
     "socket.io-client": "^4.8.4",
     "vee-validate": "^4.15.1",
     "vue": "^3.5.44",
-    "vue-chartjs": "^5.3.4",
     "vue-router": "^5.4.0",
     "vue3-apexcharts": "^1.11.3",
     "yup": "^1.7.1"
