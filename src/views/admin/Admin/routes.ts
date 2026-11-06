@@ -2,9 +2,9 @@ import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiAccount } from '@mdi/js'
 import ParentRouteView from '../../ParentRouteView.vue'
-const List = () => import(/* webpackChunkName: "admin" */ './list.vue')
-const Create = () => import(/* webpackChunkName: "admin" */ './create.vue')
-const Edit = () => import(/* webpackChunkName: "admin" */ './edit.vue')
+const List = () => import('./list.vue')
+const Create = () => import('./create.vue')
+const Edit = () => import('./edit.vue')
 
 export const AdminRoutes: Array<RouteRecordRaw> = [
     {

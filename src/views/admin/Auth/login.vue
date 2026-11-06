@@ -1,7 +1,7 @@
 <template>
   <AuthLayout>
-    <div class="mb-6">
-      <h2 class="text-headline-small font-weight-bold">Sign in</h2>
+    <div class="mb-8">
+      <h1 class="text-headline-medium font-weight-bold">Sign in</h1>
       <p class="text-body-medium text-medium-emphasis mt-1 mb-0">
         Enter your details to access your dashboard.
       </p>
@@ -36,11 +36,11 @@
             color="primary"
             size="small"
           >
-            Forgot Password?
+            Forgot password?
           </v-btn>
         </div>
 
-        <vq-submit-btn form="loginForm" block size="large" />
+        <vq-submit-btn form="loginForm" text="Sign in" block size="large" />
       </template>
     </vq-form>
   </AuthLayout>
@@ -57,7 +57,7 @@ export default defineComponent({
   },
   setup() {
     const schema = yup.object({
-      email: yup.string().required().max(50).label('Email'),
+      email: yup.string().required().email().max(50).label('Email'),
       password: yup.string().required().max(30).label('Password')
     })
 

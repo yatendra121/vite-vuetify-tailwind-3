@@ -3,7 +3,7 @@ import type { Meta } from '@/types/router'
 import { mdiHome } from '@mdi/js'
 
 const Dashboard = () =>
-    import(/* webpackChunkName: "dashboard" */ './index.vue')
+    import('./index.vue')
 
 export const DashboardRoutes: Array<RouteRecordRaw> = [
     {

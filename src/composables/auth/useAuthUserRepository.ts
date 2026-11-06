@@ -4,7 +4,25 @@ import { UserProfile } from '@/types/auth'
 import { useProfileStore } from '@/store/reactivity/profile'
 import { useAsyncAxios } from '@qnx/composables/axios'
 import { ApiSuccessResponse, ApiSuccessResponseValue } from '@qnx/composables'
+import { useMessage } from '@/composables/message'
 import type { AxiosError } from 'axios'
+
+/**
+ * End a session the API has stopped accepting. A failed sign-in also returns
+ * 401, so this only acts when someone is actually signed in.
+ *
+ * @returns whether a session was ended
+ */
+export const handleSessionExpired = () => {
+    const profileStore = useProfileStore()
+    if (!profileStore.hasAuth) return false
+
+    profileStore.delete()
+    removeTokens()
+    useMessage.warning('Your session has expired. Please sign in again.')
+    router.push({ name: 'login' })
+    return true
+}
 
 export function useAuthProfileRepository() {
     /**
@@ -72,13 +90,16 @@ export function useAuthProfileRepository() {
      * @returns void
      */
     const logout = async () => {
-        await useAsyncAxios<ApiSuccessResponse<undefined>>('logout', {
-            method: 'POST'
-        })
-
-        const profileStore = useProfileStore()
-        profileStore.delete()
-        removeTokens()
+        try {
+            await useAsyncAxios<ApiSuccessResponse<undefined>>('logout', {
+                method: 'POST'
+            })
+        } catch {
+            // Signing out must still work here when the API can't be reached.
+        } finally {
+            useProfileStore().delete()
+            removeTokens()
+        }
     }
 
     return { myProfile, loginResponseHandler, logout }

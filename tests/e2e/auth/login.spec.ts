@@ -6,7 +6,9 @@ test.describe('Login page', () => {
     })
 
     test('renders the sign-in heading', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible()
+        await expect(
+            page.getByRole('heading', { name: /sign in/i })
+        ).toBeVisible()
     })
 
     test('renders email and password labels', async ({ page }) => {
@@ -15,17 +17,24 @@ test.describe('Login page', () => {
     })
 
     test('renders a Forgot Password control', async ({ page }) => {
-        await expect(page.getByText(/forgot password\??/i).first()).toBeVisible()
-    })
-
-    test('renders a Submit button', async ({ page }) => {
         await expect(
-            page.getByRole('button', { name: /submit/i }).first()
+            page.getByText(/forgot password\??/i).first()
         ).toBeVisible()
     })
 
-    test('clicking Forgot Password navigates to /forgot-password', async ({ page }) => {
-        await page.getByText(/forgot password\??/i).first().click()
+    test('renders a Sign in button', async ({ page }) => {
+        await expect(
+            page.getByRole('button', { name: /sign in/i }).first()
+        ).toBeVisible()
+    })
+
+    test('clicking Forgot Password navigates to /forgot-password', async ({
+        page
+    }) => {
+        await page
+            .getByText(/forgot password\??/i)
+            .first()
+            .click()
         await expect(page).toHaveURL(/\/admin\/forgot-password$/)
     })
 

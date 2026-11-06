@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 const PAGES = [
     { path: '/admin/static-page/about-us', title: /about us/i },
-    { path: '/admin/static-page/term-condition', title: /term & condition/i },
+    { path: '/admin/static-page/term-condition', title: /terms & conditions/i },
     { path: '/admin/static-page/privacy-policy', title: /privacy policy/i }
 ] as const
 

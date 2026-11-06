@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import { defineAsyncComponent } from 'vue'
-
-const UserForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "my-profile" */ './Form.vue')
-)
+import UserForm from './Form.vue'
 
 const id = 'user_form'
 </script>
@@ -13,7 +9,7 @@ const id = 'user_form'
     <vq-back-btn></vq-back-btn>
   </title-layout>
 
-  <v-card class="form-card">
+  <v-card>
     <UserForm :id="id" />
   </v-card>
 </template>

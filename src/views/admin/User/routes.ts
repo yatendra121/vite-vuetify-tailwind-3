@@ -2,10 +2,9 @@ import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
 import { mdiAccountGroup } from '@mdi/js'
 import ParentRouteView from '../../ParentRouteView.vue'
-const List = () => import(/* webpackChunkName: "user" */ './list.vue')
-const List2 = () => import(/* webpackChunkName: "user" */ './list2.vue')
-const Create = () => import(/* webpackChunkName: "user" */ './index.vue')
-const Edit = () => import(/* webpackChunkName: "user" */ './edit.vue')
+const List = () => import('./list.vue')
+const Create = () => import('./index.vue')
+const Edit = () => import('./edit.vue')
 
 export const UserRoutes: Array<RouteRecordRaw> = [
     {
@@ -13,7 +12,7 @@ export const UserRoutes: Array<RouteRecordRaw> = [
         component: ParentRouteView,
         meta: {
             section: 'Accounts',
-            title: 'User',
+            title: 'Users',
             heading: 'Users',
             isPublic: false,
             icon: mdiAccountGroup,
@@ -21,25 +20,12 @@ export const UserRoutes: Array<RouteRecordRaw> = [
             permission: 'admin.user'
         } as Meta,
         children: [
-            // {
-            //     path: 'list',
-            //     name: 'user.table-list',
-            //     component: List,
-            //     meta: {
-            //         title: 'User List',
-            //         heading: 'User List',
-            //         isPublic: false,
-            //         icon: mdiAccount,
-            //         type: 'admin',
-            //         permission: 'admin.user'
-            //     } as Meta
-            // },
             {
                 path: '',
                 name: 'user.list',
-                component: List2,
+                component: List,
                 meta: {
-                    title: 'User',
+                    title: 'Users',
                     heading: 'Users',
                     isPublic: false,
                     icon: mdiAccountGroup,

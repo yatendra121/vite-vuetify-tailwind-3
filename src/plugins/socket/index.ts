@@ -4,7 +4,9 @@ import { Portal } from '@/utils/portal'
 const currentPortal = Portal.getInstance()
 
 const socket = io(currentPortal.getSocketUrl(), {
-    transports: ['websocket']
+    transports: ['websocket'],
+    // Only the Socket page uses this, so don't connect for everyone else.
+    autoConnect: false
 })
 socket.on('connect', function () {
     console.log(

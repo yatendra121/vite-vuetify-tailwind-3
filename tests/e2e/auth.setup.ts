@@ -11,11 +11,7 @@ import fs from 'node:fs'
  * overridden with E2E_USER_EMAIL / E2E_USER_PASSWORD env vars.
  */
 
-export const STORAGE_STATE = path.join(
-    __dirname,
-    '.auth',
-    'user.json'
-)
+export const STORAGE_STATE = path.join(__dirname, '.auth', 'user.json')
 
 const EMAIL = process.env.E2E_USER_EMAIL ?? 'yatendra@singsys.com'
 const PASSWORD = process.env.E2E_USER_PASSWORD ?? '12345678'
@@ -27,9 +23,9 @@ setup('authenticate', async ({ page }) => {
     await page.goto('/admin/auth')
 
     // Wait for the form to render (Vuetify hydrates async).
-    await expect(
-        page.getByRole('heading', { name: /sign in/i })
-    ).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible({
+        timeout: 15_000
+    })
 
     // Vuetify renders input labels we can target by text.
     const emailInput = page
@@ -37,14 +33,19 @@ setup('authenticate', async ({ page }) => {
         .locator('input')
         .first()
     const passwordInput = page
-        .locator('.v-field', { has: page.getByText('Password', { exact: true }) })
+        .locator('.v-field', {
+            has: page.getByText('Password', { exact: true })
+        })
         .locator('input')
         .first()
 
     await emailInput.fill(EMAIL)
     await passwordInput.fill(PASSWORD)
 
-    await page.getByRole('button', { name: /submit/i }).first().click()
+    await page
+        .getByRole('button', { name: /sign in/i })
+        .first()
+        .click()
 
     // Login is successful when the app routes us to /dashboard.
     await page.waitForURL(/\/admin\/dashboard$/, { timeout: 20_000 })

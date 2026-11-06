@@ -1,7 +1,9 @@
 <template>
-  <footer class="d-flex flex-wrap justify-space-between ga-2 px-4 px-md-6 py-4 text-body-small text-medium-emphasis">
-    <span>&copy; {{ new Date().getFullYear() }} {{ APP_NAME }}</span>
-    <span>All rights reserved.</span>
+  <footer class="px-4 px-md-6">
+    <v-divider />
+    <p class="text-body-small text-medium-emphasis text-center py-3">
+      &copy; {{ new Date().getFullYear() }} {{ APP_NAME }}. All rights reserved.
+    </p>
   </footer>
 </template>
 <script lang="ts" setup>

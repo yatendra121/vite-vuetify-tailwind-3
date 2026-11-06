@@ -4,7 +4,7 @@ import { mdiFileMultiple } from '@mdi/js'
 
 import ParentRouteView from '@/views/ParentRouteView.vue'
 
-const Edit = () => import(/* webpackChunkName: "static-page" */ './Edit.vue')
+const Edit = () => import('./Edit.vue')
 
 export const StaticPageRoutes: Array<RouteRecordRaw> = [
     {
@@ -37,7 +37,7 @@ export const StaticPageRoutes: Array<RouteRecordRaw> = [
                 name: 'static-page.term-condition',
                 component: Edit,
                 meta: {
-                    title: 'Term & Condition',
+                    title: 'Terms & Conditions',
                     heading: 'Terms & Conditions',
                     permission: 'admin.static-page.view',
                     icon: mdiFileMultiple,

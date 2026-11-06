@@ -1,15 +1,19 @@
 import { RouteRecordRaw } from 'vue-router'
 import { mdiLogin, mdiLockReset, mdiLockQuestion } from '@mdi/js'
-const Login = () =>
-    import(/* webpackChunkName: "auth" */ '@/views/admin/Auth/login.vue')
-const ResetPassword = () =>
-    import(
-        /* webpackChunkName: "auth" */ '@/views/admin/Auth/resetPassword.vue'
-    )
-const ForgotPassword = () =>
-    import(
-        /* webpackChunkName: "auth" */ '@/views/admin/Auth/forgotPassword.vue'
-    )
+import { loadVqVuetify } from '@/plugins/vqVuetify'
+
+// These pages are built from the form library: fetch it alongside the page
+// instead of after it.
+const withForms = <T>(page: () => Promise<T>) => () =>
+    Promise.all([page(), loadVqVuetify()]).then(([module]) => module)
+
+const Login = withForms(() => import('@/views/admin/Auth/login.vue'))
+const ResetPassword = withForms(
+    () => import('@/views/admin/Auth/resetPassword.vue')
+)
+const ForgotPassword = withForms(
+    () => import('@/views/admin/Auth/forgotPassword.vue')
+)
 
 const AuthRoutes: Array<RouteRecordRaw> = [
     {
@@ -31,7 +35,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
         component: ForgotPassword,
         meta: {
             title: 'Forgot Password',
-            heading: 'Forgot Password',
+            heading: 'Forgot password',
             isPublic: true,
             type: 'auth',
             icon: mdiLockQuestion,
@@ -44,7 +48,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
         component: ResetPassword,
         meta: {
             title: 'Reset Password',
-            heading: 'Reset Password',
+            heading: 'Reset password',
             isPublic: true,
             type: 'auth',
             icon: mdiLockReset,
@@ -54,7 +58,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     // {
     //     path: '/verify',
     //     component: () =>
-    //         import(/* webpackChunkName: "about" */ '@/views/admin/Dashboard/'),
+    //         import('@/views/admin/Dashboard/'),
     //     children: [
     //         {
     //             path: '/',
@@ -62,7 +66,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
 
     //             component: () =>
     //                 import(
-    //                     /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
+    //                     '@/views/admin/Dashboard/'
     //                 )
     //         },
     //         {
@@ -70,7 +74,7 @@ const AuthRoutes: Array<RouteRecordRaw> = [
     //             name: 'verify.otp',
     //             component: () =>
     //                 import(
-    //                     /* webpackChunkName: "about" */ '@/views/admin/Dashboard/'
+    //                     '@/views/admin/Dashboard/'
     //                 )
     //         }
     //     ]

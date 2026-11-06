@@ -7,7 +7,7 @@ html {
 // Keep long values from stretching a table; pair with a `title` attribute.
 .cell-truncate {
   display: block;
-  max-width: 260px;
+  max-width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -15,15 +15,31 @@ html {
 
 .v-data-table {
   thead th {
-    background: rgb(var(--v-theme-surface));
-    font-size: 0.75rem;
-    font-weight: 600;
+    background: rgb(var(--v-table-header-background));
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     white-space: nowrap;
     color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
   }
 
   tbody td {
     white-space: nowrap;
+  }
+
+  // Keep row actions reachable while the other columns scroll sideways.
+  thead tr:not(.v-data-table-progress) th:last-child,
+  tbody tr:not(.v-data-table-rows-no-data) td:last-child {
+    position: sticky;
+    right: 0;
+    z-index: 1;
+    border-inline-start: thin solid
+      rgba(var(--v-border-color), var(--v-border-opacity));
+  }
+
+  tbody tr:not(.v-data-table-rows-no-data) td:last-child {
+    background: rgb(var(--v-theme-surface));
   }
 }
 
@@ -35,8 +51,61 @@ html {
   padding: 16px;
 }
 
-.form-card {
-  max-width: 960px;
+// Vuetify fades these further than --v-medium-emphasis-opacity.
+.v-card-subtitle,
+.v-list-item-subtitle {
+  opacity: var(--v-medium-emphasis-opacity);
+}
+
+// The dropzone's fixed title size overflows a phone-width card.
+.v-file-upload-title {
+  font-size: 1rem;
+  text-align: center;
+}
+
+// Visible only when a keyboard user reaches it.
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 3000;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgb(var(--v-theme-primary));
+  color: rgb(var(--v-theme-on-primary));
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+  }
+}
+
+// Containers focused from code, not by the keyboard user's own navigation.
+#main-content:focus,
+.v-overlay__content:focus-visible {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 2px;
+}
+
+// Text inputs show focus on their own outline.
+.v-field input:focus-visible,
+.v-field textarea:focus-visible {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 // Headings and paragraphs get their spacing from utility classes. Inside

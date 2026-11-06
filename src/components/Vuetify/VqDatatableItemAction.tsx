@@ -6,8 +6,9 @@ import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 import { ApiSuccessResponse, ApiSuccessResponseValue } from '@qnx/composables'
 
-import { updateItemValue, deleteItemValue } from '@/plugins/vqVuetify'
+import { updateItemValue, deleteItemValue } from '@qnx/vuetify'
 import { mdiDeleteOutline } from '@mdi/js'
+import type { AxiosError } from 'axios'
 
 type ActionMethod = 'PUT' | 'DELETE'
 const VqDatatableItemAction = defineComponent({
@@ -19,11 +20,11 @@ const VqDatatableItemAction = defineComponent({
     },
     title: {
       type: String as PropType<string>,
-      default: () => 'Confirmation'
+      default: () => 'Delete this record?'
     },
     description: {
       type: String as PropType<string>,
-      default: () => 'This record will be permanently deleted.'
+      default: () => "This can't be undone."
     },
     hintTitle: {
       type: String as PropType<string>,
@@ -65,15 +66,25 @@ const VqDatatableItemAction = defineComponent({
             deleteItemValue(tableId.value, props.itemId)
           }
         })
-        .catch(() => {
+        .catch((error: AxiosError<{ message?: string }>) => {
           confirmStore.close()
-          useMessage.error('Could not complete this action. Please try again.')
+          // Other failures are already reported by the axios interceptor.
+          if (
+            error.response?.status === 400 ||
+            error.response?.status === 422
+          ) {
+            useMessage.error(
+              error.response.data?.message ??
+                'Could not complete this action. Please try again.'
+            )
+          }
         })
 
     const showConfirmAction = () => {
       confirmStore.setConfirmValues({
         title: props.title,
         description: props.description,
+        confirmText: props.method === 'DELETE' ? 'Delete' : 'Confirm',
         callback
       } as ConfirmState)
 
@@ -86,8 +97,8 @@ const VqDatatableItemAction = defineComponent({
             activator: ({ props }: any) => (
               <>
                 <VBtn
-                  variant="text"
-                  size="small"
+                  variant="tonal"
+                  size={32}
                   aria-label={hintTitle.value}
                   {...props}
                   {...attrs}

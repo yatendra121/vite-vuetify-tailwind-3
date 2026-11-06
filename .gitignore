@@ -3,7 +3,8 @@ node_modules
 dist
 dist-ssr
 coverage
-admin
+# Build output only; a bare "admin" also hid source folders with that name.
+/admin/
 
 # Portal env files contain encrypted client IDs / portal-specific secrets
 .env.admin.*

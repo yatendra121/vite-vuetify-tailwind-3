@@ -1,10 +1,22 @@
 <template>
   <v-app id="inspire" :theme="theme">
+    <v-progress-linear
+      :active="routeLoading"
+      class="position-fixed"
+      style="z-index: 2000"
+      location="top"
+      absolute
+      indeterminate
+      color="primary"
+      height="2"
+      aria-label="Loading page"
+    />
+    <v-defaults-provider :defaults="customizerDefaults">
     <admin-app>
       <router-view :key="$route.path" v-slot="{ Component, route }">
         <v-fade-transition mode="out-in" appear>
           <div>
-            <suspense>
+            <suspense v-if="Component">
               <template #default>
                 <component :is="Component" :key="route.name" />
               </template>
@@ -16,6 +28,7 @@
         </v-fade-transition>
       </router-view>
     </admin-app>
+    </v-defaults-provider>
   </v-app>
 </template>
 <script lang="ts">
@@ -36,6 +49,9 @@ import AdminApp from './adminApp.vue'
 import FallbackComponent from '@/components/Loading/FallbackComponent'
 import type { AuthStatus } from '@/types/auth'
 import { useProfileStore } from '@/store/reactivity/profile'
+import { APP_NAME } from '@/config/brand'
+import { useApplyCustomizer } from '@/composables/customizer'
+import { useRouteLoading } from '@/composables/loading'
 export default defineComponent({
   components: {
     AdminApp,
@@ -61,10 +77,12 @@ export default defineComponent({
     // Charts and overlays read the global theme, not the one on <v-app>.
     const vuetifyTheme = useTheme()
     watch(theme, (value) => vuetifyTheme.change(value), { immediate: true })
+    const customizerDefaults = useApplyCustomizer()
 
     // Navigation redirection
     const route = useRoute()
     const router = useRouter()
+    const routeLoading = useRouteLoading(router)
     const { authStatus } = toRefs(props)
 
     // `useRoute()` in this App-level component can still hold the
@@ -84,9 +102,10 @@ export default defineComponent({
 
     const redirectToAuth = async () => {
       await router.isReady()
-      if (route.meta.type === 'not_found') return
       if (props.authStatus === 'authenticated') {
-        if (isOnPublicAuthPath()) router.push({ name: 'dashboard' })
+        if (route.meta.type !== 'not_found' && isOnPublicAuthPath()) {
+          router.push({ name: 'dashboard' })
+        }
       } else if (props.authStatus === 'unauthenticated') {
         if (!isOnPublicAuthPath()) router.push({ name: 'login' })
       }
@@ -100,12 +119,10 @@ export default defineComponent({
 
     const title = useTitle()
 
-    router.beforeEach((to, from, next) => {
+    router.beforeEach((to) => {
       if (!profileStore.authProfile && !to.meta.isPublic) {
-        next({ name: 'login' })
-        return
+        return { name: 'login' }
       }
-      next()
     })
 
     // Browser tab title is updated in `afterEach` because `beforeEach` is
@@ -113,7 +130,7 @@ export default defineComponent({
     // the router has started resolving the first route). `afterEach`
     // *does* run for the initial navigation once it settles.
     const applyTitle = (to: { meta: RouteMeta }) => {
-      if (to.meta.title) title.value = to.meta.title as string
+      if (to.meta.title) title.value = `${to.meta.title} · ${APP_NAME}`
     }
     router.afterEach((to) => applyTitle(to))
     // Cover the initial nav explicitly in case it had already settled
@@ -128,7 +145,7 @@ export default defineComponent({
       }, 100)
     })
 
-    return { theme }
+    return { theme, customizerDefaults, routeLoading }
   }
 })
 </script>

@@ -1,19 +1,15 @@
 <script lang="ts" setup>
 import { useAxiosWithLoading } from '@/composables/axios'
-import { defineAsyncComponent, onBeforeUnmount, ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 //types
 import { ProductWithImage } from './types'
-
-//components
-const ProductForm = defineAsyncComponent(
-  () => import(/* webpackChunkName: "product" */ './form.vue')
-)
+import ProductForm from './form.vue'
 
 const route = useRoute()
 
-const { response, cancelLoading } = useAxiosWithLoading<ProductWithImage>(
+const { response, loading, failed } = useAxiosWithLoading<ProductWithImage>(
   `product/${route.params.id}`,
   {
     method: 'GET'
@@ -21,20 +17,20 @@ const { response, cancelLoading } = useAxiosWithLoading<ProductWithImage>(
 )
 
 const formId = 'product_form'
-
-onBeforeUnmount(() => cancelLoading())
 </script>
 <template>
   <title-layout>
     <vq-back-btn></vq-back-btn>
   </title-layout>
 
-  <v-card class="form-card">
+  <v-card>
+    <LoadState :loading="loading" :failed="failed">
     <ProductForm
         :id="formId"
         :action="`product/${route.params.id}`"
         method="PUT"
         :initial-values="response?.data"
       />
+    </LoadState>
   </v-card>
 </template>

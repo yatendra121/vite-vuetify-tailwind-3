@@ -29,6 +29,6 @@
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["src/**/*.test_spec.ts", "tests/**/*.ts", "src/store/core/**", "node_modules", "tmp"]
+  "exclude": ["src/**/*.test_spec.ts", "tests/**/*.ts", "node_modules", "tmp"]
 }
 

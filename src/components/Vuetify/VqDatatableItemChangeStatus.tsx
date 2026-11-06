@@ -4,7 +4,8 @@ import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 
 import { ApiResponse, ApiResponseValue } from '@qnx/composables'
-import { updateItemValue } from '@/plugins/vqVuetify'
+import { updateItemValue } from '@qnx/vuetify'
+import type { AxiosError } from 'axios'
 
 //types
 type Value = 'active' | 'inactive'
@@ -45,16 +46,28 @@ const VqDatatableItemChangeStatus = defineComponent({
     const updateValue = (value: Value | null) => {
       if (!value) return
       loading.value = true
-      useAsyncAxios<ApiResponseValue<{ status: string }>>(`${props.action}/${props.itemId}`, {
-        method: props.method
-      })
+      useAsyncAxios<ApiResponseValue<{ status: string }>>(
+        `${props.action}/${props.itemId}`,
+        {
+          method: props.method
+        }
+      )
         .then((res) => {
           const apiRes = new ApiResponse<{ status: string }>(res)
           useMessage.success(apiRes.getMessage() || 'Status updated.')
           updateItemValue(tableId.value, props.itemId, apiRes.getData())
         })
-        .catch(() => {
-          useMessage.error('Could not update the status. Please try again.')
+        .catch((error: AxiosError<{ message?: string }>) => {
+          // Other failures are already reported by the axios interceptor.
+          if (
+            error.response?.status === 400 ||
+            error.response?.status === 422
+          ) {
+            useMessage.error(
+              error.response.data?.message ??
+                'Could not update the status. Please try again.'
+            )
+          }
         })
         .finally(() => {
           loading.value = false
@@ -65,10 +78,8 @@ const VqDatatableItemChangeStatus = defineComponent({
       <>
         <VSwitch
           hideDetails
-          inset
           density="compact"
           aria-label="Change status"
-          color="primary"
           modelValue={props.itemValue}
           trueValue={props.trueValue}
           falseValue={props.falseValue}

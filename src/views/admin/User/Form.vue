@@ -62,6 +62,7 @@ export default defineComponent({
     :id="id"
     :action="action"
     :method="method"
+    :validation-schema="validationSchema"
     :values-schema="valuesSchema"
     :initial-values="initialValues"
     @submited-success="useFormSuccess"
@@ -69,87 +70,45 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <div class="pa-4 pa-md-6">
-        <v-row>
-          <v-col cols="12" sm="6">
-            <VqTextField name="name" label="Name" placeholder="Name" />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <vq-text-field
-              id="email"
-              name="email"
-              label="Email"
-              placeholder="Email"
-            />
-          </v-col>
-          <v-col cols="12" sm="4">
-            <vq-text-field
-              name="mobileNo"
-              label="Mobile"
-              placeholder="Mobile"
-            />
-          </v-col>
-          <!-- <v-col cols="12" sm="4">
-            <vq-checkbox
-              name="membership"
-              label="Membership"
-              placeholder="Membership"
-            />
-          </v-col> -->
-
-          <v-col cols="12" sm="4">
-            <vq-autocomplete
-              :items="items"
-              name="gender"
-              label="Gender"
-              item-title="title"
-              item-value="value"
-            />
-          </v-col>
-          <v-col cols="12" sm="4">
-            <vq-autocomplete
-              multiple
-              item-title="title"
-              item-value="id"
-              action="role"
-              name="roleUsers"
-              label="Role"
-            />
-          </v-col>
-                    <v-col cols="12" sm="4">
-            <vq-date-picker name="dob" label="Date of Birth" />
-          </v-col>
-          <!-- <v-col cols="12" sm="4">
-            <vq-color-picker
-              id="color"
-              name="color"
-              label="Color"
-              placeholder="Color"
-            />
-          </v-col> -->
-          <!-- <v-col cols="12" sm="4">
-            <vq-otp-input
-              variant="filled"
-              id="otp"
-              name="otp"
-              label="otp"
-              placeholder="otp"
-            />
-          </v-col> -->
-          <!-- <v-col cols="12" sm="4">
-            <VqTimePicker
-              variant="filled"
-              id="time"
-              name="time"
-              label="Time "
-            />
-          </v-col> -->
-          <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
-          </v-col>
-        </v-row>
-        <!-- <vq-file-input name="profile_image"></vq-file-input> -->
-      </div>
+      <FormSection title="Personal details" description="Who this person is and how to reach them.">
+        <v-col cols="12" sm="6">
+          <VqTextField name="name" label="Name" placeholder="Name" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-text-field id="email" name="email" label="Email" placeholder="Email" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-text-field name="mobileNo" label="Mobile" placeholder="Mobile" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-autocomplete
+            :items="items"
+            name="gender"
+            label="Gender"
+            item-title="title"
+            item-value="value"
+          />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-date-picker name="dob" label="Date of Birth" />
+        </v-col>
+      </FormSection>
+      <v-divider />
+      <FormSection title="Access" description="Roles decide what this person can do.">
+        <v-col cols="12">
+          <vq-autocomplete
+            multiple
+            item-title="title"
+            item-value="id"
+            action="role"
+            name="roleUsers"
+            label="Role"
+          />
+        </v-col>
+      </FormSection>
+      <FormActions>
+        <vq-submit-btn :text="method === 'PUT' ? 'Save changes' : 'Create'"></vq-submit-btn>
+      </FormActions>
     </template>
   </vq-form>
 </template>

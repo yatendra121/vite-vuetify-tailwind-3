@@ -16,37 +16,37 @@ import { useRoute, useRouter } from 'vue-router'
 const ConfirmAndAction = defineAsyncComponent(
   () =>
     import(
-      /* webpackChunkName: "vq-vuetify-basic" */ '@/components/Basic/Dialog/ConfirmAndAction'
+      '@/components/Basic/Dialog/ConfirmAndAction'
     )
 )
 const MessageQueue = defineAsyncComponent(
   () =>
     import(
-      /* webpackChunkName: "vq-vuetify-basic" */ '@/components/Basic/MessageQueue.vue'
+      '@/components/Basic/MessageQueue.vue'
     )
 )
 const AdminView = defineAsyncComponent(
   () =>
     import(
-      /* webpackChunkName: "admin-layout" */ '@/layouts/Admin/ParentView.vue'
+      '@/layouts/Admin/ParentView.vue'
     )
 )
 const AuthView = defineAsyncComponent(
   () =>
     import(
-      /* webpackChunkName: "auth-layout" */ '@/layouts/Auth/ParentView.vue'
+      '@/layouts/Auth/ParentView.vue'
     )
 )
 const NotFoundView = defineAsyncComponent(
   () =>
     import(
-      /* webpackChunkName: "not-found-layout" */ '@/layouts/NotFound/ParentView.vue'
+      '@/layouts/NotFound/ParentView.vue'
     )
 )
 const DefaultView = defineAsyncComponent(
   () =>
     import(
-      /* webpackChunkName: "default-layout" */ '@/layouts/NotFound/ParentView.vue'
+      '@/layouts/NotFound/ParentView.vue'
     )
 )
 
@@ -71,9 +71,8 @@ export default defineComponent({
       else if (type === 'admin') ParentView.value = 'AdminView'
       else ParentView.value = 'DefaultView'
     }
-    router.beforeResolve((to, from, next) => {
+    router.beforeResolve((to) => {
       changeLayoutView(to.meta?.type)
-      next()
     })
 
     onMounted(() => {

@@ -70,79 +70,40 @@ export default defineComponent({
     @submited-client-error="useFormClientError"
   >
     <template #default>
-      <div class="pa-4 pa-md-6">
-        <v-row>
-          <v-col cols="12" sm="6">
-            <VqTextField name="name" label="Name" placeholder="Name" />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <vq-text-field
-              id="email"
-              name="email"
-              label="Email"
-              placeholder="Email"
-            />
-          </v-col>
-          <v-col cols="12" sm="4">
-            <vq-text-field
-              id="mobileNo"
-              name="mobileNo"
-              label="Mobile"
-              placeholder="Mobile"
-            />
-          </v-col>
-          <!-- <v-col cols="12" sm="4">
-            <vq-checkbox
-              name="membership"
-              label="Membership"
-              placeholder="Membership"
-            />
-          </v-col> -->
-          <!-- <v-col cols="12" sm="4">
-            <vq-text-field
-              type="date"
-              id="dob"
-              name="dob"
-              label="Date of Birth"
-              placeholder="Date of Birth"
-            />
-          </v-col> -->
-          <v-col cols="12" sm="4">
-            <vq-autocomplete
-              id="gender"
-              :items="items"
-              name="gender"
-              label="Gender"
-            />
-          </v-col>
-          <v-col cols="12" sm="4">
-            <vq-autocomplete
-              multiple
-              id="role"
-              item-title="title"
-              item-value="id"
-              action="role"
-              name="roleUsers"
-              label="Role"
-            />
-          </v-col>
-          <v-col cols="12">
-            <vq-textarea name="address" label="Address" placeholder="Address" />
-          </v-col>
-          <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
-          </v-col>
-
-          <!-- <v-col cols="12" v-for="i in 2" :key="i">
-            <vq-textarea
-              :name="`address[${i - 1}].test`"
-              label="Address"
-              placeholder="Address"
-            />
-          </v-col> -->
-        </v-row>
-        <!-- <vq-file-input name="profile_image"></vq-file-input> -->
-      </div>
+      <FormSection title="Personal details" description="Who this admin is and how to reach them.">
+        <v-col cols="12" sm="6">
+          <VqTextField name="name" label="Name" placeholder="Name" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-text-field id="email" name="email" label="Email" placeholder="Email" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-text-field id="mobileNo" name="mobileNo" label="Mobile" placeholder="Mobile" />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <vq-autocomplete id="gender" :items="items" name="gender" label="Gender" />
+        </v-col>
+        <v-col cols="12">
+          <vq-textarea name="address" label="Address" placeholder="Address" />
+        </v-col>
+      </FormSection>
+      <v-divider />
+      <FormSection title="Access" description="Roles decide what this admin can do.">
+        <v-col cols="12">
+          <vq-autocomplete
+            multiple
+            id="role"
+            item-title="title"
+            item-value="id"
+            action="role"
+            name="roleUsers"
+            label="Role"
+          />
+        </v-col>
+      </FormSection>
+      <FormActions>
+        <vq-submit-btn :text="method === 'PUT' ? 'Save changes' : 'Create'"></vq-submit-btn>
+      </FormActions>
     </template>
   </vq-form>
 </template>

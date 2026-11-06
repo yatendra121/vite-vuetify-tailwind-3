@@ -24,7 +24,7 @@ test.describe('Reset password page', () => {
     test('renders the Submit button', async ({ page }) => {
         await page.goto('/admin/reset-password')
         await expect(
-            page.getByRole('button', { name: /^submit$/i }).first()
+            page.getByRole('button', { name: /^reset password$/i }).first()
         ).toBeVisible()
     })
 

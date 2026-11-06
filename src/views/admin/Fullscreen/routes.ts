@@ -1,8 +1,8 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Meta } from '@/types/router'
-import { mdiFacebookWorkplace } from '@mdi/js'
+import { mdiFullscreen } from '@mdi/js'
 const Fullscreen = () =>
-    import(/* webpackChunkName: "fullscreen" */ './index.vue')
+    import('./index.vue')
 
 export default [
     {
@@ -14,7 +14,7 @@ export default [
             title: 'Fullscreen',
             heading: 'Fullscreen',
             isPublic: false,
-            icon: mdiFacebookWorkplace,
+            icon: mdiFullscreen,
             type: 'admin',
             permission: 'admin.drawer'
         } as Meta

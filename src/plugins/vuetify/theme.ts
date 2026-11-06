@@ -1,24 +1,34 @@
 import type { VuetifyOptions } from 'vuetify'
 
-export const staticPrimaryColor = '#696CFF'
+// Brand colors shared by both themes: ink for navigation and hero surfaces,
+// accent for the highlights that sit on them.
+const brandColors = {
+    ink: '#101512',
+    'on-ink': '#F3F6EC',
+    accent: '#C8F13A',
+    'on-accent': '#171C0B'
+}
+
+const headingFont = "'Sora', 'DM Sans', sans-serif"
 
 const lightColors1 = {
-    primary: '#0E7490',
+    ...brandColors,
+    primary: '#14633F',
     'on-primary': '#fff',
-    secondary: '#475569',
+    secondary: '#4B5563',
     'on-secondary': '#fff',
     success: '#15803D',
     'on-success': '#fff',
-    info: '#0369A1',
+    info: '#1D4ED8',
     'on-info': '#fff',
     warning: '#B45309',
     'on-warning': '#fff',
-    error: '#DC2626',
+    error: '#C62828',
     'on-error': '#fff',
-    background: '#F5F7FA',
-    'on-background': '#1E293B',
+    background: '#F5F6F1',
+    'on-background': '#171A17',
     surface: '#FFFFFF',
-    'on-surface': '#1E293B',
+    'on-surface': '#171A17',
     'grey-50': '#FAFAFA',
     'grey-100': '#EBEEF0',
     'grey-200': '#EEEEEE',
@@ -47,15 +57,18 @@ const theme: VuetifyOptions['theme'] = {
             colors: lightColors1,
 
             variables: {
+                // Muted text and field labels need this to reach 4.5:1.
+                'medium-emphasis-opacity': 0.75,
+                'font-heading': headingFont,
                 'code-color': '#d400ff',
-                'overlay-scrim-background': '#32475C',
+                'overlay-scrim-background': '#101512',
                 'overlay-scrim-opacity': 0.5,
-                'border-color': '#334155',
-                'snackbar-background': '#1E293B',
+                'border-color': '#171A17',
+                'snackbar-background': '#171A17',
                 'snackbar-color': '#ffffff',
-                'tooltip-background': '#262732',
+                'tooltip-background': '#171A17',
                 'tooltip-opacity': 0.9,
-                'table-header-background': '#F8FAFC',
+                'table-header-background': '#F7F8F3',
 
                 // Shadows
                 'shadow-key-umbra-opacity':
@@ -69,22 +82,23 @@ const theme: VuetifyOptions['theme'] = {
         dark: {
             dark: true,
             colors: {
-                primary: '#22B8CF',
-                'on-primary': '#06262D',
-                secondary: '#94A3B8',
-                'on-secondary': '#0F172A',
+                ...brandColors,
+                primary: '#C8F13A',
+                'on-primary': '#171C0B',
+                secondary: '#A3AC9F',
+                'on-secondary': '#101512',
                 success: '#4ADE80',
                 'on-success': '#052E16',
-                info: '#38BDF8',
+                info: '#60A5FA',
                 'on-info': '#082F49',
                 warning: '#FBBF24',
                 'on-warning': '#451A03',
                 error: '#F87171',
                 'on-error': '#450A0A',
-                background: '#0F172A',
-                'on-background': '#E2E8F0',
-                surface: '#1E293B',
-                'on-surface': '#E2E8F0',
+                background: '#0C0F0D',
+                'on-background': '#E9ECE4',
+                surface: '#161A17',
+                'on-surface': '#E9ECE4',
                 'grey-50': '#2A2E42',
                 'grey-100': '#444463',
                 'grey-200': '#4A5072',
@@ -100,15 +114,16 @@ const theme: VuetifyOptions['theme'] = {
                 'skin-bordered-surface': '#2b2c40'
             },
             variables: {
+                'font-heading': headingFont,
                 'code-color': '#d400ff',
-                'overlay-scrim-background': '#0D0E24',
+                'overlay-scrim-background': '#050706',
                 'overlay-scrim-opacity': 0.6,
-                'border-color': '#CBD5E1',
-                'snackbar-background': '#E2E8F0',
-                'snackbar-color': '#1E293B',
-                'tooltip-background': '#464A65',
+                'border-color': '#E9ECE4',
+                'snackbar-background': '#E9ECE4',
+                'snackbar-color': '#171A17',
+                'tooltip-background': '#2A302B',
                 'tooltip-opacity': 0.9,
-                'table-header-background': '#172033',
+                'table-header-background': '#1C211D',
 
                 // Shadows
                 'shadow-key-umbra-opacity': 'rgba(20, 21, 33, 0.06)',

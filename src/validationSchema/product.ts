@@ -10,18 +10,21 @@ export const productSchema = toTypedSchema(
             .number()
             .transform((value, originalValue) => Number(originalValue))
             .required()
-            .positive(),
+            .positive()
+            .label('Quantity'),
         price: yup
             .number()
             .transform((value, originalValue) => Number(originalValue))
             .required()
-            .positive(),
+            .positive()
+            .label('Price'),
         salePrice: yup
             .number()
             .transform((value, originalValue) => Number(originalValue))
             .required()
-            .positive(),
-        description: yup.string().nullable(),
-        categoryId: yup.string().required()
+            .positive()
+            .label('Sale price'),
+        description: yup.string().nullable().label('Description'),
+        categoryId: yup.string().required().label('Category')
     })
 )

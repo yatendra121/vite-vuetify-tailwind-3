@@ -10,6 +10,7 @@ import {
 //import { getTimeOffset } from "@/utils";
 import { Portal } from '@/utils/portal'
 import { useMessage } from '@/composables/message'
+import { handleSessionExpired } from '@/composables/auth/useAuthUserRepository'
 const currentPortal = Portal.getInstance()
 
 const CancelToken = axios.CancelToken
@@ -46,25 +47,33 @@ _axios.interceptors.response.use(
         // Do something with response data
         return response
     },
-    (error: AxiosError) => {
-        // Generic 401 handling: clear stored tokens. The decision to
-        // navigate to the login page is intentionally NOT made here —
-        // the global interceptor doesn't know whether the caller is on
-        // a public route or whether a redirect is appropriate. Callers
-        // (e.g. `useAuthProfileRepository().myProfile()`) take that
-        // responsibility.
-        if (error && error.response && error.response.status === 401) {
+    (error: AxiosError<{ message?: string }>) => {
+        if (axios.isCancel(error)) return Promise.reject(error)
+
+        const status = error.response?.status
+        const method = error.config?.method?.toLowerCase()
+        const url = error.config?.url
+
+        if (status === 401) {
             removeToken()
             removeRefreshToken()
-        } else if (
-            // Failed page data would otherwise look like an empty list. Forms
-            // report their own errors, and the session probe fails by design
-            // for signed-out visitors.
-            error?.config?.method?.toLowerCase() === 'get' &&
-            error.config.url !== 'my-profile' &&
-            !axios.isCancel(error)
-        ) {
-            useMessage.error('Could not load data. Please try again.')
+            // Without a session this is a rejected sign-in. The startup profile
+            // check is a GET and handles its own 401.
+            if (!handleSessionExpired() && method !== 'get') {
+                useMessage.error(
+                    error.response?.data?.message ??
+                        'Incorrect email or password.'
+                )
+            }
+        } else if (method === 'get') {
+            // Failed page data would otherwise look like an empty list. The
+            // session probe fails by design for signed-out visitors.
+            if (url !== 'my-profile') {
+                useMessage.error('Could not load data. Please try again.')
+            }
+        } else if (status !== 400 && status !== 422 && url !== 'logout') {
+            // Forms only report 400 and 422, and signing out ignores failures.
+            useMessage.error('Something went wrong. Please try again.')
         }
         return Promise.reject(error)
     }

@@ -34,7 +34,7 @@
       <template #item="{ item, index }">
           <tr>
             <VqSerialNo :index="index + 1" />
-            <td><span class="cell-truncate" :title="item.name">{{ item.name }}</span></td>
+            <td><IdentityCell :name="item.name" /></td>
             <td><span class="cell-truncate" :title="item.email">{{ item.email }}</span></td>
             <td>{{ toCapitalize(item.gender ?? '') }}</td>
             <td>{{ toDateTime(item.createdAt) }}</td>
@@ -58,6 +58,9 @@
             </td>
           </tr>
         </template>
+      <template #loading>
+        <v-skeleton-loader type="table-row@5" />
+      </template>
       <template #no-data>
         <EmptyState />
       </template>

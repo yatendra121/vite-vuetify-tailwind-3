@@ -8,35 +8,43 @@
     @submited-success="useFormSuccess"
     @submited-error="useFormError"
   >
-    <div class="pa-4 pa-md-6">
-      <v-row>
-        <v-col cols="12">
-          <vq-text-field name="title" label="Title" placeholder="Title" />
-        </v-col>
-
-        <v-col cols="12">
+    <FormSection title="Page content" description="Published as written on the public site.">
+      <v-col cols="12">
+        <vq-text-field name="title" label="Title" placeholder="Title" />
+      </v-col>
+      <v-col cols="12">
+        <p class="text-body-medium font-weight-medium mb-2">Description</p>
+        <div class="static-page-editor">
           <vq-text-editor :is-dark="isDark" name="description" />
-        </v-col>
-        <v-col cols="12" class="d-flex justify-end">
-            <vq-submit-btn></vq-submit-btn>
-        </v-col>
-      </v-row>
-    </div>
-    <!-- <v-btn color="primary" type="submit">Submit</v-btn> -->
+        </div>
+      </v-col>
+    </FormSection>
+    <FormActions hide-cancel>
+      <vq-submit-btn text="Save changes"></vq-submit-btn>
+    </FormActions>
   </vq-form>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineAsyncComponent, defineComponent, computed } from 'vue'
 import * as yup from 'yup'
 import { useRoute } from 'vue-router'
 import { useFormSuccess, useFormError } from '@/composables/formResponse'
 import { useAppStore } from '@/store/reactivity/app'
 
+import { Portal } from '@/utils/portal'
 import type { PropType } from 'vue'
 import type { InitialValues } from '@/types'
 
+// The rich text editor is only needed on this page.
+const VqTextEditor = defineAsyncComponent(async () => {
+  const { setConfig, VqTextEditor } = await import('@qnx/vuetify/integrations')
+  setConfig({ baseUrl: Portal.getInstance().getBaseUrl() })
+  return VqTextEditor
+})
+
 export default defineComponent({
+  components: { VqTextEditor },
   props: {
     initialValues: {
       type: Object as PropType<InitialValues>,
@@ -48,7 +56,7 @@ export default defineComponent({
 
     const schema = yup.object({
       title: yup.string().required().max(50).label('Title'),
-      description: yup.string().required().max(5000).label('Name')
+      description: yup.string().required().max(5000).label('Description')
     })
 
     const route = useRoute()
@@ -63,3 +71,18 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+/* Shown until the rich text editor loads, or if its script can't be fetched. */
+.static-page-editor :deep(textarea) {
+  display: block;
+  width: 100%;
+  min-height: 240px;
+  padding: 12px 16px;
+  border: thin solid rgba(var(--v-border-color), 0.4);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+</style>
