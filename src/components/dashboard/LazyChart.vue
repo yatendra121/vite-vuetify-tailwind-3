@@ -5,6 +5,22 @@
   </div>
 </template>
 
+<script lang="ts">
+let charts: Promise<unknown> | undefined
+
+/**
+ * Start fetching ApexCharts. The dashboard calls this as it starts loading
+ * data, so the download overlaps the requests instead of following them.
+ */
+export const loadCharts = () =>
+  (charts ??= Promise.all([
+    import('vue3-apexcharts/core'),
+    import('apexcharts/bar'),
+    import('apexcharts/donut'),
+    import('apexcharts/features/legend')
+  ]))
+</script>
+
 <script lang="ts" setup>
 import { defineAsyncComponent, h } from 'vue'
 import { VSkeletonLoader } from 'vuetify/components'
@@ -17,12 +33,9 @@ const { height } = defineProps<{ height: number }>()
 // first. Importing only the chart types in use also skips most of its code.
 const AsyncChart = defineAsyncComponent({
   loader: async () => {
-    const [chart] = await Promise.all([
-      import('vue3-apexcharts/core'),
-      import('apexcharts/bar'),
-      import('apexcharts/donut'),
-      import('apexcharts/features/legend')
-    ])
+    const [chart] = (await loadCharts()) as [
+      typeof import('vue3-apexcharts/core')
+    ]
     return chart.default
   },
   loadingComponent: {

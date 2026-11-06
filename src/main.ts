@@ -6,6 +6,7 @@ import { registerPlugins } from './plugins'
 import router from '@/router'
 import components from '@/components'
 import directives from '@/directives'
+import { loadVqVuetify } from '@/plugins/vqVuetify'
 
 // Styles
 import '@/styles/_variables.scss'
@@ -41,3 +42,16 @@ app.use(directives)
 registerPlugins(app)
 
 app.mount('#app')
+
+// Most pages use the form library. Fetch it once the first page has loaded so
+// opening one doesn't wait for it.
+window.addEventListener(
+    'load',
+    () => {
+        // Safari has no requestIdleCallback.
+        if ('requestIdleCallback' in window)
+            requestIdleCallback(() => void loadVqVuetify())
+        else setTimeout(() => void loadVqVuetify(), 1)
+    },
+    { once: true }
+)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import {
   mdiAccountGroupOutline,
   mdiPackageVariantClosed,
@@ -9,6 +9,7 @@ import {
 import ActivityCard from '@/components/dashboard/ActivityCard.vue'
 import CatalogHealthCard from '@/components/dashboard/CatalogHealthCard.vue'
 import CategoryBreakdownCard from '@/components/dashboard/CategoryBreakdownCard.vue'
+import { loadCharts } from '@/components/dashboard/LazyChart.vue'
 import DashboardHero from '@/components/dashboard/DashboardHero.vue'
 import RecentProductsCard from '@/components/dashboard/RecentProductsCard.vue'
 import StatCard from '@/components/dashboard/StatCard.vue'
@@ -16,6 +17,9 @@ import StockValueCard from '@/components/dashboard/StockValueCard.vue'
 import { useDashboardData } from './useDashboardData'
 
 const { counts, products, categories, accounts } = useDashboardData()
+
+// The charts wait for data, but their code needn't: fetch both at once.
+onMounted(() => void loadCharts())
 
 const stats = computed(() => [
   {

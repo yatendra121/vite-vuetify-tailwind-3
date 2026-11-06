@@ -1,15 +1,19 @@
 import { RouteRecordRaw } from 'vue-router'
 import { mdiLogin, mdiLockReset, mdiLockQuestion } from '@mdi/js'
-const Login = () =>
-    import('@/views/admin/Auth/login.vue')
-const ResetPassword = () =>
-    import(
-        '@/views/admin/Auth/resetPassword.vue'
-    )
-const ForgotPassword = () =>
-    import(
-        '@/views/admin/Auth/forgotPassword.vue'
-    )
+import { loadVqVuetify } from '@/plugins/vqVuetify'
+
+// These pages are built from the form library: fetch it alongside the page
+// instead of after it.
+const withForms = <T>(page: () => Promise<T>) => () =>
+    Promise.all([page(), loadVqVuetify()]).then(([module]) => module)
+
+const Login = withForms(() => import('@/views/admin/Auth/login.vue'))
+const ResetPassword = withForms(
+    () => import('@/views/admin/Auth/resetPassword.vue')
+)
+const ForgotPassword = withForms(
+    () => import('@/views/admin/Auth/forgotPassword.vue')
+)
 
 const AuthRoutes: Array<RouteRecordRaw> = [
     {

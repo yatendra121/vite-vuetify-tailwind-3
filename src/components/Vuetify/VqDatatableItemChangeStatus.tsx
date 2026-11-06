@@ -4,7 +4,7 @@ import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 
 import { ApiResponse, ApiResponseValue } from '@qnx/composables'
-import { updateItemValue } from '@/plugins/vqVuetify'
+import { updateItemValue } from '@qnx/vuetify'
 import type { AxiosError } from 'axios'
 
 //types

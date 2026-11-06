@@ -6,7 +6,7 @@ import { useAsyncAxios } from '@qnx/composables/axios'
 import { useMessage } from '@/composables/message'
 import { ApiSuccessResponse, ApiSuccessResponseValue } from '@qnx/composables'
 
-import { updateItemValue, deleteItemValue } from '@/plugins/vqVuetify'
+import { updateItemValue, deleteItemValue } from '@qnx/vuetify'
 import { mdiDeleteOutline } from '@mdi/js'
 import type { AxiosError } from 'axios'
 
